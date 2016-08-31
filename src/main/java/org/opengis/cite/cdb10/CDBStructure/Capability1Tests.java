@@ -437,6 +437,6 @@ public class Capability1Tests extends CommonFixture {
     public void verifyMetaDataFoldersExist() {
         Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema")), "Metadata should contain Schema folder.");
         Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Stylesheet")), "Metadata should contain Stylesheet folder.");
-        Assert.assertEquals(Paths.get(path, "Metadata").getNameCount(), 2);
+        Assert.assertEquals(Paths.get(path, "Metadata").getNameCount(), 2, "Metadata should only contain 2 folders.");
     }
 }

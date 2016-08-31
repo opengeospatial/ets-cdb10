@@ -3,16 +3,15 @@ package org.opengis.cite.cdb10.level1;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 import org.opengis.cite.cdb10.CDBStructure.Capability1Tests;
-import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.SuiteAttribute;
 import org.testng.ISuite;
 import org.testng.ITestContext;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.nio.file.attribute.FileAttribute;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -61,7 +60,6 @@ public class VerifyCapability1Tests {
                 Files.delete(dir);
                 return FileVisitResult.CONTINUE;
             }
-
         });
     }
 
@@ -97,4 +95,25 @@ public class VerifyCapability1Tests {
         // execute
         testSuite.verifyMetaDataFoldersExist();
     }
+
+    @Test
+    public void verifyMetaDataFoldersExist_allFoldersExist() throws IOException {
+        // setup
+        Files.createDirectories(cdb_root.resolve(Paths.get("Metadata", "Schema")));
+        Files.createDirectories(cdb_root.resolve(Paths.get("Metadata", "Stylesheet")));
+
+        // execute
+        testSuite.verifyMetaDataFoldersExist();
+    }
+
+//    @Test(expected = AssertionError.class)
+//    public void verifyMetadataFilesExist_missingOneFile() {
+//        ArrayList<String> metadata_files = new ArrayList<>(Arrays.asList("Lights.xml", "Model_Components.xml",
+//                "Materials.xml", "Defaults.xml", "Version.xml", "CDB_Attributes.xml", "Geomatics_Attributes.xml",
+//                "Vendor_Attributes.xml", "Configuration.xml"));
+//
+//        for (String file : metadata_files) {
+//
+//        }
+//    }
 }
