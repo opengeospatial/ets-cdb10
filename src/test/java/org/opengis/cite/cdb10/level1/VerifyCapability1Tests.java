@@ -1,19 +1,18 @@
 package org.opengis.cite.cdb10.level1;
 
-import java.io.IOException;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import java.io.File;
+
+import junit.framework.TestCase;
+import junit.framework.TestResult;
+import junit.framework.TestSuite;
+import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import org.opengis.cite.cdb10.CDBStructure.Capability1Tests;
-import org.testng.ISuite;
-import org.testng.ITestContext;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 /**
  * Verifies the behavior of the Capability1Tests test class. Test stubs replace
@@ -21,22 +20,35 @@ import org.xml.sax.SAXException;
  */
 public class VerifyCapability1Tests {
 
-//    private static final String SUBJ = "testSubject";
+    private File cdb_root;
+    private Capability1Tests testSuite;
+
+    //    private static final String SUBJ = "testSubject";
 //    private static DocumentBuilder docBuilder;
 //    private static ITestContext testContext;
 //    private static ISuite suite;
 //
-//    public VerifyCapability1Tests() {
-//    }
-//
+    public VerifyCapability1Tests() {
+        cdb_root = new File(System.getProperty("user.dir") + "\\CDB");
+        cdb_root.mkdirs();
+
+        testSuite = new Capability1Tests(cdb_root.getPath());
+    }
+
+    @Test
+    public void verifyMetaDataFoldersExist_missingSchemaFolder() {
+        // setup
+        File folders = new File(cdb_root.getPath() + "\\MetaData\\Stylesheets");
+        folders.mkdirs();
+
+        // execute
+        TestResult result = new TestResult();
+        TestSuite.createTest(Capability1Tests.class, "verifyMetaDataFoldersExist").run(result);
+        assertFalse(result.wasSuccessful());
+    }
+
 //    @BeforeClass
 //    public static void setUpClass() throws Exception {
-//        testContext = mock(ITestContext.class);
-//        suite = mock(ISuite.class);
-//        when(testContext.getSuite()).thenReturn(suite);
-//        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-//        dbf.setNamespaceAware(true);
-//        docBuilder = dbf.newDocumentBuilder();
 //    }
 //
 //    @AfterClass
