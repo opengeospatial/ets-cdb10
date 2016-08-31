@@ -1,32 +1,29 @@
 package org.opengis.cite.cdb10.CDBStructure;
 
-import junit.framework.Test;
-import junit.framework.TestResult;
+import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.SuiteAttribute;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
  * Includes various tests of capability 1.
  */
-public class Capability1Tests implements Test {
-
-    public String getPath() {
-        return path;
-    }
+public class Capability1Tests extends CommonFixture {
 
     private String path;
     private String directories;
     private String latlong;
     private String minmaxlod;
 
-    public Capability1Tests(String path) {
-        this.path = path;
+    public Capability1Tests() {
     }
 
     /**
@@ -49,15 +46,14 @@ public class Capability1Tests implements Test {
         path = testContext.getSuite().getAttribute(
                 SuiteAttribute.TEST_SUBJECT.getName()).toString().trim();
 
-        directories = testContext.getSuite().getAttribute(
-                SuiteAttribute.DIRECTORIES.getName()).toString();
-
-        latlong = testContext.getSuite().getAttribute(
-                SuiteAttribute.LATLONG.getName()).toString();
-
-        minmaxlod = testContext.getSuite().getAttribute(
-                SuiteAttribute.MINMAXLOD.getName()).toString();
-
+//        directories = testContext.getSuite().getAttribute(
+//                SuiteAttribute.DIRECTORIES.getName()).toString();
+//
+//        latlong = testContext.getSuite().getAttribute(
+//                SuiteAttribute.LATLONG.getName()).toString();
+//
+//        minmaxlod = testContext.getSuite().getAttribute(
+//                SuiteAttribute.MINMAXLOD.getName()).toString();
     }
 
     /**
@@ -218,7 +214,6 @@ public class Capability1Tests implements Test {
             }
         }
     }
-
 
     private String getLatDir(double latitude) {
 
@@ -438,17 +433,9 @@ public class Capability1Tests implements Test {
         return true;
     }
 
+    @Test
     public void verifyMetaDataFoldersExist() {
-
-    }
-
-    @Override
-    public int countTestCases() {
-        return 0;
-    }
-
-    @Override
-    public void run(TestResult testResult) {
-
+        Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema")), "Metadata should contain Schema folder.");
+        Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Stylesheet")), "Metadata should contain Stylesheet folder.");
     }
 }

@@ -3,18 +3,16 @@ package org.opengis.cite.cdb10;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientRequest;
 import com.sun.jersey.api.client.ClientResponse;
-
-import java.net.URI;
-import java.util.Map;
-import javax.ws.rs.core.MediaType;
-
 import org.opengis.cite.cdb10.util.ClientUtils;
 import org.testng.ITestContext;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 import org.w3c.dom.Document;
+
+import javax.ws.rs.core.MediaType;
+import java.net.URI;
+import java.util.Map;
 
 /**
  * A supporting base class that sets up a common test fixture. These
