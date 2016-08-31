@@ -86,4 +86,15 @@ public class VerifyCapability1Tests {
         // execute
         testSuite.verifyMetaDataFoldersExist();
     }
+
+    @Test(expected = AssertionError.class)
+    public void verifyMetaDataFoldersExist_noOtherFolders() throws IOException {
+        // setup
+        Files.createDirectories(cdb_root.resolve(Paths.get("Metadata", "Schema")));
+        Files.createDirectories(cdb_root.resolve(Paths.get("Metadata", "Stylesheet")));
+        Files.createDirectories(cdb_root.resolve(Paths.get("Metadata", "OtherFolder")));
+
+        // execute
+        testSuite.verifyMetaDataFoldersExist();
+    }
 }
