@@ -1,18 +1,9 @@
 package org.opengis.cite.cdb10.CDBStructure;
 
 import org.opengis.cite.cdb10.CommonFixture;
-import org.opengis.cite.cdb10.SuiteAttribute;
 import org.testng.Assert;
-import org.testng.ITestContext;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -21,43 +12,9 @@ import java.util.Collections;
  */
 public class Capability1Tests extends CommonFixture {
 
-    private String path;
-    private String directories;
-    private String latlong;
-    private String minmaxlod;
-
     public Capability1Tests() {
     }
 
-    /**
-     * Obtains the test subject from the ISuite context. The suite attribute
-     * {@link org.opengis.cite.cdb10.SuiteAttribute#TEST_SUBJECT} should
-     * evaluate to a DOM Document node.
-     *
-     * @param testContext The test (group) context.
-     */
-    @BeforeClass
-    public void obtainTestSubject(ITestContext testContext) {
-        Object obj = testContext.getSuite().getAttribute(
-                SuiteAttribute.LEVEL.getName());
-        if ((null != obj)) {
-            Integer level = Integer.class.cast(obj);
-//            Assert.assertTrue(level.intValue() > 0,
-//                    "Conformance level 1 will not be checked since ics = " + level);
-        }
-
-        path = testContext.getSuite().getAttribute(
-                SuiteAttribute.TEST_SUBJECT.getName()).toString().trim();
-
-//        directories = testContext.getSuite().getAttribute(
-//                SuiteAttribute.DIRECTORIES.getName()).toString();
-//
-//        latlong = testContext.getSuite().getAttribute(
-//                SuiteAttribute.LATLONG.getName()).toString();
-//
-//        minmaxlod = testContext.getSuite().getAttribute(
-//                SuiteAttribute.MINMAXLOD.getName()).toString();
-    }
 
     /**
      * Verifies the string is empty.
@@ -434,18 +391,5 @@ public class Capability1Tests extends CommonFixture {
             return false;
         }
         return true;
-    }
-
-    @Test
-    public void verifyMetaDataFoldersExist() throws IOException {
-        Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema")), "Metadata should contain Schema folder.");
-        Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Stylesheet")), "Metadata should contain Stylesheet folder.");
-
-        int fileCount = 0;
-        for (Path file : Files.newDirectoryStream(Paths.get(path, "Metadata"))) {
-            fileCount++;
-        }
-
-        Assert.assertEquals(fileCount, 2, "Metadata should only contain 2 folders.");
     }
 }

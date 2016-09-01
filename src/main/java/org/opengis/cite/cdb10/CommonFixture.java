@@ -37,6 +37,11 @@ public class CommonFixture {
      */
     protected ClientResponse response;
 
+    protected String path;
+    protected String directories;
+    protected String latlong;
+    protected String minmaxlod;
+
     /**
      * Initializes the common test fixture with a client component for
      * interacting with HTTP endpoints.
@@ -54,6 +59,36 @@ public class CommonFixture {
         if (null == obj) {
             throw new SkipException("Test subject not found in ITestContext.");
         }
+    }
+
+    /**
+     * Obtains the test subject from the ISuite context. The suite attribute
+     * {@link org.opengis.cite.cdb10.SuiteAttribute#TEST_SUBJECT} should
+     * evaluate to a DOM Document node.
+     *
+     * @param testContext The test (group) context.
+     */
+    @BeforeClass
+    public void obtainTestSubject(ITestContext testContext) {
+        Object obj = testContext.getSuite().getAttribute(
+                SuiteAttribute.LEVEL.getName());
+        if ((null != obj)) {
+            Integer level = Integer.class.cast(obj);
+//            Assert.assertTrue(level.intValue() > 0,
+//                    "Conformance level 1 will not be checked since ics = " + level);
+        }
+
+        path = testContext.getSuite().getAttribute(
+                SuiteAttribute.TEST_SUBJECT.getName()).toString().trim();
+
+//        directories = testContext.getSuite().getAttribute(
+//                SuiteAttribute.DIRECTORIES.getName()).toString();
+//
+//        latlong = testContext.getSuite().getAttribute(
+//                SuiteAttribute.LATLONG.getName()).toString();
+//
+//        minmaxlod = testContext.getSuite().getAttribute(
+//                SuiteAttribute.MINMAXLOD.getName()).toString();
     }
 
     @BeforeMethod
