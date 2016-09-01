@@ -1,3 +1,5 @@
+[![Build Status](https://magnum.travis-ci.com/pixeltree/ets-cdb10.svg?token=cVmqMBNstpYA8xZFcnuY&branch=master)](https://magnum.travis-ci.com/pixeltree/ets-cdb10)
+
 ## Test suite: ets-cdb10
 
 ### Scope

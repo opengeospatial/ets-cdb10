@@ -2,7 +2,8 @@
 .project
 .classpath
 .settings/
-.idea
+.idea/
+.java-version
 
 # Maven output
 target/
