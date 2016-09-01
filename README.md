@@ -1,4 +1,4 @@
-[![Build Status](https://magnum.travis-ci.org/pixeltree/ets-cdb10.svg)](https://magnum.travis-ci.org/pixeltree/ets-cdb10)
+[![Build Status](https://travis-ci.org/pixeltree/ets-cdb10.svg)](https://travis-ci.org/pixeltree/ets-cdb10)
 
 ## Test suite: ets-cdb10
 
