@@ -8,7 +8,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -434,9 +437,15 @@ public class Capability1Tests extends CommonFixture {
     }
 
     @Test
-    public void verifyMetaDataFoldersExist() {
+    public void verifyMetaDataFoldersExist() throws IOException {
         Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema")), "Metadata should contain Schema folder.");
         Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Stylesheet")), "Metadata should contain Stylesheet folder.");
-        Assert.assertEquals(Paths.get(path, "Metadata").getNameCount(), 2, "Metadata should only contain 2 folders.");
+
+        int fileCount = 0;
+        for (Path file : Files.newDirectoryStream(Paths.get(path, "Metadata"))) {
+            fileCount++;
+        }
+
+        Assert.assertEquals(fileCount, 2, "Metadata should only contain 2 folders.");
     }
 }
