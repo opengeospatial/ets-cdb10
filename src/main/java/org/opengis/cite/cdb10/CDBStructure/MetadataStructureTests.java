@@ -21,7 +21,9 @@ public class MetadataStructureTests extends CommonFixture {
 
         int fileCount = 0;
         for (Path file : Files.newDirectoryStream(Paths.get(path, "Metadata"))) {
-            fileCount++;
+            if (file.toFile().isDirectory()) {
+                fileCount++;
+            }
         }
 
         Assert.assertEquals(fileCount, 2, "Metadata should only contain 2 folders.");
