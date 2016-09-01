@@ -24,4 +24,15 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
         // execute
         testSuite.verifyLightsXmlFileExist();
     }
+
+    @Test
+    public void verifyLightsXmlExist_lightsXmlDoesExist() throws IOException {
+        // setup
+        Files.createDirectories(cdb_root.resolve(Paths.get("Metadata", "Lights.xml")));
+
+        // execute
+        testSuite.verifyLightsXmlFileExist();
+    }
+
+    
 }
