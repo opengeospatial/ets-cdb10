@@ -1,7 +1,9 @@
 package org.opengis.cite.cdb10.level1;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.opengis.cite.cdb10.CDBStructure.LightsXmlStructureTests;
 import org.opengis.cite.cdb10.TestFixture;
 
@@ -19,20 +21,28 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructureTests> {
 
     private Path metadata;
-    private static File invalidLightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/invalid/Lights.xml");
+    private static File duplicatedCodeLightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/invalid/LightsDuplicatedCode.xml");
+    private static File invalidCodeTenThousandLightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/invalid/LightsInvalidCodeTenThousand.xml");
+    private static File invalidCodeTenNegativeOneLightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/invalid/LightsInvalidCodeNegativeOne.xml");
     private static File validLightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/valid/Lights.xml");
 
     public VerifyLightsXmlStructureTests() {
         testSuite = new LightsXmlStructureTests();
     }
 
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+
     @Before
     public void createMetadataDirectory() throws IOException {
         metadata = Files.createDirectories(cdb_root.resolve(Paths.get("Metadata")));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void verifyLightsXmlExist_lightsXmlDoesNotExist() throws IOException {
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Metadata directory should contain Lights.xml file.");
+
         // execute
         testSuite.verifyLightsXmlFileExist();
     }
@@ -55,10 +65,13 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
         testSuite.verifyLightsXmlHasUniqueCodes();
     }
 
-    @Test(expected = AssertionError.class)
+    @Test
     public void verifyLightsXmlHasUniqueCodes_lightsXmlDoesNotHaveUniqueCodes() throws IOException {
         // setup
-        Files.copy(invalidLightsXmlFile.toPath(), metadata.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.copy(duplicatedCodeLightsXmlFile.toPath(), metadata.resolve("Lights.xml"), REPLACE_EXISTING);
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Lights.xml element Light should have unique codes. Code 1 is not unique.");
 
         // execute
         testSuite.verifyLightsXmlHasUniqueCodes();
@@ -73,10 +86,25 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
         testSuite.verifyLightsXmlCodesAreWithinRange();
     }
 
-    @Test(expected = AssertionError.class)
-    public void verifyLightsXmlHasCodesWithinRange_lightsXmlDoesNotHaveCodesInRange() throws IOException {
+    @Test
+    public void verifyLightsXmlHasCodesWithinRange_lightsXmlCodeIsOver9999() throws IOException {
         // setup
-        Files.copy(invalidLightsXmlFile.toPath(), metadata.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.copy(invalidCodeTenThousandLightsXmlFile.toPath(), metadata.resolve("Lights.xml"), REPLACE_EXISTING);
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Lights.xml element Light should have a code from 0 - 9999 inclusive.");
+
+        // execute
+        testSuite.verifyLightsXmlCodesAreWithinRange();
+    }
+
+    @Test
+    public void verifyLightsXmlHasCodesWithinRange_lightsXmlCodeLessThanZero() throws IOException {
+        // setup
+        Files.copy(invalidCodeTenNegativeOneLightsXmlFile.toPath(), metadata.resolve("Lights.xml"), REPLACE_EXISTING);
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Lights.xml element Light should have a code from 0 - 9999 inclusive.");
 
         // execute
         testSuite.verifyLightsXmlCodesAreWithinRange();

@@ -16,7 +16,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
 
 /**
  * Created by martin on 2016-09-01.
@@ -25,7 +24,7 @@ public class LightsXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyLightsXmlFileExist() {
-        Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Lights.xml")), "Metadata should contain Lights.xml file.");
+        Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Lights.xml")), "Metadata directory should contain Lights.xml file.");
     }
 
     @Test
@@ -43,7 +42,6 @@ public class LightsXmlStructureTests extends CommonFixture {
             Assert.assertEquals(Collections.frequency(codes, code), 1,
                     String.format("Lights.xml element Light should have unique codes. Code %s is not unique.", code));
         }
-
     }
 
     @Test
