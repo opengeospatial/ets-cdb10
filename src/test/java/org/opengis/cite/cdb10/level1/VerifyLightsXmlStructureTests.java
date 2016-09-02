@@ -57,6 +57,27 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     }
 
     @Test
+    public void verifyLightsXmlFileExist_XmlIsValid() throws IOException {
+        // setup
+        Files.copy(validLightsXmlFile, metadata.resolve("Lights.xml"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyLightsXmlFileHasValidXml();
+    }
+
+    @Test
+    public void verifyLightsXmlFileExist_XmlIsNotValid() throws IOException {
+        // setup
+        Files.createFile(metadata.resolve(Paths.get("Lights.xml")));
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Lights.xml does not contain valid XML.");
+
+        // execute
+        testSuite.verifyLightsXmlFileHasValidXml();
+    }
+
+    @Test
     public void verifyLightsXmlHasUniqueCodes_lightsXmlHasUniqueCodes() throws IOException {
         // setup
         Files.copy(validLightsXmlFile, metadata.resolve("Lights.xml"), REPLACE_EXISTING);

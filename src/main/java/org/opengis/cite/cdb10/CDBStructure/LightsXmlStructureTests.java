@@ -7,6 +7,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -25,6 +26,11 @@ public class LightsXmlStructureTests extends CommonFixture {
     @Test
     public void verifyLightsXmlFileExist() {
         Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Lights.xml")), "Metadata directory should contain Lights.xml file.");
+    }
+
+    @Test
+    public void verifyLightsXmlFileHasValidXml() {
+        Assert.assertTrue(getNodeList() != null, "Lights.xml does not contain valid XML.");
     }
 
     @Test
@@ -58,14 +64,13 @@ public class LightsXmlStructureTests extends CommonFixture {
 
     private NodeList getNodeList() {
         try {
-            Document doc;
-            doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(String.valueOf(Paths.get(path, "Metadata", "Lights.xml")));
+            Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(String.valueOf(Paths.get(path, "Metadata", "Lights.xml")));
             XPath xPath = XPathFactory.newInstance().newXPath();
             XPathExpression exp = xPath.compile("//Light");
             return (NodeList) exp.evaluate(doc, XPathConstants.NODESET);
         } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
             ex.printStackTrace();
+            return null;
         }
-        return null;
     }
 }
