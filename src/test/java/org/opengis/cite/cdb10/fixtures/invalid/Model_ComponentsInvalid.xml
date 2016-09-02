@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- Sample list of Model Components -->
+<Model_Components xmlns="CDB" xmlns:CDB="CDB" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="CDB Schema/Model_Components.xsd">
+
+  <Component name="Artillery_Gun">
+    <Description>1) Refers to any engine used for the discharge of large projectiles and served by a crew of men. 2)
+      Cannon-like weapons operated by more than one person.
+    </Description>
+  </Component>
+
+  <Component>
+  </Component>
+</Model_Components>

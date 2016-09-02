@@ -20,8 +20,11 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 public class VerifyModelComponentsXmlStructureTests extends TestFixture<ModelComponentsXmlStructureTests> {
 
     private Path metadata;
+    private Path schema;
     private static Path sourceDirectory = Paths.get(System.getProperty("user.dir"), "src", "test", "java", "org", "opengis", "cite", "cdb10", "fixtures");
     private static Path validModelComponentsXmlFile = sourceDirectory.resolve(Paths.get("valid", "Model_Components.xml"));
+    private static Path invalidModelComponentsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "Model_ComponentsInvalid.xml"));
+    private static Path modelComponentsXsdFile = sourceDirectory.resolve(Paths.get("schema", "Model_Components.xsd"));
 
     public VerifyModelComponentsXmlStructureTests() {
         testSuite = new ModelComponentsXmlStructureTests();
@@ -33,6 +36,7 @@ public class VerifyModelComponentsXmlStructureTests extends TestFixture<ModelCom
     @Before
     public void createMetadataDirectory() throws IOException {
         metadata = Files.createDirectories(cdb_root.resolve(Paths.get("Metadata")));
+        schema = Files.createDirectories(cdb_root.resolve(Paths.get(String.valueOf(metadata), "Schema")));
     }
 
     @Test
@@ -58,20 +62,22 @@ public class VerifyModelComponentsXmlStructureTests extends TestFixture<ModelCom
     public void verifyModelComponentsXmlIsValid_XmlIsValid() throws IOException {
         // setup
         Files.copy(validModelComponentsXmlFile, metadata.resolve("Model_Components.xml"), REPLACE_EXISTING);
+        Files.copy(modelComponentsXsdFile, schema.resolve("Model_Components.xsd"), REPLACE_EXISTING);
 
         // execute
-        testSuite.verifyModelComponentsXmlFileHasValidXml();
+        testSuite.verifyModelComponentsXmlFileIsValid();
     }
 
     @Test
     public void verifyModelComponentsXmlIsValid_XmlIsNotValid() throws IOException {
         // setup
-        Files.createFile(metadata.resolve(Paths.get("Model_Components.xml")));
+        Files.copy(invalidModelComponentsXmlFile, metadata.resolve("Model_Components.xml"), REPLACE_EXISTING);
+        Files.copy(modelComponentsXsdFile, schema.resolve("Model_Components.xsd"), REPLACE_EXISTING);
 
         expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("Model_Components.xml does not contain valid XML.");
+        expectedException.expectMessage("Model_Components.xml does not contain valid XML");
 
         // execute
-        testSuite.verifyModelComponentsXmlFileHasValidXml();
+        testSuite.verifyModelComponentsXmlFileIsValid();
     }
 }
