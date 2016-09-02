@@ -39,7 +39,7 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     }
 
     @Test
-    public void verifyLightsXmlExist_lightsXmlDoesNotExist() throws IOException {
+    public void verifyLightsXmlExist_LightsXmlDoesNotExist() throws IOException {
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Metadata directory should contain Lights.xml file.");
 
@@ -48,7 +48,7 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     }
 
     @Test
-    public void verifyLightsXmlExist_lightsXmlDoesExist() throws IOException {
+    public void verifyLightsXmlExist_LightsXmlDoesExist() throws IOException {
         // setup
         Files.createFile(metadata.resolve(Paths.get("Lights.xml")));
 
@@ -57,7 +57,7 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     }
 
     @Test
-    public void verifyLightsXmlFileExist_XmlIsValid() throws IOException {
+    public void verifyLightsXmlIsValid_XmlIsValid() throws IOException {
         // setup
         Files.copy(validLightsXmlFile, metadata.resolve("Lights.xml"), REPLACE_EXISTING);
 
@@ -66,7 +66,7 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     }
 
     @Test
-    public void verifyLightsXmlFileExist_XmlIsNotValid() throws IOException {
+    public void verifyLightsXmlIsValid_XmlIsNotValid() throws IOException {
         // setup
         Files.createFile(metadata.resolve(Paths.get("Lights.xml")));
 
@@ -78,7 +78,7 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     }
 
     @Test
-    public void verifyLightsXmlHasUniqueCodes_lightsXmlHasUniqueCodes() throws IOException {
+    public void verifyLightsXmlHasUniqueCodes_LightsXmlHasUniqueCodes() throws IOException {
         // setup
         Files.copy(validLightsXmlFile, metadata.resolve("Lights.xml"), REPLACE_EXISTING);
 
@@ -87,7 +87,7 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     }
 
     @Test
-    public void verifyLightsXmlHasUniqueCodes_lightsXmlDoesNotHaveUniqueCodes() throws IOException {
+    public void verifyLightsXmlHasUniqueCodes_LightsXmlDoesNotHaveUniqueCodes() throws IOException {
         // setup
         Files.copy(duplicatedCodeLightsXmlFile, metadata.resolve("Lights.xml"), REPLACE_EXISTING);
 
@@ -99,7 +99,7 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     }
 
     @Test
-    public void verifyLightsXmlHasCodesWithinRange_lightsXmlHasCodesInRange() throws IOException {
+    public void verifyLightsXmlHasCodesWithinRange_LightsXmlHasCodesInRange() throws IOException {
         // setup
         Files.copy(validLightsXmlFile, metadata.resolve("Lights.xml"), REPLACE_EXISTING);
 
@@ -108,7 +108,7 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     }
 
     @Test
-    public void verifyLightsXmlHasCodesWithinRange_lightsXmlCodeIsOver9999() throws IOException {
+    public void verifyLightsXmlHasCodesWithinRange_LightsXmlCodeIsOver9999() throws IOException {
         // setup
         Files.copy(invalidCodeTenThousandLightsXmlFile, metadata.resolve("Lights.xml"), REPLACE_EXISTING);
 
@@ -120,7 +120,7 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     }
 
     @Test
-    public void verifyLightsXmlHasCodesWithinRange_lightsXmlCodeLessThanZero() throws IOException {
+    public void verifyLightsXmlHasCodesWithinRange_LightsXmlCodeLessThanZero() throws IOException {
         // setup
         Files.copy(invalidCodeNegativeOneLightsXmlFile, metadata.resolve("Lights.xml"), REPLACE_EXISTING);
 

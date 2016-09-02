@@ -69,7 +69,6 @@ public class LightsXmlStructureTests extends CommonFixture {
             XPathExpression exp = xPath.compile("//Light");
             return (NodeList) exp.evaluate(doc, XPathConstants.NODESET);
         } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
-            ex.printStackTrace();
             return null;
         }
     }
