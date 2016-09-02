@@ -55,4 +55,15 @@ public class VerifyMetadataStructureTests extends TestFixture<MetadataStructureT
         // execute
         testSuite.verifyMetaDataFoldersExist();
     }
+
+    @Test
+    public void verifyMetaDataFoldersExist_OtherFilesExist() throws IOException {
+        // setup
+        Files.createDirectories(cdb_root.resolve(Paths.get("Metadata", "Schema")));
+        Files.createDirectories(cdb_root.resolve(Paths.get("Metadata", "Stylesheet")));
+        Files.createFile(cdb_root.resolve(Paths.get("Metadata", "Lights.xml")));
+
+        // execute
+        testSuite.verifyMetaDataFoldersExist();
+    }
 }

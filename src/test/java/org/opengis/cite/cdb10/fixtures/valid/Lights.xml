@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="Stylesheet/Lights.xsl"?>
+<Lights
+  xmlns="http://www.CDB-Spec.org/Schema/Lights/3.2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.CDB-Spec.org/Schema/Lights/3.2 Schema/Lights.xsd"
+  version = "1.1">
+  <Light type="Light" code="0">
+    <Description>All purpose generic light</Description>
+    <Light type="Platform" code="1">
+      <Description>Generic Platform light</Description>
+      <Light type="Air" code="2">
+        <Description>Generic Aircraft lights</Description>
+        <Light type="Aircraft_Helos" code="9999">
+          <Description>Generic light for Aircraft and Helicopters</Description>
+        </Light>
+      </Light>
+    </Light>
+  </Light>
+</Lights>
