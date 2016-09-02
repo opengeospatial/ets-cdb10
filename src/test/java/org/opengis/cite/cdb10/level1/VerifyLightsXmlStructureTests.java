@@ -43,7 +43,7 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     public void verifyLightsXmlHasUniqueCodes_lightsXmlHasUniqueCodes() throws IOException {
         // setup
         Path metadata = Files.createDirectories(cdb_root.resolve(Paths.get("Metadata")));
-        File lightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/ValidLights.xml");
+        File lightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/valid/Lights.xml");
         Files.copy(lightsXmlFile.toPath(), metadata.resolve("Lights.xml"), REPLACE_EXISTING);
 
         // execute
@@ -54,7 +54,7 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     public void verifyLightsXmlHasUniqueCodes_lightsXmlDoesNotHaveUniqueCodes() throws IOException {
         // setup
         Path metadata = Files.createDirectories(cdb_root.resolve(Paths.get("Metadata")));
-        File lightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/InValidLights.xml");
+        File lightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/invalid/Lights.xml");
         Files.copy(lightsXmlFile.toPath(), metadata.resolve("Lights.xml"), REPLACE_EXISTING);
 
         // execute
@@ -65,7 +65,7 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     public void verifyLightsXmlHasCodesWithinRange_lightsXmlHasCodesInRange() throws IOException {
         // setup
         Path metadata = Files.createDirectories(cdb_root.resolve(Paths.get("Metadata")));
-        File lightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/ValidLights.xml");
+        File lightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/valid/Lights.xml");
         Files.copy(lightsXmlFile.toPath(), metadata.resolve("Lights.xml"), REPLACE_EXISTING);
 
         // execute
@@ -76,7 +76,7 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     public void verifyLightsXmlHasCodesWithinRange_lightsXmlDoesNotHaveCodesInRange() throws IOException {
         // setup
         Path metadata = Files.createDirectories(cdb_root.resolve(Paths.get("Metadata")));
-        File lightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/InValidLights.xml");
+        File lightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/invalid/Lights.xml");
         Files.copy(lightsXmlFile.toPath(), metadata.resolve("Lights.xml"), REPLACE_EXISTING);
 
         // execute

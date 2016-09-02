@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="Stylesheet/Lights.xsl"?>
+<Lights
+    xmlns="http://www.CDB-Spec.org/Schema/Lights/3.2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.CDB-Spec.org/Schema/Lights/3.2 Schema/Lights.xsd"
+    version="1.1">
+  <Light type="Light" code="0">
+    <Description>All purpose generic light</Description>
+    <Light code="1"></Light>
+    <Light type="Platform" code="1">
+      <Description>Generic Platform light</Description>
+      <Light type="Air" code="2">
+        <Description>Generic Aircraft lights</Description>
+        <Light type="Aircraft_Helos" code="3">
+          <Description>Generic light for Aircraft and Helicopters</Description>
+          <Light type="Anti-collision" code="4">
+            <Description>Generic Anti collision light - normally red flashing</Description>
+            <Light type="Bottom_Light" code="5">
+              <Description>Anti-collision found on bottom of the fuselage</Description>
+              <Light type="NVG_Bottom_Light" code="6">
+                <Description>Anti-collision found on bottom of the fuselage in NVG mode</Description>
+              </Light>
+            </Light>
+            <Light type="Top_Light" code="7">
+              <Description>Anti-collision found on Top of the fuselage</Description>
+              <Light type="NVG_Top_Light" code="8">
+                <Description>Anti-collision found on Top of the fuselage in NVG mode</Description>
+              </Light>
+            </Light>
+            <Light type="High_Intensity" code="501">
+              <Description>High Intensity Anti-collision Light</Description>
+            </Light>
+          </Light>
+        </Light>
+      </Light>
+    </Light>
+    <Light code="10000">
+      <Description>Invalid code</Description>
+    </Light>
+  </Light>
+</Lights>
