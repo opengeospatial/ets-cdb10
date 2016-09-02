@@ -60,4 +60,26 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
         // execute
         testSuite.verifyLightsXmlHasUniqueCodes();
     }
+
+    @Test
+    public void verifyLightsXmlHasCodesWithinRange_lightsXmlHasCodesInRange() throws IOException {
+        // setup
+        Path metadata = Files.createDirectories(cdb_root.resolve(Paths.get("Metadata")));
+        File lightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/ValidLights.xml");
+        Files.copy(lightsXmlFile.toPath(), metadata.resolve("Lights.xml"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyLightsXmlCodesAreWithinRange();
+    }
+
+    @Test(expected = AssertionError.class)
+    public void verifyLightsXmlHasCodesWithinRange_lightsXmlDoesNotHaveCodesInRange() throws IOException {
+        // setup
+        Path metadata = Files.createDirectories(cdb_root.resolve(Paths.get("Metadata")));
+        File lightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/InValidLights.xml");
+        Files.copy(lightsXmlFile.toPath(), metadata.resolve("Lights.xml"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyLightsXmlCodesAreWithinRange();
+    }
 }

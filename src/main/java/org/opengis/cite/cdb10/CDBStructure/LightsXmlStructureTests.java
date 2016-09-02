@@ -41,12 +41,29 @@ public class LightsXmlStructureTests extends CommonFixture {
                         codeCount++;
                     }
                 }
-                System.out.println(codeCount);
                 Assert.assertEquals(codeCount, 1, "Lights.xml element Light should have a unique codes.");
             }
         } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
             ex.printStackTrace();
         }
+    }
 
+    public void verifyLightsXmlCodesAreWithinRange() {
+        try {
+            Document doc;
+            doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(String.valueOf(Paths.get(path, "Metadata", "Lights.xml")));
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            XPathExpression exp = xPath.compile("//Light");
+            NodeList nl = (NodeList) exp.evaluate(doc, XPathConstants.NODESET);
+
+            for (int i = 0; i < nl.getLength(); i++) {
+                Node currentItem = nl.item(i);
+                int key = Integer.parseInt(currentItem.getAttributes().getNamedItem("code").getNodeValue());
+
+                Assert.assertTrue((key >= 0) && (key <= 9999), "Lights.xml element Light should have a code from 0 - 9999 inclusive.");
+            }
+        } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
+            ex.printStackTrace();
+        }
     }
 }
