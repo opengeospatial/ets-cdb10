@@ -4,14 +4,19 @@ import org.junit.Test;
 import org.opengis.cite.cdb10.CDBStructure.LightsXmlStructureTests;
 import org.opengis.cite.cdb10.TestFixture;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 /**
  * Created by martin on 2016-09-01.
  */
 public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructureTests> {
+
     public VerifyLightsXmlStructureTests() {
         testSuite = new LightsXmlStructureTests();
     }
@@ -34,5 +39,25 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
         testSuite.verifyLightsXmlFileExist();
     }
 
-    
+    @Test
+    public void verifyLightsXmlHasUniqueCodes_lightsXmlHasUniqueCodes() throws IOException {
+        // setup
+        Path metadata = Files.createDirectories(cdb_root.resolve(Paths.get("Metadata")));
+        File lightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/ValidLights.xml");
+        Files.copy(lightsXmlFile.toPath(), metadata.resolve("Lights.xml"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyLightsXmlHasUniqueCodes();
+    }
+
+    @Test(expected = AssertionError.class)
+    public void verifyLightsXmlHasUniqueCodes_lightsXmlDoesNotHaveUniqueCodes() throws IOException {
+        // setup
+        Path metadata = Files.createDirectories(cdb_root.resolve(Paths.get("Metadata")));
+        File lightsXmlFile = new File(System.getProperty("user.dir") + "/src/test/java/org/opengis/cite/cdb10/fixtures/InValidLights.xml");
+        Files.copy(lightsXmlFile.toPath(), metadata.resolve("Lights.xml"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyLightsXmlHasUniqueCodes();
+    }
 }
