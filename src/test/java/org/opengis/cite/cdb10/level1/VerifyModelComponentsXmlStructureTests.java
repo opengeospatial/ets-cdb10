@@ -58,7 +58,6 @@ public class VerifyModelComponentsXmlStructureTests extends TestFixture<ModelCom
         testSuite.verifyModelComponentsXmlFileExist();
     }
 
-
     @Test
     public void verifyModelComponentsXmlIsValid_XmlIsValid() throws IOException, SAXException {
         // setup

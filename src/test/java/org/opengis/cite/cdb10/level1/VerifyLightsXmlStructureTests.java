@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.opengis.cite.cdb10.CDBStructure.LightsXmlStructureTests;
 import org.opengis.cite.cdb10.TestFixture;
+import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,11 +21,14 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructureTests> {
 
     private Path metadata;
+    private Path schema;
     private static Path sourceDirectory = Paths.get(System.getProperty("user.dir"), "src", "test", "java", "org", "opengis", "cite", "cdb10", "fixtures");
     private static Path duplicatedCodeLightsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "LightsDuplicatedCode.xml"));
     private static Path invalidCodeTenThousandLightsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "LightsInvalidCodeTenThousand.xml"));
     private static Path invalidCodeNegativeOneLightsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "LightsInvalidCodeNegativeOne.xml"));
+    private static Path invalidLightsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "LightsInvalid.xml"));
     private static Path validLightsXmlFile = sourceDirectory.resolve(Paths.get("valid", "Lights.xml"));
+    private static Path lightsXsdFile = sourceDirectory.resolve(Paths.get("schema", "Lights.xsd"));
 
     public VerifyLightsXmlStructureTests() {
         testSuite = new LightsXmlStructureTests();
@@ -36,6 +40,7 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     @Before
     public void createMetadataDirectory() throws IOException {
         metadata = Files.createDirectories(cdb_root.resolve(Paths.get("Metadata")));
+        schema = Files.createDirectories(cdb_root.resolve(Paths.get(String.valueOf(metadata), "Schema")));
     }
 
     @Test
@@ -57,8 +62,11 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     }
 
     @Test
-    public void verifyLightsXmlIsValid_XmlIsValid() throws IOException {
+    public void verifyLightsXmlIsValid_XmlIsValid() throws IOException, SAXException {
         // setup
+        Files.copy(validLightsXmlFile, metadata.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.copy(lightsXsdFile, schema.resolve("Lights.xsd"), REPLACE_EXISTING);
+
         Files.copy(validLightsXmlFile, metadata.resolve("Lights.xml"), REPLACE_EXISTING);
 
         // execute
@@ -66,12 +74,18 @@ public class VerifyLightsXmlStructureTests extends TestFixture<LightsXmlStructur
     }
 
     @Test
-    public void verifyLightsXmlIsValid_XmlIsNotValid() throws IOException {
+    public void verifyLightsXmlIsValid_XmlIsNotValid() throws IOException, SAXException {
         // setup
-        Files.createFile(metadata.resolve(Paths.get("Lights.xml")));
+        Files.copy(invalidLightsXmlFile, metadata.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.copy(lightsXsdFile, schema.resolve("Lights.xsd"), REPLACE_EXISTING);
+
+        String expectedMessage = "Lights.xml does not contain valid XML. Errors: cvc-minInclusive-valid: Value '-1' " +
+                "is not facet-valid with respect to minInclusive '0' for type '#AnonType_codeLight'., " +
+                "cvc-attribute.3: The value '-1' of attribute 'code' on element 'Light' is not valid with respect " +
+                "to its type, '#AnonType_codeLight'.";
 
         expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("Lights.xml does not contain valid XML.");
+        expectedException.expectMessage(expectedMessage);
 
         // execute
         testSuite.verifyLightsXmlFileHasValidXml();
