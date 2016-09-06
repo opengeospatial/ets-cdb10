@@ -24,7 +24,8 @@ public class VerifyDefaultsXmlStructureTests extends TestFixture<DefaultsXmlStru
     private static Path sourceDirectory = Paths.get(System.getProperty("user.dir"), "src", "test", "java", "org", "opengis", "cite", "cdb10", "fixtures");
     private static Path validDefaultsXmlFile = sourceDirectory.resolve(Paths.get("valid", "Defaults.xml"));
     private static Path invalidDefaultsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "DefaultsInvalid.xml"));
-    private static Path invalidElementsOutOfSquenceDefaultsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "DefaultsInvalidElementSequence.xml"));
+    private static Path invalidElementsOutOfSequenceDefaultsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "DefaultsInvalidElementSequence.xml"));
+    private static Path invalidR_W_TypeValueDefaultsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "DefaultsInvalidR_W_TypeValue.xml"));
     private static Path defaultsXsdFile = sourceDirectory.resolve(Paths.get("schema", "Defaults.xsd"));
 
     public VerifyDefaultsXmlStructureTests() {
@@ -88,7 +89,7 @@ public class VerifyDefaultsXmlStructureTests extends TestFixture<DefaultsXmlStru
     @Test
     public void verifyDefaultsXmlIsValid_ElementsOutOfSequence() throws IOException {
         // setup
-        Files.copy(invalidElementsOutOfSquenceDefaultsXmlFile, metadata.resolve("Defaults.xml"), REPLACE_EXISTING);
+        Files.copy(invalidElementsOutOfSequenceDefaultsXmlFile, metadata.resolve("Defaults.xml"), REPLACE_EXISTING);
         Files.copy(defaultsXsdFile, schema.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
         String expectedMessage = "cvc-complex-type.2.4.a: Invalid content was found starting with element 'R_W_Type'. " +
@@ -102,7 +103,30 @@ public class VerifyDefaultsXmlStructureTests extends TestFixture<DefaultsXmlStru
     }
 
     // check all <R_W_Type> have (‘R’ or ‘W’.) as values
+    @Test
+    public void verifyElementR_W_TypeHasValidValues_ValidValues() throws Exception {
+        // setup
+        Files.copy(validDefaultsXmlFile, metadata.resolve("Defaults.xml"), REPLACE_EXISTING);
+        Files.copy(defaultsXsdFile, schema.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
+        // execute
+        testSuite.verifyDefaultsXmlElementR_W_TypeHasValidValues();
+    }
+
+    @Test
+    public void verifyElementR_W_TypeHasValidValues_InvalidValues() throws Exception {
+        // setup
+        Files.copy(invalidR_W_TypeValueDefaultsXmlFile, metadata.resolve("Defaults.xml"), REPLACE_EXISTING);
+        Files.copy(defaultsXsdFile, schema.resolve("Defaults.xsd"), REPLACE_EXISTING);
+
+        String expectedMessage = "Defaults.xml element R_W_Type should have a value of R or W. Value K is not valid.";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
+
+        // execute
+        testSuite.verifyDefaultsXmlElementR_W_TypeHasValidValues();
+    }
     // check The default value name is a unique name identifying a default value for a given dataset.
 
     // check Each default value has a type. Valid default value data types are “float”, “integer” and “string”.
