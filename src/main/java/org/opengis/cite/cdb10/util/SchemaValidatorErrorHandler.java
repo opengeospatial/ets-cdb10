@@ -49,6 +49,6 @@ public class SchemaValidatorErrorHandler implements ErrorHandler {
     }
 
     public boolean noErrors() {
-        return exceptionList == null;
+        return exceptionList.isEmpty();
     }
 }

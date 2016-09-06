@@ -100,4 +100,10 @@ public class VerifyDefaultsXmlStructureTests extends TestFixture<DefaultsXmlStru
         // execute
         testSuite.verifyDefaultsXmlFileIsValid();
     }
+
+    // check all <R_W_Type> have (‘R’ or ‘W’.) as values
+
+    // check The default value name is a unique name identifying a default value for a given dataset.
+
+    // check Each default value has a type. Valid default value data types are “float”, “integer” and “string”.
 }
