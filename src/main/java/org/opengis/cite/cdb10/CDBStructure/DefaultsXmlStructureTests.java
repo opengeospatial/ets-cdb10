@@ -33,8 +33,12 @@ public class DefaultsXmlStructureTests extends CommonFixture {
             validator.setErrorHandler(errorHandler);
 
             validator.validate(new StreamSource(Paths.get(path, "Metadata", "Defaults.xml").toFile()));
+
+            if (!errorHandler.noErrors()) {
+                Assert.fail("Defaults.xml does not contain valid XML. Errors: " + errorHandler.getMessages());
+            }
         } catch ( SAXException | IOException | NullPointerException | IllegalArgumentException ex) {
-            Assert.fail("Defaults.xml does not contain valid XML. Error: " + String.valueOf(errorHandler.getException().getMessage()));
+
         }
     }
 }

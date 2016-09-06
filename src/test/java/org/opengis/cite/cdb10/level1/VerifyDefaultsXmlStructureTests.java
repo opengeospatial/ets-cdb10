@@ -24,6 +24,7 @@ public class VerifyDefaultsXmlStructureTests extends TestFixture<DefaultsXmlStru
     private static Path sourceDirectory = Paths.get(System.getProperty("user.dir"), "src", "test", "java", "org", "opengis", "cite", "cdb10", "fixtures");
     private static Path validDefaultsXmlFile = sourceDirectory.resolve(Paths.get("valid", "Defaults.xml"));
     private static Path invalidDefaultsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "DefaultsInvalid.xml"));
+    private static Path invalidElementsOutOfSquenceDefaultsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "DefaultsInvalidElementSequence.xml"));
     private static Path defaultsXsdFile = sourceDirectory.resolve(Paths.get("schema", "Defaults.xsd"));
 
     public VerifyDefaultsXmlStructureTests() {
@@ -74,8 +75,27 @@ public class VerifyDefaultsXmlStructureTests extends TestFixture<DefaultsXmlStru
         Files.copy(invalidDefaultsXmlFile, metadata.resolve("Defaults.xml"), REPLACE_EXISTING);
         Files.copy(defaultsXsdFile, schema.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
+        String expectedMessage = "Defaults.xml does not contain valid XML. Errors: cvc-complex-type.4: Attribute " +
+                "'version' must appear on element 'Default_Value_Table'.";
+
         expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("Defaults.xml does not contain valid XML. Error: cvc-complex-type.4: Attribute 'version' must appear on element 'Default_Value_Table'.");
+        expectedException.expectMessage(expectedMessage);
+
+        // execute
+        testSuite.verifyDefaultsXmlFileIsValid();
+    }
+
+    @Test
+    public void verifyDefaultsXmlIsValid_ElementsOutOfSequence() throws IOException {
+        // setup
+        Files.copy(invalidElementsOutOfSquenceDefaultsXmlFile, metadata.resolve("Defaults.xml"), REPLACE_EXISTING);
+        Files.copy(defaultsXsdFile, schema.resolve("Defaults.xsd"), REPLACE_EXISTING);
+
+        String expectedMessage = "cvc-complex-type.2.4.a: Invalid content was found starting with element 'R_W_Type'. " +
+                "One of '{\"http://www.CDB-Spec.org/Schema/Defaults/1.0\":Value}' is expected.";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
 
         // execute
         testSuite.verifyDefaultsXmlFileIsValid();
