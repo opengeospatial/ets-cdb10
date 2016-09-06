@@ -29,7 +29,7 @@ public class VerifyDefaultsXmlStructureTests extends MetadataTestFixture<Default
     }
 
     @Test
-    public void verifyModelComponentsXmlExist_ModelComponentsXmlDoesNotExist() throws IOException {
+    public void verifyDefaultsXmlExist_ModelComponentsXmlDoesNotExist() throws IOException {
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Metadata directory should contain Defaults.xml file.");
 
