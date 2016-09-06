@@ -19,9 +19,7 @@ import javax.xml.xpath.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by martin on 2016-09-03.
@@ -64,14 +62,34 @@ public class DefaultsXmlStructureTests extends CommonFixture {
 
         for (String value : values) {
             Assert.assertTrue(VALID_VALUES.contains(value),
-                    String.format("Defaults.xml element R_W_Type should have a value of R or W. Value %s is not valid.", value));
+                    String.format("Defaults.xml element R_W_Type should have a value of R or W. Value '%s' is not valid.", value));
         }
     }
 
     public void verifyDefaultsXmlNameIsUniqueForEachDataset() {
-        //get a unique list of Datasets
-        //need to get all Datasets
-        //for each Dataset that has the same value check that the name in that group is unique
+        NodeList datasetNodes = getNodeList("//Dataset");
+
+        HashSet<String> datasetValues = new HashSet<>();
+
+        for (int i = 0; i < datasetNodes.getLength(); i++) {
+            Node currentItem = datasetNodes.item(i);
+            datasetValues.add(currentItem.getTextContent());
+        }
+
+        for (String datasetValue : datasetValues) {
+            NodeList nameNodes = getNodeList("//Default_Value[Dataset/text() = \"" + datasetValue + "\"]/Name");
+
+            ArrayList<String> names = new ArrayList<>();
+            for (int i = 0; i < nameNodes.getLength(); i++) {
+                names.add(nameNodes.item(i).getTextContent());
+            }
+
+            for (String name : names) {
+                Assert.assertEquals(Collections.frequency(names, name), 1,
+                        String.format("Defaults.xml element Name should be unique under each Dataset. '%s' is not unique.", name));
+            }
+
+        }
     }
 
     public void verifyDefaultsXmlElementTypeHasValidValue() {
@@ -87,7 +105,7 @@ public class DefaultsXmlStructureTests extends CommonFixture {
 
         for (String value : values) {
             Assert.assertTrue(VALID_VALUES.contains(value),
-                    String.format("Defaults.xml element Type should have a value of 'float', 'integer' and 'string'. Value %s is not valid.", value));
+                    String.format("Defaults.xml element Type should have a value of 'float', 'integer' and 'string'. Value '%s' is not valid.", value));
         }
     }
 
