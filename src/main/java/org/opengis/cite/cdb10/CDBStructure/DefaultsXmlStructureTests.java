@@ -24,6 +24,7 @@ public class DefaultsXmlStructureTests extends CommonFixture {
                 "Metadata directory should contain Defaults.xml file.");
     }
 
+    @Test
     public void verifyDefaultsXmlFileIsValid() throws IOException, SAXException {
         File xmlFile = Paths.get(path, "Metadata", "Defaults.xml").toFile();
         File xsdFile = Paths.get(path, "Metadata", "Schema", "Defaults.xsd").toFile();
