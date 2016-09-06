@@ -68,6 +68,29 @@ public class DefaultsXmlStructureTests extends CommonFixture {
         }
     }
 
+    public void verifyDefaultsXmlNameIsUniqueForEachDataset() {
+        //get a unique list of Datasets
+        //need to get all Datasets
+        //for each Dataset that has the same value check that the name in that group is unique
+    }
+
+    public void verifyDefaultsXmlElementTypeHasValidValue() {
+        NodeList nodeList = getNodeList("//Type");
+
+        ArrayList<String> values = new ArrayList<>();
+        List<String> VALID_VALUES = Arrays.asList("string", "integer", "float");
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node currentItem = nodeList.item(i);
+            values.add(currentItem.getTextContent());
+        }
+
+        for (String value : values) {
+            Assert.assertTrue(VALID_VALUES.contains(value),
+                    String.format("Defaults.xml element Type should have a value of 'float', 'integer' and 'string'. Value %s is not valid.", value));
+        }
+    }
+
     private NodeList getNodeList(String element) {
         try {
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(String.valueOf(Paths.get(path, "Metadata", "Defaults.xml")));
