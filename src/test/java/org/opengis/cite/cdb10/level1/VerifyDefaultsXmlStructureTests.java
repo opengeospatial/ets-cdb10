@@ -1,8 +1,6 @@
 package org.opengis.cite.cdb10.level1;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.opengis.cite.cdb10.CDBStructure.DefaultsXmlStructureTests;
 import org.xml.sax.SAXException;
 
