@@ -16,10 +16,9 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
  */
 public class VerifyModelComponentsXmlStructureTests extends MetadataTestFixture<ModelComponentsXmlStructureTests> {
 
-    private static Path sourceDirectory = Paths.get(System.getProperty("user.dir"), "src", "test", "java", "org", "opengis", "cite", "cdb10", "fixtures");
-    private static Path validModelComponentsXmlFile = sourceDirectory.resolve(Paths.get("valid", "Model_Components.xml"));
-    private static Path invalidModelComponentsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "Model_ComponentsInvalid.xml"));
-    private static Path modelComponentsXsdFile = sourceDirectory.resolve(Paths.get("schema", "Model_Components.xsd"));
+    private static Path validModelComponentsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Model_Components.xml"));
+    private static Path invalidModelComponentsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Model_ComponentsInvalid.xml"));
+    private static Path modelComponentsXsdFile = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Model_Components.xsd"));
 
     public VerifyModelComponentsXmlStructureTests() {
         testSuite = new ModelComponentsXmlStructureTests();

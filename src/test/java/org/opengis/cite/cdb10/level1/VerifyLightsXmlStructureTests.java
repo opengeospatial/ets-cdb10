@@ -16,13 +16,12 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
  */
 public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXmlStructureTests> {
 
-    private static Path sourceDirectory = Paths.get(System.getProperty("user.dir"), "src", "test", "java", "org", "opengis", "cite", "cdb10", "fixtures");
-    private static Path duplicatedCodeLightsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "LightsDuplicatedCode.xml"));
-    private static Path invalidCodeTenThousandLightsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "LightsInvalidCodeTenThousand.xml"));
-    private static Path invalidCodeNegativeOneLightsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "LightsInvalidCodeNegativeOne.xml"));
-    private static Path invalidLightsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "LightsInvalid.xml"));
-    private static Path validLightsXmlFile = sourceDirectory.resolve(Paths.get("valid", "Lights.xml"));
-    private static Path lightsXsdFile = sourceDirectory.resolve(Paths.get("schema", "Lights.xsd"));
+    private static Path duplicatedCodeLightsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsDuplicatedCode.xml"));
+    private static Path invalidCodeTenThousandLightsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsInvalidCodeTenThousand.xml"));
+    private static Path invalidCodeNegativeOneLightsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsInvalidCodeNegativeOne.xml"));
+    private static Path invalidLightsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsInvalid.xml"));
+    private static Path validLightsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Lights.xml"));
+    private static Path lightsXsdFile = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Lights.xsd"));
 
     public VerifyLightsXmlStructureTests() {
         testSuite = new LightsXmlStructureTests();
