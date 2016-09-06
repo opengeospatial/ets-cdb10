@@ -39,7 +39,7 @@ public class VerifyDefaultsXmlStructureTests extends TestFixture<DefaultsXmlStru
     public ExpectedException expectedException = ExpectedException.none();
 
     @Before
-    public void createMetadataDirectory() throws IOException {
+    public void createDirectories() throws IOException {
         metadata = Files.createDirectories(cdb_root.resolve(Paths.get("Metadata")));
         schema = Files.createDirectories(cdb_root.resolve(Paths.get(String.valueOf(metadata), "Schema")));
     }
