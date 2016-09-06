@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class SchemaValidatorErrorHandler implements ErrorHandler {
 
-    final List<SAXParseException> exceptionList = new LinkedList<SAXParseException>();
+    private final List<SAXParseException> exceptionList = new LinkedList<>();
 
     @Override
     public void warning(SAXParseException e) throws SAXException {
@@ -29,10 +29,6 @@ public class SchemaValidatorErrorHandler implements ErrorHandler {
     public void fatalError(SAXParseException e) throws SAXException {
         System.out.println("here");
         exceptionList.add(e);
-    }
-
-    public List<SAXParseException> getExceptions() {
-        return exceptionList;
     }
 
     public String getMessages() {
