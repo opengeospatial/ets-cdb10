@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.opengis.cite.cdb10.CDBStructure.DefaultsXmlStructureTests;
 import org.opengis.cite.cdb10.TestFixture;
+import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -63,7 +64,7 @@ public class VerifyDefaultsXmlStructureTests extends TestFixture<DefaultsXmlStru
 
 
     @Test
-    public void verifyDefaultsXmlIsValid_XmlIsValid() throws IOException {
+    public void verifyDefaultsXmlIsValid_XmlIsValid() throws IOException, SAXException {
         // setup
         Files.copy(validDefaultsXmlFile, metadata.resolve("Defaults.xml"), REPLACE_EXISTING);
         Files.copy(defaultsXsdFile, schema.resolve("Defaults.xsd"), REPLACE_EXISTING);
@@ -73,7 +74,7 @@ public class VerifyDefaultsXmlStructureTests extends TestFixture<DefaultsXmlStru
     }
 
     @Test
-    public void verifyDefaultsXmlIsValid_XmlIsNotValid() throws IOException {
+    public void verifyDefaultsXmlIsValid_XmlIsNotValid() throws IOException, SAXException {
         // setup
         Files.copy(invalidDefaultsXmlFile, metadata.resolve("Defaults.xml"), REPLACE_EXISTING);
         Files.copy(defaultsXsdFile, schema.resolve("Defaults.xsd"), REPLACE_EXISTING);
@@ -89,7 +90,7 @@ public class VerifyDefaultsXmlStructureTests extends TestFixture<DefaultsXmlStru
     }
 
     @Test
-    public void verifyDefaultsXmlIsValid_ElementsOutOfSequence() throws IOException {
+    public void verifyDefaultsXmlIsValid_ElementsOutOfSequence() throws IOException, SAXException {
         // setup
         Files.copy(invalidElementsOutOfSequenceDefaultsXmlFile, metadata.resolve("Defaults.xml"), REPLACE_EXISTING);
         Files.copy(defaultsXsdFile, schema.resolve("Defaults.xsd"), REPLACE_EXISTING);
