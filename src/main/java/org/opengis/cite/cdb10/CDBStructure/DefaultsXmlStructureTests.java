@@ -3,6 +3,7 @@ package org.opengis.cite.cdb10.CDBStructure;
 import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -25,6 +26,7 @@ import java.util.*;
  * Created by martin on 2016-09-03.
  */
 public class DefaultsXmlStructureTests extends CommonFixture {
+    @Test
     public void verifyDefaultsXmlFileExist() {
         Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Defaults.xml")),
                 "Metadata directory should contain Defaults.xml file.");
@@ -49,6 +51,7 @@ public class DefaultsXmlStructureTests extends CommonFixture {
         }
     }
 
+    @Test
     public void verifyDefaultsXmlElementR_W_TypeHasValidValues() {
         NodeList nodeList = getNodeList("//R_W_Type");
 
@@ -66,32 +69,14 @@ public class DefaultsXmlStructureTests extends CommonFixture {
         }
     }
 
+    @Test
     public void verifyDefaultsXmlNameIsUniqueForEachDataset() {
-        NodeList datasetNodes = getNodeList("//Dataset");
-
-        HashSet<String> datasetValues = new HashSet<>();
-
-        for (int i = 0; i < datasetNodes.getLength(); i++) {
-            Node currentItem = datasetNodes.item(i);
-            datasetValues.add(currentItem.getTextContent());
-        }
-
-        for (String datasetValue : datasetValues) {
-            NodeList nameNodes = getNodeList("//Default_Value[Dataset/text() = \"" + datasetValue + "\"]/Name");
-
-            ArrayList<String> names = new ArrayList<>();
-            for (int i = 0; i < nameNodes.getLength(); i++) {
-                names.add(nameNodes.item(i).getTextContent());
-            }
-
-            for (String name : names) {
-                Assert.assertEquals(Collections.frequency(names, name), 1,
-                        String.format("Defaults.xml element Name should be unique under each Dataset. '%s' is not unique.", name));
-            }
-
+        for (String datasetValue : getDatasetValues()) {
+            assertNamesAreUnique(datasetValue);
         }
     }
 
+    @Test
     public void verifyDefaultsXmlElementTypeHasValidValue() {
         NodeList nodeList = getNodeList("//Type");
 
@@ -106,6 +91,37 @@ public class DefaultsXmlStructureTests extends CommonFixture {
         for (String value : values) {
             Assert.assertTrue(VALID_VALUES.contains(value),
                     String.format("Defaults.xml element Type should have a value of 'float', 'integer' and 'string'. Value '%s' is not valid.", value));
+        }
+    }
+
+    private HashSet<String> getDatasetValues() {
+        NodeList datasetNodes = getNodeList("//Dataset");
+
+        HashSet<String> datasetValues = new HashSet<>();
+
+        for (int i = 0; i < datasetNodes.getLength(); i++) {
+            Node currentItem = datasetNodes.item(i);
+            datasetValues.add(currentItem.getTextContent());
+        }
+        return datasetValues;
+    }
+
+    private ArrayList<String> collectNameNodesWithDatasetValue(String datasetValue) {
+        NodeList nameNodes = getNodeList("//Default_Value[Dataset/text() = \"" + datasetValue + "\"]/Name");
+
+        ArrayList<String> names = new ArrayList<>();
+        for (int i = 0; i < nameNodes.getLength(); i++) {
+            names.add(nameNodes.item(i).getTextContent());
+        }
+        return names;
+    }
+
+    private void assertNamesAreUnique(String datasetValue) {
+        ArrayList<String> names = collectNameNodesWithDatasetValue(datasetValue);
+
+        for (String name : names) {
+            Assert.assertEquals(Collections.frequency(names, name), 1,
+                    String.format("Defaults.xml element Name should be unique under each Dataset. '%s' is not unique.", name));
         }
     }
 
