@@ -6,11 +6,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
-import javax.xml.XMLConstants;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import javax.xml.validation.Validator;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -32,7 +27,7 @@ public class ModelComponentsXmlStructureTests extends CommonFixture {
         File xmlFile = Paths.get(path, "Metadata", "Model_Components.xml").toFile();
         File xsdFile = Paths.get(path, "Metadata", "Schema", "Model_Components.xsd").toFile();
 
-        SchemaValidatorErrorHandler errorHandler = XmlValidator.validateXmlFileIsValid(xmlFile, xsdFile);
+        SchemaValidatorErrorHandler errorHandler = XmlUtilities.validateXmlFileIsValid(xmlFile, xsdFile);
 
         if (!errorHandler.noErrors()) {
             Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());

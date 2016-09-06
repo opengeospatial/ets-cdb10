@@ -4,14 +4,10 @@ import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -32,7 +28,7 @@ public class DefaultsXmlStructureTests extends CommonFixture {
         File xmlFile = Paths.get(path, "Metadata", "Defaults.xml").toFile();
         File xsdFile = Paths.get(path, "Metadata", "Schema", "Defaults.xsd").toFile();
 
-        SchemaValidatorErrorHandler errorHandler = XmlValidator.validateXmlFileIsValid(xmlFile, xsdFile);
+        SchemaValidatorErrorHandler errorHandler = XmlUtilities.validateXmlFileIsValid(xmlFile, xsdFile);
 
         if (!errorHandler.noErrors()) {
             Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
@@ -41,7 +37,7 @@ public class DefaultsXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyDefaultsXmlElementR_W_TypeHasValidValues() {
-        NodeList nodeList = getNodeList("//R_W_Type");
+        NodeList nodeList = XmlUtilities.getNodeList("//R_W_Type", Paths.get(path, "Metadata", "Defaults.xml"));
 
         ArrayList<String> values = new ArrayList<>();
         List<String> VALID_VALUES = Arrays.asList("W", "R");
@@ -66,7 +62,7 @@ public class DefaultsXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyDefaultsXmlElementTypeHasValidValue() {
-        NodeList nodeList = getNodeList("//Type");
+        NodeList nodeList = XmlUtilities.getNodeList("//Type", Paths.get(path, "Metadata", "Defaults.xml"));
 
         ArrayList<String> values = new ArrayList<>();
         List<String> VALID_VALUES = Arrays.asList("string", "integer", "float");
@@ -83,7 +79,7 @@ public class DefaultsXmlStructureTests extends CommonFixture {
     }
 
     private HashSet<String> getDatasetValues() {
-        NodeList datasetNodes = getNodeList("//Dataset");
+        NodeList datasetNodes = XmlUtilities.getNodeList("//Dataset", Paths.get(path, "Metadata", "Defaults.xml"));
 
         HashSet<String> datasetValues = new HashSet<>();
 
@@ -95,7 +91,7 @@ public class DefaultsXmlStructureTests extends CommonFixture {
     }
 
     private ArrayList<String> collectNameNodesWithDatasetValue(String datasetValue) {
-        NodeList nameNodes = getNodeList("//Default_Value[Dataset/text() = \"" + datasetValue + "\"]/Name");
+        NodeList nameNodes = XmlUtilities.getNodeList("//Default_Value[Dataset/text() = \"" + datasetValue + "\"]/Name", Paths.get(path, "Metadata", "Defaults.xml"));
 
         ArrayList<String> names = new ArrayList<>();
         for (int i = 0; i < nameNodes.getLength(); i++) {
@@ -113,14 +109,4 @@ public class DefaultsXmlStructureTests extends CommonFixture {
         }
     }
 
-    private NodeList getNodeList(String element) {
-        try {
-            Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(String.valueOf(Paths.get(path, "Metadata", "Defaults.xml")));
-            XPath xPath = XPathFactory.newInstance().newXPath();
-            XPathExpression exp = xPath.compile(element);
-            return (NodeList) exp.evaluate(doc, XPathConstants.NODESET);
-        } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
-            return null;
-        }
-    }
 }
