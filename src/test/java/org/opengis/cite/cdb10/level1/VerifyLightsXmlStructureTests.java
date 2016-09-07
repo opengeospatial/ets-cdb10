@@ -30,7 +30,7 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
     }
 
     @Test
-    public void verifyLightsXmlExists_LightsXmlDoesNotExist() throws IOException {
+    public void verifyLightsXmlExists_DoesNotExist() throws IOException {
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Metadata directory should contain Lights.xml file.");
 
@@ -39,7 +39,7 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
     }
 
     @Test
-    public void verifyLightsXmlExists_LightsXmlDoesExist() throws IOException {
+    public void verifyLightsXmlExists_DoesExist() throws IOException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Lights.xml")));
 
