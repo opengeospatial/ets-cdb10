@@ -135,7 +135,8 @@ public class VerifyDefaultsXmlStructureTests extends MetadataTestFixture<Default
         Files.copy(NAME_NOT_UNIQUE_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
-        String expectedMessage = "Defaults.xml element Name should be unique under each Dataset. 'Default_Primary_Elevation_Control' is not unique.";
+        String expectedMessage = "Defaults.xml element Name should be unique under each Dataset. " +
+                "'Default_Primary_Elevation_Control' is not unique.";
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage(expectedMessage);

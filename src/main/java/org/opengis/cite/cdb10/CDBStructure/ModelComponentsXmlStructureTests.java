@@ -17,13 +17,13 @@ import java.nio.file.Paths;
 public class ModelComponentsXmlStructureTests extends CommonFixture {
 
     @Test
-    public void verifyModelComponentsXmlFileExist() {
+    public void verifyModelComponentsXmlFileExists() {
         Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Model_Components.xml")),
                 "Metadata directory should contain Model_Components.xml file.");
     }
 
     @Test
-    public void verifyModelComponentsXmlFileIsValid() throws IOException, SAXException {
+    public void verifyModelComponentsXmlAgainstSchema() throws IOException, SAXException {
         File xmlFile = Paths.get(path, "Metadata", "Model_Components.xml").toFile();
         File xsdFile = Paths.get(path, "Metadata", "Schema", "Model_Components.xsd").toFile();
 
