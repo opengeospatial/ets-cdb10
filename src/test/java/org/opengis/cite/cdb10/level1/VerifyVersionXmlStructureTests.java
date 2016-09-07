@@ -2,19 +2,23 @@ package org.opengis.cite.cdb10.level1;
 
 import org.junit.Test;
 import org.opengis.cite.cdb10.CDBStructure.VersionXmlStructureTests;
+import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+
 /**
  * Created by martin on 2016-09-06.
  */
 public class VerifyVersionXmlStructureTests extends MetadataTestFixture<VersionXmlStructureTests> {
 
-    private static Path validVersionXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Defaults.xml"));
-    private static Path versionXsdFile = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Defaults.xsd"));
+    private static Path validVersionXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Version.xml"));
+    private static Path invalidVersionXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "VersionInvalid.xml"));
+    private static Path versionXsdFile = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Version.xsd"));
 
     public VerifyVersionXmlStructureTests() {testSuite = new VersionXmlStructureTests(); }
 
@@ -36,4 +40,27 @@ public class VerifyVersionXmlStructureTests extends MetadataTestFixture<VersionX
         testSuite.verifyVersionXmlFileExist();
     }
 
+    @Test
+    public void verifyVersionXmlIsValid_XmlIsValid() throws IOException, SAXException {
+        // setup
+        Files.copy(validVersionXmlFile, metadataFolder.resolve("Version.xml"), REPLACE_EXISTING);
+        Files.copy(versionXsdFile, schemaFolder.resolve("Version.xsd"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyVersionXmlFileIsValid();
+    }
+
+    @Test
+    public void verifyVersionXmlIsValid_XmlIsNotValid() throws IOException, SAXException {
+        // setup
+        Files.copy(invalidVersionXmlFile, metadataFolder.resolve("Version.xml"), REPLACE_EXISTING);
+        Files.copy(versionXsdFile, schemaFolder.resolve("Version.xsd"), REPLACE_EXISTING);
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Version.xml does not contain valid XML. Errors: cvc-complex-type.4: " +
+                "Attribute 'name' must appear on element 'PreviousIncrementalRootDirectory'.");
+
+        // execute
+        testSuite.verifyVersionXmlFileIsValid();
+    }
 }
