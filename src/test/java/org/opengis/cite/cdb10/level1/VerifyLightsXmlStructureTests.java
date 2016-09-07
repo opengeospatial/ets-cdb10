@@ -16,12 +16,14 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
  */
 public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXmlStructureTests> {
 
+    private final static Path XSD_FILE = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Lights.xsd"));
+
+    private final static Path VALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Lights.xml"));
+
     private final static Path DUPLICATED_CODE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsInvalidDuplicatedCode.xml"));
     private final static Path INVALID_CODE_TEN_THOUSAND_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsInvalidCodeTenThousand.xml"));
     private final static Path INVALID_CODE_NEGATIVE_ONE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsInvalidCodeNegativeOne.xml"));
     private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsInvalid.xml"));
-    private final static Path VALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Lights.xml"));
-    private final static Path XSD_FILE = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Lights.xsd"));
 
     public VerifyLightsXmlStructureTests() {
         testSuite = new LightsXmlStructureTests();
