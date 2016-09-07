@@ -22,13 +22,13 @@ import java.util.List;
 public class VersionXmlStructureTests extends CommonFixture {
 
     @Test
-    public void verifyVersionXmlFileExist() {
+    public void verifyVersionXmlFileExists() {
         Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Version.xml")),
                 "Metadata directory should contain Version.xml file.");
     }
 
     @Test
-    public void verifyVersionXmlFileIsValid() throws IOException, SAXException {
+    public void verifyVersionXmlAgainstSchema() throws IOException, SAXException {
         File xmlFile = Paths.get(path, "Metadata", "Version.xml").toFile();
         File xsdFile = Paths.get(path, "Metadata", "Schema", "Version.xsd").toFile();
 
