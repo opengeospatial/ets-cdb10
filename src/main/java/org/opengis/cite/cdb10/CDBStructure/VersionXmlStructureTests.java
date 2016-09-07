@@ -4,6 +4,7 @@ import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.File;
@@ -31,6 +32,15 @@ public class VersionXmlStructureTests extends CommonFixture {
 
         if (!errorHandler.noErrors()) {
             Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
+        }
+    }
+
+    @Test
+    public void verifyVersionXmlHasSpecificationElement() {
+        NodeList nodeList = XmlUtilities.getNodeList("//Specification", Paths.get(path, "Metadata", "Version.xml"));
+
+        if (nodeList.getLength() == 0) {
+            Assert.fail("Version.xml Specification element is mandatory the element was not found.");
         }
     }
 }

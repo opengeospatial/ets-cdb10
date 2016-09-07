@@ -18,6 +18,7 @@ public class VerifyVersionXmlStructureTests extends MetadataTestFixture<VersionX
 
     private static Path validVersionXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Version.xml"));
     private static Path invalidVersionXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "VersionInvalid.xml"));
+    private static Path invalidNoSpecificationElementVersionXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "VersionInvalidNoSpecificationElement.xml"));
     private static Path versionXsdFile = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Version.xsd"));
 
     public VerifyVersionXmlStructureTests() {testSuite = new VersionXmlStructureTests(); }
@@ -62,5 +63,28 @@ public class VerifyVersionXmlStructureTests extends MetadataTestFixture<VersionX
 
         // execute
         testSuite.verifyVersionXmlFileIsValid();
+    }
+
+    @Test
+    public void verifyVersionXmlHasSpecificationElement_HasElement() throws IOException {
+        // setup
+        Files.copy(validVersionXmlFile, metadataFolder.resolve("Version.xml"), REPLACE_EXISTING);
+        Files.copy(versionXsdFile, schemaFolder.resolve("Version.xsd"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyVersionXmlHasSpecificationElement();
+    }
+
+    @Test
+    public void verifyVersionXmlHasSpecificationElement_DoesNotHaveElement() throws IOException {
+        // setup
+        Files.copy(invalidNoSpecificationElementVersionXmlFile, metadataFolder.resolve("Version.xml"), REPLACE_EXISTING);
+        Files.copy(versionXsdFile, schemaFolder.resolve("Version.xsd"), REPLACE_EXISTING);
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Version.xml Specification element is mandatory the element was not found.");
+
+        // execute
+        testSuite.verifyVersionXmlHasSpecificationElement();
     }
 }
