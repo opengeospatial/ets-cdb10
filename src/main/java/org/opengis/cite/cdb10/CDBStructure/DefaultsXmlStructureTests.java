@@ -19,13 +19,13 @@ import java.util.*;
  */
 public class DefaultsXmlStructureTests extends CommonFixture {
     @Test
-    public void verifyDefaultsXmlFileExist() {
+    public void verifyDefaultsXmlFileExists() {
         Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Defaults.xml")),
                 "Metadata directory should contain Defaults.xml file.");
     }
 
     @Test
-    public void verifyDefaultsXmlFileIsValid() throws IOException, SAXException {
+    public void verifyDefaultsXmlAgainstSchema() throws IOException, SAXException {
         File xmlFile = Paths.get(path, "Metadata", "Defaults.xml").toFile();
         File xsdFile = Paths.get(path, "Metadata", "Schema", "Defaults.xsd").toFile();
 

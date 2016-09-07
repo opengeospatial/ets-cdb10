@@ -21,12 +21,12 @@ import java.util.Collections;
 public class LightsXmlStructureTests extends CommonFixture {
 
     @Test
-    public void verifyLightsXmlFileExist() {
+    public void verifyLightsXmlFileExists() {
         Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Lights.xml")), "Metadata directory should contain Lights.xml file.");
     }
 
     @Test
-    public void verifyLightsXmlFileHasValidXml() throws IOException, SAXException {
+    public void verifyLightsXmlFileAgainstSchema() throws IOException, SAXException {
         File xmlFile = Paths.get(path, "Metadata", "Lights.xml").toFile();
         File xsdFile = Paths.get(path, "Metadata", "Schema", "Lights.xsd").toFile();
 

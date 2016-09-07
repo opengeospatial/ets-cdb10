@@ -16,52 +16,54 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
  */
 public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXmlStructureTests> {
 
-    private static Path duplicatedCodeLightsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsDuplicatedCode.xml"));
-    private static Path invalidCodeTenThousandLightsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsInvalidCodeTenThousand.xml"));
-    private static Path invalidCodeNegativeOneLightsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsInvalidCodeNegativeOne.xml"));
-    private static Path invalidLightsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsInvalid.xml"));
-    private static Path validLightsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Lights.xml"));
-    private static Path lightsXsdFile = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Lights.xsd"));
+    private final static Path XSD_FILE = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Lights.xsd"));
+
+    private final static Path VALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Lights.xml"));
+
+    private final static Path DUPLICATED_CODE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsInvalidDuplicatedCode.xml"));
+    private final static Path INVALID_CODE_TEN_THOUSAND_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsInvalidCodeTenThousand.xml"));
+    private final static Path INVALID_CODE_NEGATIVE_ONE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsInvalidCodeNegativeOne.xml"));
+    private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "LightsInvalid.xml"));
 
     public VerifyLightsXmlStructureTests() {
         testSuite = new LightsXmlStructureTests();
     }
 
     @Test
-    public void verifyLightsXmlExist_LightsXmlDoesNotExist() throws IOException {
+    public void verifyLightsXmlExists_LightsXmlDoesNotExist() throws IOException {
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Metadata directory should contain Lights.xml file.");
 
         // execute
-        testSuite.verifyLightsXmlFileExist();
+        testSuite.verifyLightsXmlFileExists();
     }
 
     @Test
-    public void verifyLightsXmlExist_LightsXmlDoesExist() throws IOException {
+    public void verifyLightsXmlExists_LightsXmlDoesExist() throws IOException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Lights.xml")));
 
         // execute
-        testSuite.verifyLightsXmlFileExist();
+        testSuite.verifyLightsXmlFileExists();
     }
 
     @Test
-    public void verifyLightsXmlIsValid_XmlIsValid() throws IOException, SAXException {
+    public void verifyLightsXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
         // setup
-        Files.copy(validLightsXmlFile, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
-        Files.copy(lightsXsdFile, schemaFolder.resolve("Lights.xsd"), REPLACE_EXISTING);
+        Files.copy(VALID_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve("Lights.xsd"), REPLACE_EXISTING);
 
-        Files.copy(validLightsXmlFile, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.copy(VALID_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
 
         // execute
-        testSuite.verifyLightsXmlFileHasValidXml();
+        testSuite.verifyLightsXmlFileAgainstSchema();
     }
 
     @Test
-    public void verifyLightsXmlIsValid_XmlIsNotValid() throws IOException, SAXException {
+    public void verifyLightsXmlAgainstSchema_XmlIsNotValid() throws IOException, SAXException {
         // setup
-        Files.copy(invalidLightsXmlFile, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
-        Files.copy(lightsXsdFile, schemaFolder.resolve("Lights.xsd"), REPLACE_EXISTING);
+        Files.copy(INVALID_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve("Lights.xsd"), REPLACE_EXISTING);
 
         String expectedMessage = "Lights.xml does not contain valid XML. Errors: cvc-minInclusive-valid: Value '-1' " +
                 "is not facet-valid with respect to minInclusive '0' for type '#AnonType_codeLight'., " +
@@ -72,13 +74,13 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
         expectedException.expectMessage(expectedMessage);
 
         // execute
-        testSuite.verifyLightsXmlFileHasValidXml();
+        testSuite.verifyLightsXmlFileAgainstSchema();
     }
 
     @Test
     public void verifyLightsXmlHasUniqueCodes_LightsXmlHasUniqueCodes() throws IOException {
         // setup
-        Files.copy(validLightsXmlFile, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.copy(VALID_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
 
         // execute
         testSuite.verifyLightsXmlHasUniqueCodes();
@@ -87,7 +89,7 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
     @Test
     public void verifyLightsXmlHasUniqueCodes_LightsXmlDoesNotHaveUniqueCodes() throws IOException {
         // setup
-        Files.copy(duplicatedCodeLightsXmlFile, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.copy(DUPLICATED_CODE_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Lights.xml element Light should have unique codes. Code 1 is not unique.");
@@ -99,7 +101,7 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
     @Test
     public void verifyLightsXmlHasCodesWithinRange_LightsXmlHasCodesInRange() throws IOException {
         // setup
-        Files.copy(validLightsXmlFile, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.copy(VALID_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
 
         // execute
         testSuite.verifyLightsXmlCodesAreWithinRange();
@@ -108,7 +110,7 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
     @Test
     public void verifyLightsXmlHasCodesWithinRange_LightsXmlCodeIsOver9999() throws IOException {
         // setup
-        Files.copy(invalidCodeTenThousandLightsXmlFile, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.copy(INVALID_CODE_TEN_THOUSAND_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Lights.xml element Light should have a code from 0 - 9999 inclusive.");
@@ -120,7 +122,7 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
     @Test
     public void verifyLightsXmlHasCodesWithinRange_LightsXmlCodeLessThanZero() throws IOException {
         // setup
-        Files.copy(invalidCodeNegativeOneLightsXmlFile, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.copy(INVALID_CODE_NEGATIVE_ONE_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Lights.xml element Light should have a code from 0 - 9999 inclusive.");
