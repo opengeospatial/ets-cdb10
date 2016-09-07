@@ -29,7 +29,7 @@ public class VerifyVersionXmlStructureTests extends MetadataTestFixture<VersionX
     }
 
     @Test
-    public void verifyVersionXmlFileExists_VersionXmlDoesNotExist() throws IOException {
+    public void verifyVersionXmlFileExists_DoesNotExist() throws IOException {
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Metadata directory should contain Version.xml file.");
 
@@ -38,7 +38,7 @@ public class VerifyVersionXmlStructureTests extends MetadataTestFixture<VersionX
     }
 
     @Test
-    public void verifyVersionXmlFileExists_VersionXmlDoesExist() throws IOException {
+    public void verifyVersionXmlFileExists_DoesExist() throws IOException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Version.xml")));
 

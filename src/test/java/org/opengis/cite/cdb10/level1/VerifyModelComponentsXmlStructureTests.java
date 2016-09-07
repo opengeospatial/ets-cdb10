@@ -27,7 +27,7 @@ public class VerifyModelComponentsXmlStructureTests extends MetadataTestFixture<
     }
 
     @Test
-    public void verifyModelComponentsXmlExists_ModelComponentsXmlDoesNotExist() throws IOException {
+    public void verifyModelComponentsXmlExists_DoesNotExist() throws IOException {
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Metadata directory should contain Model_Components.xml file.");
 
@@ -36,7 +36,7 @@ public class VerifyModelComponentsXmlStructureTests extends MetadataTestFixture<
     }
 
     @Test
-    public void verifyModelComponentsXmlExists_ModelComponentsXmlDoesExist() throws IOException {
+    public void verifyModelComponentsXmlExists_XmlDoesExist() throws IOException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Model_Components.xml")));
 
