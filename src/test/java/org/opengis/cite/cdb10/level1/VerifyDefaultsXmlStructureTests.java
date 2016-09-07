@@ -16,21 +16,20 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
  */
 public class VerifyDefaultsXmlStructureTests extends MetadataTestFixture<DefaultsXmlStructureTests> {
 
-    private static Path sourceDirectory = Paths.get(System.getProperty("user.dir"), "src", "test", "java", "org", "opengis", "cite", "cdb10", "fixtures");
-    private static Path validDefaultsXmlFile = sourceDirectory.resolve(Paths.get("valid", "Defaults.xml"));
-    private static Path invalidDefaultsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "DefaultsInvalid.xml"));
-    private static Path invalidElementsOutOfSequenceDefaultsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "DefaultsInvalidElementSequence.xml"));
-    private static Path invalidR_W_TypeValueDefaultsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "DefaultsInvalidR_W_TypeValue.xml"));
-    private static Path invalidNameNotUniqueDefaultsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "DefaultsInvalidNameNotUnique.xml"));
-    private static Path invalidTypeValueDefaultsXmlFile = sourceDirectory.resolve(Paths.get("invalid", "DefaultsInvalidTypeValue.xml"));
-    private static Path defaultsXsdFile = sourceDirectory.resolve(Paths.get("schema", "Defaults.xsd"));
+    private static Path validDefaultsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Defaults.xml"));
+    private static Path invalidDefaultsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "DefaultsInvalid.xml"));
+    private static Path invalidElementsOutOfSequenceDefaultsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "DefaultsInvalidElementSequence.xml"));
+    private static Path invalidR_W_TypeValueDefaultsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "DefaultsInvalidR_W_TypeValue.xml"));
+    private static Path invalidNameNotUniqueDefaultsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "DefaultsInvalidNameNotUnique.xml"));
+    private static Path invalidTypeValueDefaultsXmlFile = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "DefaultsInvalidTypeValue.xml"));
+    private static Path defaultsXsdFile = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Defaults.xsd"));
 
     public VerifyDefaultsXmlStructureTests() {
         testSuite = new DefaultsXmlStructureTests();
     }
 
     @Test
-    public void verifyModelComponentsXmlExist_ModelComponentsXmlDoesNotExist() throws IOException {
+    public void verifyDefaultsXmlExist_ModelComponentsXmlDoesNotExist() throws IOException {
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Metadata directory should contain Defaults.xml file.");
 

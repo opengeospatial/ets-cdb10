@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="xs3p.xsl"?>
+<xs:schema
+  attributeFormDefault="unqualified"
+  elementFormDefault="qualified"
+  targetNamespace="http://www.CDB-Spec.org/Schema/Version/3.2"
+  xmlns:cdb="http://www.CDB-Spec.org/Schema/Version/3.2"
+  xmlns="http://www.CDB-Spec.org/Schema/Version/3.2"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  version="3.2">
+  
+  <xs:annotation>
+    <xs:documentation xml:lang="en">
+      All CDB Versions are identified by a file called &apos;Version.xml&apos;; this schema defines the format of this file.
+    </xs:documentation>
+  </xs:annotation>
+  
+  <xs:element name="Version">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="PreviousIncrementalRootDirectory" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">
+              This element is optional; when present it provides the location of another CDB Version that is linked with the current one.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="name" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="en">
+                  Provides the relative or absolute path to another CDB Version.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:choice minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>
+              This choice preserves backward compatibility with version 3.0 of the Specification
+              where a &apos;comment&apos; element was used to describe the content of a CDB Version.
+              As of CDB 3.1, the prefered syntax for commenting a version is to use the &apos;Comment&apos; element.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:element name="Comment" type="xs:string"/>
+          <xs:element name="comment" type="xs:string"/>
+        </xs:choice>
+
+        <!-- Note: Does it make sense to assume 3.0 since the Specification_Version.xml file could be present and indicate 3.1 instead. -->
+        <!-- Note: Should the element be mandatory?  I refrain from doing this for compatibility reasons. If the element is optional, a 3.0 file still complies with this schema. -->
+        
+        <xs:element name="Specification" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">
+              Specifies the version of the CDB Specification used to generate the current CDB Version.
+              If &apos;Specification&apos; is omitted, the version number is deemed to be 3.0.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="version" type="xs:token" use="required"/>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Extension" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">
+              This element is optional; when present, it tells us that the current &apos;CDB Version&apos; is a &apos;CDB Extension&apos;.
+              As a result, the whole content of this version is not covered by the Specification.
+              A CDB Extension can contain any datasets, including valid CDB Datasets.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="name" type="xs:token" use="required"/>
+            <xs:attribute name="version" type="xs:token" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
