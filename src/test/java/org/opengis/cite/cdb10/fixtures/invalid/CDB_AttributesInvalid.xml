@@ -13,15 +13,6 @@
       <Description>
         A unique numeric identifier that points to the entry number of the ATARS Extended Attribution file for the
         current dataset.
-        This entry is provided for legacy database generation facility considerations only; CDB-compliant devices are
-        not required to read and interpret this field.
-        The ATARS Extended Attribution file should be located in the same directory as the instance-level attribution
-        file.
-        An empty AEAC field (i.e., null string) is allowed.
-        Refer to Section 3.6.6, Tiled Datasets Folder Hierarchical Organization for the file naming conventions of
-        vector datasets.
-        NOTE: The AEAC is attribute is deprecated as a result of the more comprehensive Extended-level attribution
-        schema introduced in version 3.1 of the CDB Specification.
       </Description>
       <Level>
         <Class>Supported</Class>
@@ -41,27 +32,6 @@
       <Name>Absolute Height Flag</Name>
       <Description>
         Indicates how to interpret the Z component of a vertex.
-        If AHGT is true, the feature is positioned to the value specified by the Z component (Absolute Terrain
-        Altitude), irrelevant of the terrain elevation dataset.
-        If AHGT is false or not present, the feature is positioned to the value specified by the underlying terrain
-        offset by the Z component value.
-        Refer to section 5.6.1.1, ShapeFile Type Usage and Conventions for more details.
-        AHGT can be present only in datasets using PointZ, PolylineZ, PolygonZ and MultiPointZ Shape types.
-        AHGT should not be present for all other Shape types or must be ignored otherwise.
-        Refer to Appendix A – "How to Interpret the AHGT, HGT, BSR, BBH, and Z Attributes" for additional usage
-        guidelines.
-        NOTE: It is recommended that the AHGT flag be set to false because it facilitates the creation of CDB datasets
-        that are independent of each others.
-        When the Z coordinate (altitude) of a feature is relative to the ground, the terrain elevation dataset can be
-        updated without the need to recompute the altitude of the feature.
-        CAUTION: When the AHGT flag is set to true, the feature will be at a fixed WGS-84 elevation independently of the
-        terrain LOD selected by the client-device.
-        As a result, there is no guarantee that the feature (and its modeled representation) will remain above the
-        terrain skin across all terrain LODs.
-        RECOMMENDATION: Limit the use of AHGT=TRUE to data whose source is inherently absolute.
-        Such source data include geodetic marks or survey marks that provide a known position in terms of latitude,
-        longitude, and altitude.
-        Good examples of such markers are boundary markers between countries.
       </Description>
       <Level>
         <Class>Supported</Class>
@@ -75,15 +45,6 @@
       <Name>Angle of Orientation with greater than 1 degree resolution</Name>
       <Description>
         The angular distance measured from true north (0 deg) clockwise to the major (Y) axis of the feature.
-        If the feature is square, the axis 0 through 89.999 deg shall be recorded.
-        If the feature is circular, 360.000 deg shall be recorded.
-        Recommended Usage. CDB readers should default to a value of 0.000 if AO1 is missing.
-        Applicable to Point, Light Point, Moving Model Location and Figure Point features.
-        When used in conjunction with the PowerLine dataset, AO1 corresponds to the orientation of the Y-axis of the
-        modeled pylon.
-        The modeled pylon should be oriented (in its local Cartesian space) so that the wires nominally attach along the
-        Y-axis.
-        Refer to Appendix A – “Creating a 3D Model for a Powerline Pylon” for additional usage guidelines.
       </Description>
       <Level>
         <Instance>Preferred</Instance>
@@ -120,18 +81,6 @@
       <Description>
         A unique alphanumeric identifier that points to a record in the NavData Airport or Heliport dataset (i.e., a
         link to the Airport or the Heliport description in the NavData dataset).
-        This ID is the value of the field Ident of the Airport or Heliport dataset.
-        Note that all of the lights located in list-organized datasets that are associated with the operation of an
-        airport (including runway lights and lighting systems) are required to reference an airport or heliport in the
-        NavData dataset.
-        All man-made features associated with an airport or heliport must be assigned an APID attribute; the APID
-        attribute is not required for features unrelated to airports or heliports.
-        Usage Note: Recommended for all Airport Light Points and airport-related i2DModels (such as runway/taxiway/apron
-        surfaces, and markings).
-        Failure to appropriately tag airport culture with APID attribute will result in reduced control of
-        airport-related culture by simulator.
-        Optional for Location Points, Environmental Light Points, and Moving Model Location features that fall within
-        the confines of an airport and for which control of the feature is desirable.
       </Description>
       <Level>
         <Instance>Deprecated</Instance>
@@ -156,31 +105,6 @@
     <Unit code="2" symbol="deg">
       <Name>degree</Name>
       <Description>To mesure an angle.</Description>
-    </Unit>
-
-    <Unit code="3" symbol="rad">
-      <Name>radian</Name>
-      <Description>To mesure an angle.</Description>
-    </Unit>
-
-    <Unit code="4" symbol="kph">
-      <Name>Kilometer per hour</Name>
-      <Description>To measure a speed.</Description>
-    </Unit>
-
-    <Unit code="5" symbol="g">
-      <Name>gram</Name>
-      <Description>To measure a mass.</Description>
-    </Unit>
-
-    <Unit code="6" symbol="s">
-      <Name>second</Name>
-      <Description>To measure time.</Description>
-    </Unit>
-
-    <Unit code="7" symbol="%">
-      <Name>Percentage</Name>
-      <Description>A value between 0 and 100.</Description>
     </Unit>
 
   </Units>

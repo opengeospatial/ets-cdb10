@@ -42,31 +42,6 @@
       <Description>To mesure an angle.</Description>
     </Unit>
 
-    <Unit code="3" symbol="rad">
-      <Name>radian</Name>
-      <Description>To mesure an angle.</Description>
-    </Unit>
-
-    <Unit code="4" symbol="kph">
-      <Name>Kilometer per hour</Name>
-      <Description>To measure a speed.</Description>
-    </Unit>
-
-    <Unit code="5" symbol="g">
-      <Name>gram</Name>
-      <Description>To measure a mass.</Description>
-    </Unit>
-
-    <Unit code="6" symbol="s">
-      <Name>second</Name>
-      <Description>To measure time.</Description>
-    </Unit>
-
-    <Unit code="7" symbol="%">
-      <Name>Percentage</Name>
-      <Description>A value between 0 and 100.</Description>
-    </Unit>
-
   </Units>
 
   <Scalers>
