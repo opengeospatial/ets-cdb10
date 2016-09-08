@@ -105,7 +105,6 @@ public class CDBAttributesXmlStructureTests extends CommonFixture {
         }
 
         for (String value : values) {
-            //must be a positive integer
             Assert.assertTrue(value.matches("^[1-9]\\d*$"),
                     String.format("CDB_Attributes.xml attribute code should be a positive integer. Code '%s' is not valid.", value));
         }
