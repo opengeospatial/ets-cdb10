@@ -23,6 +23,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
     private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalid.xml"));
     private final static Path CODE_NOT_INTEGER_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidCodeNotInteger.xml"));
     private final static Path SYMBOL_IS_NOT_UNIQUE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidSymbolNotUnique.xml"));
+    private final static Path INVALID_TYPE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidType.xml"));
 
     public VerifyCDBAttributesXmlStructureTests() {
         testSuite = new CDBAttributesXmlStructureTests();
@@ -45,7 +46,6 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
         // execute
         testSuite.verifyCDBAttributesXmlFileExists();
     }
-
 
     @Test
     public void verifyCDBAttributesXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
@@ -125,5 +125,31 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
 
         // execute
         testSuite.verifySymbolIsUnique();
+    }
+
+    @Test
+    public void verifyValueHasAValidType_IsValid() throws IOException {
+        // setup
+        Files.copy(VALID_FILE, metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyValueHasAValidType();
+    }
+
+    @Test
+    public void verifyValueHasAValidType_IsNotValid() throws IOException {
+        // setup
+        Files.copy(INVALID_TYPE_FILE, metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
+
+        String expectedMessage = "CDB_Attributes.xml element Type should have a value of " +
+                "'Text', 'Numeric' or 'Boolean'. Type 'Invalid_type' is not valid. expected [true] but found [false]";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
+
+        // execute
+        testSuite.verifyValueHasAValidType();
     }
 }

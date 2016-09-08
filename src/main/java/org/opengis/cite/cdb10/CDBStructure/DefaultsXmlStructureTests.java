@@ -75,7 +75,8 @@ public class DefaultsXmlStructureTests extends CommonFixture {
 
         for (String value : values) {
             Assert.assertTrue(VALID_VALUES.contains(value),
-                    String.format("Defaults.xml element Type should have a value of 'float', 'integer' and 'string'. Value '%s' is not valid.", value));
+                    String.format("Defaults.xml element Type should have a value of " +
+                            "'float', 'integer' or 'string'. Value '%s' is not valid.", value));
         }
     }
 

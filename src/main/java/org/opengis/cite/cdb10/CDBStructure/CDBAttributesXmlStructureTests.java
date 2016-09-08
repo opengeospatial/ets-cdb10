@@ -13,7 +13,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by martin on 2016-09-08.
@@ -69,6 +71,25 @@ public class CDBAttributesXmlStructureTests extends CommonFixture {
         for (String symbol : symbols) {
             Assert.assertEquals(Collections.frequency(symbols, symbol), 1,
                     String.format("CDB_Attributes.xml element Attribute should have unique symbols. Symbol '%s' is not unique.", symbol));
+        }
+    }
+
+    @Test
+    public void verifyValueHasAValidType() {
+        NodeList nodeList = XmlUtilities.getNodeList("//Value/Type", Paths.get(path, "Metadata", "CDB_Attributes.xml"));
+
+        ArrayList<String> types = new ArrayList<>();
+        List<String> VALID_TYPES = Arrays.asList("Text", "Numeric", "Boolean");
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node currentItem = nodeList.item(i);
+            types.add(currentItem.getTextContent());
+        }
+
+        for (String type : types) {
+            Assert.assertTrue(VALID_TYPES.contains(type),
+                    String.format("CDB_Attributes.xml element Type should have a value of " +
+                            "'Text', 'Numeric' or 'Boolean'. Type '%s' is not valid.", type));
         }
     }
 }
