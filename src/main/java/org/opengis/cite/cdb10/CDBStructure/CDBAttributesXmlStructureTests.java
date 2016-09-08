@@ -4,12 +4,15 @@ import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 /**
  * Created by martin on 2016-09-08.
@@ -31,6 +34,23 @@ public class CDBAttributesXmlStructureTests extends CommonFixture {
 
         if (!errorHandler.noErrors()) {
             Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
+        }
+    }
+
+    @Test
+    public void verifyCodeIsAnInteger() {
+        NodeList nodeList = XmlUtilities.getNodeList("//Attribute", Paths.get(path, "Metadata", "CDB_Attributes.xml"));
+
+        ArrayList<String> values = new ArrayList<>();
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node currentItem = nodeList.item(i);
+            values.add(currentItem.getAttributes().getNamedItem("code").getNodeValue());
+        }
+
+        for (String value : values) {
+            Assert.assertTrue(value.matches("^\\d+$"),
+                    String.format("CDB_Attributes.xml attribute code should be an integer. Code '%s' is not valid.", value));
         }
     }
 }

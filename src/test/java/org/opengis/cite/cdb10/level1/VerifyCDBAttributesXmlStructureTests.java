@@ -21,6 +21,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
     private final static Path VALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("valid", "CDB_Attributes.xml"));
 
     private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalid.xml"));
+    private final static Path CODE_NOT_INTEGER_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidCodeNotInteger.xml"));
 
     public VerifyCDBAttributesXmlStructureTests() {
         testSuite = new CDBAttributesXmlStructureTests();
@@ -72,5 +73,30 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
 
         // execute
         testSuite.verifyCDBAttributesXmlAgainstSchema();
+    }
+
+    @Test
+    public void verifyCodeIsAnInteger_CodeIsAnInteger() throws IOException {
+        // setup
+        Files.copy(VALID_FILE, metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyCodeIsAnInteger();
+    }
+
+    @Test
+    public void verifyCodeIsAnInteger_CodeIsNotAnInteger() throws IOException {
+        // setup
+        Files.copy(CODE_NOT_INTEGER_FILE, metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
+
+        String expectedMessage = "CDB_Attributes.xml attribute code should be an integer. Code 'not_integer' is not valid.";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
+
+        // execute
+        testSuite.verifyCodeIsAnInteger();
     }
 }
