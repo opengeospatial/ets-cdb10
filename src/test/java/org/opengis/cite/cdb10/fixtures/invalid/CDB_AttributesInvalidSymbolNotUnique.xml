@@ -8,7 +8,7 @@
 
   <Attributes>
 
-    <Attribute code="not_integer" symbol="AEAC">
+    <Attribute code="1" symbol="AEAC">
       <Name>ATARS Extended Attribute Code</Name>
       <Description>
         A unique numeric identifier that points to the entry number of the ATARS Extended Attribution file for the
@@ -25,6 +25,19 @@
           <Min>0</Min>
           <Max>999999999</Max>
         </Range>
+      </Value>
+    </Attribute>
+
+    <Attribute code="2" symbol="AEAC">
+      <Name>Absolute Height Flag</Name>
+      <Description>
+        Indicates how to interpret the Z component of a vertex.
+      </Description>
+      <Level>
+        <Class>Supported</Class>
+      </Level>
+      <Value>
+        <Type>Boolean</Type>
       </Value>
     </Attribute>
 

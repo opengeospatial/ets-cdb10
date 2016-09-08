@@ -22,6 +22,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
 
     private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalid.xml"));
     private final static Path CODE_NOT_INTEGER_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidCodeNotInteger.xml"));
+    private final static Path SYMBOL_IS_NOT_UNIQUE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidSymbolNotUnique.xml"));
 
     public VerifyCDBAttributesXmlStructureTests() {
         testSuite = new CDBAttributesXmlStructureTests();
@@ -98,5 +99,31 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
 
         // execute
         testSuite.verifyCodeIsAnInteger();
+    }
+
+    @Test
+    public void verifySymbolIsUnique_SymbolIsUnique() throws IOException {
+        // setup
+        Files.copy(VALID_FILE, metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifySymbolIsUnique();
+    }
+
+    @Test
+    public void verifySymbolIsUnique_SymbolIsNotUnique() throws IOException {
+        // setup
+        Files.copy(SYMBOL_IS_NOT_UNIQUE_FILE, metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
+
+        String expectedMessage = "CDB_Attributes.xml element Attribute should have unique symbols. " +
+                "Symbol 'AEAC' is not unique. expected [1] but found [2]";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
+
+        // execute
+        testSuite.verifySymbolIsUnique();
     }
 }
