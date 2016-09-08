@@ -92,4 +92,22 @@ public class CDBAttributesXmlStructureTests extends CommonFixture {
                             "'Text', 'Numeric' or 'Boolean'. Type '%s' is not valid.", type));
         }
     }
+
+    @Test
+    public void verifyScalerCodeIsValid() {
+        NodeList nodeList = XmlUtilities.getNodeList("//Scalers/Scaler", Paths.get(path, "Metadata", "CDB_Attributes.xml"));
+
+        ArrayList<String> values = new ArrayList<>();
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node currentItem = nodeList.item(i);
+            values.add(currentItem.getAttributes().getNamedItem("code").getNodeValue());
+        }
+
+        for (String value : values) {
+            //must be a positive integer
+            Assert.assertTrue(value.matches("^[1-9]\\d*$"),
+                    String.format("CDB_Attributes.xml attribute code should be a positive integer. Code '%s' is not valid.", value));
+        }
+    }
 }
