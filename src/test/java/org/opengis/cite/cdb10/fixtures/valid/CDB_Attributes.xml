@@ -1,0 +1,128 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="Stylesheet/Vector_Attributes.xsl"?>
+<Vector_Attributes
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.CDB-Spec.org/Schema/Vector_Attributes/1.2"
+    xsi:schemaLocation="http://www.CDB-Spec.org/Schema/Vector_Attributes/1.2 Schema/Vector_Attributes.xsd"
+    version="3.2">
+
+  <Attributes>
+
+    <Attribute code="1" symbol="AEAC" deprecated="true">
+      <Name>ATARS Extended Attribute Code</Name>
+      <Description>
+        A unique numeric identifier that points to the entry number of the ATARS Extended Attribution file for the
+        current dataset.
+      </Description>
+      <Level>
+        <Instance>Supported</Instance>
+        <Class>Supported</Class>
+      </Level>
+      <Value>
+        <Type>Numeric</Type>
+        <Format>Integer</Format>
+        <Range>
+          <Min>0</Min>
+          <Max>999999999</Max>
+        </Range>
+      </Value>
+    </Attribute>
+
+    <Attribute code="2" symbol="AHGT">
+      <Name>Absolute Height Flag</Name>
+      <Description>
+        Indicates how to interpret the Z component of a vertex.
+      </Description>
+      <Level>
+        <Class>Supported</Class>
+      </Level>
+      <Value>
+        <Type>Boolean</Type>
+      </Value>
+    </Attribute>
+
+    <Attribute code="3" symbol="AO1">
+      <Name>Angle of Orientation with greater than 1 degree resolution</Name>
+      <Description>
+        The angular distance measured from true north (0 deg) clockwise to the major (Y) axis of the feature.
+      </Description>
+      <Level>
+        <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
+        <Extended>Supported</Extended>
+      </Level>
+      <Value>
+        <Type>Numeric</Type>
+        <Format>Floating-Point</Format>
+        <Precision>3.3</Precision>
+        <Range interval="Right-Open">
+          <Min>0</Min>
+          <Max>360</Max>
+        </Range>
+        <Unit>2</Unit>
+      </Value>
+    </Attribute>
+
+    <Attribute code="4" symbol="APFN" deprecated="true">
+      <Name>Airport Feature Name</Name>
+      <Description>...</Description>
+      <Level>
+        <Class>Deprecated</Class>
+        <Extended>Preferred</Extended>
+      </Level>
+      <Value>
+        <Type>Text</Type>
+        <Length>24</Length>
+      </Value>
+    </Attribute>
+
+    <Attribute code="5" symbol="APID">
+      <Name>AirPort ID</Name>
+      <Description>
+        A unique alphanumeric identifier that points to a record in the NavData Airport or Heliport dataset (i.e., a
+        link to the Airport or the Heliport description in the NavData dataset).
+      </Description>
+      <Level>
+        <Instance>Deprecated</Instance>
+        <Class>Deprecated</Class>
+        <Extended>Preferred</Extended>
+      </Level>
+      <Value>
+        <Type>Text</Type>
+        <Length>6</Length>
+      </Value>
+    </Attribute>
+
+  </Attributes>
+
+  <Units>
+
+    <Unit code="1" symbol="m">
+      <Name>meter</Name>
+      <Description>To measure a length.</Description>
+    </Unit>
+
+    <Unit code="2" symbol="deg">
+      <Name>degree</Name>
+      <Description>To measure an angle.</Description>
+    </Unit>
+
+  </Units>
+
+  <Scalers>
+
+    <Scaler code="1" symbol="k">
+      <Name>kilo</Name>
+      <Description>A multiplier: thousand</Description>
+      <Multiplier>1000</Multiplier>
+    </Scaler>
+
+    <Scaler code="2" symbol="m">
+      <Name>milli</Name>
+      <Description>A divisor: thousandth</Description>
+      <Multiplier>0.001</Multiplier>
+    </Scaler>
+
+  </Scalers>
+
+</Vector_Attributes>

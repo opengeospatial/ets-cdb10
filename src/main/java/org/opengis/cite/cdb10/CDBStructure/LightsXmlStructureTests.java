@@ -50,7 +50,7 @@ public class LightsXmlStructureTests extends CommonFixture {
 
         for (String code : codes) {
             Assert.assertEquals(Collections.frequency(codes, code), 1,
-                    String.format("Lights.xml element Light should have unique codes. Code %s is not unique.", code));
+                    String.format("Lights.xml element Light should have unique codes. Code '%s' is not unique.", code));
         }
     }
 

@@ -162,7 +162,8 @@ public class VerifyDefaultsXmlStructureTests extends MetadataTestFixture<Default
         Files.copy(INVALID_TYPE_VALUE_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
-        String expectedMessage = "Defaults.xml element Type should have a value of 'float', 'integer' and 'string'. Value 'invalid_type' is not valid.";
+        String expectedMessage = "Defaults.xml element Type should have a value of 'float', " +
+                "'integer' or 'string'. Value 'invalid_type' is not valid. expected [true] but found [false]";
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage(expectedMessage);

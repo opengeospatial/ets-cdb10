@@ -92,7 +92,7 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
         Files.copy(DUPLICATED_CODE_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
 
         expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("Lights.xml element Light should have unique codes. Code 1 is not unique.");
+        expectedException.expectMessage("Lights.xml element Light should have unique codes. Code '1' is not unique. expected [1] but found [2]");
 
         // execute
         testSuite.verifyLightsXmlHasUniqueCodes();
