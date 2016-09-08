@@ -1,9 +1,13 @@
 package org.opengis.cite.cdb10.CDBStructure;
 
 import org.opengis.cite.cdb10.CommonFixture;
+import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.xml.sax.SAXException;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -18,4 +22,15 @@ public class CDBAttributesXmlStructureTests extends CommonFixture {
                 "Metadata directory should contain CDB_Attributes.xml file.");
     }
 
+    @Test
+    public void verifyCDBAttributesXmlAgainstSchema() throws IOException, SAXException {
+        File xmlFile = Paths.get(path, "Metadata", "CDB_Attributes.xml").toFile();
+        File xsdFile = Paths.get(path, "Metadata", "Schema", "Vector_Attributes.xsd").toFile();
+
+        SchemaValidatorErrorHandler errorHandler = XmlUtilities.validateXmlFileIsValid(xmlFile, xsdFile);
+
+        if (!errorHandler.noErrors()) {
+            Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
+        }
+    }
 }
