@@ -106,7 +106,23 @@ public class CDBAttributesXmlStructureTests extends CommonFixture {
 
         for (String value : values) {
             Assert.assertTrue(value.matches("^[1-9]\\d*$"),
-                    String.format("CDB_Attributes.xml attribute code should be a positive integer. Code '%s' is not valid.", value));
+                    String.format("CDB_Attributes.xml Scaler code should be a positive integer. Code '%s' is not valid.", value));
+        }
+    }
+
+    public void verifyUnitCodeIsValid() {
+        NodeList nodeList = XmlUtilities.getNodeList("//Units/Unit", Paths.get(path, "Metadata", "CDB_Attributes.xml"));
+
+        ArrayList<String> values = new ArrayList<>();
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node currentItem = nodeList.item(i);
+            values.add(currentItem.getAttributes().getNamedItem("code").getNodeValue());
+        }
+
+        for (String value : values) {
+            Assert.assertTrue(value.matches("^[1-9]\\d*$"),
+                    String.format("CDB_Attributes.xml Unit code should be a positive integer. Code '%s' is not valid.", value));
         }
     }
 }

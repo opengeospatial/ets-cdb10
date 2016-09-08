@@ -25,6 +25,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
     private final static Path SYMBOL_IS_NOT_UNIQUE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidSymbolNotUnique.xml"));
     private final static Path INVALID_TYPE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidType.xml"));
     private final static Path INVALID_SCALER_CODE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidScalerCode.xml"));
+    private final static Path INVALID_UNIT_CODE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidUnitCode.xml"));
 
     public VerifyCDBAttributesXmlStructureTests() {
         testSuite = new CDBAttributesXmlStructureTests();
@@ -170,7 +171,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
         Files.copy(INVALID_SCALER_CODE_FILE, metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
 
-        String expectedMessage = "CDB_Attributes.xml attribute code should be a positive integer. " +
+        String expectedMessage = "CDB_Attributes.xml Scaler code should be a positive integer. " +
                 "Code '-1' is not valid. expected [true] but found [false]";
 
         expectedException.expect(AssertionError.class);
@@ -178,5 +179,31 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
 
         // execute
         testSuite.verifyScalerCodeIsValid();
+    }
+
+    @Test
+    public void verifyUnitCodeIsValid_IsValid() throws IOException {
+        // setup
+        Files.copy(VALID_FILE, metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyUnitCodeIsValid();
+    }
+
+    @Test
+    public void verifyUnitCodeIsValid_IsNotValid() throws IOException {
+        // setup
+        Files.copy(INVALID_UNIT_CODE_FILE, metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
+
+        String expectedMessage = "CDB_Attributes.xml Unit code should be a positive integer. " +
+                "Code '-1' is not valid. expected [true] but found [false]";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
+
+        // execute
+        testSuite.verifyUnitCodeIsValid();
     }
 }
