@@ -21,7 +21,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
     private final static Path VALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("valid", "CDB_Attributes.xml"));
 
     private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalid.xml"));
-    private final static Path CODE_NOT_INTEGER_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidCodeNotInteger.xml"));
+    private final static Path CODE_NOT_INTEGER_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidAttributeCodeNotInteger.xml"));
     private final static Path SYMBOL_IS_NOT_UNIQUE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidSymbolNotUnique.xml"));
     private final static Path INVALID_TYPE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidType.xml"));
     private final static Path INVALID_SCALER_CODE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidScalerCode.xml"));
