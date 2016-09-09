@@ -23,6 +23,7 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
     private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "MaterialsInvalid.xml"));
     private final static Path NAME_NOT_UNIQUE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "MaterialsInvalidNameNotUnique.xml"));
     private final static Path MISSING_NAME_ELEMENT_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "MaterialsInvalidMissingNameElement.xml"));
+    private final static Path INVALID_NAME_VALUE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "MaterialsInvalidValueForNameElement.xml"));
 
     public VerifyMaterialsXmlStructureTests() {
         testSuite = new MaterialsXmlStructureTests();
@@ -120,5 +121,32 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
 
         // execute
         testSuite.verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName();
+    }
+
+    @Test
+    public void verifyMaterialsXmlBaseMaterialNameIsValid_IsValid() throws Exception {
+        // setup
+        Files.copy(VALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyMaterialsXmlBaseMaterialNameIsValid();
+    }
+
+    @Test
+    public void verifyMaterialsXmlBaseMaterialNameIsValid_IsNotValid() throws Exception {
+        // setup
+        Files.copy(INVALID_NAME_VALUE_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+
+        String expectedMessage = "Materials.xml element Name is always in format \"BM__*\", " +
+                "has a maximum of 32 characters, and can only contain letters, digits, " +
+                "underscores, and hyphens. " +
+                "[ASH, BM_ASH-VOLCANIC*, BM_12345123451234512345123451234512345] " +
+                "do not conform expected [0] but found [3]";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
+
+        // execute
+        testSuite.verifyMaterialsXmlBaseMaterialNameIsValid();
     }
 }

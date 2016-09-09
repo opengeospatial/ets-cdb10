@@ -54,6 +54,24 @@ public class MaterialsXmlStructureTests extends CommonFixture {
         Assert.assertEquals(baseMaterialNodes.getLength(), 0, "Materials.xml element Base_Material requires a child element Name.");
     }
 
+    @Test
+    public void verifyMaterialsXmlBaseMaterialNameIsValid() {
+        ArrayList<String> names = getNameValues();
+
+        ArrayList<String> invalidNames = new ArrayList<>();
+
+        for (String name : names) {
+            if(!name.matches("^BM_[a-zA-Z0-9_-]{0,29}")) {
+                invalidNames.add(name);
+            }
+        }
+
+        Assert.assertEquals(invalidNames.size(), 0,
+                String.format("Materials.xml element Name is always in format \"BM__*\", " +
+                        "has a maximum of 32 characters, and can only contain letters, digits, " +
+                        "underscores, and hyphens. %s do not conform", invalidNames.toString()));
+    }
+
     private ArrayList<String> getNameValues() {
         NodeList nameNodes = XmlUtilities.getNodeList("//Base_Material/Name", Paths.get(path, "Metadata", "Materials.xml"));
 
