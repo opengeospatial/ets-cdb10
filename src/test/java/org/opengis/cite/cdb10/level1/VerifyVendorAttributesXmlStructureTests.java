@@ -74,15 +74,6 @@ public class VerifyVendorAttributesXmlStructureTests extends MetadataTestFixture
     }
 
     @Test
-    public void vendorAttributesXsdFileDoesNotExist() throws IOException, SAXException {
-        // setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Vendor_Attributes.xml")));
-
-        // execute
-        testSuite.verifyVendorAttributesXmlAgainstSchema(); // will return no assertion error
-    }
-
-    @Test
     public void vendorAttributesXmlFileDoesNotExist() throws IOException, SAXException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Vendor_Attributes.xsd")));
