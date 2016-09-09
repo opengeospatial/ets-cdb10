@@ -18,19 +18,31 @@ public class VendorAttributesXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyVendorAttributesXsdFileExists() {
-        Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema", "Vendor_Attributes.xsd")),
-                "If Vendor_Attributes.xml exists there should be a Vendor_Attributes.xsd in the Schema folder");
+        if (vendorAttributesXmlExists()) {
+            Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema", "Vendor_Attributes.xsd")),
+                    "If Vendor_Attributes.xml exists there should be a Vendor_Attributes.xsd in the Schema folder");
+        }
     }
 
     @Test
     public void verifyVendorAttributesXmlAgainstSchema() throws IOException, SAXException {
-        File xmlFile = Paths.get(path, "Metadata", "Vendor_Attributes.xml").toFile();
-        File xsdFile = Paths.get(path, "Metadata", "Schema", "Vendor_Attributes.xsd").toFile();
+        if (vendorAttributesXmlExists() && vendorAttributesXsdExists()) {
+            File xmlFile = Paths.get(path, "Metadata", "Vendor_Attributes.xml").toFile();
+            File xsdFile = Paths.get(path, "Metadata", "Schema", "Vendor_Attributes.xsd").toFile();
 
-        SchemaValidatorErrorHandler errorHandler = XmlUtilities.validateXmlFileIsValid(xmlFile, xsdFile);
+            SchemaValidatorErrorHandler errorHandler = XmlUtilities.validateXmlFileIsValid(xmlFile, xsdFile);
 
-        if (!errorHandler.noErrors()) {
-            Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
+            if (!errorHandler.noErrors()) {
+                Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
+            }
         }
+    }
+
+    private boolean vendorAttributesXmlExists() {
+        return Paths.get(path, "Metadata", "Vendor_Attributes.xml").toFile().exists();
+    }
+
+    private boolean vendorAttributesXsdExists() {
+        return Paths.get(path, "Metadata", "Schema", "Vendor_Attributes.xsd").toFile().exists();
     }
 }
