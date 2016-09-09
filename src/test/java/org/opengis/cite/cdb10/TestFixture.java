@@ -3,7 +3,8 @@ package org.opengis.cite.cdb10;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.opengis.cite.cdb10.CDBStructure.MetadataStructureTests;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 import org.testng.ISuite;
 import org.testng.ITestContext;
 
@@ -25,6 +26,9 @@ public abstract class TestFixture<T extends CommonFixture> {
     private static ITestContext testContext;
     private static ISuite suite;
     protected T testSuite;
+
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
 
     @BeforeClass
     public static void initTestFixture() {

@@ -16,9 +16,6 @@ import java.nio.file.Paths;
  */
 public class MetadataTestFixture<T extends CommonFixture> extends TestFixture<T> {
 
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
-
     protected final static Path SOURCE_DIRECTORY = Paths.get(System.getProperty("user.dir"), "src", "test", "java", "org", "opengis", "cite", "cdb10", "fixtures");
     protected Path metadataFolder;
     protected Path schemaFolder;

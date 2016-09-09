@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by serene on 2016-09-01.
@@ -27,5 +30,49 @@ public class MetadataStructureTests extends CommonFixture {
         }
 
         Assert.assertEquals(fileCount, 2, "Metadata should only contain 2 folders.");
+    }
+
+    /**
+     * The test should check if  \CDB\Schema directory contains the following files:
+     * Base_Material_Table.xsd
+     * Composite_Material_Table.xsd
+     * Configuration.xsd
+     * Defaults.xsd
+     * DIS_Country_Codes.xsd
+     * Feature_Data_Dictionary.xsd
+     * Lights.xsd
+     * Lights_Tuning.xsd
+     * Model_Components.xsd
+     * Model_Metadata.xsd
+     * Moving_Model_Codes.xsd
+     * OpenFlight_Model_Extensions.xsd
+     * Vector_Attributes.xsd
+     * Version.xsd
+     */
+    @Test
+    public void verifyContentsOfSchemaFolder() throws IOException {
+        List<String> REQUIRED_FILES = Arrays.asList("Base_Material_Table.xsd",
+                "Composite_Material_Table.xsd",
+                "Configuration.xsd",
+                "Defaults.xsd",
+                "DIS_Country_Codes.xsd",
+                "Feature_Data_Dictionary.xsd",
+                "Lights.xsd",
+                "Lights_Tuning.xsd",
+                "Model_Components.xsd",
+                "Model_Metadata.xsd",
+                "Moving_Model_Codes.xsd",
+                "OpenFlight_Model_Extensions.xsd",
+                "Vector_Attributes.xsd",
+                "Version.xsd");
+
+        List<String> missingFiles = new ArrayList<>();
+        for (String requiredFile : REQUIRED_FILES) {
+            if (!Paths.get(path, "Metadata", "Schema", requiredFile).toFile().exists()) {
+                missingFiles.add(requiredFile);
+            }
+        }
+
+        Assert.assertTrue(missingFiles.isEmpty(), String.format("Schema folder is missing these files: %s", missingFiles.toString()));
     }
 }
