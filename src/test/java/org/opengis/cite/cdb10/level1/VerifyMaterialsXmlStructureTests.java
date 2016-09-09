@@ -21,6 +21,8 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
     private final static Path VALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Materials.xml"));
 
     private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "MaterialsInvalid.xml"));
+    private final static Path NAME_NOT_UNIQUE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "MaterialsInvalidNameNotUnique.xml"));
+    private final static Path MISSING_NAME_ELEMENT_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "MaterialsInvalidMissingNameElement.xml"));
 
     public VerifyMaterialsXmlStructureTests() {
         testSuite = new MaterialsXmlStructureTests();
@@ -70,5 +72,53 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
 
         // execute
         testSuite.verifyMaterialsXmlAgainstSchema();
+    }
+
+    @Test
+    public void verifyMaterialsXmlElementNameIsUnique_IsUnique() throws IOException {
+        // setup
+        Files.copy(VALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyMaterialsXmlElementNameIsUnique();
+    }
+
+    @Test
+    public void verifyMaterialsXmlElementNameIsUnique_IsNotUnique() throws IOException {
+        // setup
+        Files.copy(NAME_NOT_UNIQUE_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+
+        String expectedMessage = "Materials.xml element Name should be unique. " +
+                "'BM_ASH-VOLCANIC' is not unique. expected [1] but found [2]";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
+
+        // execute
+        testSuite.verifyMaterialsXmlElementNameIsUnique();
+    }
+
+    @Test
+    public void verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName_TheyDo() throws IOException {
+        // setup
+        Files.copy(VALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName();
+    }
+
+    @Test
+    public void verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName_TheyDoNot() throws IOException {
+        // setup
+        Files.copy(MISSING_NAME_ELEMENT_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+
+        String expectedMessage = "Materials.xml element Base_Material requires a " +
+                "child element Name. expected [0] but found [1]";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
+
+        // execute
+        testSuite.verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName();
     }
 }
