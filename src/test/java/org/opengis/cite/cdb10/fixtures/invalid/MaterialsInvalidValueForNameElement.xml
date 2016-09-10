@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="Stylesheet/Base_Material_Table.xsl"?>
+<Base_Material_Table
+  xmlns="http://www.CDB-Spec.org/Schema/Base_Material_Table/3.2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.CDB-Spec.org/Schema/Base_Material_Table/3.2 Schema/Base_Material_Table.xsd"
+  version="1.2">
+  <Base_Material>
+    <Name>ASH</Name>
+    <Description>The solid remains of a fire</Description>
+  </Base_Material>
+  <Base_Material>
+    <Name>BM_ASH-VOLCANIC*</Name>
+    <Description>Volcanic Ash</Description>
+  </Base_Material>
+  <Base_Material>
+    <Name>BM_12345123451234512345123451234512345</Name>
+    <Description>Asphalt</Description>
+  </Base_Material>
+</Base_Material_Table>
