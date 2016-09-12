@@ -21,6 +21,7 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
     private final static Path VALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Lights_Client.xml"));
 
     private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Lights_ClientInvalid.xml"));
+    private final static Path INTENSITY_OUT_OF_RANGE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Lights_ClientInvalidIntensityOutOfRange.xml"));
 
     public VerifyLightsXxxXmlStructureTests() {
         testSuite = new LightsXxxXmlStructureTests();
@@ -42,7 +43,7 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
     }
 
     @Test
-    public void verifyLightsXmlFileNameIsValid_IsValid() throws Exception {
+    public void verifyLightsXmlFileNameIsValid_IsValid() throws IOException {
         //setup
         Files.createFile(metadataFolder.resolve(Paths.get("Lights_Client.xml")));
 
@@ -88,13 +89,40 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
         Files.copy(INVALID_FILE, metadataFolder.resolve("Lights_Client.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Lights_Tuning.xsd"), REPLACE_EXISTING);
 
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("Lights_Client.xml does not contain valid XML. " +
+        String expectedMessage = "Lights_Client.xml does not contain valid XML. " +
                 "Errors: cvc-pattern-valid: Value 'Invalid' is not facet-valid with respect to pattern " +
                 "'Omnidirectional|Directional|Bidirectional' for type '#AnonType_DirectionalityLight'., " +
-                "cvc-type.3.1.3: The value 'Invalid' of element 'Directionality' is not valid.");
+                "cvc-type.3.1.3: The value 'Invalid' of element 'Directionality' is not valid.";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
 
         // execute
         testSuite.verifyLightsXxxXmlAgainstSchema();
+    }
+
+    @Test
+    public void verifyElementIntensityIsInRange_InRange() throws IOException {
+        // setup
+        Files.copy(VALID_FILE, metadataFolder.resolve("Lights_Client.xml"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyElementIntensityIsInRange();
+    }
+
+    @Test
+    public void verifyElementIntensityIsInRange_OutOfRange() throws IOException {
+        // setup
+        Files.copy(INTENSITY_OUT_OF_RANGE_FILE, metadataFolder.resolve("Lights_Client.xml"), REPLACE_EXISTING);
+
+        String expectedMessage = "'Lights_Client.xml' Intensity elements value can range from 0.0 to 1.0. " +
+                "[] expected [0] but found [2]";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
+
+        // execute
+        testSuite.verifyElementIntensityIsInRange();
+
     }
 }

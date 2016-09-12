@@ -4,6 +4,8 @@ import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.File;
@@ -21,7 +23,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
     public void verifyLightsXmlFileNameIsValid() {
         File xmlFile = getCustomLightsXmlFile();
 
-        if(!xmlFile.getName().matches("^Lights_[a-zA-Z0-9_-]{0,25}.xml$")) {
+        if (!xmlFile.getName().matches("^Lights_[a-zA-Z0-9_-]{0,25}.xml$")) {
             Assert.fail(String.format("'%s' is not a valid file name it must start with 'Lights_', " +
                     "can only be a maximum of 32 characters and contain letters, numbers, " +
                     "underscores and dashes.", xmlFile.getName()));
@@ -50,6 +52,28 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
             if (!errorHandler.noErrors()) {
                 Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
             }
+        }
+    }
+
+    public void verifyElementIntensityIsInRange() {
+        File xmlFile = getCustomLightsXmlFile();
+        if (xmlFile != null) {
+            NodeList intensityNodes = XmlUtilities.getNodeList("//Intensity", Paths.get(path, "Metadata", xmlFile.getName()));
+
+            ArrayList<String> invalidIntensityValues = new ArrayList<>();
+
+            for (int i = 0; i < intensityNodes.getLength(); i++) {
+                Node currentItem = intensityNodes.item(i);
+                Float value = Float.parseFloat(currentItem.getTextContent());
+
+                if (value >= 0.0 && value <= 1.0) {
+                    invalidIntensityValues.add(currentItem.getTextContent());
+                }
+            }
+
+            Assert.assertEquals(intensityNodes.getLength(), 0,
+                    String.format("'%s' Intensity elements value can range from 0.0 to 1.0. %s",
+                            xmlFile.getName().toString(), invalidIntensityValues.toString()));
         }
     }
 
