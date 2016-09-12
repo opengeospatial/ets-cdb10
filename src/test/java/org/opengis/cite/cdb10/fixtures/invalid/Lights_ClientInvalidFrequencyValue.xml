@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<Lights_Tuning xmlns="CDB" xmlns:CDB="CDB" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="CDB Schema/Lights_Tuning.xsd">
+  <Light type="\Light\Platform\Air\Aircraft_Helos\Anti-collision">
+    <Description>Tuned for MH-47 CMS</Description>
+    <Intensity>0.75</Intensity>
+    <Color>1.0 0.0 0.0</Color>
+    <Directionality>Omnidirectional</Directionality>
+    <Frequency>-0.1</Frequency>
+    <Duty_Cycle>0.2</Duty_Cycle>
+  </Light>
+</Lights_Tuning>

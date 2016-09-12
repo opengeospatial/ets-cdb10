@@ -113,20 +113,43 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
         }
     }
 
+    @Test
+    public void verifyLightsXxxXmlFrequencyValueIsValid() {
+        File xmlFile = getCustomLightsXmlFile();
+        if (xmlFile != null) {
+            NodeList frequencyNodes = XmlUtilities.getNodeList("//Frequency", Paths.get(path, "Metadata", xmlFile.getName()));
+
+            ArrayList<String> invalidFrequencyValues = new ArrayList<>();
+
+            for (int i = 0; i < frequencyNodes.getLength(); i++) {
+                Node currentItem = frequencyNodes.item(i);
+                Float value = Float.parseFloat(currentItem.getTextContent());
+
+                if (value < 0.0) {
+                    invalidFrequencyValues.add(currentItem.getTextContent());
+                }
+            }
+
+            Assert.assertEquals(invalidFrequencyValues.size(), 0,
+                    String.format("'%s' Duty_Cycle elements value can range from 0.0 to 1.0. Values %s are not valid.",
+                            xmlFile.getName().toString(), invalidFrequencyValues.toString()));
+        }
+    }
+
     private ArrayList<String> getInvalidValues(File xmlFile, String nodeToSearchFor) {
-        NodeList intensityNodes = XmlUtilities.getNodeList(nodeToSearchFor, Paths.get(path, "Metadata", xmlFile.getName()));
+        NodeList nodes = XmlUtilities.getNodeList(nodeToSearchFor, Paths.get(path, "Metadata", xmlFile.getName()));
 
-        ArrayList<String> invalidResidualIntensityValues = new ArrayList<>();
+        ArrayList<String> invalidValues = new ArrayList<>();
 
-        for (int i = 0; i < intensityNodes.getLength(); i++) {
-            Node currentItem = intensityNodes.item(i);
+        for (int i = 0; i < nodes.getLength(); i++) {
+            Node currentItem = nodes.item(i);
             Float value = Float.parseFloat(currentItem.getTextContent());
 
             if (value < 0.0 || value > 1.0) {
-                invalidResidualIntensityValues.add(currentItem.getTextContent());
+                invalidValues.add(currentItem.getTextContent());
             }
         }
-        return invalidResidualIntensityValues;
+        return invalidValues;
     }
 
     private File getCustomLightsXmlFile() {
