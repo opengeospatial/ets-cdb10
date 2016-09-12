@@ -37,7 +37,7 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
         //setup
         Files.createFile(metadataFolder.resolve(Paths.get("Lights_123451234512345123451234512345.xml")));
 
-        String expectedMessage = "'Lights_123451234512345123451234512345.xml' is not a valid file name it must start " +
+        String expectedMessage = "[Lights_123451234512345123451234512345.xml] are not a valid file name(s) the file name must start " +
                 "with 'Lights_', can only be a maximum of 32 characters and contain letters, numbers, underscores and dashes.";
 
         expectedException.expect(AssertionError.class);
@@ -55,6 +55,35 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
         // execute
         testSuite.verifyLightsXmlFileNameIsValid();
     }
+
+
+    @Test
+    public void verifyLightsXmlFileNameIsValidWithMultipleFiles_IsNotValid() throws Exception {
+        //setup
+        Files.createFile(metadataFolder.resolve(Paths.get("Lights_123451234512345123451234512345_example1.xml")));
+        Files.createFile(metadataFolder.resolve(Paths.get("Lights_123451234512345123451234512345_example2.xml")));
+
+        String expectedMessage = "[Lights_123451234512345123451234512345_example1.xml, " +
+                "Lights_123451234512345123451234512345_example2.xml] are not a valid file name(s) the file name must start with " +
+                "'Lights_', can only be a maximum of 32 characters and contain letters, numbers, underscores and dashes.";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
+
+        // execute
+        testSuite.verifyLightsXmlFileNameIsValid();
+    }
+
+    @Test
+    public void verifyLightsXmlFileNameIsValidWithMultipleFiles_IsValid() throws IOException {
+        //setup
+        Files.createFile(metadataFolder.resolve(Paths.get("Lights_Client_example1.xml")));
+        Files.createFile(metadataFolder.resolve(Paths.get("Lights_Client_example2.xml")));
+
+        // execute
+        testSuite.verifyLightsXmlFileNameIsValid();
+    }
+
 
     @Test
     public void verifyLightsTuningXsdFileExists_DoesNotExist() throws IOException {
