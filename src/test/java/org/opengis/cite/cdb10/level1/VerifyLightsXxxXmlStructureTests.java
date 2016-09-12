@@ -56,7 +56,6 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
         testSuite.verifyLightsXmlFileNameIsValid();
     }
 
-
     @Test
     public void verifyLightsXmlFileNameIsValidWithMultipleFiles_IsNotValid() throws Exception {
         //setup
@@ -83,7 +82,6 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
         // execute
         testSuite.verifyLightsXmlFileNameIsValid();
     }
-
 
     @Test
     public void verifyLightsTuningXsdFileExists_DoesNotExist() throws IOException {
