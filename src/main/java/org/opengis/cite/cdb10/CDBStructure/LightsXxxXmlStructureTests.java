@@ -36,7 +36,6 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
         File xmlFile = getCustomLightsXmlFile();
 
         if (xmlFile != null) {
-            System.out.println("here");
             Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema", "Lights_Tuning.xsd")),
                     "If a custom Lights_xxx.xml exists there should be Lights_Tuning.xsd in the Schema folder.");
         }
@@ -67,13 +66,13 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
                 Node currentItem = intensityNodes.item(i);
                 Float value = Float.parseFloat(currentItem.getTextContent());
 
-                if (value >= 0.0 && value <= 1.0) {
+                if (value < 0.0 || value > 1.0) {
                     invalidIntensityValues.add(currentItem.getTextContent());
                 }
             }
 
-            Assert.assertEquals(intensityNodes.getLength(), 0,
-                    String.format("'%s' Intensity elements value can range from 0.0 to 1.0. %s",
+            Assert.assertEquals(invalidIntensityValues.size(), 0,
+                    String.format("'%s' Intensity elements value can range from 0.0 to 1.0. Values %s are not valid.",
                             xmlFile.getName().toString(), invalidIntensityValues.toString()));
         }
     }
@@ -97,6 +96,29 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
                         String.format("'%s' element Directionality should have a value of 'Omnidirectional', " +
                                 "'Directional' or 'Bidirectional'. Value '%s' is not valid.", xmlFile.getName(), value));
             }
+        }
+    }
+
+    @Test
+    public void verifyLightsXxxXmlElementResidualIntensityIsInRange() {
+        File xmlFile = getCustomLightsXmlFile();
+        if (xmlFile != null) {
+            NodeList intensityNodes = XmlUtilities.getNodeList("//Residual_Intensity", Paths.get(path, "Metadata", xmlFile.getName()));
+
+            ArrayList<String> invalidResidualIntensityValues = new ArrayList<>();
+
+            for (int i = 0; i < intensityNodes.getLength(); i++) {
+                Node currentItem = intensityNodes.item(i);
+                Float value = Float.parseFloat(currentItem.getTextContent());
+
+                if (value < 0.0 || value > 1.0) {
+                    invalidResidualIntensityValues.add(currentItem.getTextContent());
+                }
+            }
+
+            Assert.assertEquals(invalidResidualIntensityValues.size(), 0,
+                    String.format("'%s' Residual_Intensity elements value can range from 0.0 to 1.0. Values %s are not valid.",
+                            xmlFile.getName().toString(), invalidResidualIntensityValues.toString()));
         }
     }
 
