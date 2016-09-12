@@ -20,6 +20,8 @@ import java.util.List;
  */
 public class LightsXxxXmlStructureTests extends CommonFixture {
 
+    private static final List<String> DIRECTIONALITY_VALUES = Arrays.asList("Omnidirectional", "Directional", "Bidirectional");
+
     @Test
     public void verifyLights_XxxXmlFileExists() {
         File xmlFile = getCustomLightsXmlFile();
@@ -68,18 +70,10 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
     public void verifyLightsXxxXmlDirectionalityValueIsValid() {
         File xmlFile = getCustomLightsXmlFile();
         if (xmlFile != null) {
-            NodeList nodeList = XmlUtilities.getNodeList("//Directionality", Paths.get(path, "Metadata", xmlFile.getName()));
+            ArrayList<String> directionalityValues = getDirectionalityValues(xmlFile);
 
-            ArrayList<String> values = new ArrayList<>();
-            List<String> VALID_VALUES = Arrays.asList("Omnidirectional", "Directional", "Bidirectional");
-
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Node currentItem = nodeList.item(i);
-                values.add(currentItem.getTextContent());
-            }
-
-            for (String value : values) {
-                Assert.assertTrue(VALID_VALUES.contains(value),
+            for (String value : directionalityValues) {
+                Assert.assertTrue(DIRECTIONALITY_VALUES.contains(value),
                         String.format("'%s' element Directionality should have a value of 'Omnidirectional', " +
                                 "'Directional' or 'Bidirectional'. Value '%s' is not valid.", xmlFile.getName(), value));
             }
@@ -90,11 +84,11 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
     public void verifyLightsXxxXmlElementIntensityIsInRange() {
         File xmlFile = getCustomLightsXmlFile();
         if (xmlFile != null) {
-            ArrayList<String> invalidIntensityValues = getInvalidValues(xmlFile, "//Intensity");
+            ArrayList<String> invalidIntensityValues = getInvalidPercentageValues(xmlFile, "//Intensity");
 
             Assert.assertEquals(invalidIntensityValues.size(), 0,
                     String.format("'%s' Intensity elements value can range from 0.0 to 1.0. Values %s are not valid.",
-                            xmlFile.getName().toString(), invalidIntensityValues.toString()));
+                            xmlFile.getName(), invalidIntensityValues.toString()));
         }
     }
 
@@ -102,11 +96,11 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
     public void verifyLightsXxxXmlElementResidualIntensityIsInRange() {
         File xmlFile = getCustomLightsXmlFile();
         if (xmlFile != null) {
-            ArrayList<String> invalidResidualIntensityValues = getInvalidValues(xmlFile, "//Residual_Intensity");
+            ArrayList<String> invalidResidualIntensityValues = getInvalidPercentageValues(xmlFile, "//Residual_Intensity");
 
             Assert.assertEquals(invalidResidualIntensityValues.size(), 0,
                     String.format("'%s' Residual_Intensity elements value can range from 0.0 to 1.0. Values %s are not valid.",
-                            xmlFile.getName().toString(), invalidResidualIntensityValues.toString()));
+                            xmlFile.getName(), invalidResidualIntensityValues.toString()));
         }
     }
 
@@ -114,11 +108,11 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
     public void verifyLightsXxxXmlElementDuty_CycleIsInRange() {
         File xmlFile = getCustomLightsXmlFile();
         if (xmlFile != null) {
-            ArrayList<String> invalidResidualIntensityValues = getInvalidValues(xmlFile, "//Duty_Cycle");
+            ArrayList<String> invalidResidualIntensityValues = getInvalidPercentageValues(xmlFile, "//Duty_Cycle");
 
             Assert.assertEquals(invalidResidualIntensityValues.size(), 0,
                     String.format("'%s' Duty_Cycle elements value can range from 0.0 to 1.0. Values %s are not valid.",
-                            xmlFile.getName().toString(), invalidResidualIntensityValues.toString()));
+                            xmlFile.getName(), invalidResidualIntensityValues.toString()));
         }
     }
 
@@ -126,22 +120,11 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
     public void verifyLightsXxxXmlFrequencyValueIsValid() {
         File xmlFile = getCustomLightsXmlFile();
         if (xmlFile != null) {
-            NodeList frequencyNodes = XmlUtilities.getNodeList("//Frequency", Paths.get(path, "Metadata", xmlFile.getName()));
-
-            ArrayList<String> invalidFrequencyValues = new ArrayList<>();
-
-            for (int i = 0; i < frequencyNodes.getLength(); i++) {
-                Node currentItem = frequencyNodes.item(i);
-                Float value = Float.parseFloat(currentItem.getTextContent());
-
-                if (value < 0.0) {
-                    invalidFrequencyValues.add(currentItem.getTextContent());
-                }
-            }
+            ArrayList<String> invalidFrequencyValues = getInvalidFrequencyValues(xmlFile);
 
             Assert.assertEquals(invalidFrequencyValues.size(), 0,
                     String.format("'%s' Duty_Cycle elements value can range from 0.0 to 1.0. Values %s are not valid.",
-                            xmlFile.getName().toString(), invalidFrequencyValues.toString()));
+                            xmlFile.getName(), invalidFrequencyValues.toString()));
         }
     }
 
@@ -149,46 +132,12 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
     public void verifyLightsXxxXmlColorIsInRange() {
         File xmlFile = getCustomLightsXmlFile();
         if (xmlFile != null) {
-            NodeList frequencyNodes = XmlUtilities.getNodeList("//Color", Paths.get(path, "Metadata", xmlFile.getName()));
-
-            ArrayList<String> invalidColorValues = new ArrayList<>();
-
-            for (int i = 0; i < frequencyNodes.getLength(); i++) {
-                Node currentItem = frequencyNodes.item(i);
-                String[] values = currentItem.getTextContent().split("\\s+");
-
-                for (String value : values) {
-                    Float floatValue = Float.parseFloat(value);
-                    if (valueIsOutOfRange(floatValue)) {
-                        invalidColorValues.add(floatValue.toString());
-                    }
-                }
-            }
+            ArrayList<String> invalidColorValues = getInvalidColorValues(xmlFile);
 
             Assert.assertEquals(invalidColorValues.size(), 0,
                     String.format("'%s' Duty_Cycle elements value can range from 0.0 to 1.0. Values %s are not valid.",
-                            xmlFile.getName().toString(), invalidColorValues.toString()));
+                            xmlFile.getName(), invalidColorValues.toString()));
         }
-    }
-
-    private ArrayList<String> getInvalidValues(File xmlFile, String nodeToSearchFor) {
-        NodeList nodes = XmlUtilities.getNodeList(nodeToSearchFor, Paths.get(path, "Metadata", xmlFile.getName()));
-
-        ArrayList<String> invalidValues = new ArrayList<>();
-
-        for (int i = 0; i < nodes.getLength(); i++) {
-            Node currentItem = nodes.item(i);
-            Float value = Float.parseFloat(currentItem.getTextContent());
-
-            if (valueIsOutOfRange(value)) {
-                invalidValues.add(currentItem.getTextContent());
-            }
-        }
-        return invalidValues;
-    }
-
-    private boolean valueIsOutOfRange(Float value) {
-        return value < 0.0 || value > 1.0;
     }
 
     private File getCustomLightsXmlFile() {
@@ -215,5 +164,72 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
         } else {
             return null;
         }
+    }
+
+    private boolean valueIsOutOfRange(Float value) {
+        return value < 0.0 || value > 1.0;
+    }
+
+    private ArrayList<String> getDirectionalityValues(File xmlFile) {
+        NodeList nodeList = XmlUtilities.getNodeList("//Directionality", Paths.get(path, "Metadata", xmlFile.getName()));
+
+        ArrayList<String> directionalityValues = new ArrayList<>();
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node currentItem = nodeList.item(i);
+            directionalityValues.add(currentItem.getTextContent());
+        }
+        return directionalityValues;
+    }
+
+    private ArrayList<String> getInvalidColorValues(File xmlFile) {
+        NodeList frequencyNodes = XmlUtilities.getNodeList("//Color", Paths.get(path, "Metadata", xmlFile.getName()));
+
+        ArrayList<String> invalidColorValues = new ArrayList<>();
+
+        for (int i = 0; i < frequencyNodes.getLength(); i++) {
+            Node currentItem = frequencyNodes.item(i);
+            String[] values = currentItem.getTextContent().split("\\s+");
+
+            for (String value : values) {
+                Float floatValue = Float.parseFloat(value);
+                if (valueIsOutOfRange(floatValue)) {
+                    invalidColorValues.add(floatValue.toString());
+                }
+            }
+        }
+        return invalidColorValues;
+    }
+
+    private ArrayList<String> getInvalidPercentageValues(File xmlFile, String nodeToSearchFor) {
+        NodeList nodes = XmlUtilities.getNodeList(nodeToSearchFor, Paths.get(path, "Metadata", xmlFile.getName()));
+
+        ArrayList<String> invalidValues = new ArrayList<>();
+
+        for (int i = 0; i < nodes.getLength(); i++) {
+            Node currentItem = nodes.item(i);
+            Float value = Float.parseFloat(currentItem.getTextContent());
+
+            if (valueIsOutOfRange(value)) {
+                invalidValues.add(currentItem.getTextContent());
+            }
+        }
+        return invalidValues;
+    }
+
+    private ArrayList<String> getInvalidFrequencyValues(File xmlFile) {
+        NodeList frequencyNodes = XmlUtilities.getNodeList("//Frequency", Paths.get(path, "Metadata", xmlFile.getName()));
+
+        ArrayList<String> invalidFrequencyValues = new ArrayList<>();
+
+        for (int i = 0; i < frequencyNodes.getLength(); i++) {
+            Node currentItem = frequencyNodes.item(i);
+            Float value = Float.parseFloat(currentItem.getTextContent());
+
+            if (value < 0.0) {
+                invalidFrequencyValues.add(currentItem.getTextContent());
+            }
+        }
+        return invalidFrequencyValues;
     }
 }
