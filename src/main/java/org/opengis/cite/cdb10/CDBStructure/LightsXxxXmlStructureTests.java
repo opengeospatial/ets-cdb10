@@ -24,29 +24,25 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyLights_XxxXmlFileExists() {
-        File xmlFile = getCustomLightsXmlFile();
-
-        if (xmlFile != null) {
+        for (File xmlFile : getCustomLightsXmlFiles()) {
             Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema", xmlFile.getName())), "Optional file.");
         }
     }
 
     @Test
     public void verifyLightsXmlFileNameIsValid() {
-        File xmlFile = getCustomLightsXmlFile();
-
-        if (!xmlFile.getName().matches("^Lights_[a-zA-Z0-9_-]{0,25}.xml$")) {
-            Assert.fail(String.format("'%s' is not a valid file name it must start with 'Lights_', " +
-                    "can only be a maximum of 32 characters and contain letters, numbers, " +
-                    "underscores and dashes.", xmlFile.getName()));
+        for (File xmlFile : getCustomLightsXmlFiles()) {
+            if (!xmlFile.getName().matches("^Lights_[a-zA-Z0-9_-]{0,25}.xml$")) {
+                Assert.fail(String.format("'%s' is not a valid file name it must start with 'Lights_', " +
+                        "can only be a maximum of 32 characters and contain letters, numbers, " +
+                        "underscores and dashes.", xmlFile.getName()));
+            }
         }
     }
 
     @Test
     public void verifyLightsTuningXsdFFileExists() {
-        File xmlFile = getCustomLightsXmlFile();
-
-        if (xmlFile != null) {
+        for (File xmlFile : getCustomLightsXmlFiles()) {
             Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema", "Lights_Tuning.xsd")),
                     "If a custom Lights_xxx.xml exists there should be Lights_Tuning.xsd in the Schema folder.");
         }
@@ -54,8 +50,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyLightsXxxXmlAgainstSchema() throws IOException, SAXException {
-        File xmlFile = getCustomLightsXmlFile();
-        if (xmlFile != null) {
+        for (File xmlFile : getCustomLightsXmlFiles()) {
             File xsdFile = Paths.get(path, "Metadata", "Schema", "Lights_Tuning.xsd").toFile();
 
             SchemaValidatorErrorHandler errorHandler = XmlUtilities.validateXmlFileIsValid(xmlFile, xsdFile);
@@ -68,8 +63,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyLightsXxxXmlDirectionalityValueIsValid() {
-        File xmlFile = getCustomLightsXmlFile();
-        if (xmlFile != null) {
+        for (File xmlFile : getCustomLightsXmlFiles()) {
             ArrayList<String> directionalityValues = getDirectionalityValues(xmlFile);
 
             for (String value : directionalityValues) {
@@ -82,8 +76,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyLightsXxxXmlElementIntensityIsInRange() {
-        File xmlFile = getCustomLightsXmlFile();
-        if (xmlFile != null) {
+        for (File xmlFile : getCustomLightsXmlFiles()) {
             ArrayList<String> invalidIntensityValues = getInvalidPercentageValues(xmlFile, "//Intensity");
 
             Assert.assertEquals(invalidIntensityValues.size(), 0,
@@ -94,8 +87,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyLightsXxxXmlElementResidualIntensityIsInRange() {
-        File xmlFile = getCustomLightsXmlFile();
-        if (xmlFile != null) {
+        for (File xmlFile : getCustomLightsXmlFiles()) {
             ArrayList<String> invalidResidualIntensityValues = getInvalidPercentageValues(xmlFile, "//Residual_Intensity");
 
             Assert.assertEquals(invalidResidualIntensityValues.size(), 0,
@@ -106,8 +98,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyLightsXxxXmlElementDuty_CycleIsInRange() {
-        File xmlFile = getCustomLightsXmlFile();
-        if (xmlFile != null) {
+        for (File xmlFile : getCustomLightsXmlFiles()) {
             ArrayList<String> invalidResidualIntensityValues = getInvalidPercentageValues(xmlFile, "//Duty_Cycle");
 
             Assert.assertEquals(invalidResidualIntensityValues.size(), 0,
@@ -118,8 +109,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyLightsXxxXmlFrequencyValueIsValid() {
-        File xmlFile = getCustomLightsXmlFile();
-        if (xmlFile != null) {
+        for (File xmlFile : getCustomLightsXmlFiles()) {
             ArrayList<String> invalidFrequencyValues = getInvalidFrequencyValues(xmlFile);
 
             Assert.assertEquals(invalidFrequencyValues.size(), 0,
@@ -130,8 +120,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyLightsXxxXmlColorIsInRange() {
-        File xmlFile = getCustomLightsXmlFile();
-        if (xmlFile != null) {
+        for (File xmlFile : getCustomLightsXmlFiles()) {
             ArrayList<String> invalidColorValues = getInvalidColorValues(xmlFile);
 
             Assert.assertEquals(invalidColorValues.size(), 0,
@@ -140,18 +129,18 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
         }
     }
 
-    private File getCustomLightsXmlFile() {
+    private List<File> getCustomLightsXmlFiles() {
         String glob = "glob:Lights_*.xml";
 
         final PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher(glob);
 
-        List<String> files = new ArrayList<>();
+        List<File> lightsXmlFiles = new ArrayList<>();
 
         try {
             DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(path, "Metadata"));
             for (Path entry : stream) {
                 if (pathMatcher.matches(entry.getFileName())) {
-                    files.add(String.valueOf(entry.getFileName()));
+                    lightsXmlFiles.add(entry.toFile());
                 }
             }
             stream.close();
@@ -159,11 +148,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
             e.printStackTrace();
         }
 
-        if (files.size() > 0) {
-            return Paths.get(path, "Metadata", files.get(0)).toFile();
-        } else {
-            return null;
-        }
+        return lightsXmlFiles;
     }
 
     private boolean valueIsOutOfRange(Float value) {
