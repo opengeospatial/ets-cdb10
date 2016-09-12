@@ -79,6 +79,12 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
     }
 
     @Test
+    public void verifyLights_XxxXmlFileExists_DoesNotExist() throws IOException {
+        // execute
+        testSuite.verifyLights_XxxXmlFileExists();
+    }
+
+    @Test
     public void verifyLightsXxxXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
         // setup
         Files.copy(VALID_FILE, metadataFolder.resolve("Lights_Client.xml"), REPLACE_EXISTING);

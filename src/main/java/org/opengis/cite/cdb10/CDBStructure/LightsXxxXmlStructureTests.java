@@ -21,6 +21,15 @@ import java.util.List;
 public class LightsXxxXmlStructureTests extends CommonFixture {
 
     @Test
+    public void verifyLights_XxxXmlFileExists() {
+        File xmlFile = getCustomLightsXmlFile();
+
+        if (xmlFile != null) {
+            Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema", xmlFile.getName())), "Optional file.");
+        }
+    }
+
+    @Test
     public void verifyLightsXmlFileNameIsValid() {
         File xmlFile = getCustomLightsXmlFile();
 
