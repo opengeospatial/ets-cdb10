@@ -21,9 +21,10 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
     private final static Path VALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Lights_Client.xml"));
 
     private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Lights_ClientInvalid.xml"));
-    private final static Path INTENSITY_OUT_OF_RANGE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Lights_ClientInvalidIntensityOutOfRange.xml"));
     private final static Path INVALID_DIRECTIONALITY_VALUE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Lights_ClientInvalidDirectionalityValue.xml"));
+    private final static Path INTENSITY_OUT_OF_RANGE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Lights_ClientInvalidIntensityOutOfRange.xml"));
     private final static Path RESIDUAL_INTENSITY_OUT_OF_RANGE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Lights_ClientInvalidResidual_IntensityOutOfRange.xml"));
+    private final static Path DUTY_CYCLE_OUT_OF_RANGE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Lights_ClientInvalidDuty_CycleOutOfRange.xml"));
 
     public VerifyLightsXxxXmlStructureTests() {
         testSuite = new LightsXxxXmlStructureTests();
@@ -173,5 +174,29 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
 
         // execute
         testSuite.verifyLightsXxxXmlElementResidualIntensityIsInRange();
+    }
+
+    @Test
+    public void verifyLightsXxxXmlElementDuty_CycleIsInRange_InRange() throws IOException {
+        // setup
+        Files.copy(VALID_FILE, metadataFolder.resolve("Lights_Client.xml"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyLightsXxxXmlElementDuty_CycleIsInRange();
+    }
+
+    @Test
+    public void verifyLightsXxxXmlElementDuty_CycleIsInRange_OutOfRange() throws IOException {
+        // setup
+        Files.copy(DUTY_CYCLE_OUT_OF_RANGE_FILE, metadataFolder.resolve("Lights_Client.xml"), REPLACE_EXISTING);
+
+        String expectedMessage = "'Lights_Client.xml' Duty_Cycle elements value can range from 0.0 to 1.0. " +
+                "Values [-0.1, 1.01] are not valid. expected [0] but found [2]";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
+
+        // execute
+        testSuite.verifyLightsXxxXmlElementDuty_CycleIsInRange();
     }
 }

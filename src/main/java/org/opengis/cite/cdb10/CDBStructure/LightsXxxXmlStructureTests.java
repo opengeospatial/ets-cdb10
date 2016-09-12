@@ -55,28 +55,6 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
         }
     }
 
-    public void verifyLightsXxxXmlElementIntensityIsInRange() {
-        File xmlFile = getCustomLightsXmlFile();
-        if (xmlFile != null) {
-            NodeList intensityNodes = XmlUtilities.getNodeList("//Intensity", Paths.get(path, "Metadata", xmlFile.getName()));
-
-            ArrayList<String> invalidIntensityValues = new ArrayList<>();
-
-            for (int i = 0; i < intensityNodes.getLength(); i++) {
-                Node currentItem = intensityNodes.item(i);
-                Float value = Float.parseFloat(currentItem.getTextContent());
-
-                if (value < 0.0 || value > 1.0) {
-                    invalidIntensityValues.add(currentItem.getTextContent());
-                }
-            }
-
-            Assert.assertEquals(invalidIntensityValues.size(), 0,
-                    String.format("'%s' Intensity elements value can range from 0.0 to 1.0. Values %s are not valid.",
-                            xmlFile.getName().toString(), invalidIntensityValues.toString()));
-        }
-    }
-
     @Test
     public void verifyLightsXxxXmlDirectionalityValueIsValid() {
         File xmlFile = getCustomLightsXmlFile();
@@ -100,26 +78,55 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
     }
 
     @Test
+    public void verifyLightsXxxXmlElementIntensityIsInRange() {
+        File xmlFile = getCustomLightsXmlFile();
+        if (xmlFile != null) {
+            ArrayList<String> invalidIntensityValues = getInvalidValues(xmlFile, "//Intensity");
+
+            Assert.assertEquals(invalidIntensityValues.size(), 0,
+                    String.format("'%s' Intensity elements value can range from 0.0 to 1.0. Values %s are not valid.",
+                            xmlFile.getName().toString(), invalidIntensityValues.toString()));
+        }
+    }
+
+    @Test
     public void verifyLightsXxxXmlElementResidualIntensityIsInRange() {
         File xmlFile = getCustomLightsXmlFile();
         if (xmlFile != null) {
-            NodeList intensityNodes = XmlUtilities.getNodeList("//Residual_Intensity", Paths.get(path, "Metadata", xmlFile.getName()));
-
-            ArrayList<String> invalidResidualIntensityValues = new ArrayList<>();
-
-            for (int i = 0; i < intensityNodes.getLength(); i++) {
-                Node currentItem = intensityNodes.item(i);
-                Float value = Float.parseFloat(currentItem.getTextContent());
-
-                if (value < 0.0 || value > 1.0) {
-                    invalidResidualIntensityValues.add(currentItem.getTextContent());
-                }
-            }
+            ArrayList<String> invalidResidualIntensityValues = getInvalidValues(xmlFile, "//Residual_Intensity");
 
             Assert.assertEquals(invalidResidualIntensityValues.size(), 0,
                     String.format("'%s' Residual_Intensity elements value can range from 0.0 to 1.0. Values %s are not valid.",
                             xmlFile.getName().toString(), invalidResidualIntensityValues.toString()));
         }
+    }
+
+    @Test
+    public void verifyLightsXxxXmlElementDuty_CycleIsInRange() {
+        File xmlFile = getCustomLightsXmlFile();
+        if (xmlFile != null) {
+            ArrayList<String> invalidResidualIntensityValues = getInvalidValues(xmlFile, "//Duty_Cycle");
+
+            Assert.assertEquals(invalidResidualIntensityValues.size(), 0,
+                    String.format("'%s' Duty_Cycle elements value can range from 0.0 to 1.0. Values %s are not valid.",
+                            xmlFile.getName().toString(), invalidResidualIntensityValues.toString()));
+        }
+    }
+
+    private ArrayList<String> getInvalidValues(File xmlFile, String nodeToSearchFor) {
+        NodeList intensityNodes = XmlUtilities.getNodeList(nodeToSearchFor, Paths.get(path, "Metadata", xmlFile.getName()));
+
+        ArrayList<String> invalidResidualIntensityValues = new ArrayList<>();
+
+        for (int i = 0; i < intensityNodes.getLength(); i++) {
+            Node currentItem = intensityNodes.item(i);
+            Float value = Float.parseFloat(currentItem.getTextContent());
+
+            if (value < 0.0 || value > 1.0) {
+                invalidResidualIntensityValues.add(currentItem.getTextContent());
+            }
+        }
+        return invalidResidualIntensityValues;
     }
 
     private File getCustomLightsXmlFile() {
