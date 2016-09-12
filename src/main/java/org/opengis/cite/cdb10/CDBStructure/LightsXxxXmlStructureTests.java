@@ -18,6 +18,17 @@ import java.util.List;
 public class LightsXxxXmlStructureTests extends CommonFixture {
 
     @Test
+    public void verifyLightsXmlFileNameIsValid() {
+        File xmlFile = getCustomLightsXmlFile();
+
+        if(!xmlFile.getName().matches("^Lights_[a-zA-Z0-9_-]{0,25}.xml$")) {
+            Assert.fail(String.format("'%s' is not a valid file name it must start with 'Lights_', " +
+                    "can only be a maximum of 32 characters and contain letters, numbers, " +
+                    "underscores and dashes.", xmlFile.getName()));
+        }
+    }
+
+    @Test
     public void verifyLightsTuningXsdFFileExists() {
         File xmlFile = getCustomLightsXmlFile();
 

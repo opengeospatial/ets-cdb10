@@ -27,6 +27,30 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
     }
 
     @Test
+    public void verifyLightsXmlFileNameIsValid_IsNotValid() throws Exception {
+        //setup
+        Files.createFile(metadataFolder.resolve(Paths.get("Lights_123451234512345123451234512345.xml")));
+
+        String expectedMessage = "'Lights_123451234512345123451234512345.xml' is not a valid file name it must start " +
+                "with 'Lights_', can only be a maximum of 32 characters and contain letters, numbers, underscores and dashes.";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
+
+        // execute
+        testSuite.verifyLightsXmlFileNameIsValid();
+    }
+
+    @Test
+    public void verifyLightsXmlFileNameIsValid_IsValid() throws Exception {
+        //setup
+        Files.createFile(metadataFolder.resolve(Paths.get("Lights_Client.xml")));
+
+        // execute
+        testSuite.verifyLightsXmlFileNameIsValid();
+    }
+
+    @Test
     public void verifyLightsTuningXsdFileExists_DoesNotExist() throws IOException {
         //setup
         Files.createFile(metadataFolder.resolve(Paths.get("Lights_Client.xml")));
