@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="Stylesheet/Defaults.xsl"?>
+<Default_Value_Table
+  xmlns="http://www.CDB-Spec.org/Schema/Defaults/1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.CDB-Spec.org/Schema/Defaults/1.0 Schema/Defaults.xsd"
+  version="3.2">
+
+  <Default_Value>
+    <Dataset>001_Elevation</Dataset>
+    <Name>Default_Elevation-1</Name>
+    <Description>Default Primary Terrain Elevation</Description>
+    <Type>float</Type>
+    <Value>0.0</Value>
+    <R_W_Type>R</R_W_Type>
+  </Default_Value>
+ 
+  <Default_Value>
+    <Dataset>001_Elevation</Dataset>
+    <Name>Default_Primary_Elevation_Control</Name>
+    <Description>Default Primary Terrain Elevation Control</Description>
+    <Type>integer</Type>
+    <Value>0</Value>
+    <R_W_Type>R</R_W_Type>
+  </Default_Value>
+
+  <Default_Value>
+    <Dataset>001_Elevation</Dataset>
+    <Name>Default_Subordinate_Elevation_Control</Name>
+    <Description>Default Subordinate Terrain Elevation Control</Description>
+    <Type>integer</Type>
+    <Value>0</Value>
+    <R_W_Type>R</R_W_Type>
+  </Default_Value>
+
+</Default_Value_Table>

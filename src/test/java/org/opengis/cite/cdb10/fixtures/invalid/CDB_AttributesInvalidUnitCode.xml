@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="Stylesheet/Vector_Attributes.xsl"?>
+<Vector_Attributes
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.CDB-Spec.org/Schema/Vector_Attributes/1.2"
+    xsi:schemaLocation="http://www.CDB-Spec.org/Schema/Vector_Attributes/1.2 Schema/Vector_Attributes.xsd"
+    version="3.2">
+
+  <Attributes>
+
+    <Attribute code="1" symbol="AEAC" deprecated="true">
+      <Name>ATARS Extended Attribute Code</Name>
+      <Description>
+        A unique numeric identifier that points to the entry number of the ATARS Extended Attribution file for the
+        current dataset.
+      </Description>
+      <Level>
+        <Instance>Supported</Instance>
+        <Class>Supported</Class>
+      </Level>
+      <Value>
+        <Type>Numeric</Type>
+        <Format>Integer</Format>
+        <Range>
+          <Min>0</Min>
+          <Max>999999999</Max>
+        </Range>
+      </Value>
+    </Attribute>
+
+  </Attributes>
+
+  <Units>
+
+    <Unit code="-1" symbol="m">
+      <Name>meter</Name>
+      <Description>To measure a length.</Description>
+    </Unit>
+
+  </Units>
+
+  <Scalers>
+
+    <Scaler code="1" symbol="k">
+      <Name>kilo</Name>
+      <Description>A multiplier: thousand</Description>
+      <Multiplier>1000</Multiplier>
+    </Scaler>
+
+  </Scalers>
+
+</Vector_Attributes>

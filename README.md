@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pixeltree/ets-cdb10.svg)](https://travis-ci.org/pixeltree/ets-cdb10)
+
 ## Test suite: ets-cdb10
 
 ### Scope
