@@ -22,6 +22,7 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
 
     private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Lights_ClientInvalid.xml"));
     private final static Path INTENSITY_OUT_OF_RANGE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Lights_ClientInvalidIntensityOutOfRange.xml"));
+    private final static Path INVALID_DIRECTIONALITY_VALUE_RANGE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Lights_ClientInvalidDirectionalityValue.xml"));
 
     public VerifyLightsXxxXmlStructureTests() {
         testSuite = new LightsXxxXmlStructureTests();
@@ -102,16 +103,16 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
     }
 
     @Test
-    public void verifyElementIntensityIsInRange_InRange() throws IOException {
+    public void verifyLightsXxxXmlElementIntensityIsInRange_InRange() throws IOException {
         // setup
         Files.copy(VALID_FILE, metadataFolder.resolve("Lights_Client.xml"), REPLACE_EXISTING);
 
         // execute
-        testSuite.verifyElementIntensityIsInRange();
+        testSuite.verifyLightsXxxXmlElementIntensityIsInRange();
     }
 
     @Test
-    public void verifyElementIntensityIsInRange_OutOfRange() throws IOException {
+    public void verifyLightsXxxXmlElementIntensityIsInRange_OutOfRange() throws IOException {
         // setup
         Files.copy(INTENSITY_OUT_OF_RANGE_FILE, metadataFolder.resolve("Lights_Client.xml"), REPLACE_EXISTING);
 
@@ -122,7 +123,31 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
         expectedException.expectMessage(expectedMessage);
 
         // execute
-        testSuite.verifyElementIntensityIsInRange();
+        testSuite.verifyLightsXxxXmlElementIntensityIsInRange();
 
+    }
+
+    @Test
+    public void verifyLightsXxxXmlDirectionalityValueIsValid_Valid() throws IOException {
+        // setup
+        Files.copy(VALID_FILE, metadataFolder.resolve("Lights_Client.xml"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyLightsXxxXmlDirectionalityValueIsValid();
+    }
+
+    @Test
+    public void verifyLightsXxxXmlDirectionalityValueIsValid_Invalid() throws IOException {
+        // setup
+        Files.copy(INVALID_DIRECTIONALITY_VALUE_RANGE_FILE, metadataFolder.resolve("Lights_Client.xml"), REPLACE_EXISTING);
+
+        String expectedMessage = "'Lights_Client.xml' element Directionality should have a value of 'Omnidirectional', " +
+                "'Directional' or 'Bidirectional'. Value 'INVALID_VALUE' is not valid. expected [true] but found [false]";
+        
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
+
+        // execute
+        testSuite.verifyLightsXxxXmlDirectionalityValueIsValid();
     }
 }

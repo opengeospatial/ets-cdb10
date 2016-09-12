@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -55,7 +56,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
         }
     }
 
-    public void verifyElementIntensityIsInRange() {
+    public void verifyLightsXxxXmlElementIntensityIsInRange() {
         File xmlFile = getCustomLightsXmlFile();
         if (xmlFile != null) {
             NodeList intensityNodes = XmlUtilities.getNodeList("//Intensity", Paths.get(path, "Metadata", xmlFile.getName()));
@@ -74,6 +75,28 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
             Assert.assertEquals(intensityNodes.getLength(), 0,
                     String.format("'%s' Intensity elements value can range from 0.0 to 1.0. %s",
                             xmlFile.getName().toString(), invalidIntensityValues.toString()));
+        }
+    }
+
+    @Test
+    public void verifyLightsXxxXmlDirectionalityValueIsValid() {
+        File xmlFile = getCustomLightsXmlFile();
+        if (xmlFile != null) {
+            NodeList nodeList = XmlUtilities.getNodeList("//Directionality", Paths.get(path, "Metadata", xmlFile.getName()));
+
+            ArrayList<String> values = new ArrayList<>();
+            List<String> VALID_VALUES = Arrays.asList("Omnidirectional", "Directional", "Bidirectional");
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node currentItem = nodeList.item(i);
+                values.add(currentItem.getTextContent());
+            }
+
+            for (String value : values) {
+                Assert.assertTrue(VALID_VALUES.contains(value),
+                        String.format("'%s' element Directionality should have a value of 'Omnidirectional', " +
+                                "'Directional' or 'Bidirectional'. Value '%s' is not valid.", xmlFile.getName(), value));
+            }
         }
     }
 
