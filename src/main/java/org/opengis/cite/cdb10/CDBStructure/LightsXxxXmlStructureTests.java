@@ -136,6 +136,32 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
         }
     }
 
+    @Test
+    public void verifyLightsXxxXmlColorIsInRange() {
+        File xmlFile = getCustomLightsXmlFile();
+        if (xmlFile != null) {
+            NodeList frequencyNodes = XmlUtilities.getNodeList("//Color", Paths.get(path, "Metadata", xmlFile.getName()));
+
+            ArrayList<String> invalidColorValues = new ArrayList<>();
+
+            for (int i = 0; i < frequencyNodes.getLength(); i++) {
+                Node currentItem = frequencyNodes.item(i);
+                String[] values = currentItem.getTextContent().split("\\s+");
+
+                for (String value : values) {
+                    Float floatValue = Float.parseFloat(value);
+                    if (valueIsOutOfRange(floatValue)) {
+                        invalidColorValues.add(floatValue.toString());
+                    }
+                }
+            }
+
+            Assert.assertEquals(invalidColorValues.size(), 0,
+                    String.format("'%s' Duty_Cycle elements value can range from 0.0 to 1.0. Values %s are not valid.",
+                            xmlFile.getName().toString(), invalidColorValues.toString()));
+        }
+    }
+
     private ArrayList<String> getInvalidValues(File xmlFile, String nodeToSearchFor) {
         NodeList nodes = XmlUtilities.getNodeList(nodeToSearchFor, Paths.get(path, "Metadata", xmlFile.getName()));
 
@@ -145,11 +171,15 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
             Node currentItem = nodes.item(i);
             Float value = Float.parseFloat(currentItem.getTextContent());
 
-            if (value < 0.0 || value > 1.0) {
+            if (valueIsOutOfRange(value)) {
                 invalidValues.add(currentItem.getTextContent());
             }
         }
         return invalidValues;
+    }
+
+    private boolean valueIsOutOfRange(Float value) {
+        return value < 0.0 || value > 1.0;
     }
 
     private File getCustomLightsXmlFile() {
