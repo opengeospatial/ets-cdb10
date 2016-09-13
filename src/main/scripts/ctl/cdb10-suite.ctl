@@ -60,7 +60,7 @@
 
               <input id="level-2" type="radio" name="level" value="2"
                      onclick="getElementById('directories').style.display='none'"/>
-              <label class="form-label" for="level-2">level2</label>
+              <label class="form-label" for="level-2">Metadata &amp; Versioning</label>
             </p>
 
 
