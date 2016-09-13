@@ -93,7 +93,6 @@ public class VerifyVersionXmlStructureTests extends MetadataTestFixture<VersionX
         testSuite.verifyVersionXmlHasSpecificationElement();
     }
 
-
     @Test
     public void verifyVersionXmlSpecificationVersionIsValid_Valid() throws IOException {
         // setup
