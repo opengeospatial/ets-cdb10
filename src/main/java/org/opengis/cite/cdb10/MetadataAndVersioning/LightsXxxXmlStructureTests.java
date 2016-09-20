@@ -26,7 +26,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
     @Test
     public void verifyLights_XxxXmlFileExists() {
         for (File xmlFile : getCustomLightsXmlFiles()) {
-            Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema", xmlFile.getName())), "Optional file.");
+            Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", xmlFile.getName())), "Optional file.");
         }
     }
 
