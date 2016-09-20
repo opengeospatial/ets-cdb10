@@ -1,16 +1,10 @@
 package org.opengis.cite.cdb10.metadataAndVersioning;
 
-import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
 import org.opengis.cite.cdb10.util.XMLUtils;
 import org.testng.Assert;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,27 +13,10 @@ import java.util.List;
 /**
  * Created by martin on 2016-09-20.
  */
-public class CDBAttributesXml {
-    private File xmlFile;
-    private File xsdFile;
+public class CDBAttributesXml extends XmlFile {
 
     public CDBAttributesXml(String path) {
-        xmlFile = Paths.get(path, "Metadata", "CDB_Attributes.xml").toFile();
-        xsdFile = Paths.get(path, "Metadata", "Schema", "Vector_Attributes.xsd").toFile();
-
-        verifyXmlFileExists();
-    }
-
-    private void verifyXmlFileExists(){
-        Assert.assertTrue(Files.exists(xmlFile.toPath()), "Metadata directory should contain CDB_Attributes.xml file.");
-    }
-
-    public void verifyXmlAgainstSchema() throws SAXException, IOException {
-        SchemaValidatorErrorHandler errorHandler = XMLUtils.validateXmlFileIsValid(xmlFile, xsdFile);
-
-        if (!errorHandler.noErrors()) {
-            Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
-        }
+        super(path, "CDB_Attributes.xml", "Vector_Attributes.xsd");
     }
 
     public void verifyCodeIsAnInteger() {

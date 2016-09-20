@@ -24,6 +24,6 @@ public class ConfigurationXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyConfigurationXmlAgainstSchema() throws IOException, SAXException {
-        new ConfigurationXml(path).verifyAgainstSchema();
+        new ConfigurationXml(path).verifyXmlAgainstSchema();
     }
 }
