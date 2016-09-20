@@ -5,14 +5,13 @@ import org.testng.Assert;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
  * Created by martin on 2016-09-20.
  */
-public class LightsXml extends XmlFile {
+public class LightsXml extends MetadataXmlFile {
     public LightsXml(String path) {
         super(path, "Lights.xml", "Lights.xsd");
     }

@@ -13,11 +13,11 @@ import java.nio.file.Paths;
 /**
  * Created by martin on 2016-09-20.
  */
-public class XmlFile {
+public class MetadataXmlFile {
     protected File xmlFile;
     protected File xsdFile;
 
-    public XmlFile(String path, String xmlFileName, String xsdFileName) {
+    public MetadataXmlFile(String path, String xmlFileName, String xsdFileName) {
         xmlFile = Paths.get(path, "Metadata", xmlFileName).toFile();
         xsdFile = Paths.get(path, "Metadata", "Schema", xsdFileName).toFile();
 
