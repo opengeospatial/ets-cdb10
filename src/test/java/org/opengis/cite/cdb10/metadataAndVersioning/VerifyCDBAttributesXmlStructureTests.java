@@ -31,6 +31,19 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
     }
 
     @Test
+    public void verifyCDBAttributesXmlExists_MetadataFolderDoesNotExist() throws IOException {
+        // setup
+        Files.delete(cdb_root.resolve(Paths.get("Metadata", "Schema")));
+        Files.delete(cdb_root.resolve(Paths.get("Metadata")));
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Metadata directory is missing.");
+
+        // execute
+        testSuite.verifyCDBAttributesXmlFileExists();
+    }
+
+    @Test
     public void verifyCDBAttributesXmlExists_DoesNotExist() throws IOException {
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Metadata directory should contain CDB_Attributes.xml file.");

@@ -18,6 +18,8 @@ public abstract class MetadataXmlFile {
     protected File xsdFile;
 
     public MetadataXmlFile(String path, String xmlFileName, String xsdFileName) {
+        Assert.assertTrue(Files.exists(Paths.get(path, "Metadata")), String.format("Metadata directory is missing."));
+
         xmlFile = Paths.get(path, "Metadata", xmlFileName).toFile();
         xsdFile = Paths.get(path, "Metadata", "Schema", xsdFileName).toFile();
 
