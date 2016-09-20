@@ -2,7 +2,7 @@ package org.opengis.cite.cdb10.MetadataAndVersioning;
 
 import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
-import org.opengis.cite.cdb10.util.XmlUtilities;
+import org.opengis.cite.cdb10.util.XMLUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.w3c.dom.Node;
@@ -31,7 +31,7 @@ public class LightsXmlStructureTests extends CommonFixture {
         File xmlFile = Paths.get(path, "Metadata", "Lights.xml").toFile();
         File xsdFile = Paths.get(path, "Metadata", "Schema", "Lights.xsd").toFile();
 
-        SchemaValidatorErrorHandler errorHandler = XmlUtilities.validateXmlFileIsValid(xmlFile, xsdFile);
+        SchemaValidatorErrorHandler errorHandler = XMLUtils.validateXmlFileIsValid(xmlFile, xsdFile);
 
         if (!errorHandler.noErrors()) {
             Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
@@ -40,7 +40,7 @@ public class LightsXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyLightsXmlHasUniqueCodes() {
-        NodeList nodeList = XmlUtilities.getNodeList("//Light", Paths.get(path, "Metadata", "Lights.xml"));
+        NodeList nodeList = XMLUtils.getNodeList("//Light", Paths.get(path, "Metadata", "Lights.xml"));
 
         ArrayList<String> codes = new ArrayList<>();
 
@@ -57,7 +57,7 @@ public class LightsXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyLightsXmlCodesAreWithinRange() {
-        NodeList nodeList = XmlUtilities.getNodeList("//Light", Paths.get(path, "Metadata", "Lights.xml"));
+        NodeList nodeList = XMLUtils.getNodeList("//Light", Paths.get(path, "Metadata", "Lights.xml"));
 
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node currentItem = nodeList.item(i);

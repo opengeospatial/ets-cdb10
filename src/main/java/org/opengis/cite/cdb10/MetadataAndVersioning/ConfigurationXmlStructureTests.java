@@ -2,7 +2,7 @@ package org.opengis.cite.cdb10.MetadataAndVersioning;
 
 import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
-import org.opengis.cite.cdb10.util.XmlUtilities;
+import org.opengis.cite.cdb10.util.XMLUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
@@ -28,7 +28,7 @@ public class ConfigurationXmlStructureTests extends CommonFixture {
         File xmlFile = Paths.get(path, "Metadata", "Configuration.xml").toFile();
         File xsdFile = Paths.get(path, "Metadata", "Schema", "Configuration.xsd").toFile();
 
-        SchemaValidatorErrorHandler errorHandler = XmlUtilities.validateXmlFileIsValid(xmlFile, xsdFile);
+        SchemaValidatorErrorHandler errorHandler = XMLUtils.validateXmlFileIsValid(xmlFile, xsdFile);
 
         if (!errorHandler.noErrors()) {
             Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());

@@ -2,7 +2,7 @@ package org.opengis.cite.cdb10.MetadataAndVersioning;
 
 import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
-import org.opengis.cite.cdb10.util.XmlUtilities;
+import org.opengis.cite.cdb10.util.XMLUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.w3c.dom.Node;
@@ -33,7 +33,7 @@ public class VersionXmlStructureTests extends CommonFixture {
         File xmlFile = Paths.get(path, "Metadata", "Version.xml").toFile();
         File xsdFile = Paths.get(path, "Metadata", "Schema", "Version.xsd").toFile();
 
-        SchemaValidatorErrorHandler errorHandler = XmlUtilities.validateXmlFileIsValid(xmlFile, xsdFile);
+        SchemaValidatorErrorHandler errorHandler = XMLUtils.validateXmlFileIsValid(xmlFile, xsdFile);
 
         if (!errorHandler.noErrors()) {
             Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
@@ -42,7 +42,7 @@ public class VersionXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyVersionXmlHasSpecificationElement() {
-        NodeList nodeList = XmlUtilities.getNodeList("//Specification", Paths.get(path, "Metadata", "Version.xml"));
+        NodeList nodeList = XMLUtils.getNodeList("//Specification", Paths.get(path, "Metadata", "Version.xml"));
 
         if (nodeList.getLength() == 0) {
             Assert.fail("Version.xml Specification element is mandatory the element was not found.");
@@ -51,7 +51,7 @@ public class VersionXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyVersionXmlSpecificationVersionIsValid() {
-        NodeList nodeList = XmlUtilities.getNodeList("//Specification", Paths.get(path, "Metadata", "Version.xml"));
+        NodeList nodeList = XMLUtils.getNodeList("//Specification", Paths.get(path, "Metadata", "Version.xml"));
 
         ArrayList<String> values = new ArrayList<>();
         List<String> VALID_VALUES = Arrays.asList("3.0", "3.1", "3.2");

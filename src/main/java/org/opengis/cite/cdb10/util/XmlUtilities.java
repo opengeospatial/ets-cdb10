@@ -21,27 +21,5 @@ import java.nio.file.Path;
  * Created by martin on 2016-09-06.
  */
 public class XmlUtilities {
-    public static SchemaValidatorErrorHandler validateXmlFileIsValid(File xmlFile, File xsdFile) throws SAXException, IOException {
-        SchemaValidatorErrorHandler errorHandler = new SchemaValidatorErrorHandler();
-        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Schema schema = schemaFactory.newSchema(xsdFile);
 
-        Validator validator = schema.newValidator();
-        validator.setErrorHandler(errorHandler);
-
-        validator.validate(new StreamSource(xmlFile));
-
-        return errorHandler;
-    }
-
-    public static NodeList getNodeList(String xpathQuery, Path xmlFile) {
-        try {
-            Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(String.valueOf(xmlFile));
-            XPath xPath = XPathFactory.newInstance().newXPath();
-            XPathExpression exp = xPath.compile(xpathQuery);
-            return (NodeList) exp.evaluate(doc, XPathConstants.NODESET);
-        } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
-            return null;
-        }
-    }
 }

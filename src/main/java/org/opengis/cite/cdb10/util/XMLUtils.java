@@ -1,10 +1,7 @@
 package org.opengis.cite.cdb10.util;
 
-import java.io.OutputStream;
-import java.io.Reader;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.io.Writer;
+import java.io.*;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +9,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.xml.XMLConstants;
 import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -25,10 +23,11 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
+import javax.xml.xpath.*;
 
 import net.sf.saxon.s9api.DOMDestination;
 import net.sf.saxon.s9api.DocumentBuilder;
@@ -49,6 +48,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * Provides various utility methods for accessing or manipulating XML
@@ -406,5 +406,45 @@ public class XMLUtils {
             nodes.add(nodeList.item(i));
         }
         return nodes;
+    }
+
+    /**
+     * Returns a errors from schema validation.
+     *
+     * @param xmlFile
+     * @param xsdFile
+     *
+     * @return A error handler of errors after schema validation.
+     */
+    public static SchemaValidatorErrorHandler validateXmlFileIsValid(File xmlFile, File xsdFile) throws SAXException, IOException {
+        SchemaValidatorErrorHandler errorHandler = new SchemaValidatorErrorHandler();
+        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        Schema schema = schemaFactory.newSchema(xsdFile);
+
+        Validator validator = schema.newValidator();
+        validator.setErrorHandler(errorHandler);
+
+        validator.validate(new StreamSource(xmlFile));
+
+        return errorHandler;
+    }
+
+    /**
+     * Returns a list of nodes based on an xPath query
+     *
+     * @param xpathQuery
+     * @param xmlFile
+     *
+     * @return A list of nodes if found in the xml file.
+     * */
+    public static NodeList getNodeList(String xpathQuery, Path xmlFile) {
+        try {
+            Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(String.valueOf(xmlFile));
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            XPathExpression exp = xPath.compile(xpathQuery);
+            return (NodeList) exp.evaluate(doc, XPathConstants.NODESET);
+        } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException ex) {
+            return null;
+        }
     }
 }
