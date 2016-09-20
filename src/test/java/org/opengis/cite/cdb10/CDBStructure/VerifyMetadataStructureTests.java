@@ -1,7 +1,6 @@
-package org.opengis.cite.cdb10.level1;
+package org.opengis.cite.cdb10.CDBStructure;
 
 import org.junit.Test;
-import org.opengis.cite.cdb10.CDBStructure.MetadataStructureTests;
 import org.opengis.cite.cdb10.TestFixture;
 
 import java.io.IOException;
