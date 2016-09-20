@@ -1,5 +1,6 @@
-package org.opengis.cite.cdb10.CDBStructure;
+package org.opengis.cite.cdb10.MetadataAndVersioning;
 
+import org.opengis.cite.cdb10.CDBStructure.XmlUtilities;
 import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
 import org.testng.Assert;

@@ -1,4 +1,4 @@
-package org.opengis.cite.cdb10.CDBStructure;
+package org.opengis.cite.cdb10.MetadataAndVersioning;
 
 import org.junit.Test;
 import org.xml.sax.SAXException;
