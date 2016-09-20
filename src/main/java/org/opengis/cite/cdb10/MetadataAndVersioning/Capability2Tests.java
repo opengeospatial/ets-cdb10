@@ -1,4 +1,4 @@
-package org.opengis.cite.cdb10.level2;
+package org.opengis.cite.cdb10.MetadataAndVersioning;
 
 import org.opengis.cite.cdb10.CommonFixture;
 import org.testng.Assert;
