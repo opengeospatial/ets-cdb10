@@ -59,7 +59,7 @@
             <p>
               <label for="level">Conformance class:</label>
               <input id="level-1" type="radio" name="level" value="1" checked="checked"/>
-              <label class="form-lable" for="level-1">CDB Structure</label>
+              <label class="form-label" for="level-1">CDB Structure</label>
             </p>
           </fieldset>
           <p>
