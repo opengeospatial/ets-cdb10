@@ -1,7 +1,8 @@
-package org.opengis.cite.cdb10.CDBStructure;
+package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
+import org.opengis.cite.cdb10.util.XMLUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.w3c.dom.Node;
@@ -25,7 +26,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
     @Test
     public void verifyLights_XxxXmlFileExists() {
         for (File xmlFile : getCustomLightsXmlFiles()) {
-            Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema", xmlFile.getName())), "Optional file.");
+            Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", xmlFile.getName())), "Optional file.");
         }
     }
 
@@ -59,7 +60,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
         for (File xmlFile : getCustomLightsXmlFiles()) {
             File xsdFile = Paths.get(path, "Metadata", "Schema", "Lights_Tuning.xsd").toFile();
 
-            SchemaValidatorErrorHandler errorHandler = XmlUtilities.validateXmlFileIsValid(xmlFile, xsdFile);
+            SchemaValidatorErrorHandler errorHandler = XMLUtils.validateXmlFileIsValid(xmlFile, xsdFile);
 
             if (!errorHandler.noErrors()) {
                 Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
@@ -162,7 +163,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
     }
 
     private ArrayList<String> getDirectionalityValues(File xmlFile) {
-        NodeList nodeList = XmlUtilities.getNodeList("//Directionality", Paths.get(path, "Metadata", xmlFile.getName()));
+        NodeList nodeList = XMLUtils.getNodeList("//Directionality", Paths.get(path, "Metadata", xmlFile.getName()));
 
         ArrayList<String> directionalityValues = new ArrayList<>();
 
@@ -174,7 +175,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
     }
 
     private ArrayList<String> getInvalidColorValues(File xmlFile) {
-        NodeList frequencyNodes = XmlUtilities.getNodeList("//Color", Paths.get(path, "Metadata", xmlFile.getName()));
+        NodeList frequencyNodes = XMLUtils.getNodeList("//Color", Paths.get(path, "Metadata", xmlFile.getName()));
 
         ArrayList<String> invalidColorValues = new ArrayList<>();
 
@@ -193,7 +194,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
     }
 
     private ArrayList<String> getInvalidPercentageValues(File xmlFile, String nodeToSearchFor) {
-        NodeList nodes = XmlUtilities.getNodeList(nodeToSearchFor, Paths.get(path, "Metadata", xmlFile.getName()));
+        NodeList nodes = XMLUtils.getNodeList(nodeToSearchFor, Paths.get(path, "Metadata", xmlFile.getName()));
 
         ArrayList<String> invalidValues = new ArrayList<>();
 
@@ -209,7 +210,7 @@ public class LightsXxxXmlStructureTests extends CommonFixture {
     }
 
     private ArrayList<String> getInvalidFrequencyValues(File xmlFile) {
-        NodeList frequencyNodes = XmlUtilities.getNodeList("//Frequency", Paths.get(path, "Metadata", xmlFile.getName()));
+        NodeList frequencyNodes = XMLUtils.getNodeList("//Frequency", Paths.get(path, "Metadata", xmlFile.getName()));
 
         ArrayList<String> invalidFrequencyValues = new ArrayList<>();
 

@@ -1,7 +1,8 @@
-package org.opengis.cite.cdb10.CDBStructure;
+package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
+import org.opengis.cite.cdb10.util.XMLUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.w3c.dom.Node;
@@ -14,7 +15,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 
 /**
  * Created by martin on 2016-09-09.
@@ -32,7 +32,7 @@ public class MaterialsXmlStructureTests extends CommonFixture {
         File xmlFile = Paths.get(path, "Metadata", "Materials.xml").toFile();
         File xsdFile = Paths.get(path, "Metadata", "Schema", "Base_Material_Table.xsd").toFile();
 
-        SchemaValidatorErrorHandler errorHandler = XmlUtilities.validateXmlFileIsValid(xmlFile, xsdFile);
+        SchemaValidatorErrorHandler errorHandler = XMLUtils.validateXmlFileIsValid(xmlFile, xsdFile);
 
         if (!errorHandler.noErrors()) {
             Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
@@ -50,7 +50,7 @@ public class MaterialsXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName() {
-        NodeList baseMaterialNodes = XmlUtilities.getNodeList("//Base_Material[not(Name)]", Paths.get(path, "Metadata", "Materials.xml"));
+        NodeList baseMaterialNodes = XMLUtils.getNodeList("//Base_Material[not(Name)]", Paths.get(path, "Metadata", "Materials.xml"));
         Assert.assertEquals(baseMaterialNodes.getLength(), 0, "Materials.xml element Base_Material requires a child element Name.");
     }
 
@@ -73,7 +73,7 @@ public class MaterialsXmlStructureTests extends CommonFixture {
     }
 
     private ArrayList<String> getNameValues() {
-        NodeList nameNodes = XmlUtilities.getNodeList("//Base_Material/Name", Paths.get(path, "Metadata", "Materials.xml"));
+        NodeList nameNodes = XMLUtils.getNodeList("//Base_Material/Name", Paths.get(path, "Metadata", "Materials.xml"));
 
         ArrayList<String> nameValues = new ArrayList<>();
 

@@ -1,8 +1,6 @@
-package org.opengis.cite.cdb10.level1;
+package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import org.junit.Before;
-import org.junit.Rule;
-import org.junit.rules.ExpectedException;
 import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.TestFixture;
 
