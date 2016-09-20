@@ -11,12 +11,12 @@
 
   <test name="CDB Structure">
     <packages>
-      <package name="org.opengis.cite.cdb10.CDBStructure" />
+      <package name="org.opengis.cite.cdb10.cdbStructure" />
     </packages>
   </test>
   <test name="Metadata And Versioning">
     <packages>
-      <package name="org.opengis.cite.cdb10.MetadataAndVersioning" />
+      <package name="org.opengis.cite.cdb10.metadataAndVersioning" />
     </packages>
   </test>
 </suite>

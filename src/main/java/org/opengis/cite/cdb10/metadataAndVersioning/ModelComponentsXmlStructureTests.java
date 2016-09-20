@@ -1,4 +1,4 @@
-package org.opengis.cite.cdb10.MetadataAndVersioning;
+package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
@@ -13,20 +13,20 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
- * Created by martin on 2016-09-07.
+ * Created by martin on 2016-09-02.
  */
-public class ConfigurationXmlStructureTests extends CommonFixture {
+public class ModelComponentsXmlStructureTests extends CommonFixture {
 
     @Test
-    public void verifyConfigurationXmlFileExists() {
-        Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Configuration.xml")),
-                "Metadata directory should contain Configuration.xml file.");
+    public void verifyModelComponentsXmlFileExists() {
+        Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Model_Components.xml")),
+                "Metadata directory should contain Model_Components.xml file.");
     }
 
     @Test
-    public void verifyConfigurationXmlAgainstSchema() throws IOException, SAXException {
-        File xmlFile = Paths.get(path, "Metadata", "Configuration.xml").toFile();
-        File xsdFile = Paths.get(path, "Metadata", "Schema", "Configuration.xsd").toFile();
+    public void verifyModelComponentsXmlAgainstSchema() throws IOException, SAXException {
+        File xmlFile = Paths.get(path, "Metadata", "Model_Components.xml").toFile();
+        File xsdFile = Paths.get(path, "Metadata", "Schema", "Model_Components.xsd").toFile();
 
         SchemaValidatorErrorHandler errorHandler = XMLUtils.validateXmlFileIsValid(xmlFile, xsdFile);
 
