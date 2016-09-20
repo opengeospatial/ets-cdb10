@@ -41,7 +41,8 @@
             <p>One conformance level is defined:</p>
             <ul>
               <li>CDB Structure</li>
-              <p>To define the mandatory criteria please click <a href="schema.jsp">here</a>.</p>
+              <p>To define the mandatory criteria please click <a href="schema.jsp">here</a>.
+              </p>
             </ul>
           </div>
           <fieldset style="background:#ccffff">
@@ -57,7 +58,7 @@
             </p>
             <p>
               <label for="level">Conformance class:</label>
-              <input id="level-1" type="radio" name="level" value="1"/>
+              <input id="level-1" type="radio" name="level" value="1" checked="checked"/>
               <label class="form-lable" for="level-1">CDB Structure</label>
             </p>
           </fieldset>
@@ -104,7 +105,7 @@
         <xsl:value-of select="saxon:transform(saxon:compile-stylesheet($summary-xsl), $test-results)"/>
         See detailed test report in the TE_BASE/users/
         <xsl:value-of
-            select="concat(substring-after($testRunDir, 'users/'), '/html/')"/>
+          select="concat(substring-after($testRunDir, 'users/'), '/html/')"/>
         directory.
       </ctl:message>
       <xsl:if test="xs:integer($test-results/testng-results/@failed) gt 0">
@@ -116,7 +117,8 @@
         </xsl:for-each>
         <ctl:fail/>
       </xsl:if>
-      <xsl:if test="xs:integer($test-results/testng-results/@skipped) eq xs:integer($test-results/testng-results/@total)">
+      <xsl:if
+        test="xs:integer($test-results/testng-results/@skipped) eq xs:integer($test-results/testng-results/@total)">
         <ctl:message>All tests were skipped. One or more preconditions were not satisfied.</ctl:message>
         <xsl:for-each select="$test-results//test-method[@status='FAIL' and @is-config='true']">
           <ctl:message>
