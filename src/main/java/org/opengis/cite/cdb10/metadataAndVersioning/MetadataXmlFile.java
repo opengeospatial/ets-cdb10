@@ -24,8 +24,9 @@ public abstract class MetadataXmlFile {
         verifyXmlFileExists();
     }
 
-    protected void verifyXmlFileExists() {
+    private void verifyXmlFileExists() {
         Assert.assertTrue(Files.exists(xmlFile.toPath()), String.format("Metadata directory should contain %s file.", xmlFile.getName()));
+        Assert.assertTrue(Files.exists(xsdFile.toPath()), String.format("Metadata directory should contain %s file.", xsdFile.getName()));
     }
 
     public void verifyXmlAgainstSchema() throws IOException, SAXException {

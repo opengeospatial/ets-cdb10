@@ -43,6 +43,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
     public void verifyCDBAttributesXmlExists_DoesExist() throws IOException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("CDB_Attributes.xml")));
+        Files.createFile(schemaFolder.resolve(Paths.get("Vector_Attributes.xsd")));
 
         // execute
         testSuite.verifyCDBAttributesXmlFileExists();
@@ -91,6 +92,18 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
         // setup
         Files.copy(VALID_FILE, metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyCDBAttributesXmlCodeIsAnInteger();
+    }
+
+    @Test
+    public void verifyCodeIsAnInteger_XsdFileDoesNotExist() throws IOException {
+        // setup
+        Files.copy(VALID_FILE, metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Metadata directory should contain Vector_Attributes.xsd file.");
 
         // execute
         testSuite.verifyCDBAttributesXmlCodeIsAnInteger();

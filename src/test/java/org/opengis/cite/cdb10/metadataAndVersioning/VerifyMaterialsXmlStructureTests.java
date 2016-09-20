@@ -41,6 +41,7 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
     public void verifyMaterialsXmlFileExists_DoesExist() throws IOException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Materials.xml")));
+        Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
 
         // execute
         testSuite.verifyMaterialsXmlFileExists();
@@ -78,6 +79,7 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
     public void verifyMaterialsXmlElementNameIsUnique_IsUnique() throws IOException {
         // setup
         Files.copy(VALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+        Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
 
         // execute
         testSuite.verifyMaterialsXmlElementNameIsUnique();
@@ -87,6 +89,7 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
     public void verifyMaterialsXmlElementNameIsUnique_IsNotUnique() throws IOException {
         // setup
         Files.copy(NAME_NOT_UNIQUE_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+        Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
 
         String expectedMessage = "Materials.xml element Name should be unique. " +
                 "'BM_ASH-VOLCANIC' is not unique. expected [1] but found [2]";
@@ -102,6 +105,7 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
     public void verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName_TheyDo() throws IOException {
         // setup
         Files.copy(VALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+        Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
 
         // execute
         testSuite.verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName();
@@ -111,6 +115,7 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
     public void verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName_TheyDoNot() throws IOException {
         // setup
         Files.copy(MISSING_NAME_ELEMENT_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+        Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
 
         String expectedMessage = "Materials.xml element Base_Material requires a " +
                 "child element Name. expected [0] but found [1]";
@@ -126,6 +131,7 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
     public void verifyMaterialsXmlBaseMaterialNameIsValid_IsValid() throws Exception {
         // setup
         Files.copy(VALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+        Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
 
         // execute
         testSuite.verifyMaterialsXmlBaseMaterialNameIsValid();
@@ -135,6 +141,7 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
     public void verifyMaterialsXmlBaseMaterialNameIsValid_IsNotValid() throws Exception {
         // setup
         Files.copy(INVALID_NAME_VALUE_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+        Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
 
         String expectedMessage = "Materials.xml element Name is always in format \"BM__*\", " +
                 "has a maximum of 32 characters, and can only contain letters, digits, " +
