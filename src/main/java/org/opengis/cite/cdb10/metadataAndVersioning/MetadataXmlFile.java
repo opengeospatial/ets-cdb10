@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 /**
  * Created by martin on 2016-09-20.
  */
-public class MetadataXmlFile {
+public abstract class MetadataXmlFile {
     protected File xmlFile;
     protected File xsdFile;
 
