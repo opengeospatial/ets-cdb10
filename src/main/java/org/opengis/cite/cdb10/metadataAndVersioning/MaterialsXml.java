@@ -5,7 +5,6 @@ import org.testng.Assert;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 
