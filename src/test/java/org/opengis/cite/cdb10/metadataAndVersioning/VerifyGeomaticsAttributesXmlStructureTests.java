@@ -1,7 +1,6 @@
-package org.opengis.cite.cdb10.level1;
+package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import org.junit.Test;
-import org.opengis.cite.cdb10.CDBStructure.GeomaticsAttributesXmlStructureTests;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;

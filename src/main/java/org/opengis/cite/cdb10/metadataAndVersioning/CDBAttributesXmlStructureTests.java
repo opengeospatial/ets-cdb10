@@ -1,7 +1,8 @@
-package org.opengis.cite.cdb10.CDBStructure;
+package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
+import org.opengis.cite.cdb10.util.XMLUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.w3c.dom.Node;
@@ -33,7 +34,7 @@ public class CDBAttributesXmlStructureTests extends CommonFixture {
         File xmlFile = Paths.get(path, "Metadata", "CDB_Attributes.xml").toFile();
         File xsdFile = Paths.get(path, "Metadata", "Schema", "Vector_Attributes.xsd").toFile();
 
-        SchemaValidatorErrorHandler errorHandler = XmlUtilities.validateXmlFileIsValid(xmlFile, xsdFile);
+        SchemaValidatorErrorHandler errorHandler = XMLUtils.validateXmlFileIsValid(xmlFile, xsdFile);
 
         if (!errorHandler.noErrors()) {
             Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
@@ -42,7 +43,7 @@ public class CDBAttributesXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyCodeIsAnInteger() {
-        NodeList nodeList = XmlUtilities.getNodeList("//Attribute", Paths.get(path, "Metadata", "CDB_Attributes.xml"));
+        NodeList nodeList = XMLUtils.getNodeList("//Attribute", Paths.get(path, "Metadata", "CDB_Attributes.xml"));
 
         ArrayList<String> values = new ArrayList<>();
 
@@ -59,7 +60,7 @@ public class CDBAttributesXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifySymbolIsUnique() {
-        NodeList nodeList = XmlUtilities.getNodeList("//Attribute", Paths.get(path, "Metadata", "CDB_Attributes.xml"));
+        NodeList nodeList = XMLUtils.getNodeList("//Attribute", Paths.get(path, "Metadata", "CDB_Attributes.xml"));
 
         ArrayList<String> symbols = new ArrayList<>();
 
@@ -76,7 +77,7 @@ public class CDBAttributesXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyValueHasAValidType() {
-        NodeList nodeList = XmlUtilities.getNodeList("//Value/Type", Paths.get(path, "Metadata", "CDB_Attributes.xml"));
+        NodeList nodeList = XMLUtils.getNodeList("//Value/Type", Paths.get(path, "Metadata", "CDB_Attributes.xml"));
 
         ArrayList<String> types = new ArrayList<>();
         List<String> VALID_TYPES = Arrays.asList("Text", "Numeric", "Boolean");
@@ -95,7 +96,7 @@ public class CDBAttributesXmlStructureTests extends CommonFixture {
 
     @Test
     public void verifyScalerCodeIsValid() {
-        NodeList nodeList = XmlUtilities.getNodeList("//Scalers/Scaler", Paths.get(path, "Metadata", "CDB_Attributes.xml"));
+        NodeList nodeList = XMLUtils.getNodeList("//Scalers/Scaler", Paths.get(path, "Metadata", "CDB_Attributes.xml"));
 
         ArrayList<String> values = new ArrayList<>();
 
@@ -111,7 +112,7 @@ public class CDBAttributesXmlStructureTests extends CommonFixture {
     }
 
     public void verifyUnitCodeIsValid() {
-        NodeList nodeList = XmlUtilities.getNodeList("//Units/Unit", Paths.get(path, "Metadata", "CDB_Attributes.xml"));
+        NodeList nodeList = XMLUtils.getNodeList("//Units/Unit", Paths.get(path, "Metadata", "CDB_Attributes.xml"));
 
         ArrayList<String> values = new ArrayList<>();
 
