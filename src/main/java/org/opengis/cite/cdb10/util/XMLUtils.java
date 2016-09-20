@@ -412,7 +412,9 @@ public class XMLUtils {
      * Returns a errors from schema validation.
      *
      * @param xmlFile
+     *              An xml file to be validated
      * @param xsdFile
+     *              Schema file to validate against
      *
      * @return A error handler of errors after schema validation.
      */
@@ -433,7 +435,9 @@ public class XMLUtils {
      * Returns a list of nodes based on an xPath query
      *
      * @param xpathQuery
+     *              xPath search query
      * @param xmlFile
+     *              xml file to be searched
      *
      * @return A list of nodes if found in the xml file.
      * */
