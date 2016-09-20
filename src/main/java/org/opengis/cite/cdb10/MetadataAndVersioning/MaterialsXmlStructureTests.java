@@ -1,8 +1,8 @@
 package org.opengis.cite.cdb10.MetadataAndVersioning;
 
-import org.opengis.cite.cdb10.CDBStructure.XmlUtilities;
 import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
+import org.opengis.cite.cdb10.util.XmlUtilities;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.w3c.dom.Node;
@@ -15,7 +15,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 
 /**
  * Created by martin on 2016-09-09.

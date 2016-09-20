@@ -1,4 +1,4 @@
-package org.opengis.cite.cdb10.CDBStructure;
+package org.opengis.cite.cdb10.util;
 
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
 import org.w3c.dom.Document;
