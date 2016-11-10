@@ -4,6 +4,7 @@ import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
 import org.opengis.cite.cdb10.util.XMLUtils;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -22,6 +23,11 @@ import java.util.List;
 public class LightsXxxXmlStructureTests extends CommonFixture {
 
     private static final List<String> DIRECTIONALITY_VALUES = Arrays.asList("Omnidirectional", "Directional", "Bidirectional");
+
+    @BeforeClass
+    public void checkFilesExist() {
+        Assert.assertFalse(getCustomLightsXmlFiles().isEmpty(), "No custom Lights xml files.");
+    }
 
     @Test
     public void verifyLights_XxxXmlFileExists() {

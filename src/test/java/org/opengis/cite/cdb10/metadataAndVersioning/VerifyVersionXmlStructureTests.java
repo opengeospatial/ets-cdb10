@@ -40,6 +40,7 @@ public class VerifyVersionXmlStructureTests extends MetadataTestFixture<VersionX
     public void verifyVersionXmlFileExists_DoesExist() throws IOException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Version.xml")));
+        Files.createFile(schemaFolder.resolve(Paths.get("Version.xsd")));
 
         // execute
         testSuite.verifyVersionXmlFileExists();

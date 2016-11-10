@@ -38,6 +38,7 @@ public class VerifyConfigurationXmlStructureTests extends MetadataTestFixture<Co
     public void verifyConfigurationXmlExists_DoesExist() throws IOException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Configuration.xml")));
+        Files.createFile(schemaFolder.resolve(Paths.get("Configuration.xsd")));
 
         // execute
         testSuite.verifyConfigurationXmlFileExists();

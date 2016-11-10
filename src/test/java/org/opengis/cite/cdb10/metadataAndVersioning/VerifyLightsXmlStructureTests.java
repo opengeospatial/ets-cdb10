@@ -41,6 +41,7 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
     public void verifyLightsXmlExists_DoesExist() throws IOException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Lights.xml")));
+        Files.createFile(schemaFolder.resolve(Paths.get("Lights.xsd")));
 
         // execute
         testSuite.verifyLightsXmlFileExists();
@@ -80,6 +81,7 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
     public void verifyLightsXmlHasUniqueCodes_LightsXmlHasUniqueCodes() throws IOException {
         // setup
         Files.copy(VALID_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.createFile(schemaFolder.resolve(Paths.get("Lights.xsd")));
 
         // execute
         testSuite.verifyLightsXmlHasUniqueCodes();
@@ -89,6 +91,7 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
     public void verifyLightsXmlHasUniqueCodes_LightsXmlDoesNotHaveUniqueCodes() throws IOException {
         // setup
         Files.copy(DUPLICATED_CODE_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.createFile(schemaFolder.resolve(Paths.get("Lights.xsd")));
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Lights.xml element Light should have unique codes. Code '1' is not unique. expected [1] but found [2]");
@@ -101,6 +104,7 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
     public void verifyLightsXmlHasCodesWithinRange_LightsXmlHasCodesInRange() throws IOException {
         // setup
         Files.copy(VALID_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.createFile(schemaFolder.resolve(Paths.get("Lights.xsd")));
 
         // execute
         testSuite.verifyLightsXmlCodesAreWithinRange();
@@ -110,6 +114,7 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
     public void verifyLightsXmlHasCodesWithinRange_LightsXmlCodeIsOver9999() throws IOException {
         // setup
         Files.copy(INVALID_CODE_TEN_THOUSAND_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.createFile(schemaFolder.resolve(Paths.get("Lights.xsd")));
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Lights.xml element Light should have a code from 0 - 9999 inclusive.");
@@ -122,6 +127,7 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
     public void verifyLightsXmlHasCodesWithinRange_LightsXmlCodeLessThanZero() throws IOException {
         // setup
         Files.copy(INVALID_CODE_NEGATIVE_ONE_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
+        Files.createFile(schemaFolder.resolve(Paths.get("Lights.xsd")));
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Lights.xml element Light should have a code from 0 - 9999 inclusive.");
