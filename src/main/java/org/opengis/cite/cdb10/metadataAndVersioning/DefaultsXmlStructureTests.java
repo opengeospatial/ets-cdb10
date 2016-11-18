@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by martin on 2016-09-03.
  */
-public class DefaultsXmlStructureTests extends CommonFixture {
+public class DefaultsXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyDefaultsXmlFileExists() {
         new DefaultsXml(path);

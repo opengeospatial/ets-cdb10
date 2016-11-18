@@ -54,7 +54,7 @@
             </p>
             <p>
               <label for="level">Conformance class:</label>
-              <input id="level-1" type="radio" name="level" value="1"
+              <input id="level-1" type="radio" name="level" value="1" checked="checked"
                      onclick="getElementById('directories').style.display='block'"/>
               <label class="form-label" for="level-1">CDB Structure</label>
 

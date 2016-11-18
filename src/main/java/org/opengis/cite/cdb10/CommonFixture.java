@@ -70,14 +70,6 @@ public class CommonFixture {
      */
     @BeforeClass
     public void obtainTestSubject(ITestContext testContext) {
-        Object obj = testContext.getSuite().getAttribute(
-                SuiteAttribute.LEVEL.getName());
-        if ((null != obj)) {
-            Integer level = Integer.class.cast(obj);
-//            Assert.assertTrue(level.intValue() > 0,
-//                    "Conformance level 1 will not be checked since ics = " + level);
-        }
-
         path = testContext.getSuite().getAttribute(
                 SuiteAttribute.TEST_SUBJECT.getName()).toString().trim();
 

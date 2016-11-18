@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by martin on 2016-09-10.
  */
-public class GeomaticsAttributesXmlStructureTests extends CommonFixture {
+public class GeomaticsAttributesXmlStructureTests extends Capability2Tests {
 
     @Test
     public void verifyGeomaticsAttributesXmlFileExists() {

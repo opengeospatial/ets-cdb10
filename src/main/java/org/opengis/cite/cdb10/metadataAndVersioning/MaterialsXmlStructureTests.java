@@ -19,7 +19,7 @@ import java.util.Collections;
 /**
  * Created by martin on 2016-09-09.
  */
-public class MaterialsXmlStructureTests extends CommonFixture {
+public class MaterialsXmlStructureTests extends Capability2Tests {
 
     @Test
     public void verifyMaterialsXmlFileExists() {

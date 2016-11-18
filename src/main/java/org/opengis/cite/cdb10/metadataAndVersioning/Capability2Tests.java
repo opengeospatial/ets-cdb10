@@ -1,7 +1,10 @@
 package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import org.opengis.cite.cdb10.CommonFixture;
+import org.opengis.cite.cdb10.SuiteAttribute;
 import org.testng.Assert;
+import org.testng.ITestContext;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -10,30 +13,21 @@ import org.testng.annotations.Test;
  */
 public class Capability2Tests extends CommonFixture {
 
-	/**
-     * Run conformance level 2 tests only if the preconditions are satisfied.
-     */
-    @BeforeTest
-    public void checkPreconditions() {
-        Assert.assertTrue(2 > 1,
-                "Preconditions for Conformance Level 2 were not satisfied.");
-    }
-
     /**
-     * Checks the result of the length function.
+     * Obtains the test subject from the ISuite context. The suite attribute
+     * {@link org.opengis.cite.cdb10.SuiteAttribute#TEST_SUBJECT} should
+     * evaluate to a DOM Document node.
+     *
+     * @param testContext The test (group) context.
      */
-    @Test(description = "Implements ATC 2-1")
-    public void checkLength() {
-        String str = "perihelion";
-        Assert.assertEquals(str.length(), 10);
-    }
-
-    /**
-     * Checks the Unicode code point value of the first character.
-     */
-    @Test(description = "Implements ATC 2-2")
-    public void codePoint() {
-        String str = "perihelion";
-        Assert.assertEquals(str.codePointAt(0), 100);
+    @BeforeClass
+    public void obtainTestSubject(ITestContext testContext) {
+        Object obj = testContext.getSuite().getAttribute(SuiteAttribute.LEVEL.getName());
+        if ((null != obj)) {
+            Integer level = Integer.class.cast(obj);
+            Assert.assertTrue(level > 1,
+                    "Conformance level " + "2 will not be checked since ics = " + level);
+        }
+        super.obtainTestSubject(testContext);
     }
 }

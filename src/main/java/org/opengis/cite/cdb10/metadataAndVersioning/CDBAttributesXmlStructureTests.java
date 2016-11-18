@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by martin on 2016-09-08.
  */
-public class CDBAttributesXmlStructureTests extends CommonFixture {
+public class CDBAttributesXmlStructureTests extends Capability2Tests {
 
     @Test
     public void verifyCDBAttributesXmlFileExists() {
