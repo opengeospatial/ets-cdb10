@@ -27,8 +27,11 @@ public class VerifyVendorAttributesXmlStructureTests extends MetadataTestFixture
     public void verifyVendorAttributesXsdFileExists_DoesNotExist() throws IOException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Vendor_Attributes.xml")));
+
+        String expectedMessage = "Metadata directory should contain Vendor_Attributes.xsd file.";
+
         expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("If Vendor_Attributes.xml exists there should be a Vendor_Attributes.xsd in the Schema folder");
+        expectedException.expectMessage(expectedMessage);
 
         // execute
         testSuite.verifyVendorAttributesXsdFileExists();
@@ -77,14 +80,24 @@ public class VerifyVendorAttributesXmlStructureTests extends MetadataTestFixture
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Vendor_Attributes.xsd")));
 
+        String expectedMessage = "Metadata directory should contain Vendor_Attributes.xml file.";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
+
         // execute
-        testSuite.verifyVendorAttributesXmlAgainstSchema(); // will not return an assertion error
+        testSuite.verifyVendorAttributesXmlAgainstSchema();
     }
 
     @Test
     public void verifyVendorAttributesXmlAgainstSchema_VendorAttributesXsdFileDoesNotExist() throws IOException, SAXException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Vendor_Attributes.xml")));
+
+        String expectedMessage = "Metadata directory should contain Vendor_Attributes.xsd file.";
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage(expectedMessage);
 
         // execute
         testSuite.verifyVendorAttributesXmlAgainstSchema(); // will not return an assertion error
