@@ -30,7 +30,7 @@ public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixt
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Geomatics_Attributes.xml")));
         expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("If Geomatics_Attributes.xml exists there should be a Geomatics_Attributes.xsd in the Schema folder");
+        expectedException.expectMessage("Metadata directory should contain Geomatics_Attributes.xsd file.");
 
         // execute
         testSuite.verifyGeomaticsAttributesXsdFileExists();
@@ -78,15 +78,19 @@ public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixt
     public void verifyGeomaticsAttributesXmlAgainstSchema_GeomaticsAttributesXmlFileDoesNotExist() throws IOException, SAXException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Geomatics_Attributes.xsd")));
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Metadata directory should contain Geomatics_Attributes.xml file.");
 
         // execute
-        testSuite.verifyGeomaticsAttributesXmlAgainstSchema(); // will not return an assertion error
+        testSuite.verifyGeomaticsAttributesXmlAgainstSchema();
     }
 
     @Test
     public void verifyGeomaticsAttributesXmlAgainstSchema_GeomaticsAttributesXsdFileDoesNotExist() throws IOException, SAXException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Geomatics_Attributes.xml")));
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Metadata directory should contain Geomatics_Attributes.xsd file.");
 
         // execute
         testSuite.verifyGeomaticsAttributesXmlAgainstSchema(); // will not return an assertion error
