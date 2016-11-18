@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by martin on 2016-09-06.
  */
-public class VersionXmlStructureTests extends CommonFixture {
+public class VersionXmlStructureTests extends Capability2Tests {
 
     @Test
     public void verifyVersionXmlFileExists() {

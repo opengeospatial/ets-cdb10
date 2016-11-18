@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by martin on 2016-09-09.
  */
-public class VendorAttributesXmlStructureTests extends CommonFixture {
+public class VendorAttributesXmlStructureTests extends Capability2Tests {
 
     @Test
     public void verifyVendorAttributesXmlFileExists() {

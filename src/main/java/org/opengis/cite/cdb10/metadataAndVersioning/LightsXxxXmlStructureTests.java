@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by martin on 2016-09-12.
  */
-public class LightsXxxXmlStructureTests extends CommonFixture {
+public class LightsXxxXmlStructureTests extends Capability2Tests {
 
     private static final List<String> DIRECTIONALITY_VALUES = Arrays.asList("Omnidirectional", "Directional", "Bidirectional");
 
