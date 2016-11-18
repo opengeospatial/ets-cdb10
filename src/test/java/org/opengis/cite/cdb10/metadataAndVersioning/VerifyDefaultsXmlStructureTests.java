@@ -42,6 +42,7 @@ public class VerifyDefaultsXmlStructureTests extends MetadataTestFixture<Default
     public void verifyDefaultsXmlExists_DoesExist() throws IOException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Defaults.xml")));
+        Files.createFile(schemaFolder.resolve(Paths.get("Defaults.xsd")));
 
         // execute
         testSuite.verifyDefaultsXmlFileExists();

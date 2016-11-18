@@ -31,6 +31,19 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
     }
 
     @Test
+    public void verifyCDBAttributesXmlExists_MetadataFolderDoesNotExist() throws IOException {
+        // setup
+        Files.delete(cdb_root.resolve(Paths.get("Metadata", "Schema")));
+        Files.delete(cdb_root.resolve(Paths.get("Metadata")));
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Metadata directory is missing.");
+
+        // execute
+        testSuite.verifyCDBAttributesXmlFileExists();
+    }
+
+    @Test
     public void verifyCDBAttributesXmlExists_DoesNotExist() throws IOException {
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Metadata directory should contain CDB_Attributes.xml file.");
@@ -43,6 +56,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
     public void verifyCDBAttributesXmlExists_DoesExist() throws IOException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("CDB_Attributes.xml")));
+        Files.createFile(schemaFolder.resolve(Paths.get("Vector_Attributes.xsd")));
 
         // execute
         testSuite.verifyCDBAttributesXmlFileExists();
@@ -53,6 +67,15 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
         // setup
         Files.copy(VALID_FILE, metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
+
+        // execute
+        testSuite.verifyCDBAttributesXmlAgainstSchema();
+    }
+
+    @Test
+    public void verifyCDBAttributesXmlAgainstSchema_FileDoesNotExist() throws IOException, SAXException {
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Metadata directory should contain CDB_Attributes.xml file.");
 
         // execute
         testSuite.verifyCDBAttributesXmlAgainstSchema();
@@ -84,7 +107,19 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
         Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
 
         // execute
-        testSuite.verifyCodeIsAnInteger();
+        testSuite.verifyCDBAttributesXmlCodeIsAnInteger();
+    }
+
+    @Test
+    public void verifyCodeIsAnInteger_XsdFileDoesNotExist() throws IOException {
+        // setup
+        Files.copy(VALID_FILE, metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
+
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Metadata directory should contain Vector_Attributes.xsd file.");
+
+        // execute
+        testSuite.verifyCDBAttributesXmlCodeIsAnInteger();
     }
 
     @Test
@@ -99,7 +134,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
         expectedException.expectMessage(expectedMessage);
 
         // execute
-        testSuite.verifyCodeIsAnInteger();
+        testSuite.verifyCDBAttributesXmlCodeIsAnInteger();
     }
 
     @Test
@@ -109,7 +144,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
         Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
 
         // execute
-        testSuite.verifySymbolIsUnique();
+        testSuite.verifyCDBAttributesXmlSymbolIsUnique();
     }
 
     @Test
@@ -125,7 +160,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
         expectedException.expectMessage(expectedMessage);
 
         // execute
-        testSuite.verifySymbolIsUnique();
+        testSuite.verifyCDBAttributesXmlSymbolIsUnique();
     }
 
     @Test
@@ -135,7 +170,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
         Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
 
         // execute
-        testSuite.verifyValueHasAValidType();
+        testSuite.verifyCDBAttributesXmlValueHasAValidType();
     }
 
     @Test
@@ -151,7 +186,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
         expectedException.expectMessage(expectedMessage);
 
         // execute
-        testSuite.verifyValueHasAValidType();
+        testSuite.verifyCDBAttributesXmlValueHasAValidType();
     }
 
     @Test
@@ -161,7 +196,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
         Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
 
         // execute
-        testSuite.verifyScalerCodeIsValid();
+        testSuite.verifyCDBAttributesXmlScalerCodeIsValid();
     }
 
     @Test
@@ -177,7 +212,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
         expectedException.expectMessage(expectedMessage);
 
         // execute
-        testSuite.verifyScalerCodeIsValid();
+        testSuite.verifyCDBAttributesXmlScalerCodeIsValid();
     }
 
     @Test
@@ -187,7 +222,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
         Files.copy(XSD_FILE, schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
 
         // execute
-        testSuite.verifyUnitCodeIsValid();
+        testSuite.verifyCDBAttributesXmlUnitCodeIsValid();
     }
 
     @Test
@@ -203,6 +238,6 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
         expectedException.expectMessage(expectedMessage);
 
         // execute
-        testSuite.verifyUnitCodeIsValid();
+        testSuite.verifyCDBAttributesXmlUnitCodeIsValid();
     }
 }

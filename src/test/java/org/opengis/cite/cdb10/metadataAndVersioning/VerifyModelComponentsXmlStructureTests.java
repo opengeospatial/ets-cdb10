@@ -38,6 +38,7 @@ public class VerifyModelComponentsXmlStructureTests extends MetadataTestFixture<
     public void verifyModelComponentsXmlExists_XmlDoesExist() throws IOException {
         // setup
         Files.createFile(metadataFolder.resolve(Paths.get("Model_Components.xml")));
+        Files.createFile(schemaFolder.resolve(Paths.get("Model_Components.xsd")));
 
         // execute
         testSuite.verifyModelComponentsXmlFileExists();
