@@ -9,3 +9,8 @@
 target/
 pom.xml.releaseBackup
 release.properties
+
+# Other
+.DS_Store
+Thumbs.db
+
