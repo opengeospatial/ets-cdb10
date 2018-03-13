@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="${ets-code}-${version}" verbose="0" configfailurepolicy="continue">
+<suite name="ets-cdb10" verbose="0" configfailurepolicy="continue">
   <parameter name="iut"  value="src/test/resources/CDB" />
   <parameter name="ics"  value="2" />
 
