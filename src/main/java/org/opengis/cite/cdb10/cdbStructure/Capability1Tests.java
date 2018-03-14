@@ -37,7 +37,6 @@ public class Capability1Tests extends CommonFixture {
 	@BeforeClass
 	public void obtainTestSubject(ITestContext testContext) {
 		Object obj = testContext.getSuite().getAttribute(SuiteAttribute.LEVELS.getName());
-		System.out.println(obj);
 		if ((null != obj)) {
 			ArrayList<Integer> levels = new ArrayList<Integer>(Arrays.asList(Integer[].class.cast(obj)));
 			Assert.assertTrue(levels.contains(1),
@@ -90,6 +89,7 @@ public class Capability1Tests extends CommonFixture {
 
 	/**
 	 * Validates that latitude geocell directories end with a valid slice latitude.
+	 * latitudes should be zero-padded to 2 width.
 	 * (See volume 1, section 3.6).
 	 *
 	 * @throws IOException
@@ -108,10 +108,18 @@ public class Capability1Tests extends CommonFixture {
 					errors.add("Invalid latitude for geocell directory name: " + filename);
 				}
 
+				if ((sliceID < 10) && (sliceID > 0) && (slice.substring(1,2).equals("0"))) {
+					errors.add("Invalid zero-pad on geocell directory name: " + filename);
+				}
+
 			} else if (filename.substring(0, 1).equals("N")) {
 				Integer sliceID = Integer.parseInt(slice);
 				if ((sliceID > 89) || (sliceID < 0)) {
 					errors.add("Invalid latitude for geocell directory name: " + filename);
+				}
+
+				if ((sliceID < 10) && (sliceID >= 0) && (slice.substring(1,2).equals("0"))) {
+					errors.add("Invalid zero-pad on geocell directory name: " + filename);
 				}
 			}
 		}
