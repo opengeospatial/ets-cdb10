@@ -25,10 +25,9 @@ public enum SuiteAttribute {
     TEST_SUBJECT("testSubject", Document.class),
 
     /**
-     * An integer denoting the conformance level to check. A given conformance
-     * level includes all lower levels.
+     * An array of integers denoting the conformance levels to check.
      */
-    LEVEL("level", Integer.class),
+    LEVELS("levels", Integer[].class),
     DIRECTORIES("directories", String.class),
     LATLONG("latlong", String.class),
     MINMAXLOD("minmaxlod", String.class);

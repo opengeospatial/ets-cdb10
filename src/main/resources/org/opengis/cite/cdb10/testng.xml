@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="ets-cdb10" verbose="0" configfailurepolicy="continue">
   <parameter name="iut"  value="src/test/resources/CDB" />
-  <parameter name="ics"  value="2" />
+  <parameter name="ics"  value="1,2" />
 
   <listeners>
     <listener class-name="org.opengis.cite.cdb10.TestRunListener" />
