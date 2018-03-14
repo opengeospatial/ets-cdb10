@@ -104,7 +104,7 @@ public class Capability1Tests extends CommonFixture {
 
 			if (filename.substring(0, 1).equals("S")) {
 				Integer sliceID = Integer.parseInt(slice);
-				if ((sliceID > 90) || (sliceID < 0)) {
+				if ((sliceID > 90) || (sliceID <= 0)) {
 					errors.add("Invalid latitude for geocell directory name: " + filename);
 				}
 
