@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -68,7 +69,7 @@ public class Capability1Tests extends CommonFixture {
 
 	/**
 	 * Validates that latitude geocell directories start with "S" or "N". (See
-	 * volume 1, section 3.6).
+	 * volume 1, section 3.6.2.1).
 	 *
 	 * @throws IOException
 	 */
@@ -90,7 +91,7 @@ public class Capability1Tests extends CommonFixture {
 	/**
 	 * Validates that latitude geocell directories end with a valid slice latitude.
 	 * latitudes should be zero-padded to 2 width.
-	 * (See volume 1, section 3.6).
+	 * (See volume 1, section 3.6.2.1).
 	 *
 	 * @throws IOException
 	 */
@@ -120,6 +121,32 @@ public class Capability1Tests extends CommonFixture {
 
 				if ((sliceID < 10) && (sliceID >= 0) && (slice.substring(1,2).equals("0"))) {
 					errors.add("Invalid zero-pad on geocell directory name: " + filename);
+				}
+			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
+
+	/**
+	 * Validates that longitude geocell directories start with "E" or "W". (See
+	 * volume 1, section 3.6.2.2).
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifyGeocellLongitudeDirNamePrefix() throws IOException {
+		ArrayList<String> errors = new ArrayList<String>();
+		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(Paths.get(this.path, "Tiles"));
+
+		for (Path latCell : latitudeCells) {
+			DirectoryStream<Path> longitudeCells = Files.newDirectoryStream(latCell);
+
+			for (Path lonCell : longitudeCells) {
+				String filename = lonCell.getFileName().toString();
+
+				if (!filename.substring(0, 1).equals("E") && !filename.substring(0, 1).equals("W")) {
+					errors.add("Invalid prefix on longitude geocell directory: " + filename);
 				}
 			}
 		}
