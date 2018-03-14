@@ -8,7 +8,6 @@
     <version>5</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.opengis.cite</groupId>
   <artifactId>ets-cdb10</artifactId>
   <version>0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
@@ -71,6 +70,10 @@
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
     </dependency>
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-lang3</artifactId>
+	</dependency>	    
   </dependencies>
 
   <build>
@@ -141,4 +144,13 @@
       </plugin>
     </plugins>
   </build>
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>org.apache.commons</groupId>
+  			<artifactId>commons-lang3</artifactId>
+  			<version>3.7</version>
+  		</dependency>
+  	</dependencies>
+  </dependencyManagement>
 </project>
