@@ -335,6 +335,16 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 		this.testSuite.verifyLODName();
 	}
 
+	@Test
+	public void verifyLODName_GoodMedRes() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
+				"L04")));
+
+		// execute
+		this.testSuite.verifyLODName();
+	}
+
 
 
 	@Test(expected = AssertionError.class)
