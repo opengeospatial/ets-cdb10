@@ -241,4 +241,59 @@ public class TilesStructureTests extends CommonFixture {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
+
+	/**
+	 * Validates that dataset directories prefix code and name match and are valid values.
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifyDatasetCodeName() throws IOException {
+		ArrayList<String> errors = new ArrayList<String>();
+		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(Paths.get(this.path, "Tiles"));
+		DatasetsXml datasetDefs = new DatasetsXml("src/test/resources/CDB");
+
+		for (Path latCell : latitudeCells) {
+			DirectoryStream<Path> longitudeCells = Files.newDirectoryStream(latCell);
+
+			for (Path lonCell : longitudeCells) {
+				DirectoryStream<Path> datasets = Files.newDirectoryStream(lonCell);
+
+				for (Path dataset : datasets) {
+					String filename = dataset.getFileName().toString();
+					String prefix = null;
+					Integer prefixID = null;
+					String datasetName = null;
+					try {
+						prefix = filename.substring(0, 3);
+						prefixID = Integer.parseInt(prefix);
+						datasetName = filename.split("_")[1];
+					}
+					catch (StringIndexOutOfBoundsException e) {
+						errors.add("Invalid prefix length: " + filename);
+					}
+					catch (NumberFormatException e) {
+						errors.add("Invalid number format: " + filename);
+					}
+					catch (ArrayIndexOutOfBoundsException e) {
+						errors.add("Missing dataset name: " + filename);
+					}
+
+					if ((prefixID != null) && (datasetName != null)) {
+						if (!datasetDefs.isValidCode(prefixID)) {
+							errors.add("Invalid dataset code: " + filename);
+						} else if (!datasetDefs.isValidName(datasetName)) {
+							errors.add("Invalid dataset name: " + filename);
+						} else if (!datasetDefs.datasetNameForCode(prefixID).equals(datasetName)) {
+							errors.add("Invalid dataset code/name combination: " + filename);
+						}
+					}
+
+				}
+
+			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
 }

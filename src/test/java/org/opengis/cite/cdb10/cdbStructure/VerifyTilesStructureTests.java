@@ -211,7 +211,7 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 
 
 	@Test(expected = AssertionError.class)
-	public void verifyDatsetPrefix_BadLength() throws IOException {
+	public void verifyDatasetPrefix_BadLength() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "_")));
 
@@ -220,7 +220,7 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 	}
 
 	@Test(expected = AssertionError.class)
-	public void verifyDatsetPrefix_BadNumeric() throws IOException {
+	public void verifyDatasetPrefix_BadNumeric() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "abc_Elevation")));
 
@@ -229,7 +229,7 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 	}
 
 	@Test(expected = AssertionError.class)
-	public void verifyDatsetPrefix_BadChars() throws IOException {
+	public void verifyDatasetPrefix_BadChars() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "-11_Elevation")));
 
@@ -238,11 +238,58 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 	}
 
 	@Test
-	public void verifyDatsetPrefix_Good() throws IOException {
+	public void verifyDatasetPrefix_Good() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "001_Elevation")));
 
 		// execute
 		this.testSuite.verifyDatasetPrefix();
+	}
+
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetCodeName_Missing() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "001_")));
+
+		// execute
+		this.testSuite.verifyDatasetCodeName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetCodeName_Unknown() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "001_Bogus")));
+
+		// execute
+		this.testSuite.verifyDatasetCodeName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetCodeName_Mismatch() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "001_Imagery")));
+
+		// execute
+		this.testSuite.verifyDatasetCodeName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetCodeName_BadCode() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "999_Imagery")));
+
+		// execute
+		this.testSuite.verifyDatasetCodeName();
+	}
+
+	@Test
+	public void verifyDatasetCodeName_Correct() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "001_Elevation")));
+
+		// execute
+		this.testSuite.verifyDatasetCodeName();
 	}
 }
