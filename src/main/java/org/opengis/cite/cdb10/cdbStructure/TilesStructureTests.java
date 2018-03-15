@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.opengis.cite.cdb10.CommonFixture;
@@ -286,6 +288,42 @@ public class TilesStructureTests extends CommonFixture {
 							errors.add("Invalid dataset name: " + filename);
 						} else if (!datasetDefs.datasetNameForCode(prefixID).equals(datasetName)) {
 							errors.add("Invalid dataset code/name combination: " + filename);
+						}
+					}
+
+				}
+
+			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
+
+	/**
+	 * Validates that LOD directories have valid names.
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifyLODName() throws IOException {
+		ArrayList<String> errors = new ArrayList<String>();
+		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(Paths.get(this.path, "Tiles"));
+		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
+
+		for (Path latCell : latitudeCells) {
+			DirectoryStream<Path> longitudeCells = Files.newDirectoryStream(latCell);
+
+			for (Path lonCell : longitudeCells) {
+				DirectoryStream<Path> datasets = Files.newDirectoryStream(lonCell);
+
+				for (Path dataset : datasets) {
+					DirectoryStream<Path> lods = Files.newDirectoryStream(dataset);
+
+					for (Path lod : lods) {
+						String filename = lod.getFileName().toString();
+						Matcher match = LODPattern.matcher(filename);
+						if (!match.find()) {
+							errors.add("Invalid LOD name: " + filename);
 						}
 					}
 

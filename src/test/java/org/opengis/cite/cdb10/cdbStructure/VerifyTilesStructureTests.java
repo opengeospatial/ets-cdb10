@@ -292,4 +292,46 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 		// execute
 		this.testSuite.verifyDatasetCodeName();
 	}
+
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyLODName_Unknown() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
+				"LAA")));
+
+		// execute
+		this.testSuite.verifyLODName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyLODName_BadRange() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
+				"L99")));
+
+		// execute
+		this.testSuite.verifyLODName();
+	}
+
+	@Test
+	public void verifyLODName_GoodCoarse() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
+				"LC")));
+
+		// execute
+		this.testSuite.verifyLODName();
+	}
+
+	@Test
+	public void verifyLODName_GoodHiRes() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
+				"L23")));
+
+		// execute
+		this.testSuite.verifyLODName();
+	}
 }
