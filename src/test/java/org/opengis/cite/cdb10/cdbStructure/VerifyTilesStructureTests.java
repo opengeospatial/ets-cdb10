@@ -115,4 +115,78 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 		// execute
 		this.testSuite.verifyGeocellLongitudeDirNamePrefix();
 	}
+
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyGeocellLongitudeDirNameSlice_BadLength() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N00", "E00100")));
+
+		// execute
+		this.testSuite.verifyGeocellLongitudeDirNameSlice();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyGeocellLongitudeDirNameSlice_BadRange() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N00", "E999")));
+
+		// execute
+		this.testSuite.verifyGeocellLongitudeDirNameSlice();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyGeocellLongitudeDirNameSlice_BadRangeWest() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N00", "W0")));
+
+		// execute
+		this.testSuite.verifyGeocellLongitudeDirNameSlice();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyGeocellLongitudeDirNameSlice_BadPadding() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N00", "E90")));
+
+		// execute
+		this.testSuite.verifyGeocellLongitudeDirNameSlice();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyGeocellLongitudeDirNameSlice_BadPaddingShort() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N00", "E5")));
+
+		// execute
+		this.testSuite.verifyGeocellLongitudeDirNameSlice();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyGeocellLongitudeDirNameSlice_BadPaddingChar() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N00", "E__5")));
+
+		// execute
+		this.testSuite.verifyGeocellLongitudeDirNameSlice();
+	}
+
+	@Test
+	public void verifyGeocellLongitudeDirNameSlice_GoodWest() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N00", "W180")));
+
+		// execute
+		this.testSuite.verifyGeocellLongitudeDirNameSlice();
+	}
+
+	@Test
+	public void verifyGeocellLongitudeDirNameSlice_GoodEast() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N00", "E000")));
+
+		// execute
+		this.testSuite.verifyGeocellLongitudeDirNameSlice();
+	}
 }

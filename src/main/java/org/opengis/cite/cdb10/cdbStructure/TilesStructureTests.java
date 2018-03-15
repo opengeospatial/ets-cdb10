@@ -125,27 +125,34 @@ public class TilesStructureTests extends CommonFixture {
 			for (Path lonCell : longitudeCells) {
 				String filename = lonCell.getFileName().toString();
 				String slice = filename.substring(1, filename.length());
+				Integer sliceID = 0;
+				try {
+					sliceID = Integer.parseInt(slice);
+				}
+				catch (NumberFormatException e) {
+					errors.add("Invalid numeric format on geocell slice: " + filename);
+				}
 
-				if (filename.substring(0, 1).equals("E")) {
-					Integer sliceID = Integer.parseInt(slice);
+				if (filename.length() != 4) {
+					errors.add("Invalid padding/length for geocell directory name: " + filename);
+				} else if (filename.substring(0, 1).equals("E")) {
 					if ((sliceID > 179) || (sliceID < 0)) {
 						errors.add("Invalid longitude for geocell directory name: " + filename);
 					}
 
-					if ((sliceID < 10) && (sliceID >= 0) && (slice.substring(1,3).equals("00"))) {
+					if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(1,3).equals("00"))) {
 						errors.add("Invalid zero-pad on geocell directory name: " + filename);
-					} else if ((sliceID < 100) && (sliceID >= 10) && (slice.substring(1,3).equals("0"))) {
+					} else if ((sliceID < 100) && (sliceID >= 10) && !(slice.substring(1,2).equals("0"))) {
 						errors.add("Invalid zero-pad on geocell directory name: " + filename);
 					}
 				} else if (filename.substring(0, 1).equals("W")) {
-					Integer sliceID = Integer.parseInt(slice);
 					if ((sliceID > 180) || (sliceID <= 0)) {
 						errors.add("Invalid longitude for geocell directory name: " + filename);
 					}
 
-					if ((sliceID < 10) && (sliceID >= 0) && (slice.substring(1,3).equals("00"))) {
+					if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(1,3).equals("00"))) {
 						errors.add("Invalid zero-pad on geocell directory name: " + filename);
-					} else if ((sliceID < 100) && (sliceID >= 10) && (slice.substring(1,3).equals("0"))) {
+					} else if ((sliceID < 100) && (sliceID >= 10) && !(slice.substring(1,2).equals("0"))) {
 						errors.add("Invalid zero-pad on geocell directory name: " + filename);
 					}
 				}
