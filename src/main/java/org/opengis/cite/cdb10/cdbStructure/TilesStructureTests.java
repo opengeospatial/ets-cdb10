@@ -18,6 +18,26 @@ import org.testng.annotations.Test;
  *
  */
 public class TilesStructureTests extends CommonFixture {
+
+	public Integer sliceWidthForLatitude(Integer latitude) {
+		Integer dLonZone = 1;
+		if (((latitude >= 89) && (latitude < 90)) || ((latitude >= -90) && (latitude < -89))) {
+			dLonZone = 12;
+		} else if (((latitude >= 80) && (latitude < 89)) || ((latitude >= -89) && (latitude < -80))) {
+			dLonZone = 6;
+		} else if (((latitude >= 75) && (latitude < 80)) || ((latitude >= -80) && (latitude < -75))) {
+			dLonZone = 4;
+		} else if (((latitude >= 70) && (latitude < 75)) || ((latitude >= -75) && (latitude < -70))) {
+			dLonZone = 3;
+		} else if (((latitude >= 50) && (latitude < 70)) || ((latitude >= -70) && (latitude < -50))) {
+			dLonZone = 2;
+		} else if (((latitude >= 0) && (latitude < 50)) || ((latitude >= -50) && (latitude < 0))) {
+			dLonZone = 1;
+		}
+
+		return dLonZone;
+	}
+
 	/**
 	 * Validates that latitude geocell directories start with "S" or "N". (See
 	 * volume 1, section 3.6.2.1).
@@ -121,6 +141,15 @@ public class TilesStructureTests extends CommonFixture {
 
 		for (Path latCell : latitudeCells) {
 			DirectoryStream<Path> longitudeCells = Files.newDirectoryStream(latCell);
+			String latFilename = latCell.getFileName().toString();
+			String latSlice = latFilename.substring(1, latFilename.length());
+			Integer latSliceID = null;
+			try {
+				latSliceID = Integer.parseInt(latSlice);
+			}
+			catch (NumberFormatException e) {
+				errors.add("Invalid numeric format on geocell slice: " + latFilename);
+			}
 
 			for (Path lonCell : longitudeCells) {
 				String filename = lonCell.getFileName().toString();
@@ -140,6 +169,10 @@ public class TilesStructureTests extends CommonFixture {
 						errors.add("Invalid longitude for geocell directory name: " + filename);
 					}
 
+					if ((sliceID % this.sliceWidthForLatitude(latSliceID)) != 0) {
+						errors.add("Invalid slice width for geocell directory name: " + filename);
+					}
+
 					if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(1,3).equals("00"))) {
 						errors.add("Invalid zero-pad on geocell directory name: " + filename);
 					} else if ((sliceID < 100) && (sliceID >= 10) && !(slice.substring(1,2).equals("0"))) {
@@ -148,6 +181,10 @@ public class TilesStructureTests extends CommonFixture {
 				} else if (filename.substring(0, 1).equals("W")) {
 					if ((sliceID > 180) || (sliceID <= 0)) {
 						errors.add("Invalid longitude for geocell directory name: " + filename);
+					}
+
+					if ((sliceID % this.sliceWidthForLatitude(latSliceID)) != 0) {
+						errors.add("Invalid slice width for geocell directory name: " + filename);
 					}
 
 					if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(1,3).equals("00"))) {
