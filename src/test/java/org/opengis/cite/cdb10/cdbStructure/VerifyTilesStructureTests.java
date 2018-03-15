@@ -334,4 +334,46 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 		// execute
 		this.testSuite.verifyLODName();
 	}
+
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyUREFName_Invalid() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
+				"LC", "A1")));
+
+		// execute
+		this.testSuite.verifyUREFName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyUREFName_TooLarge() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
+				"LC", "U8")));
+
+		// execute
+		this.testSuite.verifyUREFName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyUREFName_OutOfBounds() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
+				"LC", "U-8")));
+
+		// execute
+		this.testSuite.verifyUREFName();
+	}
+
+	@Test
+	public void verifyUREFName_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
+				"LC", "U0")));
+
+		// execute
+		this.testSuite.verifyUREFName();
+	}
 }

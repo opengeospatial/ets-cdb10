@@ -334,4 +334,57 @@ public class TilesStructureTests extends CommonFixture {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
+
+	/**
+	 * Validates that UREF directories have valid names and are in a valid range for the LOD.
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifyUREFName() throws IOException {
+		ArrayList<String> errors = new ArrayList<String>();
+		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(Paths.get(this.path, "Tiles"));
+
+		for (Path latCell : latitudeCells) {
+			DirectoryStream<Path> longitudeCells = Files.newDirectoryStream(latCell);
+
+			for (Path lonCell : longitudeCells) {
+				DirectoryStream<Path> datasets = Files.newDirectoryStream(lonCell);
+
+				for (Path dataset : datasets) {
+					DirectoryStream<Path> lods = Files.newDirectoryStream(dataset);
+
+					for (Path lod : lods) {
+						String lodFilename = lod.getFileName().toString();
+						Integer lodLevel = null;
+						if (lodFilename.equals("LC")) {
+							lodLevel = 0;
+						} else {
+							lodLevel = Integer.parseInt(lodFilename.substring(1, lodFilename.length()));
+						}
+
+						DirectoryStream<Path> urefs = Files.newDirectoryStream(lod);
+
+						for (Path uref : urefs) {
+							String filename = uref.getFileName().toString();
+
+							if (!filename.substring(0, 1).equals("U")) {
+								errors.add("Invalid prefix for UREF directory: " + filename);
+							} else {
+								Integer urefValue = Integer.parseInt(filename.substring(1, filename.length()));
+
+								if ((urefValue < 0) || (urefValue > (Math.pow(2, lodLevel) - 1))) {
+									errors.add("UREF value out of bounds: " + filename);
+								}
+							}
+						}
+					}
+
+				}
+
+			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
 }
