@@ -39,4 +39,51 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 		// execute
 		this.testSuite.verifyGeocellLatitudeDirNamePrefix();
 	}
+
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyGeocellLatitudeDirNameSlice_BadNorth() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N90")));
+
+		// execute
+		this.testSuite.verifyGeocellLatitudeDirNameSlice();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyGeocellLatitudeDirNameSlice_BadSouth() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S0")));
+
+		// execute
+		this.testSuite.verifyGeocellLatitudeDirNameSlice();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyGeocellLatitudeDirNameSlice_BadRange() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S91")));
+
+		// execute
+		this.testSuite.verifyGeocellLatitudeDirNameSlice();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyGeocellLatitudeDirNameSlice_BadLength() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N0")));
+
+		// execute
+		this.testSuite.verifyGeocellLatitudeDirNameSlice();
+	}
+
+	@Test
+	public void verifyGeocellLatitudeDirNameSlice_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N00")));
+
+		// execute
+		this.testSuite.verifyGeocellLatitudeDirNameSlice();
+	}
 }

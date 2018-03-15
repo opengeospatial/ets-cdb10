@@ -54,7 +54,9 @@ public class TilesStructureTests extends CommonFixture {
 			String filename = file.getFileName().toString();
 			String slice = filename.substring(1, filename.length());
 
-			if (filename.substring(0, 1).equals("S")) {
+			if (filename.length() != 3) {
+				errors.add("Invalid padding/length on geocell directory name: " + filename);
+			} else if (filename.substring(0, 1).equals("S")) {
 				Integer sliceID = Integer.parseInt(slice);
 				if ((sliceID > 90) || (sliceID <= 0)) {
 					errors.add("Invalid latitude for geocell directory name: " + filename);
