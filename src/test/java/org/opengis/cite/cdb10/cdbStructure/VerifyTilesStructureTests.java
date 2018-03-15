@@ -207,4 +207,42 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 		// execute
 		this.testSuite.verifyGeocellLongitudeDirNameSlice();
 	}
+
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatsetPrefix_BadLength() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "_")));
+
+		// execute
+		this.testSuite.verifyDatasetPrefix();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatsetPrefix_BadNumeric() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "abc_Elevation")));
+
+		// execute
+		this.testSuite.verifyDatasetPrefix();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatsetPrefix_BadChars() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "-11_Elevation")));
+
+		// execute
+		this.testSuite.verifyDatasetPrefix();
+	}
+
+	@Test
+	public void verifyDatsetPrefix_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "001_Elevation")));
+
+		// execute
+		this.testSuite.verifyDatasetPrefix();
+	}
 }

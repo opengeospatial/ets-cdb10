@@ -198,4 +198,47 @@ public class TilesStructureTests extends CommonFixture {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
+
+	/**
+	 * Validates that dataset directories begin with a 3-digit prefix.
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifyDatasetPrefix() throws IOException {
+		ArrayList<String> errors = new ArrayList<String>();
+		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(Paths.get(this.path, "Tiles"));
+
+		for (Path latCell : latitudeCells) {
+			DirectoryStream<Path> longitudeCells = Files.newDirectoryStream(latCell);
+
+			for (Path lonCell : longitudeCells) {
+				DirectoryStream<Path> datasets = Files.newDirectoryStream(lonCell);
+
+				for (Path dataset : datasets) {
+					String filename = dataset.getFileName().toString();
+					String prefix = null;
+					Integer prefixID = null;
+					try {
+						prefix = filename.substring(0, 3);
+						prefixID = Integer.parseInt(prefix);
+					}
+					catch (StringIndexOutOfBoundsException e) {
+						errors.add("Invalid prefix length: " + filename);
+					}
+					catch (NumberFormatException e) {
+						errors.add("Invalid number format: " + filename);
+					}
+
+					if ((prefixID != null) && (prefixID < 1)) {
+						errors.add("Invalid prefix cannot be below 001: " + filename);
+					}
+
+				}
+
+			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
 }
