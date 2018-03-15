@@ -109,7 +109,7 @@ public class Capability1Tests extends CommonFixture {
 					errors.add("Invalid latitude for geocell directory name: " + filename);
 				}
 
-				if ((sliceID < 10) && (sliceID > 0) && (slice.substring(1,2).equals("0"))) {
+				if ((sliceID < 10) && (sliceID > 0) && !(slice.substring(1,2).equals("0"))) {
 					errors.add("Invalid zero-pad on geocell directory name: " + filename);
 				}
 
@@ -119,7 +119,7 @@ public class Capability1Tests extends CommonFixture {
 					errors.add("Invalid latitude for geocell directory name: " + filename);
 				}
 
-				if ((sliceID < 10) && (sliceID >= 0) && (slice.substring(1,2).equals("0"))) {
+				if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(1,2).equals("0"))) {
 					errors.add("Invalid zero-pad on geocell directory name: " + filename);
 				}
 			}
