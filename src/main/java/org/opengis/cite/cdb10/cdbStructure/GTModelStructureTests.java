@@ -156,4 +156,64 @@ public class GTModelStructureTests extends CommonFixture {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
+
+	/**
+	 * Validates that GTModel Feature Type directories have valid codes/names.
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifyFeatureType() throws IOException {
+		ArrayList<String> errors = new ArrayList<String>();
+		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml("src/test/resources/CDB");
+
+		for (Path dataset : Files.newDirectoryStream(Paths.get(this.path, "GTModel"))) {
+			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
+
+			for (Path category : categories) {
+				DirectoryStream<Path> subcategories = Files.newDirectoryStream(category);
+
+				for (Path subcategory : subcategories) {
+					DirectoryStream<Path> featureTypes = Files.newDirectoryStream(subcategory);
+
+					for (Path featureType : featureTypes) {
+						String filename = featureType.getFileName().toString();
+						String code = null;
+						Integer codeID = null;
+						String featureTypeLabel = null;
+						try {
+							code = filename.substring(0, 3);
+							codeID = Integer.parseInt(code);
+							featureTypeLabel = filename.substring(4, filename.length());
+						}
+						catch (StringIndexOutOfBoundsException e) {
+							errors.add("Invalid prefix length: " + filename);
+						}
+						catch (NumberFormatException e) {
+							errors.add("Invalid number format: " + filename);
+						}
+						catch (ArrayIndexOutOfBoundsException e) {
+							errors.add("Missing type name: " + filename);
+						}
+
+						if ((code != null) && (codeID != null) && (featureTypeLabel != null)) {
+							if (!fddDefs.isValidFeatureTypeCode(code)) {
+								errors.add("Invalid subcategory code: " + filename);
+							}
+
+							if (!fddDefs.isValidFeatureTypeLabel(featureTypeLabel)) {
+								errors.add("Invalid subcategory label: " + filename);
+							}
+
+							if (!fddDefs.isFeatureTypeLabelinFeatureTypeCode(featureTypeLabel, code)) {
+								errors.add("Subcategory label not a child of subcategory code: " + filename);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
 }
