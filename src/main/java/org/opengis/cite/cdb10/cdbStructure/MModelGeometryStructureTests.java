@@ -153,4 +153,59 @@ public class MModelGeometryStructureTests extends CommonFixture {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
+
+	/**
+	 * Validates that MModelGeometry DIS Category directories have valid codes/names.
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifyDISCategory() throws IOException {
+		ArrayList<String> errors = new ArrayList<String>();
+		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
+
+		for (Path kindDir : Files.newDirectoryStream(Paths.get(this.path, "MModel", "600_MModelGeometry"))) {
+			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
+
+			for (Path domainDir : domainDirs) {
+				DirectoryStream<Path> countryDirs = Files.newDirectoryStream(domainDir);
+
+				for (Path countryDir : countryDirs) {
+					DirectoryStream<Path> categoryDirs = Files.newDirectoryStream(countryDir);
+
+					for (Path categoryDir : categoryDirs) {
+						String filename = categoryDir.getFileName().toString();
+						String code = null;
+						Integer codeID = null;
+						String categoryName = null;
+						try {
+							code = filename.split("_")[0];
+							codeID = Integer.parseInt(code);
+							categoryName = filename.split("_")[1];
+						}
+						catch (NumberFormatException e) {
+							errors.add("Invalid number format: " + filename);
+						}
+						catch (ArrayIndexOutOfBoundsException e) {
+							errors.add("Missing kind name: " + filename);
+						}
+
+						if (codeID != null) {
+							if (codeID < 0) {
+								errors.add("Invalid prefix cannot be below 0: " + filename);
+							} else if (!mmcDefs.isValidCategoryCode(codeID)) {
+								errors.add("Invalid DIS Category code: " + filename);
+							} else if (!mmcDefs.isValidCategoryName(categoryName)) {
+								errors.add("Invalid DIS Category name: " + filename);
+							} else if (!mmcDefs.categoryNameForCode(codeID).equals(categoryName)) {
+								errors.add("Invalid DIS Category code/name combination: " + filename);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
 }

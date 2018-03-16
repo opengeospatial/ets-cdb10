@@ -89,7 +89,7 @@ public class VerifyMModelGeometryStructureTests extends TestFixture<MModelGeomet
 	public void verifyDISDomain_Mismatch() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
-				"1_Platform", "0_Tank")));
+				"1_Platform", "0_Land")));
 
 		// execute
 		this.testSuite.verifyDISDomain();
@@ -165,6 +165,58 @@ public class VerifyMModelGeometryStructureTests extends TestFixture<MModelGeomet
 
 		// execute
 		this.testSuite.verifyDISCountry();
+	}
+
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyDISCategory_InvalidCode() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "999_Other")));
+
+		// execute
+		this.testSuite.verifyDISCategory();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDISCategory_InvalidName() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Bogus")));
+
+		// execute
+		this.testSuite.verifyDISCategory();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDISCategory_Mismatch() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Tank")));
+
+		// execute
+		this.testSuite.verifyDISCategory();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDISCategory_InvalidFile() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "asdf")));
+
+		// execute
+		this.testSuite.verifyDISCategory();
+	}
+
+	@Test
+	public void verifyDISCategory_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Other")));
+
+		// execute
+		this.testSuite.verifyDISCategory();
 	}
 
 
