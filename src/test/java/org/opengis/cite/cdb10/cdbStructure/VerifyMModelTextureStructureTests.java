@@ -43,4 +43,36 @@ public class VerifyMModelTextureStructureTests extends TestFixture<MModelTexture
 		this.testSuite.verifyTNAMPrefix();
 	}
 
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyTNAMSecond_TooLong() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "BCD")));
+
+		// execute
+		this.testSuite.verifyTNAMSecond();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyTNAMSecond_WrongCase() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "b")));
+
+		// execute
+		this.testSuite.verifyTNAMSecond();
+	}
+
+	@Test
+	public void verifyTNAMSecond_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B")));
+
+		// execute
+		this.testSuite.verifyTNAMSecond();
+	}
+
 }
