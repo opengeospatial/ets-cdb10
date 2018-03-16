@@ -14,38 +14,47 @@ public class VerifyGTModelStructureTests extends TestFixture<GTModelStructureTes
 	}
 
 	@Test(expected = AssertionError.class)
-	public void verifyDatasetCodePrefix_BadShort() throws IOException {
+	public void verifyDataset_BadShort() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "5_GTModelGeometry")));
 
 		// execute
-		this.testSuite.verifyDatasetCodePrefix();
+		this.testSuite.verifyDataset();
 	}
 
 	@Test(expected = AssertionError.class)
-	public void verifyDatasetCodePrefix_BadNumber() throws IOException {
+	public void verifyDataset_BadNumber() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "5xx_GTModelGeometry")));
 
 		// execute
-		this.testSuite.verifyDatasetCodePrefix();
+		this.testSuite.verifyDataset();
 	}
 
 	@Test(expected = AssertionError.class)
-	public void verifyDatasetCodePrefix_BadRange() throws IOException {
+	public void verifyDataset_BadRange() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "-1_GTModelGeometry")));
 
 		// execute
-		this.testSuite.verifyDatasetCodePrefix();
+		this.testSuite.verifyDataset();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDataset_BadValue() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "999_GTModelGeometry")));
+
+		// execute
+		this.testSuite.verifyDataset();
 	}
 
 	@Test
-	public void verifyDatasetCodePrefix_Good() throws IOException {
+	public void verifyDataset_Good() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry")));
 
 		// execute
-		this.testSuite.verifyDatasetCodePrefix();
+		this.testSuite.verifyDataset();
 	}
 }
