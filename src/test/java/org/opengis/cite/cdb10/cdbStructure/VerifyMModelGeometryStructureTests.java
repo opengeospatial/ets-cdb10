@@ -54,13 +54,65 @@ public class VerifyMModelGeometryStructureTests extends TestFixture<MModelGeomet
 	}
 
 	@Test
-	public void verifyDISEntityKind() throws IOException {
+	public void verifyDISEntityKind_Good() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
 				"1_Platform")));
 
 		// execute
 		this.testSuite.verifyDISEntityKind();
+	}
+
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyDISDomain_InvalidCode() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "999_Other")));
+
+		// execute
+		this.testSuite.verifyDISDomain();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDISDomain_InvalidName() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Bogus")));
+
+		// execute
+		this.testSuite.verifyDISDomain();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDISDomain_Mismatch() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Tank")));
+
+		// execute
+		this.testSuite.verifyDISDomain();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDISDomain_InvalidFile() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "asdf")));
+
+		// execute
+		this.testSuite.verifyDISDomain();
+	}
+
+	@Test
+	public void verifyDISDomain_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other")));
+
+		// execute
+		this.testSuite.verifyDISDomain();
 	}
 
 }
