@@ -293,4 +293,94 @@ public class VerifyMModelSignatureStructureTests extends TestFixture<MModelSigna
 		this.testSuite.verifyLOD();
 	}
 
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_invalid() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
+				"asdf")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_invalidDataset() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
+				"D600_S001_T001_LC_0_0_0_0_0_0_0.shp")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_mismatchMMDC() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
+				"D606_S001_T001_LC_1_1_0_0_0_0_0.shp")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS1Length() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
+				"D606_S1_T001_LC_0_0_0_0_0_0_0.shp")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS1Type() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
+				"D606_SABC_T001_LC_0_0_0_0_0_0_0.shp")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS2Length() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
+				"D606_S001_T1_LC_0_0_0_0_0_0_0.shp")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS2Type() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
+				"D606_S001_TABC_LC_0_0_0_0_0_0_0.shp")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test
+	public void verifyFile_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
+				"D606_S001_T001_LC_0_0_0_0_0_0_0.shp")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
 }
