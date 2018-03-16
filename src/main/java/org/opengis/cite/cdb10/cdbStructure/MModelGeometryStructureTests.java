@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.opengis.cite.cdb10.CommonFixture;
@@ -199,6 +201,76 @@ public class MModelGeometryStructureTests extends CommonFixture {
 								errors.add("Invalid DIS Category name: " + filename);
 							} else if (!mmcDefs.categoryNameForCode(codeID).equals(categoryName)) {
 								errors.add("Invalid DIS Category code/name combination: " + filename);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
+
+	/**
+	 * Validates that MModelGeometry DIS Entity directories have valid codes/names.
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifyDISEntity() throws IOException {
+		ArrayList<String> errors = new ArrayList<String>();
+		Pattern entityPattern = Pattern.compile("^(?<kind>\\d+)_(?<domain>\\d+)_(?<country>\\d+)_(?<category>\\d+)_(\\d+)_(\\d+)_(\\d+)$");
+
+		for (Path kindDir : Files.newDirectoryStream(Paths.get(this.path, "MModel", "600_MModelGeometry"))) {
+			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
+			String kindFilename = kindDir.getFileName().toString();
+			String kindCode = kindFilename.split("_")[0];
+
+			for (Path domainDir : domainDirs) {
+				DirectoryStream<Path> countryDirs = Files.newDirectoryStream(domainDir);
+				String domainFilename = domainDir.getFileName().toString();
+				String domainCode = domainFilename.split("_")[0];
+
+				for (Path countryDir : countryDirs) {
+					DirectoryStream<Path> categoryDirs = Files.newDirectoryStream(countryDir);
+					String countryFilename = countryDir.getFileName().toString();
+					String countryCode = countryFilename.split("_")[0];
+
+					for (Path categoryDir : categoryDirs) {
+						DirectoryStream<Path> entityDirs = Files.newDirectoryStream(categoryDir);
+						String categoryFilename = categoryDir.getFileName().toString();
+						String categoryCode = categoryFilename.split("_")[0];
+
+						for (Path entityDir : entityDirs) {
+							String filename = entityDir.getFileName().toString();
+
+							if (StringUtils.countMatches(filename, "_") != 6) {
+								errors.add("Should be six underscore separators: " + filename);
+							} else {
+								Matcher match = entityPattern.matcher(filename);
+								if (!match.find()) {
+									errors.add("Invalid DIS entity directory name: " + filename);
+								} else {
+									if (!match.group("kind").equals(kindCode)) {
+										errors.add("DIS Entity Code does not match parent directory: "
+												+ filename);
+									}
+
+									if (!match.group("domain").equals(domainCode)) {
+										errors.add("DIS Entity Domain does not match parent directory: "
+												+ filename);
+									}
+
+									if (!match.group("country").equals(countryCode)) {
+										errors.add("DIS Country Code does not match parent directory: "
+												+ filename);
+									}
+
+									if (!match.group("category").equals(categoryCode)) {
+										errors.add("DIS Entity Category does not match parent directory: "
+												+ filename);
+									}
+								}
 							}
 						}
 					}

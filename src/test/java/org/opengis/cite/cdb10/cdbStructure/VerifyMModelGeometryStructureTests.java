@@ -221,6 +221,34 @@ public class VerifyMModelGeometryStructureTests extends TestFixture<MModelGeomet
 
 
 
+	@Test(expected = AssertionError.class)
+	public void verifyDISEntity_InvalidFile() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "asdf")));
 
+		// execute
+		this.testSuite.verifyDISEntity();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDISEntity_Mismatch() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0")));
+
+		// execute
+		this.testSuite.verifyDISEntity();
+	}
+
+	@Test
+	public void verifyDISEntity_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "1_0_0_0_0_0_0")));
+
+		// execute
+		this.testSuite.verifyDISEntity();
+	}
 
 }
