@@ -57,4 +57,56 @@ public class VerifyGTModelStructureTests extends TestFixture<GTModelStructureTes
 		// execute
 		this.testSuite.verifyDataset();
 	}
+
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyCategory_WrongCategory() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"B_Culture")));
+
+		// execute
+		this.testSuite.verifyCategory();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyCategory_WrongLabel() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Hydrography")));
+
+		// execute
+		this.testSuite.verifyCategory();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyCategory_UnspecifiedCategory() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"Z_Culture")));
+
+		// execute
+		this.testSuite.verifyCategory();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyCategory_UnspecifiedLabel() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Bogus")));
+
+		// execute
+		this.testSuite.verifyCategory();
+	}
+
+	@Test
+	public void verifyCategory_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Culture")));
+
+		// execute
+		this.testSuite.verifyCategory();
+	}
 }
