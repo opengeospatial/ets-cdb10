@@ -251,4 +251,116 @@ public class VerifyMModelGeometryStructureTests extends TestFixture<MModelGeomet
 		this.testSuite.verifyDISEntity();
 	}
 
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_invalid() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0",
+				"asdf")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_invalidDataset() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0",
+				"D604_S001_T001_0_0_0_0_0_0_0.flt")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_invalidExtension() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0",
+				"D600_S001_T001_0_0_0_0_0_0_0.txt")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_mismatchExtension() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0",
+				"D600_S001_T001_0_0_0_0_0_0_0.xml")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_mismatchMMDC() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0",
+				"D600_S001_T001_1_1_0_0_0_0_0.flt")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS1Length() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0",
+				"D600_S1_T001_0_0_0_0_0_0_0.flt")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS1Type() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0",
+				"D600_SABC_T001_0_0_0_0_0_0_0.flt")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS2Length() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0",
+				"D600_S001_T1_0_0_0_0_0_0_0.flt")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS2Type() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0",
+				"D600_S001_TABC_0_0_0_0_0_0_0.flt")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test
+	public void verifyFile_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0",
+				"D600_S001_T001_0_0_0_0_0_0_0.flt")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
 }
