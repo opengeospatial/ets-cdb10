@@ -102,4 +102,55 @@ public class MModelGeometryStructureTests extends CommonFixture {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
+
+	/**
+	 * Validates that MModelGeometry DIS Country directories have valid codes/names.
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifyDISCountry() throws IOException {
+		ArrayList<String> errors = new ArrayList<String>();
+		DISCountryCodesXml dccDefs = new DISCountryCodesXml("src/test/resources/CDB");
+
+		for (Path kindDir : Files.newDirectoryStream(Paths.get(this.path, "MModel", "600_MModelGeometry"))) {
+			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
+
+			for (Path domainDir : domainDirs) {
+				DirectoryStream<Path> countryDirs = Files.newDirectoryStream(domainDir);
+
+				for (Path countryDir : countryDirs) {
+					String filename = countryDir.getFileName().toString();
+					String code = null;
+					Integer codeID = null;
+					String countryName = null;
+					try {
+						code = filename.split("_")[0];
+						codeID = Integer.parseInt(code);
+						countryName = filename.split("_")[1];
+					}
+					catch (NumberFormatException e) {
+						errors.add("Invalid number format: " + filename);
+					}
+					catch (ArrayIndexOutOfBoundsException e) {
+						errors.add("Missing kind name: " + filename);
+					}
+
+					if (codeID != null) {
+						if (codeID < 0) {
+							errors.add("Invalid prefix cannot be below 0: " + filename);
+						} else if (!dccDefs.isValidCountryCode(codeID)) {
+							errors.add("Invalid DIS Country code: " + filename);
+						} else if (!dccDefs.isValidCountryName(countryName)) {
+							errors.add("Invalid DIS Country name: " + filename);
+						} else if (!dccDefs.countryNameForCode(codeID).equals(countryName)) {
+							errors.add("Invalid DIS Country code/name combination: " + filename);
+						}
+					}
+				}
+			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
 }

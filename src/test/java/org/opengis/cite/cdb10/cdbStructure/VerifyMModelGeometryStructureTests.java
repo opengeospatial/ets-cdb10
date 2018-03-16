@@ -115,4 +115,60 @@ public class VerifyMModelGeometryStructureTests extends TestFixture<MModelGeomet
 		this.testSuite.verifyDISDomain();
 	}
 
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyDISCountry_InvalidCode() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "999_Other")));
+
+		// execute
+		this.testSuite.verifyDISCountry();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDISCountry_InvalidName() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Bogus")));
+
+		// execute
+		this.testSuite.verifyDISCountry();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDISCountry_Mismatch() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Afghanistan")));
+
+		// execute
+		this.testSuite.verifyDISCountry();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDISCountry_InvalidFile() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "asdf")));
+
+		// execute
+		this.testSuite.verifyDISCountry();
+	}
+
+	@Test
+	public void verifyDISCountry_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "600_MModelGeometry",
+				"1_Platform", "0_Other", "0_Other")));
+
+		// execute
+		this.testSuite.verifyDISCountry();
+	}
+
+
+
+
+
 }
