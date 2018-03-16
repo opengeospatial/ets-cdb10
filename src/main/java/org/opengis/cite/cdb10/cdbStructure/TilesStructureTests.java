@@ -387,4 +387,89 @@ public class TilesStructureTests extends CommonFixture {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
+
+	/**
+	 * Validates that tiled dataset files have valid names.
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifyDatasetFileName() throws IOException {
+		ArrayList<String> errors = new ArrayList<String>();
+		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(Paths.get(this.path, "Tiles"));
+		Pattern filePattern = Pattern.compile("^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<CS1>[0-9]{3})_T(?<CS2>[0-9]{3})_(?<lod>LC|L[0-9]{2})_(?<uref>U[0-9]+)_R(?<rref>[0-9]+)\\.(?<ext>.+)$");
+
+		for (Path latCell : latitudeCells) {
+			String latFilename = latCell.getFileName().toString();
+			DirectoryStream<Path> longitudeCells = Files.newDirectoryStream(latCell);
+
+			for (Path lonCell : longitudeCells) {
+				String lonFilename = lonCell.getFileName().toString();
+				DirectoryStream<Path> datasets = Files.newDirectoryStream(lonCell);
+
+				for (Path dataset : datasets) {
+					String datasetFilename = dataset.getFileName().toString();
+					DirectoryStream<Path> lods = Files.newDirectoryStream(dataset);
+
+					for (Path lod : lods) {
+						String lodFilename = lod.getFileName().toString();
+						DirectoryStream<Path> urefs = Files.newDirectoryStream(lod);
+
+						for (Path uref : urefs) {
+							String urefFilename = uref.getFileName().toString();
+							DirectoryStream<Path> datasetFiles = Files.newDirectoryStream(uref);
+
+							for (Path datasetFile : datasetFiles) {
+								String filename = datasetFile.getFileName().toString();
+								Matcher match = filePattern.matcher(filename);
+								if (!match.find()) {
+									errors.add("Invalid dataset file name: " + filename);
+								} else {
+									if (!match.group("lat").equals(latFilename)) {
+										errors.add("Latitude geocell prefix does not match parent directory: "
+												+ filename);
+									}
+
+									if (!match.group("lon").equals(lonFilename)) {
+										errors.add("Longitude geocell prefix does not match parent directory: "
+												+ filename);
+									}
+
+									if (!match.group("datasetCode").equals(datasetFilename.substring(0, 3))) {
+										errors.add("Dataset code does not match parent directory: "
+												+ filename);
+									}
+
+									if (!match.group("lod").equals(lodFilename)) {
+										errors.add("LOD does not match parent directory: " + filename);
+									}
+
+									if (!match.group("uref").equals(urefFilename)) {
+										errors.add("UREF does not match parent directory: " + filename);
+									}
+
+									Integer lodLevel = null;
+									if (lodFilename.equals("LC")) {
+										lodLevel = 0;
+									} else {
+										lodLevel = Integer.parseInt(lodFilename.substring(1, lodFilename.length()));
+									}
+
+									if (Integer.parseInt(match.group("rref")) > (Math.pow(2, lodLevel) - 1)) {
+										errors.add("RREF out of bounds for LOD: " + filename);
+									}
+
+								}
+							}
+
+						}
+					}
+
+				}
+
+			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
 }

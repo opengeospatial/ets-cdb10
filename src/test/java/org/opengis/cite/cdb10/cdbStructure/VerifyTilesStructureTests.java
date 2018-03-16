@@ -2,6 +2,7 @@ package org.opengis.cite.cdb10.cdbStructure;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.Test;
@@ -385,5 +386,205 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 
 		// execute
 		this.testSuite.verifyUREFName();
+	}
+
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_BadLatHemis() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("A06E045_D001_S001_T001_L02_U3_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_BadLat() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S6E045_D001_S001_T001_L02_U3_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_BadLonHemis() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06A045_D001_S001_T001_L02_U3_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_BadLon() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E45_D001_S001_T001_L02_U3_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_BadDatasetCode() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E045_D1_S001_T001_L02_U3_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_BadCS1Code() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S1_T001_L02_U3_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_BadCS2Code() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T1_L02_U3_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_BadLOD() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_LA_U3_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_BadUREF() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_L02_UT_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_BadRREF() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_L02_U3_RA.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_NoExt() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_L02_U3_R0.")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_MismatchLat() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S07E045_D001_S001_T001_L02_U3_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_MismatchLon() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E046_D001_S001_T001_L02_U3_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_MismatchDataset() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E045_D002_S001_T001_L02_U3_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_MismatchLOD() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_L03_U3_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_MismatchUREF() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_L02_U4_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_RREFOutOfBounds() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_L02_U3_R10.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test
+	public void verifyDatasetFileName_Good() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_L02_U3_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
 	}
 }
