@@ -44,11 +44,11 @@ public class MModelGeometryStructureTests extends CommonFixture {
 				if (codeID < 1) {
 					errors.add("Invalid prefix cannot be below 1: " + filename);
 				} else if (!mmcDefs.isValidKindCode(codeID)) {
-					errors.add("Invalid dataset code: " + filename);
+					errors.add("Invalid DIS Entity Kind code: " + filename);
 				} else if (!mmcDefs.isValidKindName(kindName)) {
-					errors.add("Invalid dataset name: " + filename);
+					errors.add("Invalid DIS Entity Kind name: " + filename);
 				} else if (!mmcDefs.kindNameForCode(codeID).equals(kindName)) {
-					errors.add("Invalid dataset code/name combination: " + filename);
+					errors.add("Invalid DIS Entity Kind code/name combination: " + filename);
 				}
 			}
 		}
