@@ -88,15 +88,15 @@ public class GTModelStructureTests extends CommonFixture {
 				}
 
 				if ((code != null) && (categoryLabel != null)) {
-					if (!fddDefs.isValidCode(code)) {
+					if (!fddDefs.isValidCategoryCode(code)) {
 						errors.add("Invalid category code: " + filename);
 					}
 
-					if (!fddDefs.isValidLabel(categoryLabel)) {
+					if (!fddDefs.isValidCategoryLabel(categoryLabel)) {
 						errors.add("Invalid category label: " + filename);
 					}
 
-					if (!fddDefs.isLabelInCode(categoryLabel, code)) {
+					if (!fddDefs.isCategoryLabelinCategoryCode(categoryLabel, code)) {
 						errors.add("Category label not a child of category code: " + filename);
 					}
 				}

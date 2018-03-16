@@ -11,7 +11,7 @@ public class FeatureDataDictionaryXml extends MetadataXmlFile {
 		super(path, "Feature_Data_Dictionary.xml", "Feature_Data_Dictionary.xsd");
 	}
 
-	public boolean isValidCode(String code) {
+	public boolean isValidCategoryCode(String code) {
 		NodeList nodeList = XMLUtils.getNodeList("/Feature_Data_Dictionary/Category", this.xmlFile.toPath());
 
 		ArrayList<String> codes = new ArrayList<String>();
@@ -24,7 +24,7 @@ public class FeatureDataDictionaryXml extends MetadataXmlFile {
 		return codes.contains(code);
 	}
 
-	public boolean isValidLabel(String label) {
+	public boolean isValidCategoryLabel(String label) {
 		NodeList nodeList = XMLUtils.getNodeList("/Feature_Data_Dictionary/Category/Label",
 				this.xmlFile.toPath());
 
@@ -38,7 +38,7 @@ public class FeatureDataDictionaryXml extends MetadataXmlFile {
 		return labels.contains(label);
 	}
 
-	public boolean isLabelInCode(String label, String code) {
+	public boolean isCategoryLabelinCategoryCode(String label, String code) {
 		NodeList matches = XMLUtils.getNodeList("/Feature_Data_Dictionary/Category[@code=\"" + code +
 				"\"]/Label[. = \"" + label + "\"]", this.xmlFile.toPath());
 
