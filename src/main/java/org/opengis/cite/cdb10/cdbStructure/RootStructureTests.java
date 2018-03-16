@@ -24,18 +24,17 @@ public class RootStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyRootContents() throws IOException {
+		ArrayList<String> errors = new ArrayList<String>();
 		ArrayList<String> permittedRootDirectories = new ArrayList<String>(
 				Arrays.asList("Metadata", "GTModel", "MModel", "Tiles", "Navigation"));
-		ArrayList<String> invalidFiles = new ArrayList<String>();
 
 		for (Path file : Files.newDirectoryStream(Paths.get(this.path))) {
 			String filename = file.getFileName().toString();
 			if (!permittedRootDirectories.contains(filename)) {
-				invalidFiles.add(filename);
+				errors.add("Invalid file in root directory: " + filename);
 			}
 		}
 
-		Assert.assertTrue(invalidFiles.size() == 0,
-				"Invalid files in root directory: " + StringUtils.join(invalidFiles, ", "));
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
 }
