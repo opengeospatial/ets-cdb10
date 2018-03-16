@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.opengis.cite.cdb10.CommonFixture;
@@ -209,6 +211,44 @@ public class GTModelStructureTests extends CommonFixture {
 								errors.add("Subcategory label not a child of subcategory code: " + filename);
 							}
 						}
+					}
+				}
+			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
+
+	/**
+	 * Validates that GTModel LOD directories have valid names.
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifyLOD() throws IOException {
+		ArrayList<String> errors = new ArrayList<String>();
+		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
+
+		for (Path dataset : Files.newDirectoryStream(Paths.get(this.path, "GTModel"))) {
+			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
+
+			for (Path category : categories) {
+				DirectoryStream<Path> subcategories = Files.newDirectoryStream(category);
+
+				for (Path subcategory : subcategories) {
+					DirectoryStream<Path> featureTypes = Files.newDirectoryStream(subcategory);
+
+					for (Path featureType : featureTypes) {
+						DirectoryStream<Path> lods = Files.newDirectoryStream(featureType);
+
+						for (Path lod : lods) {
+							String filename = lod.getFileName().toString();
+							Matcher match = LODPattern.matcher(filename);
+							if (!match.find()) {
+								errors.add("Invalid LOD name: " + filename);
+							}
+						}
+
 					}
 				}
 			}

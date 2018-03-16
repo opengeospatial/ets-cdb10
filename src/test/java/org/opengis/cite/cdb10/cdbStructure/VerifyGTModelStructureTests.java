@@ -213,4 +213,46 @@ public class VerifyGTModelStructureTests extends TestFixture<GTModelStructureTes
 		// execute
 		this.testSuite.verifyFeatureType();
 	}
+
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyLOD_BadLevel() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Culture", "A_Extraction", "010_Mine", "LA")));
+
+		// execute
+		this.testSuite.verifyLOD();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyLOD_TooHigh() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Culture", "A_Extraction", "010_Mine", "L99")));
+
+		// execute
+		this.testSuite.verifyLOD();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyLOD_NoPadding() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Culture", "A_Extraction", "010_Mine", "L9")));
+
+		// execute
+		this.testSuite.verifyLOD();
+	}
+
+	@Test
+	public void verifyLOD_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Culture", "A_Extraction", "010_Mine", "L23")));
+
+		// execute
+		this.testSuite.verifyLOD();
+	}
 }
