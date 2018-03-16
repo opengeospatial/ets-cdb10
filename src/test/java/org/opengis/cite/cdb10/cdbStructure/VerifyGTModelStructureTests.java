@@ -109,4 +109,56 @@ public class VerifyGTModelStructureTests extends TestFixture<GTModelStructureTes
 		// execute
 		this.testSuite.verifyCategory();
 	}
+
+
+
+	@Test(expected = AssertionError.class)
+	public void verifySubcategory_WrongCategory() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Culture", "B_Extraction")));
+
+		// execute
+		this.testSuite.verifySubcategory();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifySubcategory_WrongLabel() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Culture", "A_Disposal")));
+
+		// execute
+		this.testSuite.verifySubcategory();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifySubcategory_UnspecifiedCategory() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Culture", "ZZZZ_Extraction")));
+
+		// execute
+		this.testSuite.verifySubcategory();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifySubcategory_UnspecifiedLabel() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Culture", "A_Bogus")));
+
+		// execute
+		this.testSuite.verifySubcategory();
+	}
+
+	@Test
+	public void verifySubcategory_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Culture", "A_Extraction")));
+
+		// execute
+		this.testSuite.verifySubcategory();
+	}
 }

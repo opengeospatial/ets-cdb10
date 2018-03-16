@@ -16,6 +16,13 @@ public class FeatureDataDictionaryXml extends MetadataXmlFile {
 		return (matches.getLength() > 0);
 	}
 
+	public boolean isValidSubcategoryCode(String code) {
+		NodeList matches = XMLUtils.getNodeList("/Feature_Data_Dictionary/Category/Subcategory[@code = \"" +
+				code + "\"]", this.xmlFile.toPath());
+
+		return (matches.getLength() > 0);
+	}
+
 	public boolean isValidCategoryLabel(String label) {
 		NodeList matches = XMLUtils.getNodeList("/Feature_Data_Dictionary/Category/Label[. = \"" + label +
 				"\"]", this.xmlFile.toPath());
@@ -23,9 +30,23 @@ public class FeatureDataDictionaryXml extends MetadataXmlFile {
 		return (matches.getLength() > 0);
 	}
 
+	public boolean isValidSubcategoryLabel(String label) {
+		NodeList matches = XMLUtils.getNodeList("/Feature_Data_Dictionary/Category/Subcategory/Label[. = \""
+				+ label + "\"]", this.xmlFile.toPath());
+
+		return (matches.getLength() > 0);
+	}
+
 	public boolean isCategoryLabelinCategoryCode(String label, String code) {
 		NodeList matches = XMLUtils.getNodeList("/Feature_Data_Dictionary/Category[@code=\"" + code +
 				"\"]/Label[. = \"" + label + "\"]", this.xmlFile.toPath());
+
+		return (matches.getLength() > 0);
+	}
+
+	public boolean isSubcategoryLabelinSubcategoryCode(String label, String code) {
+		NodeList matches = XMLUtils.getNodeList("/Feature_Data_Dictionary/Category/Subcategory[@code=\"" +
+				code + "\"]/Label[. = \"" + label + "\"]", this.xmlFile.toPath());
 
 		return (matches.getLength() > 0);
 	}

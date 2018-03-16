@@ -105,4 +105,55 @@ public class GTModelStructureTests extends CommonFixture {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
+
+	/**
+	 * Validates that GTModel Sub-Category directories have valid codes/names.
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifySubcategory() throws IOException {
+		ArrayList<String> errors = new ArrayList<String>();
+		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml("src/test/resources/CDB");
+
+		for (Path dataset : Files.newDirectoryStream(Paths.get(this.path, "GTModel"))) {
+			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
+
+			for (Path category : categories) {
+				DirectoryStream<Path> subcategories = Files.newDirectoryStream(category);
+
+				for (Path subcategory : subcategories) {
+					String filename = subcategory.getFileName().toString();
+					String code = null;
+					String subcategoryLabel = null;
+					try {
+						code = filename.substring(0, 1);
+						subcategoryLabel = filename.split("_")[1];
+					}
+					catch (StringIndexOutOfBoundsException e) {
+						errors.add("Invalid prefix length: " + filename);
+					}
+					catch (ArrayIndexOutOfBoundsException e) {
+						errors.add("Missing dataset name: " + filename);
+					}
+
+					if ((code != null) && (subcategoryLabel != null)) {
+						if (!fddDefs.isValidSubcategoryCode(code)) {
+							errors.add("Invalid subcategory code: " + filename);
+						}
+
+						if (!fddDefs.isValidSubcategoryLabel(subcategoryLabel)) {
+							errors.add("Invalid subcategory label: " + filename);
+						}
+
+						if (!fddDefs.isSubcategoryLabelinSubcategoryCode(subcategoryLabel, code)) {
+							errors.add("Subcategory label not a child of subcategory code: " + filename);
+						}
+					}
+				}
+			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
 }
