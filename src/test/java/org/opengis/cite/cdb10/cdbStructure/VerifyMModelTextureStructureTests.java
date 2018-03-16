@@ -75,4 +75,56 @@ public class VerifyMModelTextureStructureTests extends TestFixture<MModelTexture
 		this.testSuite.verifyTNAMSecond();
 	}
 
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyTNAM_TooShort() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B", "A")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyTNAM_TooLong() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyTNAM_WrongChars() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B", "$$AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyTNAM_Mismatch() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B", "AC_1")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+
+	@Test
+	public void verifyTNAM_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B", "AB_1")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+
 }
