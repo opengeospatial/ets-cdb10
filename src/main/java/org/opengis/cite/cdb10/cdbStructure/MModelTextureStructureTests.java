@@ -113,4 +113,111 @@ public class MModelTextureStructureTests extends CommonFixture {
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
 
+	/**
+	 * Validates that MModelTexture filenames have valid codes/names.
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifyFile() throws IOException {
+		ArrayList<String> errors = new ArrayList<String>();
+		/*
+		 * Example of valid filename:
+		 * D601_S005_T001_W10_M1A2_SEP.rgb
+		 */
+		Pattern filePattern = Pattern.compile(
+				"^(?<dataset>D601|D604|D605)_S(?<cs1>\\d+)_T(?<cs2>\\d+)_W(?<tsc>\\d{2})_(?<tnam>[^.]+)\\.(?<ext>.+)$");
+
+		for (Path firstDir : Files.newDirectoryStream(Paths.get(this.path, "MModel", "601_MModelTexture"))) {
+			DirectoryStream<Path> secondDirs = Files.newDirectoryStream(firstDir);
+
+			for (Path secondDir : secondDirs) {
+				DirectoryStream<Path> textureNames = Files.newDirectoryStream(secondDir);
+
+				for (Path textureName : textureNames) {
+					DirectoryStream<Path> files = Files.newDirectoryStream(textureName);
+					String textureNameFilename = textureName.getFileName().toString();
+
+					for (Path file : files) {
+						String filename = file.getFileName().toString();
+
+						if (StringUtils.countMatches(filename, "_") != 4) {
+							errors.add("Should be four underscore separators: " + filename);
+						} else {
+							Matcher match = filePattern.matcher(filename);
+							if (!match.find()) {
+								errors.add("Invalid file name: " + filename);
+							} else {
+								String dataset = match.group("dataset");
+
+								if (!dataset.equals("D601") && !dataset.equals("D604") &&
+										!dataset.equals("D605")) {
+									errors.add("Invalid dataset: " + filename);
+								}
+
+								if (dataset.equals("D601") && !match.group("ext").equals("rgb")) {
+									errors.add("Invalid file extension for D601: " + filename);
+								}
+
+								if (dataset.equals("D604") && !match.group("ext").equals("tif")) {
+									errors.add("Invalid file extension for D604: " + filename);
+								}
+
+								if (dataset.equals("D605") && !match.group("ext").equals("xml")) {
+									errors.add("Invalid file extension for D605: " + filename);
+								}
+
+								if (!match.group("tnam").equals(textureNameFilename)) {
+									errors.add("Texture Name Code does not match parent directory: "
+											+ filename);
+								}
+
+								if (match.group("cs1").length() != 3) {
+									errors.add("Component Selector 1 should be 3 characters: " + filename);
+								}
+
+								try {
+									Integer cs1 = Integer.parseInt(match.group("cs1"));
+
+									if (((cs1 < 10) && !match.group("cs1").substring(0,2).equals("00")) ||
+											((cs1 < 100) && !match.group("cs1").substring(0,1).equals("0"))) {
+										errors.add("Invalid padding on CS1: " + filename);
+									}
+								}
+								catch (NumberFormatException e) {
+									errors.add("Invalid CS1 number format: " + filename);
+								}
+								catch (StringIndexOutOfBoundsException e) {
+									errors.add("Invalid CS1 length: " + filename);
+								}
+
+								if (match.group("cs2").length() != 3) {
+									errors.add("Component Selector 2 should be 3 characters: " + filename);
+								}
+
+								try {
+									Integer cs2 = Integer.parseInt(match.group("cs2"));
+
+									if (((cs2 < 10) && !match.group("cs2").substring(0,2).equals("00")) ||
+											((cs2 < 100) && !match.group("cs2").substring(0,1).equals("0"))) {
+										errors.add("Invalid padding on CS2: " + filename);
+									}
+								}
+								catch (NumberFormatException e) {
+									errors.add("Invalid CS2 number format: " + filename);
+								}
+								catch (StringIndexOutOfBoundsException e) {
+									errors.add("Invalid CS2 length: " + filename);
+								}
+
+							}
+						}
+					}
+				}
+			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
+
 }

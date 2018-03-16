@@ -127,4 +127,106 @@ public class VerifyMModelTextureStructureTests extends TestFixture<MModelTexture
 		this.testSuite.verifyTNAM();
 	}
 
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_invalid() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B", "AB", "asdf")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_invalidDataset() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B", "AB", "D600_S001_T001_W10_AB.rgb")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_invalidExtension() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B", "AB", "D601_S001_T001_W10_AB.txt")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_mismatchExtension() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B", "AB", "D601_S001_T001_W10_AB.xml")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_mismatchMMDC() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B", "AB", "D601_S001_T001_W10_ABCD.rgb")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS1Length() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B", "AB", "D601_S1_T001_W10_AB.rgb")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS1Type() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B", "AB", "D601_SABC_T001_W10_AB.rgb")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS2Length() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B", "AB", "D601_S001_T1_W10_AB.rgb")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS2Type() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B", "AB", "D601_S001_TABC_W10_AB.rgb")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test
+	public void verifyFile_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
+				"A", "B", "AB", "D601_S001_T001_W10_AB.rgb")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+
 }
