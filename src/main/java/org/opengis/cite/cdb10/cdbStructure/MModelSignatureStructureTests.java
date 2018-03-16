@@ -281,4 +281,45 @@ public class MModelSignatureStructureTests extends CommonFixture {
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
 
+	/**
+	 * Validates that MModelSignature LOD directories have valid names.
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifyLOD() throws IOException {
+		ArrayList<String> errors = new ArrayList<String>();
+		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
+
+		for (Path kindDir : Files.newDirectoryStream(Paths.get(this.path, "MModel", "606_MModelSignature"))) {
+			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
+
+			for (Path domainDir : domainDirs) {
+				DirectoryStream<Path> countryDirs = Files.newDirectoryStream(domainDir);
+
+				for (Path countryDir : countryDirs) {
+					DirectoryStream<Path> categoryDirs = Files.newDirectoryStream(countryDir);
+
+					for (Path categoryDir : categoryDirs) {
+						DirectoryStream<Path> entityDirs = Files.newDirectoryStream(categoryDir);
+
+						for (Path entityDir : entityDirs) {
+							DirectoryStream<Path> lods = Files.newDirectoryStream(entityDir);
+
+							for (Path lod : lods) {
+								String filename = lod.getFileName().toString();
+								Matcher match = LODPattern.matcher(filename);
+								if (!match.find()) {
+									errors.add("Invalid LOD name: " + filename);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
+
 }

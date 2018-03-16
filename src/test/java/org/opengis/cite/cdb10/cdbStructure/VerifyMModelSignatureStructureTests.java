@@ -251,4 +251,46 @@ public class VerifyMModelSignatureStructureTests extends TestFixture<MModelSigna
 		this.testSuite.verifyDISEntity();
 	}
 
+
+
+	@Test(expected = AssertionError.class)
+	public void verifyLOD_BadLevel() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "1_0_0_0_0_0_0", "LA")));
+
+		// execute
+		this.testSuite.verifyLOD();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyLOD_TooHigh() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "1_0_0_0_0_0_0", "L99")));
+
+		// execute
+		this.testSuite.verifyLOD();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyLOD_NoPadding() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "1_0_0_0_0_0_0", "L9")));
+
+		// execute
+		this.testSuite.verifyLOD();
+	}
+
+	@Test
+	public void verifyLOD_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "1_0_0_0_0_0_0", "L23")));
+
+		// execute
+		this.testSuite.verifyLOD();
+	}
+
 }
