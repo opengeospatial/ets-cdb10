@@ -23,13 +23,14 @@ public class GTModelStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyDataset() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		DatasetsXml datasetDefs = new DatasetsXml("src/test/resources/CDB");
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
 		if (Files.notExists(gtModelsPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		DatasetsXml datasetDefs = new DatasetsXml("src/test/resources/CDB");
 
 		for (Path file : Files.newDirectoryStream(gtModelsPath)) {
 			String filename = file.getFileName().toString();
@@ -75,13 +76,14 @@ public class GTModelStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyCategory() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml("src/test/resources/CDB");
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
 		if (Files.notExists(gtModelsPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml("src/test/resources/CDB");
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
@@ -128,13 +130,14 @@ public class GTModelStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifySubcategory() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml("src/test/resources/CDB");
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
 		if (Files.notExists(gtModelsPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml("src/test/resources/CDB");
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
@@ -185,13 +188,14 @@ public class GTModelStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyFeatureType() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml("src/test/resources/CDB");
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
 		if (Files.notExists(gtModelsPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml("src/test/resources/CDB");
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
@@ -251,13 +255,14 @@ public class GTModelStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyLOD() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
 		if (Files.notExists(gtModelsPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);

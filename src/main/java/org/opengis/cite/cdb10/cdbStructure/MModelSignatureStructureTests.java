@@ -23,13 +23,14 @@ public class MModelSignatureStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyDISEntityKind() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
 		if (Files.notExists(mmsPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
 
 		for (Path kindDir : Files.newDirectoryStream(mmsPath)) {
 			String filename = kindDir.getFileName().toString();
@@ -72,13 +73,14 @@ public class MModelSignatureStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyDISDomain() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
 		if (Files.notExists(mmsPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
 
 		for (Path kindDir : Files.newDirectoryStream(mmsPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
@@ -125,13 +127,14 @@ public class MModelSignatureStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyDISCountry() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		DISCountryCodesXml dccDefs = new DISCountryCodesXml("src/test/resources/CDB");
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
 		if (Files.notExists(mmsPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		DISCountryCodesXml dccDefs = new DISCountryCodesXml("src/test/resources/CDB");
 
 		for (Path kindDir : Files.newDirectoryStream(mmsPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
@@ -182,13 +185,14 @@ public class MModelSignatureStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyDISCategory() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
 		if (Files.notExists(mmsPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
 
 		for (Path kindDir : Files.newDirectoryStream(mmsPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
@@ -243,13 +247,14 @@ public class MModelSignatureStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyDISEntity() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		Pattern entityPattern = Pattern.compile("^(?<kind>\\d+)_(?<domain>\\d+)_(?<country>\\d+)_(?<category>\\d+)_(\\d+)_(\\d+)_(\\d+)$");
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
 		if (Files.notExists(mmsPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		Pattern entityPattern = Pattern.compile("^(?<kind>\\d+)_(?<domain>\\d+)_(?<country>\\d+)_(?<category>\\d+)_(\\d+)_(\\d+)_(\\d+)$");
 
 		for (Path kindDir : Files.newDirectoryStream(mmsPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
@@ -319,13 +324,14 @@ public class MModelSignatureStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyLOD() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
 		if (Files.notExists(mmsPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
 
 		for (Path kindDir : Files.newDirectoryStream(mmsPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
@@ -366,6 +372,12 @@ public class MModelSignatureStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyFile() throws IOException {
+		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
+
+		if (Files.notExists(mmsPath)) {
+			return;
+		}
+
 		ArrayList<String> errors = new ArrayList<String>();
 		/*
 		 * Example of valid filename:
@@ -376,11 +388,6 @@ public class MModelSignatureStructureTests extends CommonFixture {
 						"_(?<domain>\\d+)_(?<country>\\d+)_(?<category>\\d+)_(\\d+)_(\\d+)_(\\d+))\\." +
 						"(?<ext>.+)$"
 				);
-		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
-
-		if (Files.notExists(mmsPath)) {
-			return;
-		}
 
 		for (Path kindDir : Files.newDirectoryStream(mmsPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);

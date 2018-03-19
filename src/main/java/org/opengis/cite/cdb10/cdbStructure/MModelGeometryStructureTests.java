@@ -23,13 +23,14 @@ public class MModelGeometryStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyDISEntityKind() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
 		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
 		if (Files.notExists(mmodelGeomPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
 
 		for (Path kindDir : Files.newDirectoryStream(mmodelGeomPath)) {
 			String filename = kindDir.getFileName().toString();
@@ -72,13 +73,14 @@ public class MModelGeometryStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyDISDomain() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
 		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
 		if (Files.notExists(mmodelGeomPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
 
 		for (Path kindDir : Files.newDirectoryStream(mmodelGeomPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
@@ -125,13 +127,14 @@ public class MModelGeometryStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyDISCountry() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		DISCountryCodesXml dccDefs = new DISCountryCodesXml("src/test/resources/CDB");
 		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
 		if (Files.notExists(mmodelGeomPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		DISCountryCodesXml dccDefs = new DISCountryCodesXml("src/test/resources/CDB");
 
 		for (Path kindDir : Files.newDirectoryStream(mmodelGeomPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
@@ -182,13 +185,14 @@ public class MModelGeometryStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyDISCategory() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
 		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
 		if (Files.notExists(mmodelGeomPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
 
 		for (Path kindDir : Files.newDirectoryStream(mmodelGeomPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
@@ -243,13 +247,14 @@ public class MModelGeometryStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyDISEntity() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		Pattern entityPattern = Pattern.compile("^(?<kind>\\d+)_(?<domain>\\d+)_(?<country>\\d+)_(?<category>\\d+)_(\\d+)_(\\d+)_(\\d+)$");
 		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
 		if (Files.notExists(mmodelGeomPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		Pattern entityPattern = Pattern.compile("^(?<kind>\\d+)_(?<domain>\\d+)_(?<country>\\d+)_(?<category>\\d+)_(\\d+)_(\\d+)_(\\d+)$");
 
 		for (Path kindDir : Files.newDirectoryStream(mmodelGeomPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
@@ -319,6 +324,12 @@ public class MModelGeometryStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyFile() throws IOException {
+		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
+
+		if (Files.notExists(mmodelGeomPath)) {
+			return;
+		}
+
 		ArrayList<String> errors = new ArrayList<String>();
 		/*
 		 * Example of valid filename:
@@ -329,11 +340,6 @@ public class MModelGeometryStructureTests extends CommonFixture {
 						"_(?<domain>\\d+)_(?<country>\\d+)_(?<category>\\d+)_(\\d+)_(\\d+)_(\\d+))\\." +
 						"(?<ext>.+)$"
 				);
-		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
-
-		if (Files.notExists(mmodelGeomPath)) {
-			return;
-		}
 
 		for (Path kindDir : Files.newDirectoryStream(mmodelGeomPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);

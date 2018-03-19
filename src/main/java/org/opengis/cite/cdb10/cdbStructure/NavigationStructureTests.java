@@ -20,12 +20,13 @@ public class NavigationStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyDatasets() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
 		Path navPath = Paths.get(this.path, "Navigation");
 
 		if (Files.notExists(navPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
 
 		for (Path file : Files.newDirectoryStream(navPath)) {
 			String filename = file.getFileName().toString();
@@ -45,17 +46,18 @@ public class NavigationStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyFile() throws IOException {
+		Path navPath = Paths.get(this.path, "Navigation", "400_NavDat");
+
+		if (Files.notExists(navPath)) {
+			return;
+		}
+
 		ArrayList<String> errors = new ArrayList<String>();
 		/*
 		 * Example of valid filename:
 		 * D400_S001_T002.dbf
 		 */
 		Pattern filePattern = Pattern.compile("^(?<dataset>[^_]+)_S(?<cs1>\\d+)_T(?<cs2>\\d+)\\.(?<ext>.+)$");
-		Path navPath = Paths.get(this.path, "Navigation", "400_NavDat");
-
-		if (Files.notExists(navPath)) {
-			return;
-		}
 
 		for (Path file : Files.newDirectoryStream(navPath)) {
 			String filename = file.getFileName().toString();

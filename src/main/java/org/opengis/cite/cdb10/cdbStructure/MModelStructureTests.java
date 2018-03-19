@@ -20,13 +20,14 @@ public class MModelStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyDataset() throws IOException {
-		ArrayList<String> errors = new ArrayList<String>();
-		DatasetsXml datasetDefs = new DatasetsXml("src/test/resources/CDB");
 		Path mmPath = Paths.get(this.path, "MModel");
 
 		if (Files.notExists(mmPath)) {
 			return;
 		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		DatasetsXml datasetDefs = new DatasetsXml("src/test/resources/CDB");
 
 		for (Path file : Files.newDirectoryStream(mmPath)) {
 			String filename = file.getFileName().toString();
