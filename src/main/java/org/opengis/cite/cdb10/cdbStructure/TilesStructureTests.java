@@ -96,7 +96,7 @@ public class TilesStructureTests extends CommonFixture {
 					errors.add("Invalid latitude for geocell directory name: " + filename);
 				}
 
-				if ((sliceID < 10) && (sliceID > 0) && !(slice.substring(1,2).equals("0"))) {
+				if ((sliceID < 10) && (sliceID > 0) && !(slice.substring(0,1).equals("0"))) {
 					errors.add("Invalid zero-pad on geocell directory name: " + filename);
 				}
 
@@ -106,7 +106,7 @@ public class TilesStructureTests extends CommonFixture {
 					errors.add("Invalid latitude for geocell directory name: " + filename);
 				}
 
-				if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(1,2).equals("0"))) {
+				if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(0,1).equals("0"))) {
 					errors.add("Invalid zero-pad on geocell directory name: " + filename);
 				}
 			}
@@ -201,9 +201,9 @@ public class TilesStructureTests extends CommonFixture {
 						errors.add("Invalid slice width for geocell directory name: " + filename);
 					}
 
-					if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(1,3).equals("00"))) {
+					if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(0,2).equals("00"))) {
 						errors.add("Invalid zero-pad on geocell directory name: " + filename);
-					} else if ((sliceID < 100) && (sliceID >= 10) && !(slice.substring(1,2).equals("0"))) {
+					} else if ((sliceID < 100) && (sliceID >= 10) && !(slice.substring(0,1).equals("0"))) {
 						errors.add("Invalid zero-pad on geocell directory name: " + filename);
 					}
 				} else if (filename.substring(0, 1).equals("W")) {
@@ -215,9 +215,9 @@ public class TilesStructureTests extends CommonFixture {
 						errors.add("Invalid slice width for geocell directory name: " + filename);
 					}
 
-					if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(1,3).equals("00"))) {
+					if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(0,2).equals("00"))) {
 						errors.add("Invalid zero-pad on geocell directory name: " + filename);
-					} else if ((sliceID < 100) && (sliceID >= 10) && !(slice.substring(1,2).equals("0"))) {
+					} else if ((sliceID < 100) && (sliceID >= 10) && !(slice.substring(0,1).equals("0"))) {
 						errors.add("Invalid zero-pad on geocell directory name: " + filename);
 					}
 				}

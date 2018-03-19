@@ -97,6 +97,15 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	}
 
 	@Test
+	public void verifyGeocellLatitudeDirNameSlice_GoodPad() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N09")));
+
+		// execute
+		this.testSuite.verifyGeocellLatitudeDirNameSlice();
+	}
+
+	@Test
 	public void verifyGeocellLatitudeDirNameSlice_Skip() throws IOException {
 		// setup
 		// execute
@@ -208,6 +217,15 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	public void verifyGeocellLongitudeDirNameSlice_GoodWest() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N00", "W180")));
+
+		// execute
+		this.testSuite.verifyGeocellLongitudeDirNameSlice();
+	}
+
+	@Test
+	public void verifyGeocellLongitudeDirNameSlice_GoodPad() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N00", "W074")));
 
 		// execute
 		this.testSuite.verifyGeocellLongitudeDirNameSlice();
