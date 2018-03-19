@@ -58,6 +58,17 @@ suite in a command shell:
 
 `java -jar ets-cdb10-0.1-SNAPSHOT-aio.jar [-o|--outputDir $TMPDIR] [test-run-props.xml]`
 
+### Building
+
+This test suite is compatible with Apache Maven. You can build the test 
+suite from a local repository:
+
+```sh
+$ mvn install
+```
+
+The compiled JAR will be available at `target/ets-cdb10-0.1-SNAPSHOT-aio.jar`.
+For TEAM Engine, you will need `target/ets-cdb10-0.1-SNAPSHOT-ctl.zip` and `target/ets-cdb10-0.1-SNAPSHOT-deps.zip`.
 
 ### How to Contribute
 
