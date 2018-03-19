@@ -7,9 +7,9 @@ import java.nio.file.Paths;
 import org.junit.Test;
 import org.opengis.cite.cdb10.TestFixture;
 
-public class VerifyMModelSignatureStructureTests extends TestFixture<MModelSignatureStructureTests> {
+public class VerifyMModelSignatureStructureTests extends StructureTestFixture<MModelSignatureStructureTests> {
 
-	public VerifyMModelSignatureStructureTests() {
+	public VerifyMModelSignatureStructureTests() throws IOException {
 		this.testSuite = new MModelSignatureStructureTests();
 	}
 

@@ -30,7 +30,7 @@ public class GTModelStructureTests extends CommonFixture {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		DatasetsXml datasetDefs = new DatasetsXml("src/test/resources/CDB");
+		DatasetsXml datasetDefs = new DatasetsXml(this.path);
 
 		for (Path file : Files.newDirectoryStream(gtModelsPath)) {
 			String filename = file.getFileName().toString();
@@ -83,7 +83,7 @@ public class GTModelStructureTests extends CommonFixture {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml("src/test/resources/CDB");
+		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml(this.path);
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
@@ -137,7 +137,7 @@ public class GTModelStructureTests extends CommonFixture {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml("src/test/resources/CDB");
+		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml(this.path);
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
@@ -195,7 +195,7 @@ public class GTModelStructureTests extends CommonFixture {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml("src/test/resources/CDB");
+		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml(this.path);
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);

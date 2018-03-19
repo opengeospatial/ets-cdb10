@@ -14,29 +14,29 @@ import java.nio.file.Paths;
  * Created by martin on 2016-09-20.
  */
 public abstract class MetadataXmlFile {
-    protected File xmlFile;
-    protected File xsdFile;
+	protected File xmlFile;
+	protected File xsdFile;
 
-    public MetadataXmlFile(String path, String xmlFileName, String xsdFileName) {
-        Assert.assertTrue(Files.exists(Paths.get(path, "Metadata")), String.format("Metadata directory is missing."));
+	public MetadataXmlFile(String path, String xmlFileName, String xsdFileName) {
+		Assert.assertTrue(Files.exists(Paths.get(path, "Metadata")), String.format("Metadata directory is missing, needed for " + xmlFileName));
 
-        xmlFile = Paths.get(path, "Metadata", xmlFileName).toFile();
-        xsdFile = Paths.get(path, "Metadata", "Schema", xsdFileName).toFile();
+		this.xmlFile = Paths.get(path, "Metadata", xmlFileName).toFile();
+		this.xsdFile = Paths.get(path, "Metadata", "Schema", xsdFileName).toFile();
 
-        verifyXmlFileExists();
-    }
+		this.verifyXmlFileExists();
+	}
 
-    public void verifyXmlAgainstSchema() throws IOException, SAXException {
-        SchemaValidatorErrorHandler errorHandler = XMLUtils.validateXmlFileIsValid(xmlFile, xsdFile);
+	public void verifyXmlAgainstSchema() throws IOException, SAXException {
+		SchemaValidatorErrorHandler errorHandler = XMLUtils.validateXmlFileIsValid(this.xmlFile, this.xsdFile);
 
-        if (!errorHandler.noErrors()) {
-            Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
-        }
-    }
+		if (!errorHandler.noErrors()) {
+			Assert.fail(this.xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
+		}
+	}
 
-    private void verifyXmlFileExists() {
-        Assert.assertTrue(Files.exists(xmlFile.toPath()), String.format("Metadata directory should contain %s file.", xmlFile.getName()));
-        Assert.assertTrue(Files.exists(xsdFile.toPath()), String.format("Metadata directory should contain %s file.", xsdFile.getName()));
-    }
+	private void verifyXmlFileExists() {
+		Assert.assertTrue(Files.exists(this.xmlFile.toPath()), String.format("Metadata directory should contain %s file.", this.xmlFile.getName()));
+		Assert.assertTrue(Files.exists(this.xsdFile.toPath()), String.format("Metadata directory should contain %s file.", this.xsdFile.getName()));
+	}
 
 }

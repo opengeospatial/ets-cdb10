@@ -5,12 +5,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.opengis.cite.cdb10.TestFixture;
 
-public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> {
+public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructureTests> {
 
-	public VerifyTilesStructureTests() {
+	public VerifyTilesStructureTests() throws IOException {
 		this.testSuite = new TilesStructureTests();
 	}
 

@@ -4,12 +4,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.opengis.cite.cdb10.TestFixture;
 
-public class VerifyMModelTextureStructureTests extends TestFixture<MModelTextureStructureTests> {
+public class VerifyMModelTextureStructureTests extends StructureTestFixture<MModelTextureStructureTests> {
 
-	public VerifyMModelTextureStructureTests() {
+	public VerifyMModelTextureStructureTests() throws IOException {
 		this.testSuite = new MModelTextureStructureTests();
 	}
 

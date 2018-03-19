@@ -4,12 +4,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.opengis.cite.cdb10.TestFixture;
 
-public class VerifyGTModelStructureTests extends TestFixture<GTModelStructureTests> {
+public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStructureTests> {
 
-	public VerifyGTModelStructureTests() {
+	public VerifyGTModelStructureTests() throws IOException {
 		this.testSuite = new GTModelStructureTests();
 	}
 
@@ -57,7 +58,7 @@ public class VerifyGTModelStructureTests extends TestFixture<GTModelStructureTes
 		// execute
 		this.testSuite.verifyDataset();
 	}
-	
+
 	@Test
 	public void verifyDataset_Skip() throws IOException {
 		// setup
@@ -116,7 +117,7 @@ public class VerifyGTModelStructureTests extends TestFixture<GTModelStructureTes
 		// execute
 		this.testSuite.verifyCategory();
 	}
-	
+
 	@Test
 	public void verifyCategory_Skip() throws IOException {
 		// setup
@@ -175,7 +176,7 @@ public class VerifyGTModelStructureTests extends TestFixture<GTModelStructureTes
 		// execute
 		this.testSuite.verifySubcategory();
 	}
-	
+
 	@Test
 	public void verifySubcategory_Skip() throws IOException {
 		// setup
@@ -234,7 +235,7 @@ public class VerifyGTModelStructureTests extends TestFixture<GTModelStructureTes
 		// execute
 		this.testSuite.verifyFeatureType();
 	}
-	
+
 	@Test
 	public void verifyFeatureType_Skip() throws IOException {
 		// setup
@@ -283,7 +284,7 @@ public class VerifyGTModelStructureTests extends TestFixture<GTModelStructureTes
 		// execute
 		this.testSuite.verifyLOD();
 	}
-	
+
 	@Test
 	public void verifyLOD_Skip() throws IOException {
 		// setup

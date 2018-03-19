@@ -30,7 +30,7 @@ public class MModelSignatureStructureTests extends CommonFixture {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
+		MovingModelCodesXml mmcDefs = new MovingModelCodesXml(this.path);
 
 		for (Path kindDir : Files.newDirectoryStream(mmsPath)) {
 			String filename = kindDir.getFileName().toString();
@@ -80,7 +80,7 @@ public class MModelSignatureStructureTests extends CommonFixture {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
+		MovingModelCodesXml mmcDefs = new MovingModelCodesXml(this.path);
 
 		for (Path kindDir : Files.newDirectoryStream(mmsPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
@@ -134,7 +134,7 @@ public class MModelSignatureStructureTests extends CommonFixture {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		DISCountryCodesXml dccDefs = new DISCountryCodesXml("src/test/resources/CDB");
+		DISCountryCodesXml dccDefs = new DISCountryCodesXml(this.path);
 
 		for (Path kindDir : Files.newDirectoryStream(mmsPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
@@ -192,7 +192,7 @@ public class MModelSignatureStructureTests extends CommonFixture {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
+		MovingModelCodesXml mmcDefs = new MovingModelCodesXml(this.path);
 
 		for (Path kindDir : Files.newDirectoryStream(mmsPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
