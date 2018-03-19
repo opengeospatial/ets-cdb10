@@ -43,7 +43,8 @@ You can modify the sample file in `src/main/config/test-run-props.xml`
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties version="1.0">
   <comment>Test run arguments</comment>
-  <entry key="iut">http://schemas.opengis.net/gml/3.2.1/gml.xsd</entry>
+  <entry key="iut">/path/to/CDB</entry>
+  <entry key="ics">1,2</entry>
 </properties>
 ```
 
