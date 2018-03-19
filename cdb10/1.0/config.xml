@@ -10,12 +10,12 @@
       <suite>
         <namespace-uri>http://www.opengis.net/cite/cdb10</namespace-uri>
         <prefix>tns</prefix>
-        <local-name>ets-cdb10-0.1-SNAPSHOT</local-name>
+        <local-name>ets-cdb10-0.2-SNAPSHOT</local-name>
         <title>Test suite ets-cdb10</title>
         <description>Describe scope of testing.</description>
       </suite>
       <revision>
-        <name>0.1-SNAPSHOT</name>
+        <name>0.2-SNAPSHOT</name>
         <status>Beta</status>
         <sources>
           <source>cdb10/1.0/ctl</source>

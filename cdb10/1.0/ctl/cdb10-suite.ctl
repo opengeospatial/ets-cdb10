@@ -10,14 +10,14 @@
     <ctl:param name="testRunArgs">A Document node containing test run arguments (as XML properties).</ctl:param>
     <ctl:param name="outputDir">The directory in which the test results will be written.</ctl:param>
     <ctl:return>The test results as a Source object (root node).</ctl:return>
-    <ctl:description>Runs the cdb10 0.1-SNAPSHOT test suite.</ctl:description>
+    <ctl:description>Runs the cdb10 0.2-SNAPSHOT test suite.</ctl:description>
     <ctl:code>
       <xsl:variable name="controller" select="tng:new($outputDir)"/>
       <xsl:copy-of select="tng:doTestRun($controller, $testRunArgs)"/>
     </ctl:code>
   </ctl:function>
 
-  <ctl:suite name="tns:ets-cdb10-0.1-SNAPSHOT">
+  <ctl:suite name="tns:ets-cdb10-0.2-SNAPSHOT">
     <ctl:title>Test suite for OGC CDB</ctl:title>
     <ctl:description>Checks implementations of the OGC CDB API for conformance
       against the candidate standard (OGC 15-113).

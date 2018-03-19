@@ -56,7 +56,7 @@ One of the build artifacts is an "all-in-one" JAR file that includes the test
 suite and all of its dependencies; this makes it very easy to execute the test 
 suite in a command shell:
 
-`java -jar ets-cdb10-0.1-SNAPSHOT-aio.jar [-o|--outputDir $TMPDIR] [test-run-props.xml]`
+`java -jar ets-cdb10-0.2-SNAPSHOT-aio.jar [-o|--outputDir $TMPDIR] [test-run-props.xml]`
 
 ### Building
 
@@ -67,8 +67,8 @@ suite from a local repository:
 $ mvn install
 ```
 
-The compiled JAR will be available at `target/ets-cdb10-0.1-SNAPSHOT-aio.jar`.
-For TEAM Engine, you will need `target/ets-cdb10-0.1-SNAPSHOT-ctl.zip` and `target/ets-cdb10-0.1-SNAPSHOT-deps.zip`.
+The compiled JAR will be available at `target/ets-cdb10-0.2-SNAPSHOT-aio.jar`.
+For TEAM Engine, you will need `target/ets-cdb10-0.2-SNAPSHOT-ctl.zip` and `target/ets-cdb10-0.2-SNAPSHOT-deps.zip`.
 
 ### How to Contribute
 
