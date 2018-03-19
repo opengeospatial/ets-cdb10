@@ -71,6 +71,20 @@ $ mvn install
 The compiled JAR will be available at `target/ets-cdb10-0.2-SNAPSHOT-aio.jar`.
 For TEAM Engine, you will need `target/ets-cdb10-0.2-SNAPSHOT-ctl.zip` and `target/ets-cdb10-0.2-SNAPSHOT-deps.zip`.
 
+### Updating GitHub Pages Documentation
+
+This repository contains a branch for the documentation generated for the project. To update
+with a new release:
+
+```sh
+$ mvn install
+$ cp target/ets-cdb10-0.2-SNAPSHOT-site.jar $HOME
+$ git checkout gh-pages
+$ git rm -rf .
+$ jar xf $HOME/ets-cdb10-0.2-SNAPSHOT-site.jar
+$ git commit 
+```
+
 ### How to Contribute
 
 If you would like to get involved, you can:
