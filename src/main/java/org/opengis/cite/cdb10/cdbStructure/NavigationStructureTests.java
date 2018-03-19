@@ -21,8 +21,13 @@ public class NavigationStructureTests extends CommonFixture {
 	@Test
 	public void verifyDatasets() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
+		Path navPath = Paths.get(this.path, "Navigation");
 
-		for (Path file : Files.newDirectoryStream(Paths.get(this.path, "Navigation"))) {
+		if (Files.notExists(navPath)) {
+			return;
+		}
+
+		for (Path file : Files.newDirectoryStream(navPath)) {
 			String filename = file.getFileName().toString();
 			if (!filename.equals("400_NavDat")) {
 				errors.add("Invalid dataset: " + filename);
@@ -46,8 +51,13 @@ public class NavigationStructureTests extends CommonFixture {
 		 * D400_S001_T002.dbf
 		 */
 		Pattern filePattern = Pattern.compile("^(?<dataset>[^_]+)_S(?<cs1>\\d+)_T(?<cs2>\\d+)\\.(?<ext>.+)$");
+		Path navPath = Paths.get(this.path, "Navigation", "400_NavDat");
 
-		for (Path file : Files.newDirectoryStream(Paths.get(this.path, "Navigation", "400_NavDat"))) {
+		if (Files.notExists(navPath)) {
+			return;
+		}
+
+		for (Path file : Files.newDirectoryStream(navPath)) {
 			String filename = file.getFileName().toString();
 
 			if (StringUtils.countMatches(filename, "_") != 2) {

@@ -41,6 +41,13 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 		this.testSuite.verifyGeocellLatitudeDirNamePrefix();
 	}
 
+	@Test
+	public void verifyGeocellLatitudeDirNamePrefix_Skip() throws IOException {
+		// setup
+		// execute
+		this.testSuite.verifyGeocellLatitudeDirNamePrefix();
+	}
+
 
 
 	@Test(expected = AssertionError.class)
@@ -88,6 +95,13 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 		this.testSuite.verifyGeocellLatitudeDirNameSlice();
 	}
 
+	@Test
+	public void verifyGeocellLatitudeDirNameSlice_Skip() throws IOException {
+		// setup
+		// execute
+		this.testSuite.verifyGeocellLatitudeDirNameSlice();
+	}
+
 
 
 	@Test(expected = AssertionError.class)
@@ -113,6 +127,13 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N00", "W180")));
 
+		// execute
+		this.testSuite.verifyGeocellLongitudeDirNamePrefix();
+	}
+
+	@Test
+	public void verifyGeocellLongitudeDirNamePrefix_Skip() throws IOException {
+		// setup
 		// execute
 		this.testSuite.verifyGeocellLongitudeDirNamePrefix();
 	}
@@ -209,6 +230,13 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 		this.testSuite.verifyGeocellLongitudeDirNameSlice();
 	}
 
+	@Test
+	public void verifyGeocellLongitudeDirNameSlice_Skip() throws IOException {
+		// setup
+		// execute
+		this.testSuite.verifyGeocellLongitudeDirNameSlice();
+	}
+
 
 
 	@Test(expected = AssertionError.class)
@@ -243,6 +271,13 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "001_Elevation")));
 
+		// execute
+		this.testSuite.verifyDatasetPrefix();
+	}
+
+	@Test
+	public void verifyDatasetPrefix_Skip() throws IOException {
+		// setup
 		// execute
 		this.testSuite.verifyDatasetPrefix();
 	}
@@ -346,6 +381,13 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 		this.testSuite.verifyLODName();
 	}
 
+	@Test
+	public void verifyLODName_Skip() throws IOException {
+		// setup
+		// execute
+		this.testSuite.verifyLODName();
+	}
+
 
 
 	@Test(expected = AssertionError.class)
@@ -384,6 +426,13 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
 				"LC", "U0")));
 
+		// execute
+		this.testSuite.verifyUREFName();
+	}
+
+	@Test
+	public void verifyUREFName_Skip() throws IOException {
+		// setup
 		// execute
 		this.testSuite.verifyUREFName();
 	}
@@ -584,6 +633,13 @@ public class VerifyTilesStructureTests extends TestFixture<TilesStructureTests> 
 				"001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_L02_U3_R0.tif")));
 
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+
+	@Test
+	public void verifyDatasetFileName_Skip() throws IOException {
+		// setup
 		// execute
 		this.testSuite.verifyDatasetFileName();
 	}

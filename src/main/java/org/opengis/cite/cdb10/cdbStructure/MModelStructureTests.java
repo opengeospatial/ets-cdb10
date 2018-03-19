@@ -22,8 +22,13 @@ public class MModelStructureTests extends CommonFixture {
 	public void verifyDataset() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
 		DatasetsXml datasetDefs = new DatasetsXml("src/test/resources/CDB");
+		Path mmPath = Paths.get(this.path, "MModel");
 
-		for (Path file : Files.newDirectoryStream(Paths.get(this.path, "MModel"))) {
+		if (Files.notExists(mmPath)) {
+			return;
+		}
+
+		for (Path file : Files.newDirectoryStream(mmPath)) {
 			String filename = file.getFileName().toString();
 			String prefix = null;
 			Integer prefixID = null;

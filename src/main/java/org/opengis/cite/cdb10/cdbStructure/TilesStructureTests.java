@@ -49,8 +49,13 @@ public class TilesStructureTests extends CommonFixture {
 	@Test
 	public void verifyGeocellLatitudeDirNamePrefix() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
+		Path tilesPath = Paths.get(this.path, "Tiles");
 
-		for (Path file : Files.newDirectoryStream(Paths.get(this.path, "Tiles"))) {
+		if (Files.notExists(tilesPath)) {
+			return;
+		}
+
+		for (Path file : Files.newDirectoryStream(tilesPath)) {
 			String filename = file.getFileName().toString();
 
 			if (!filename.substring(0, 1).equals("S") && !filename.substring(0, 1).equals("N")) {
@@ -71,8 +76,13 @@ public class TilesStructureTests extends CommonFixture {
 	@Test
 	public void verifyGeocellLatitudeDirNameSlice() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
+		Path tilesPath = Paths.get(this.path, "Tiles");
 
-		for (Path file : Files.newDirectoryStream(Paths.get(this.path, "Tiles"))) {
+		if (Files.notExists(tilesPath)) {
+			return;
+		}
+
+		for (Path file : Files.newDirectoryStream(tilesPath)) {
 			String filename = file.getFileName().toString();
 			String slice = filename.substring(1, filename.length());
 
@@ -112,7 +122,13 @@ public class TilesStructureTests extends CommonFixture {
 	@Test
 	public void verifyGeocellLongitudeDirNamePrefix() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
-		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(Paths.get(this.path, "Tiles"));
+		Path tilesPath = Paths.get(this.path, "Tiles");
+
+		if (Files.notExists(tilesPath)) {
+			return;
+		}
+
+		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(tilesPath);
 
 		for (Path latCell : latitudeCells) {
 			DirectoryStream<Path> longitudeCells = Files.newDirectoryStream(latCell);
@@ -139,7 +155,12 @@ public class TilesStructureTests extends CommonFixture {
 	@Test
 	public void verifyGeocellLongitudeDirNameSlice() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
-		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(Paths.get(this.path, "Tiles"));
+		Path tilesPath = Paths.get(this.path, "Tiles");
+
+		if (Files.notExists(tilesPath)) {
+			return;
+		}
+		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(tilesPath);
 
 		for (Path latCell : latitudeCells) {
 			DirectoryStream<Path> longitudeCells = Files.newDirectoryStream(latCell);
@@ -210,7 +231,12 @@ public class TilesStructureTests extends CommonFixture {
 	@Test
 	public void verifyDatasetPrefix() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
-		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(Paths.get(this.path, "Tiles"));
+		Path tilesPath = Paths.get(this.path, "Tiles");
+
+		if (Files.notExists(tilesPath)) {
+			return;
+		}
+		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(tilesPath);
 
 		for (Path latCell : latitudeCells) {
 			DirectoryStream<Path> longitudeCells = Files.newDirectoryStream(latCell);
@@ -254,7 +280,12 @@ public class TilesStructureTests extends CommonFixture {
 	@Test
 	public void verifyDatasetCodeName() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
-		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(Paths.get(this.path, "Tiles"));
+		Path tilesPath = Paths.get(this.path, "Tiles");
+
+		if (Files.notExists(tilesPath)) {
+			return;
+		}
+		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(tilesPath);
 		DatasetsXml datasetDefs = new DatasetsXml("src/test/resources/CDB");
 
 		for (Path latCell : latitudeCells) {
@@ -310,7 +341,12 @@ public class TilesStructureTests extends CommonFixture {
 	@Test
 	public void verifyLODName() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
-		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(Paths.get(this.path, "Tiles"));
+		Path tilesPath = Paths.get(this.path, "Tiles");
+
+		if (Files.notExists(tilesPath)) {
+			return;
+		}
+		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(tilesPath);
 		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
 
 		for (Path latCell : latitudeCells) {
@@ -347,7 +383,12 @@ public class TilesStructureTests extends CommonFixture {
 	@Test
 	public void verifyUREFName() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
-		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(Paths.get(this.path, "Tiles"));
+		Path tilesPath = Paths.get(this.path, "Tiles");
+
+		if (Files.notExists(tilesPath)) {
+			return;
+		}
+		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(tilesPath);
 
 		for (Path latCell : latitudeCells) {
 			DirectoryStream<Path> longitudeCells = Files.newDirectoryStream(latCell);
@@ -401,7 +442,12 @@ public class TilesStructureTests extends CommonFixture {
 	@Test
 	public void verifyDatasetFileName() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
-		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(Paths.get(this.path, "Tiles"));
+		Path tilesPath = Paths.get(this.path, "Tiles");
+
+		if (Files.notExists(tilesPath)) {
+			return;
+		}
+		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(tilesPath);
 		Pattern filePattern = Pattern.compile("^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<CS1>[0-9]{3})_T(?<CS2>[0-9]{3})_(?<lod>LC|L[0-9]{2})_(?<uref>U[0-9]+)_R(?<rref>[0-9]+)\\.(?<ext>.+)$");
 
 		for (Path latCell : latitudeCells) {

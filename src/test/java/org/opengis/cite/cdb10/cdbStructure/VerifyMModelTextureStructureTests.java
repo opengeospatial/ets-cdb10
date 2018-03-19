@@ -44,6 +44,14 @@ public class VerifyMModelTextureStructureTests extends TestFixture<MModelTexture
 	}
 
 
+	@Test
+	public void verifyTNAMPrefix_Skip() throws IOException {
+		// setup
+		// execute
+		this.testSuite.verifyTNAMPrefix();
+	}
+
+
 
 	@Test(expected = AssertionError.class)
 	public void verifyTNAMSecond_TooLong() throws IOException {
@@ -71,6 +79,13 @@ public class VerifyMModelTextureStructureTests extends TestFixture<MModelTexture
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
 				"A", "B")));
 
+		// execute
+		this.testSuite.verifyTNAMSecond();
+	}
+
+	@Test
+	public void verifyTNAMSecond_Skip() throws IOException {
+		// setup
 		// execute
 		this.testSuite.verifyTNAMSecond();
 	}
@@ -123,6 +138,13 @@ public class VerifyMModelTextureStructureTests extends TestFixture<MModelTexture
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
 				"A", "B", "AB_1")));
 
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+
+	@Test
+	public void verifyTNAM_Skip() throws IOException {
+		// setup
 		// execute
 		this.testSuite.verifyTNAM();
 	}
@@ -225,6 +247,13 @@ public class VerifyMModelTextureStructureTests extends TestFixture<MModelTexture
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
 				"A", "B", "AB", "D601_S001_T001_W10_AB.rgb")));
 
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test
+	public void verifyFile_Skip() throws IOException {
+		// setup
 		// execute
 		this.testSuite.verifyFile();
 	}

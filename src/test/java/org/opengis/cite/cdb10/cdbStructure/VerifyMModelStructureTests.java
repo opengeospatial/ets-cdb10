@@ -58,4 +58,11 @@ public class VerifyMModelStructureTests extends TestFixture<MModelStructureTests
 		this.testSuite.verifyDataset();
 	}
 
+	@Test
+	public void verifyDataset_Skip() throws IOException {
+		// setup
+		// execute
+		this.testSuite.verifyDataset();
+	}
+
 }

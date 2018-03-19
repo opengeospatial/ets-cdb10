@@ -57,6 +57,13 @@ public class VerifyGTModelStructureTests extends TestFixture<GTModelStructureTes
 		// execute
 		this.testSuite.verifyDataset();
 	}
+	
+	@Test
+	public void verifyDataset_Skip() throws IOException {
+		// setup
+		// execute
+		this.testSuite.verifyDataset();
+	}
 
 
 
@@ -106,6 +113,13 @@ public class VerifyGTModelStructureTests extends TestFixture<GTModelStructureTes
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
 				"A_Culture")));
 
+		// execute
+		this.testSuite.verifyCategory();
+	}
+	
+	@Test
+	public void verifyCategory_Skip() throws IOException {
+		// setup
 		// execute
 		this.testSuite.verifyCategory();
 	}
@@ -161,6 +175,13 @@ public class VerifyGTModelStructureTests extends TestFixture<GTModelStructureTes
 		// execute
 		this.testSuite.verifySubcategory();
 	}
+	
+	@Test
+	public void verifySubcategory_Skip() throws IOException {
+		// setup
+		// execute
+		this.testSuite.verifySubcategory();
+	}
 
 
 
@@ -213,6 +234,13 @@ public class VerifyGTModelStructureTests extends TestFixture<GTModelStructureTes
 		// execute
 		this.testSuite.verifyFeatureType();
 	}
+	
+	@Test
+	public void verifyFeatureType_Skip() throws IOException {
+		// setup
+		// execute
+		this.testSuite.verifyFeatureType();
+	}
 
 
 
@@ -252,6 +280,13 @@ public class VerifyGTModelStructureTests extends TestFixture<GTModelStructureTes
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
 				"A_Culture", "A_Extraction", "010_Mine", "L23")));
 
+		// execute
+		this.testSuite.verifyLOD();
+	}
+	
+	@Test
+	public void verifyLOD_Skip() throws IOException {
+		// setup
 		// execute
 		this.testSuite.verifyLOD();
 	}

@@ -23,8 +23,13 @@ public class MModelTextureStructureTests extends CommonFixture {
 	@Test
 	public void verifyTNAMPrefix() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
+		Path mmtPath = Paths.get(this.path, "MModel", "601_MModelTexture");
 
-		for (Path tnamPrefixDir : Files.newDirectoryStream(Paths.get(this.path, "MModel", "601_MModelTexture"))) {
+		if (Files.notExists(mmtPath)) {
+			return;
+		}
+
+		for (Path tnamPrefixDir : Files.newDirectoryStream(mmtPath)) {
 			String filename = tnamPrefixDir.getFileName().toString();
 
 			if (filename.length() != 1) {
@@ -47,8 +52,13 @@ public class MModelTextureStructureTests extends CommonFixture {
 	@Test
 	public void verifyTNAMSecond() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
+		Path mmtPath = Paths.get(this.path, "MModel", "601_MModelTexture");
 
-		for (Path tnamPrefixDir : Files.newDirectoryStream(Paths.get(this.path, "MModel", "601_MModelTexture"))) {
+		if (Files.notExists(mmtPath)) {
+			return;
+		}
+
+		for (Path tnamPrefixDir : Files.newDirectoryStream(mmtPath)) {
 			DirectoryStream<Path> secondDirs = Files.newDirectoryStream(tnamPrefixDir);
 
 			for (Path secondDir : secondDirs) {
@@ -76,8 +86,13 @@ public class MModelTextureStructureTests extends CommonFixture {
 	public void verifyTNAM() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
 		Pattern startPattern = Pattern.compile("^\\p{Alnum}{2}");
+		Path mmtPath = Paths.get(this.path, "MModel", "601_MModelTexture");
 
-		for (Path firstDir : Files.newDirectoryStream(Paths.get(this.path, "MModel", "601_MModelTexture"))) {
+		if (Files.notExists(mmtPath)) {
+			return;
+		}
+
+		for (Path firstDir : Files.newDirectoryStream(mmtPath)) {
 			DirectoryStream<Path> secondDirs = Files.newDirectoryStream(firstDir);
 			String firstDirFilename = firstDir.getFileName().toString();
 
@@ -127,8 +142,13 @@ public class MModelTextureStructureTests extends CommonFixture {
 		 */
 		Pattern filePattern = Pattern.compile(
 				"^(?<dataset>D601|D604|D605)_S(?<cs1>\\d+)_T(?<cs2>\\d+)_W(?<tsc>\\d{2})_(?<tnam>[^.]+)\\.(?<ext>.+)$");
+		Path mmtPath = Paths.get(this.path, "MModel", "601_MModelTexture");
 
-		for (Path firstDir : Files.newDirectoryStream(Paths.get(this.path, "MModel", "601_MModelTexture"))) {
+		if (Files.notExists(mmtPath)) {
+			return;
+		}
+
+		for (Path firstDir : Files.newDirectoryStream(mmtPath)) {
 			DirectoryStream<Path> secondDirs = Files.newDirectoryStream(firstDir);
 
 			for (Path secondDir : secondDirs) {

@@ -63,6 +63,13 @@ public class VerifyMModelSignatureStructureTests extends TestFixture<MModelSigna
 		this.testSuite.verifyDISEntityKind();
 	}
 
+	@Test
+	public void verifyDISEntityKind_Skip() throws IOException {
+		// setup
+		// execute
+		this.testSuite.verifyDISEntityKind();
+	}
+
 
 
 	@Test(expected = AssertionError.class)
@@ -111,6 +118,13 @@ public class VerifyMModelSignatureStructureTests extends TestFixture<MModelSigna
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
 				"1_Platform", "0_Other")));
 
+		// execute
+		this.testSuite.verifyDISDomain();
+	}
+
+	@Test
+	public void verifyDISDomain_Skip() throws IOException {
+		// setup
 		// execute
 		this.testSuite.verifyDISDomain();
 	}
@@ -167,6 +181,13 @@ public class VerifyMModelSignatureStructureTests extends TestFixture<MModelSigna
 		this.testSuite.verifyDISCountry();
 	}
 
+	@Test
+	public void verifyDISCountry_Skip() throws IOException {
+		// setup
+		// execute
+		this.testSuite.verifyDISCountry();
+	}
+
 
 
 	@Test(expected = AssertionError.class)
@@ -219,6 +240,13 @@ public class VerifyMModelSignatureStructureTests extends TestFixture<MModelSigna
 		this.testSuite.verifyDISCategory();
 	}
 
+	@Test
+	public void verifyDISCategory_Skip() throws IOException {
+		// setup
+		// execute
+		this.testSuite.verifyDISCategory();
+	}
+
 
 
 	@Test(expected = AssertionError.class)
@@ -247,6 +275,13 @@ public class VerifyMModelSignatureStructureTests extends TestFixture<MModelSigna
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
 				"1_Platform", "0_Other", "0_Other", "0_Other", "1_0_0_0_0_0_0")));
 
+		// execute
+		this.testSuite.verifyDISEntity();
+	}
+
+	@Test
+	public void verifyDISEntity_Skip() throws IOException {
+		// setup
 		// execute
 		this.testSuite.verifyDISEntity();
 	}
@@ -289,6 +324,14 @@ public class VerifyMModelSignatureStructureTests extends TestFixture<MModelSigna
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
 				"1_Platform", "0_Other", "0_Other", "0_Other", "1_0_0_0_0_0_0", "L23")));
 
+		// execute
+		this.testSuite.verifyLOD();
+	}
+
+
+	@Test
+	public void verifyLOD_Skip() throws IOException {
+		// setup
 		// execute
 		this.testSuite.verifyLOD();
 	}
@@ -379,6 +422,13 @@ public class VerifyMModelSignatureStructureTests extends TestFixture<MModelSigna
 				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
 				"D606_S001_T001_LC_0_0_0_0_0_0_0.shp")));
 
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test
+	public void verifyFile_Skip() throws IOException {
+		// setup
 		// execute
 		this.testSuite.verifyFile();
 	}

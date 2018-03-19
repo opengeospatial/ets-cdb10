@@ -25,8 +25,13 @@ public class MModelGeometryStructureTests extends CommonFixture {
 	public void verifyDISEntityKind() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
 		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
+		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
-		for (Path kindDir : Files.newDirectoryStream(Paths.get(this.path, "MModel", "600_MModelGeometry"))) {
+		if (Files.notExists(mmodelGeomPath)) {
+			return;
+		}
+
+		for (Path kindDir : Files.newDirectoryStream(mmodelGeomPath)) {
 			String filename = kindDir.getFileName().toString();
 			String code = null;
 			Integer codeID = null;
@@ -69,8 +74,13 @@ public class MModelGeometryStructureTests extends CommonFixture {
 	public void verifyDISDomain() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
 		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
+		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
-		for (Path kindDir : Files.newDirectoryStream(Paths.get(this.path, "MModel", "600_MModelGeometry"))) {
+		if (Files.notExists(mmodelGeomPath)) {
+			return;
+		}
+
+		for (Path kindDir : Files.newDirectoryStream(mmodelGeomPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
 
 			for (Path domainDir : domainDirs) {
@@ -117,8 +127,13 @@ public class MModelGeometryStructureTests extends CommonFixture {
 	public void verifyDISCountry() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
 		DISCountryCodesXml dccDefs = new DISCountryCodesXml("src/test/resources/CDB");
+		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
-		for (Path kindDir : Files.newDirectoryStream(Paths.get(this.path, "MModel", "600_MModelGeometry"))) {
+		if (Files.notExists(mmodelGeomPath)) {
+			return;
+		}
+
+		for (Path kindDir : Files.newDirectoryStream(mmodelGeomPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
 
 			for (Path domainDir : domainDirs) {
@@ -169,8 +184,13 @@ public class MModelGeometryStructureTests extends CommonFixture {
 	public void verifyDISCategory() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
 		MovingModelCodesXml mmcDefs = new MovingModelCodesXml("src/test/resources/CDB");
+		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
-		for (Path kindDir : Files.newDirectoryStream(Paths.get(this.path, "MModel", "600_MModelGeometry"))) {
+		if (Files.notExists(mmodelGeomPath)) {
+			return;
+		}
+
+		for (Path kindDir : Files.newDirectoryStream(mmodelGeomPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
 
 			for (Path domainDir : domainDirs) {
@@ -225,8 +245,13 @@ public class MModelGeometryStructureTests extends CommonFixture {
 	public void verifyDISEntity() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
 		Pattern entityPattern = Pattern.compile("^(?<kind>\\d+)_(?<domain>\\d+)_(?<country>\\d+)_(?<category>\\d+)_(\\d+)_(\\d+)_(\\d+)$");
+		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
-		for (Path kindDir : Files.newDirectoryStream(Paths.get(this.path, "MModel", "600_MModelGeometry"))) {
+		if (Files.notExists(mmodelGeomPath)) {
+			return;
+		}
+
+		for (Path kindDir : Files.newDirectoryStream(mmodelGeomPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
 			String kindFilename = kindDir.getFileName().toString();
 			String kindCode = kindFilename.split("_")[0];
@@ -304,8 +329,13 @@ public class MModelGeometryStructureTests extends CommonFixture {
 						"_(?<domain>\\d+)_(?<country>\\d+)_(?<category>\\d+)_(\\d+)_(\\d+)_(\\d+))\\." +
 						"(?<ext>.+)$"
 				);
+		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
-		for (Path kindDir : Files.newDirectoryStream(Paths.get(this.path, "MModel", "600_MModelGeometry"))) {
+		if (Files.notExists(mmodelGeomPath)) {
+			return;
+		}
+
+		for (Path kindDir : Files.newDirectoryStream(mmodelGeomPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
 
 			for (Path domainDir : domainDirs) {

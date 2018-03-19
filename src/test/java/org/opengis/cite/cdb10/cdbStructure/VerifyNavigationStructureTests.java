@@ -31,6 +31,13 @@ public class VerifyNavigationStructureTests extends TestFixture<NavigationStruct
 		this.testSuite.verifyDatasets();
 	}
 
+	@Test
+	public void verifyDatasets_Skip() throws IOException {
+		// setup
+		// execute
+		this.testSuite.verifyDatasets();
+	}
+
 
 
 	@Test(expected = AssertionError.class)
@@ -89,6 +96,13 @@ public class VerifyNavigationStructureTests extends TestFixture<NavigationStruct
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavDat",
 				"D400_S001_T002.dbf")));
 
+		// execute
+		this.testSuite.verifyFile();
+	}
+
+	@Test
+	public void verifyFile_Skip() throws IOException {
+		// setup
 		// execute
 		this.testSuite.verifyFile();
 	}
