@@ -41,8 +41,8 @@ public class TilesStructureTests extends CommonFixture {
 	}
 
 	/**
-	 * Validates that latitude geocell directories start with "S" or "N". (See
-	 * volume 1, section 3.6.2.1).
+	 * Validates that latitude geocell directories start with "S" or "N".
+	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -64,7 +64,7 @@ public class TilesStructureTests extends CommonFixture {
 	/**
 	 * Validates that latitude geocell directories end with a valid slice latitude.
 	 * latitudes should be zero-padded to 2 width.
-	 * (See volume 1, section 3.6.2.1).
+	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -104,8 +104,8 @@ public class TilesStructureTests extends CommonFixture {
 	}
 
 	/**
-	 * Validates that longitude geocell directories start with "E" or "W". (See
-	 * volume 1, section 3.6.2.2).
+	 * Validates that longitude geocell directories start with "E" or "W".
+	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -132,7 +132,7 @@ public class TilesStructureTests extends CommonFixture {
 	/**
 	 * Validates that longitude geocell directories end with a valid slice longitude.
 	 * longitudes should be zero-padded to 3 width.
-	 * (See volume 1, section 3.6.2.1).
+	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -203,6 +203,7 @@ public class TilesStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that dataset directories begin with a 3-digit prefix.
+	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -246,6 +247,7 @@ public class TilesStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that dataset directories prefix code and name match and are valid values.
+	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -301,6 +303,7 @@ public class TilesStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that LOD directories have valid names.
+	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -337,6 +340,7 @@ public class TilesStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that UREF directories have valid names and are in a valid range for the LOD.
+	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -390,6 +394,7 @@ public class TilesStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that tiled dataset files have valid names.
+	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */

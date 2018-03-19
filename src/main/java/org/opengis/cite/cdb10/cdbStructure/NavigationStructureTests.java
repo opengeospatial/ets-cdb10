@@ -16,6 +16,7 @@ import org.testng.annotations.Test;
 public class NavigationStructureTests extends CommonFixture {
 	/**
 	 * Validate the Navigation datasets.
+	 * Test based on Section 3.7, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 */
 	@Test
 	public void verifyDatasets() throws IOException {
@@ -33,6 +34,7 @@ public class NavigationStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that Navigation filenames have valid codes/names.
+	 * Test based on Section 3.7, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */

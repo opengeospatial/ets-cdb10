@@ -21,6 +21,7 @@ public class RootStructureTests extends CommonFixture {
 	/**
 	 * Validate the contents of the root directory of the CDB, checking for stray
 	 * files or directories not on the allowed list.
+	 * Test based on Section 3.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 */
 	@Test
 	public void verifyRootContents() throws IOException {

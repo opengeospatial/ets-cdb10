@@ -17,6 +17,7 @@ import org.testng.annotations.Test;
 public class MModelSignatureStructureTests extends CommonFixture {
 	/**
 	 * Validates that MModelSignature DIS Entity Kind directories have valid codes/names.
+	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -60,6 +61,7 @@ public class MModelSignatureStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that MModelSignature DIS Domain directories have valid codes/names.
+	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -107,6 +109,7 @@ public class MModelSignatureStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that MModelSignature DIS Country directories have valid codes/names.
+	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -158,6 +161,7 @@ public class MModelSignatureStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that MModelSignature DIS Category directories have valid codes/names.
+	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -213,6 +217,7 @@ public class MModelSignatureStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that MModelSignature DIS Entity directories have valid codes/names.
+	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -283,6 +288,7 @@ public class MModelSignatureStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that MModelSignature LOD directories have valid names.
+	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -324,6 +330,7 @@ public class MModelSignatureStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that MModelSignature filenames have valid codes/names.
+	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */

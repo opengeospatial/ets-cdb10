@@ -17,6 +17,7 @@ import org.testng.annotations.Test;
 public class MModelGeometryStructureTests extends CommonFixture {
 	/**
 	 * Validates that MModelGeometry DIS Entity Kind directories have valid codes/names.
+	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -60,6 +61,7 @@ public class MModelGeometryStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that MModelGeometry DIS Domain directories have valid codes/names.
+	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -107,6 +109,7 @@ public class MModelGeometryStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that MModelGeometry DIS Country directories have valid codes/names.
+	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -158,6 +161,7 @@ public class MModelGeometryStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that MModelGeometry DIS Category directories have valid codes/names.
+	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -213,6 +217,7 @@ public class MModelGeometryStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that MModelGeometry DIS Entity directories have valid codes/names.
+	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -283,6 +288,7 @@ public class MModelGeometryStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that MModelGeometry filenames have valid codes/names.
+	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */

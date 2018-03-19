@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 public class MModelStructureTests extends CommonFixture {
 	/**
 	 * Validates that MModel directories have valid codes/names.
+	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */

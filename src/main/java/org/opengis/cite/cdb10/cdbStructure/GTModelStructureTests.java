@@ -17,6 +17,7 @@ import org.testng.annotations.Test;
 public class GTModelStructureTests extends CommonFixture {
 	/**
 	 * Validates that GTModel directories have valid codes/names.
+	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -63,6 +64,7 @@ public class GTModelStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that GTModel Category directories have valid codes/names.
+	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -110,6 +112,7 @@ public class GTModelStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that GTModel Sub-Category directories have valid codes/names.
+	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -161,6 +164,7 @@ public class GTModelStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that GTModel Feature Type directories have valid codes/names.
+	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -221,6 +225,7 @@ public class GTModelStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that GTModel LOD directories have valid names.
+	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
