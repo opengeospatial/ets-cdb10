@@ -4,22 +4,29 @@
 
 ### Scope
 
-Describe scope of the test suite.
+This test suite validates the conformance level of a local CDB on the filesystem.
 
-Visit the [project documentation website](http://opengeospatial.github.io/ets-cdb10/) 
-for more information, including the API documentation.
+Visit the [project documentation website][docs] for more information, 
+including the API documentation.
+
+[docs]: http://opengeospatial.github.io/ets-cdb10/
 
 ### How to run the tests
+
 There are several options for executing the test suite.
 
-#### 1. OGC test harness
+#### 1. OGC Test Harness
 
-Use [TEAM Engine](https://github.com/opengeospatial/teamengine), the official OGC test harness.
-The latest test suite release are usually available at the [beta testing facility](http://cite.opengeospatial.org/te2/). 
-You can also [build and deploy](https://github.com/opengeospatial/teamengine) the test 
-harness yourself and use a local installation.
+Use [TEAM Engine][TEAM Engine], the official OGC test harness. The latest test suite 
+release are usually available at the [beta testing facility][Test Facility].
+You can also [build and deploy][TEAM Engine Source] the test harness 
+yourself and use a local installation.
 
-#### 2. Integrated development environment (IDE)
+[TEAM Engine]: https://github.com/opengeospatial/teamengine
+[Test Facility]: http://cite.opengeospatial.org/te2/
+[TEAM Engine Source]: https://github.com/opengeospatial/teamengine
+
+#### 2. Integrated Development Environment (IDE)
 
 Use a Java IDE such as Eclipse, NetBeans, or IntelliJ. Clone the repository and build the project.
 
@@ -43,7 +50,7 @@ You can modify the sample file in `src/main/config/test-run-props.xml`
 The TestNG results file (`testng-results.xml`) will be written to a subdirectory
 in `${user.home}/testng/` having a UUID value as its name.
 
-#### 3. Command shell (console)
+#### 3. Command Shell (console)
 
 One of the build artifacts is an "all-in-one" JAR file that includes the test 
 suite and all of its dependencies; this makes it very easy to execute the test 
@@ -52,7 +59,7 @@ suite in a command shell:
 `java -jar ets-cdb10-0.1-SNAPSHOT-aio.jar [-o|--outputDir $TMPDIR] [test-run-props.xml]`
 
 
-### How to contribute
+### How to Contribute
 
 If you would like to get involved, you can:
 
