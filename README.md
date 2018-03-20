@@ -53,6 +53,8 @@ You can modify the sample file in `src/main/config/test-run-props.xml`
 The TestNG results file (`testng-results.xml`) will be written to a subdirectory
 in `${user.home}/testng/` having a UUID value as its name.
 
+For a more detailed guide on using Eclipse to test CDB, see the [HOW TO Guide](HOWTO_ECLIPSE.md).
+
 #### 3. Command Shell (console)
 
 One of the build artifacts is an "all-in-one" JAR file that includes the test 
