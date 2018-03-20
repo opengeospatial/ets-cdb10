@@ -63,6 +63,8 @@ suite in a command shell:
 
 `java -jar ets-cdb10-0.2-SNAPSHOT-aio.jar [-o|--outputDir $TMPDIR] [test-run-props.xml]`
 
+For a more detailed guide on using a JAR to test CDB, see the [HOW TO Guide](HOWTO_JAR.md).
+
 ### Building
 
 This test suite is compatible with Apache Maven. You can build the test 
