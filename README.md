@@ -22,6 +22,8 @@ release are usually available at the [beta testing facility][Test Facility].
 You can also [build and deploy][TEAM Engine Source] the test harness 
 yourself and use a local installation.
 
+For a more detailed guide on installing TEAM Engine to test CDB, see the [HOW TO Guide](HOWTO_TEAMENGINE.md).
+
 [TEAM Engine]: https://github.com/opengeospatial/teamengine
 [Test Facility]: http://cite.opengeospatial.org/te2/
 [TEAM Engine Source]: https://github.com/opengeospatial/teamengine
