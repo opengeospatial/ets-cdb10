@@ -47,6 +47,8 @@
   <properties>
     <ets-code>cdb10</ets-code>
     <spec-version>1.0</spec-version>
+    <javadoc-plugin.version>2.10.4</javadoc-plugin.version>
+    <testng.javadoc.url>https://jitpack.io/com/github/cbeust/testng/master/javadoc</testng.javadoc.url>
   </properties>
 
   <dependencies>
@@ -85,12 +87,12 @@
     <plugins>
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.10.3</version>
+        <version>${javadoc-plugin.version}</version>
         <configuration>
           <docfilessubdirs>true</docfilessubdirs>
           <show>package</show>
           <links>
-            <link>http://testng.org/javadocs/</link>
+            <link>${testng.javadoc.url}</link>
           </links>
         </configuration>
         <executions>
@@ -149,6 +151,32 @@
       </plugin>
     </plugins>
   </build>
+  
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${javadoc-plugin.version}</version>
+        <reportSets>
+          <reportSet>
+            <id>default</id>
+            <configuration>
+              <docfilessubdirs>true</docfilessubdirs>
+              <show>package</show>
+              <links>
+                <link>${testng.javadoc.url}</link>
+              </links>
+            </configuration>
+            <reports>
+              <report>javadoc</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+  
   <dependencyManagement>
   	<dependencies>
   		<dependency>
