@@ -74,6 +74,14 @@ suite from a local repository:
 $ mvn install
 ```
 
+If you do not have Git installed, you will need to skip the build number plugin phase, 
+otherwise an error will occur. 
+
+```sh
+$ mvn install -Dmaven.buildNumber.skip=true
+```
+
+
 The compiled JAR will be available at `target/ets-cdb10-0.2-SNAPSHOT-aio.jar`.
 For TEAM Engine, you will need `target/ets-cdb10-0.2-SNAPSHOT-ctl.zip` and `target/ets-cdb10-0.2-SNAPSHOT-deps.zip`.
 
