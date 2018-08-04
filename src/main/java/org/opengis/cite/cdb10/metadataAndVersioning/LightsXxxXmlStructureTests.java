@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -47,6 +48,7 @@ public class LightsXxxXmlStructureTests extends Capability2Tests {
         }
 
         if (invalidFileNames.size() > 0) {
+        	Collections.sort(invalidFileNames);
             Assert.fail(String.format("%s are not a valid file name(s) the file name must start with 'Lights_', " +
                     "can only be a maximum of 32 characters and contain letters, numbers, " +
                     "underscores and dashes.", invalidFileNames.toString()));

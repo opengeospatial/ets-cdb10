@@ -61,8 +61,8 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
         Files.createFile(metadataFolder.resolve(Paths.get("Lights_123451234512345123451234512345_example1.xml")));
         Files.createFile(metadataFolder.resolve(Paths.get("Lights_123451234512345123451234512345_example2.xml")));
 
-        String expectedMessage = "[Lights_123451234512345123451234512345_example2.xml, " +
-                "Lights_123451234512345123451234512345_example1.xml] are not a valid file name(s) the file name must start with " +
+        String expectedMessage = "[Lights_123451234512345123451234512345_example1.xml, " +
+                "Lights_123451234512345123451234512345_example2.xml] are not a valid file name(s) the file name must start with " +
                 "'Lights_', can only be a maximum of 32 characters and contain letters, numbers, underscores and dashes.";
 
         expectedException.expect(AssertionError.class);
