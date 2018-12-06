@@ -8,12 +8,10 @@ import org.junit.rules.ExpectedException;
 import org.testng.ISuite;
 import org.testng.ITestContext;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -48,18 +46,17 @@ public abstract class TestFixture<T extends CommonFixture> {
 
 	@After
 	public void cleanupTestCDB() throws IOException {
-		Files.walkFileTree(this.cdb_root, new SimpleFileVisitor<Path>() {
-			@Override
-			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-				Files.delete(file);
-				return FileVisitResult.CONTINUE;
-			}
+		deleteRecursive(this.cdb_root.toFile());
+	}
 
-			@Override
-			public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-				Files.delete(dir);
-				return FileVisitResult.CONTINUE;
-			}
-		});
+	public boolean deleteRecursive(File path) {
+	    if (path.isDirectory()) {
+	        for (File file : path.listFiles()) {
+	            if (!deleteRecursive(file)) {
+	                return false;
+	            }
+	        }
+	    }
+	    return path.delete();
 	}
 }
