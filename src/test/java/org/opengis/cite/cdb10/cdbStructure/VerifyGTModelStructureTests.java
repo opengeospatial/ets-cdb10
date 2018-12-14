@@ -801,5 +801,65 @@ public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStr
 		// execute
 		this.testSuite.verifyTNAMSecond();
 	}
+	
+	/*
+	 * TNAM Directory 
+	 */
+	@Test(expected = AssertionError.class)
+	public void verifyTNAM_TooShort() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "511_GTModelTexture",
+				"A", "B", "A")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyTNAM_TooLong() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "511_GTModelTexture",
+				"A", "B", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyTNAM_WrongChars() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "511_GTModelTexture",
+				"A", "B", "$$AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyTNAM_Mismatch() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "511_GTModelTexture",
+				"A", "B", "AC_1")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+
+	@Test
+	public void verifyTNAM_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "511_GTModelTexture",
+				"A", "B", "AB_1")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+
+	@Test
+	public void verifyTNAM_Skip() throws IOException {
+		// setup
+		// execute
+		this.testSuite.verifyTNAM();
+	}
 
 }

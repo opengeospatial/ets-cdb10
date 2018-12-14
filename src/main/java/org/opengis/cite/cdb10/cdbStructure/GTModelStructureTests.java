@@ -708,7 +708,6 @@ public class GTModelStructureTests extends CommonFixture {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml(this.path);
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
@@ -752,7 +751,6 @@ public class GTModelStructureTests extends CommonFixture {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml(this.path);
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
@@ -768,17 +766,82 @@ public class GTModelStructureTests extends CommonFixture {
 			for (Path tnamPrefixDir : tnamPrefixDirs) {
 				DirectoryStream<Path> secondDirs = Files.newDirectoryStream(tnamPrefixDir);
 
-			for (Path secondDir : secondDirs) {
-				String filename = secondDir.getFileName().toString();
-
-				if (filename.length() != 1) {
-					errors.add("Invalid length on level 3 texture name directory: " + filename);
-				}
-
-				if (!filename.toUpperCase().equals(filename)) {
-					errors.add("Level 3 texture name directory should be uppercase: " + filename);
+				for (Path secondDir : secondDirs) {
+					String filename = secondDir.getFileName().toString();
+	
+					if (filename.length() != 1) {
+						errors.add("Invalid length on level 3 texture name directory: " + filename);
+					}
+	
+					if (!filename.toUpperCase().equals(filename)) {
+						errors.add("Level 3 texture name directory should be uppercase: " + filename);
+					}
 				}
 			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
+	
+	/**
+	 * Validates that GTModel directories have valid codes/names. D501, D511, D504, D505 only.
+	 * Test based on Section 3.4.2, Volume 1, OGC CDB Core Standard (Version 1.0)
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifyTNAM() throws IOException {
+		Path gtModelsPath = Paths.get(this.path, "GTModel");
+
+		if (Files.notExists(gtModelsPath)) {
+			return;
+		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		Pattern startPattern = Pattern.compile("^\\p{Alnum}{2}");
+
+		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
+			
+			// Only apply to 501, 511, 504, 505 datasets
+			String datasetName = dataset.getFileName().toString();
+			if (!datasetName.startsWith("501") && !datasetName.startsWith("511") && 
+					!datasetName.startsWith("504") && !datasetName.startsWith("505")) {
+				return;
+			}
+			
+			DirectoryStream<Path> tnamPrefixDirs = Files.newDirectoryStream(dataset);
+
+			for (Path tnamPrefixDir : tnamPrefixDirs) {
+				DirectoryStream<Path> secondDirs = Files.newDirectoryStream(tnamPrefixDir);
+				String firstDirFilename = tnamPrefixDir.getFileName().toString();
+
+				for (Path secondDir : secondDirs) {
+					DirectoryStream<Path> textureNames = Files.newDirectoryStream(secondDir);
+					String secondDirFilename = secondDir.getFileName().toString();
+	
+					for (Path textureName : textureNames) {
+						String filename = textureName.getFileName().toString();
+	
+						if ((filename.length() < 2) || (filename.length() > 32)) {
+							errors.add("Invalid length on texture name directory: " + filename);
+						} else {
+							if (!filename.substring(0,1).equals(firstDirFilename)) {
+								errors.add("Texture name directory does not match grandparent: " + filename);
+							}
+	
+							if (!filename.substring(1,2).equals(secondDirFilename)) {
+								errors.add("Texture name directory does not match parent: " + filename);
+							}
+	
+							Matcher match = startPattern.matcher(filename);
+	
+							if (!match.find()) {
+								errors.add("Texture name directory must start with two alphanumeric characters: "
+										+ filename);
+							}
+						}
+					}
+				}
 			}
 		}
 
