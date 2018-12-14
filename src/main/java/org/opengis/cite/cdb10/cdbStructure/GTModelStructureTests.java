@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 
 public class GTModelStructureTests extends CommonFixture {
 	/**
-	 * Validates that GTModel directories have valid codes/names.
+	 * Validates that GTModel directories have valid codes/names. 
 	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
@@ -70,6 +70,13 @@ public class GTModelStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that GTModel Category directories have valid codes/names. D500, D503, D510 only.
+	 * 
+	 * Level 1: Dataset
+	 * Level 2: Feature Category
+	 * Level 3: Feature Sub-Category
+	 * Level 4: Feature Type
+	 * Level 5: LOD
+	 * 
 	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
@@ -131,7 +138,14 @@ public class GTModelStructureTests extends CommonFixture {
 	}
 
 	/**
-	 * Validates that GTModel Sub-Category directories have valid codes/names.
+	 * Validates that GTModel Sub-Category directories have valid codes/names. D500, D503, D510 only.
+	 * 
+	 * Level 1: Dataset
+	 * Level 2: Feature Category
+	 * Level 3: Feature Sub-Category
+	 * Level 4: Feature Type
+	 * Level 5: LOD
+	 * 
 	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
@@ -196,7 +210,14 @@ public class GTModelStructureTests extends CommonFixture {
 	}
 
 	/**
-	 * Validates that GTModel Feature Type directories have valid codes/names.
+	 * Validates that GTModel Feature Type directories have valid codes/names. D500, D503, D510 only.
+	 * 
+	 * Level 1: Dataset
+	 * Level 2: Feature Category
+	 * Level 3: Feature Sub-Category
+	 * Level 4: Feature Type
+	 * Level 5: LOD
+	 * 
 	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
@@ -270,7 +291,14 @@ public class GTModelStructureTests extends CommonFixture {
 	}
 
 	/**
-	 * Validates that GTModel LOD directories have valid names.
+	 * Validates that GTModel LOD directories have valid names. D500, D503, D510 only.
+	 * 
+	 * Level 1: Dataset
+	 * Level 2: Feature Category
+	 * Level 3: Feature Sub-Category
+	 * Level 4: Feature Type
+	 * Level 5: LOD
+	 * 
 	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
@@ -323,6 +351,12 @@ public class GTModelStructureTests extends CommonFixture {
 	
 	/**
 	 * Validates that GTModel directories have valid codes/names. D501, D511, D504, D505 only.
+	 * 
+	 * Level 1: Dataset
+	 * Level 2: TNAM First Character
+	 * Level 3: TNAM Second Character
+	 * Level 4: Texture Name (TNAM)
+	 * 
 	 * Test based on Section 3.4.2, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
@@ -366,6 +400,12 @@ public class GTModelStructureTests extends CommonFixture {
 	
 	/**
 	 * Validates that GTModel directories have valid codes/names. D501, D511, D504, D505 only.
+	 * 
+	 * Level 1: Dataset
+	 * Level 2: TNAM First Character
+	 * Level 3: TNAM Second Character
+	 * Level 4: Texture Name (TNAM)
+	 * 
 	 * Test based on Section 3.4.2, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
@@ -413,6 +453,12 @@ public class GTModelStructureTests extends CommonFixture {
 	
 	/**
 	 * Validates that GTModel directories have valid codes/names. D501, D511, D504, D505 only.
+	 * 
+	 * Level 1: Dataset
+	 * Level 2: TNAM First Character
+	 * Level 3: TNAM Second Character
+	 * Level 4: Texture Name (TNAM)
+	 * 
 	 * Test based on Section 3.4.2, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
