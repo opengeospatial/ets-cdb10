@@ -692,4 +692,48 @@ public class GTModelStructureTests extends CommonFixture {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
+	
+	/**
+	 * Validates that GTModel Category directories have valid codes/names. D501, D511, D504, D505 only.
+	 * Test based on Section 3.4.2, Volume 1, OGC CDB Core Standard (Version 1.0)
+	 *
+	 * @throws IOException
+	 */
+	@Test
+	public void verifyTNAMPrefix() throws IOException {
+		Path gtModelsPath = Paths.get(this.path, "GTModel");
+
+		if (Files.notExists(gtModelsPath)) {
+			return;
+		}
+
+		ArrayList<String> errors = new ArrayList<String>();
+		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml(this.path);
+
+		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
+			
+			// Only apply to 501, 511, 504, 505 datasets
+			String datasetName = dataset.getFileName().toString();
+			if (!datasetName.startsWith("501") && !datasetName.startsWith("511") && 
+					!datasetName.startsWith("504") && !datasetName.startsWith("505")) {
+				return;
+			}
+			
+			DirectoryStream<Path> prefixes = Files.newDirectoryStream(dataset);
+
+			for (Path prefix : prefixes) {
+				String filename = prefix.getFileName().toString();
+				
+				if (filename.length() != 1) {
+				errors.add("Invalid length on texture name prefix directory: " + filename);
+				}
+	
+				if (!filename.toUpperCase().equals(filename)) {
+					errors.add("Texture name prefix directory should be uppercase: " + filename);
+				}
+			}
+		}
+
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
 }

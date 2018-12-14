@@ -719,4 +719,46 @@ public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStr
 		// execute
 		this.testSuite.verifyDescriptorFile();
 	}
+	
+	
+	/*
+	 * TNAM Prefix Directory
+	 */
+	@Test(expected = AssertionError.class)
+	public void verifyTNAMPrefix_TooLong() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "511_GTModelTexture",
+				"ABC")));
+
+		// execute
+		this.testSuite.verifyTNAMPrefix();
+	}
+
+	@Test(expected = AssertionError.class)
+	public void verifyTNAMPrefix_WrongCase() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "511_GTModelTexture",
+				"a")));
+
+		// execute
+		this.testSuite.verifyTNAMPrefix();
+	}
+
+	@Test
+	public void verifyTNAMPrefix_Good() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "511_GTModelTexture",
+				"A")));
+
+		// execute
+		this.testSuite.verifyTNAMPrefix();
+	}
+
+
+	@Test
+	public void verifyTNAMPrefix_Skip() throws IOException {
+		// setup
+		// execute
+		this.testSuite.verifyTNAMPrefix();
+	}
 }
