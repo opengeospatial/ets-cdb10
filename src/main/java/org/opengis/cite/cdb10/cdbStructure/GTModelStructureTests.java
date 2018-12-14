@@ -69,7 +69,7 @@ public class GTModelStructureTests extends CommonFixture {
 	}
 
 	/**
-	 * Validates that GTModel Category directories have valid codes/names.
+	 * Validates that GTModel Category directories have valid codes/names. D500, D503, D510 only.
 	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
@@ -86,6 +86,14 @@ public class GTModelStructureTests extends CommonFixture {
 		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml(this.path);
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
+			
+			// Only apply to 500, 503, 510 datasets
+			String datasetName = dataset.getFileName().toString();
+			if (!datasetName.startsWith("500") && !datasetName.startsWith("510") && 
+					!datasetName.startsWith("503")) {
+				return;
+			}
+			
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
 
 			for (Path category : categories) {
@@ -140,6 +148,13 @@ public class GTModelStructureTests extends CommonFixture {
 		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml(this.path);
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
+			
+			// Only apply to 500, 503, 510 datasets
+			String datasetName = dataset.getFileName().toString();
+			if (!datasetName.startsWith("500") && !datasetName.startsWith("510") && 
+					!datasetName.startsWith("503")) {
+				return;
+			}
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
 
 			for (Path category : categories) {
@@ -198,6 +213,13 @@ public class GTModelStructureTests extends CommonFixture {
 		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml(this.path);
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
+			
+			// Only apply to 500, 503, 510 datasets
+			String datasetName = dataset.getFileName().toString();
+			if (!datasetName.startsWith("500") && !datasetName.startsWith("510") &&
+					!datasetName.startsWith("503")) {
+				return;
+			}
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
 
 			for (Path category : categories) {
@@ -265,6 +287,13 @@ public class GTModelStructureTests extends CommonFixture {
 		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
+			
+			// Only apply to 500, 503, 510 datasets
+			String datasetName = dataset.getFileName().toString();
+			if (!datasetName.startsWith("500") && !datasetName.startsWith("510") &&
+					!datasetName.startsWith("503")) {
+				return;
+			}
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
 
 			for (Path category : categories) {
