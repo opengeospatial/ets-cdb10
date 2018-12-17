@@ -32,6 +32,8 @@ public class GTModelStructureTests extends CommonFixture {
 
 		ArrayList<String> errors = new ArrayList<String>();
 		DatasetsXml datasetDefs = new DatasetsXml(this.path);
+		final String[] allowedDatasets = { "500", "501", "502", "503", "504", "505", "506", "507", "508", 
+				"509", "510", "511", "512", "513" };
 
 		for (Path file : Files.newDirectoryStream(gtModelsPath)) {
 			String filename = file.getFileName().toString();
@@ -62,6 +64,8 @@ public class GTModelStructureTests extends CommonFixture {
 					errors.add("Invalid dataset name: " + filename);
 				} else if (!datasetDefs.datasetNameForCode(prefixID).equals(datasetName)) {
 					errors.add("Invalid dataset code/name combination: " + filename);
+				} else if (!Arrays.asList(allowedDatasets).contains(prefix)) {
+					errors.add("Invalid dataset for GTModel: " + filename);
 				}
 			}
 		}
@@ -71,7 +75,7 @@ public class GTModelStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that GTModel Category directories have valid codes/names.
-	 * D500, D503, D510, D506, D508 only.
+	 * D500, D502, D503, D506, D508, D510 only.
 	 * 
 	 * Level 1: Dataset
 	 * Level 2: Feature Category
@@ -79,7 +83,7 @@ public class GTModelStructureTests extends CommonFixture {
 	 * Level 4: Feature Type
 	 * Level 5: LOD
 	 * 
-	 * Test based on Section 3.4.1/3.4.3, Volume 1, OGC CDB Core Standard (Version 1.0)
+	 * Test based on Section 3.4.1/3.4.3/3.4.5, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -96,8 +100,8 @@ public class GTModelStructureTests extends CommonFixture {
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
-			// Only apply to 500, 503, 510, 506, 508
-			final String[] allowedDatasets = { "500", "503", "510", "506", "508" };
+			// Only apply to 500, 502, 503, 506, 508, 510
+			final String[] allowedDatasets = { "500", "502", "503", "506", "508", "510" };
 			String datasetName = dataset.getFileName().toString().substring(0, 3);
 			
 			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
@@ -142,7 +146,7 @@ public class GTModelStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that GTModel Sub-Category directories have valid codes/names.
-	 * D500, D503, D510, D506, D508 only.
+	 * D500, D502, D503, D506, D508, D510 only.
 	 * 
 	 * Level 1: Dataset
 	 * Level 2: Feature Category
@@ -167,8 +171,8 @@ public class GTModelStructureTests extends CommonFixture {
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
-			// Only apply to 500, 503, 510, 506, 508
-			final String[] allowedDatasets = { "500", "503", "510", "506", "508" };
+			// Only apply to 500, 502, 503, 506, 508, 510
+			final String[] allowedDatasets = { "500", "502", "503", "506", "508", "510" };
 			String datasetName = dataset.getFileName().toString().substring(0, 3);
 			
 			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
@@ -217,7 +221,7 @@ public class GTModelStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that GTModel Feature Type directories have valid codes/names.
-	 * D500, D503, D510, D506, D508 only.
+	 * D500, D502, D503, D506, D508, D510 only.
 	 * 
 	 * Level 1: Dataset
 	 * Level 2: Feature Category
@@ -242,8 +246,8 @@ public class GTModelStructureTests extends CommonFixture {
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
-			// Only apply to 500, 503, 510, 506, 508
-			final String[] allowedDatasets = { "500", "503", "510", "506", "508" };
+			// Only apply to 500, 502, 503, 506, 508, 510
+			final String[] allowedDatasets = { "500", "502", "503", "506", "508", "510" };
 			String datasetName = dataset.getFileName().toString().substring(0, 3);
 			
 			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
@@ -301,7 +305,7 @@ public class GTModelStructureTests extends CommonFixture {
 
 	/**
 	 * Validates that GTModel LOD directories have valid names.
-	 * D500, D503, D510, D506, D508 only.
+	 * D500, D502, D503, D506, D508, D510 only.
 	 * 
 	 * Level 1: Dataset
 	 * Level 2: Feature Category
@@ -326,8 +330,8 @@ public class GTModelStructureTests extends CommonFixture {
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
-			// Only apply to 500, 503, 510, 506, 508
-			final String[] allowedDatasets = { "500", "503", "510", "506", "508" };
+			// Only apply to 500, 502, 503, 506, 508, 510
+			final String[] allowedDatasets = { "500", "502", "503", "506", "508", "510" };
 			String datasetName = dataset.getFileName().toString().substring(0, 3);
 			
 			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
