@@ -485,11 +485,71 @@ public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStr
 		// execute
 		this.testSuite.verifyTNAMPrefix();
 	}
-
+	
 	@Test
-	public void verifyTNAMPrefix_Good() throws IOException {
+	public void verifyTNAMPrefix_Good501() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "501_GTModelTexture",
+				"A")));
+
+		// execute
+		this.testSuite.verifyTNAMPrefix();
+	}
+	
+	@Test
+	public void verifyTNAMPrefix_Good504() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "504_GTModelMaterial",
+				"A")));
+
+		// execute
+		this.testSuite.verifyTNAMPrefix();
+	}
+	
+	@Test
+	public void verifyTNAMPrefix_Good505() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "505_GTModelCMT",
+				"A")));
+
+		// execute
+		this.testSuite.verifyTNAMPrefix();
+	}
+	
+	@Test
+	public void verifyTNAMPrefix_Good507() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "507_GTModelInteriorTexture",
+				"A")));
+
+		// execute
+		this.testSuite.verifyTNAMPrefix();
+	}
+	
+	@Test
+	public void verifyTNAMPrefix_Good509() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "509_GTModelInteriorMaterial",
+				"A")));
+
+		// execute
+		this.testSuite.verifyTNAMPrefix();
+	}
+	
+	@Test
+	public void verifyTNAMPrefix_Good511() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "511_GTModelTexture",
+				"A")));
+
+		// execute
+		this.testSuite.verifyTNAMPrefix();
+	}
+	
+	@Test
+	public void verifyTNAMPrefix_Good513() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "513_GTModelInteriorCMT",
 				"A")));
 
 		// execute
@@ -527,10 +587,70 @@ public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStr
 		this.testSuite.verifyTNAMSecond();
 	}
 
+		@Test
+	public void verifyTNAMSecond_Good501() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "501_GTModelTexture",
+				"A", "B")));
+
+		// execute
+		this.testSuite.verifyTNAMSecond();
+	}
+	
 	@Test
-	public void verifyTNAMSecond_Good() throws IOException {
+	public void verifyTNAMSecond_Good504() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "504_GTModelMaterial",
+				"A", "B")));
+
+		// execute
+		this.testSuite.verifyTNAMSecond();
+	}
+	
+	@Test
+	public void verifyTNAMSecond_Good505() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "505_GTModelCMT",
+				"A", "B")));
+
+		// execute
+		this.testSuite.verifyTNAMSecond();
+	}
+	
+	@Test
+	public void verifyTNAMSecond_Good507() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "507_GTModelInteriorTexture",
+				"A", "B")));
+
+		// execute
+		this.testSuite.verifyTNAMSecond();
+	}
+	
+	@Test
+	public void verifyTNAMSecond_Good509() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "509_GTModelInteriorMaterial",
+				"A", "B")));
+
+		// execute
+		this.testSuite.verifyTNAMSecond();
+	}
+	
+	@Test
+	public void verifyTNAMSecond_Good511() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "511_GTModelTexture",
+				"A", "B")));
+
+		// execute
+		this.testSuite.verifyTNAMSecond();
+	}
+	
+	@Test
+	public void verifyTNAMSecond_Good513() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "513_GTModelInteriorCMT",
 				"A", "B")));
 
 		// execute
@@ -587,10 +707,70 @@ public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStr
 		this.testSuite.verifyTNAM();
 	}
 
+		@Test
+	public void verifyTNAM_Good501() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "501_GTModelTexture",
+				"A", "B", "AB_1")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+	
 	@Test
-	public void verifyTNAM_Good() throws IOException {
+	public void verifyTNAM_Good504() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "504_GTModelMaterial",
+				"A", "B", "AB_1")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+	
+	@Test
+	public void verifyTNAM_Good505() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "505_GTModelCMT",
+				"A", "B", "AB_1")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+	
+	@Test
+	public void verifyTNAM_Good507() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "507_GTModelInteriorTexture",
+				"A", "B", "AB_1")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+	
+	@Test
+	public void verifyTNAM_Good509() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "509_GTModelInteriorMaterial",
+				"A", "B", "AB_1")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+	
+	@Test
+	public void verifyTNAM_Good511() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "511_GTModelTexture",
+				"A", "B", "AB_1")));
+
+		// execute
+		this.testSuite.verifyTNAM();
+	}
+	
+	@Test
+	public void verifyTNAM_Good513() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "513_GTModelInteriorCMT",
 				"A", "B", "AB_1")));
 
 		// execute

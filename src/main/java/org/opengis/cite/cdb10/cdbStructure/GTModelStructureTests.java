@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -357,14 +358,15 @@ public class GTModelStructureTests extends CommonFixture {
 	}
 	
 	/**
-	 * Validates that GTModel directories have valid codes/names. D501, D511, D504, D505 only.
+	 * Validates that GTModel directories have valid codes/names.
+	 * D501, D511, D504, D505, 507, 509, 513 only.
 	 * 
 	 * Level 1: Dataset
 	 * Level 2: TNAM First Character
 	 * Level 3: TNAM Second Character
 	 * Level 4: Texture Name (TNAM)
 	 * 
-	 * Test based on Section 3.4.2, Volume 1, OGC CDB Core Standard (Version 1.0)
+	 * Test based on Section 3.4.2/3.4.4, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -380,10 +382,11 @@ public class GTModelStructureTests extends CommonFixture {
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
-			// Only apply to 501, 511, 504, 505 datasets
-			String datasetName = dataset.getFileName().toString();
-			if (!datasetName.startsWith("501") && !datasetName.startsWith("511") && 
-					!datasetName.startsWith("504") && !datasetName.startsWith("505")) {
+			// Only apply to 501, 511, 504, 505, 507, 509, 513 datasets
+			final String[] allowedDatasets = { "501", "511", "504", "505", "507", "509", "513" };
+			String datasetName = dataset.getFileName().toString().substring(0, 3);
+			
+			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
 				return;
 			}
 			
@@ -406,14 +409,15 @@ public class GTModelStructureTests extends CommonFixture {
 	}
 	
 	/**
-	 * Validates that GTModel directories have valid codes/names. D501, D511, D504, D505 only.
+	 * Validates that GTModel directories have valid codes/names.
+	 * D501, D511, D504, D505, 507, 509, 513 only.
 	 * 
 	 * Level 1: Dataset
 	 * Level 2: TNAM First Character
 	 * Level 3: TNAM Second Character
 	 * Level 4: Texture Name (TNAM)
 	 * 
-	 * Test based on Section 3.4.2, Volume 1, OGC CDB Core Standard (Version 1.0)
+	 * Test based on Section 3.4.2/3.4.4, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -429,10 +433,11 @@ public class GTModelStructureTests extends CommonFixture {
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
-			// Only apply to 501, 511, 504, 505 datasets
-			String datasetName = dataset.getFileName().toString();
-			if (!datasetName.startsWith("501") && !datasetName.startsWith("511") && 
-					!datasetName.startsWith("504") && !datasetName.startsWith("505")) {
+			// Only apply to 501, 511, 504, 505, 507, 509, 513 datasets
+			final String[] allowedDatasets = { "501", "511", "504", "505", "507", "509", "513" };
+			String datasetName = dataset.getFileName().toString().substring(0, 3);
+			
+			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
 				return;
 			}
 			
@@ -459,14 +464,15 @@ public class GTModelStructureTests extends CommonFixture {
 	}
 	
 	/**
-	 * Validates that GTModel directories have valid codes/names. D501, D511, D504, D505 only.
+	 * Validates that GTModel directories have valid codes/names.
+	 * D501, D511, D504, D505, 507, 509, 513 only.
 	 * 
 	 * Level 1: Dataset
 	 * Level 2: TNAM First Character
 	 * Level 3: TNAM Second Character
 	 * Level 4: Texture Name (TNAM)
 	 * 
-	 * Test based on Section 3.4.2, Volume 1, OGC CDB Core Standard (Version 1.0)
+	 * Test based on Section 3.4.2/3.4.4, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -483,10 +489,11 @@ public class GTModelStructureTests extends CommonFixture {
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
-			// Only apply to 501, 511, 504, 505 datasets
-			String datasetName = dataset.getFileName().toString();
-			if (!datasetName.startsWith("501") && !datasetName.startsWith("511") && 
-					!datasetName.startsWith("504") && !datasetName.startsWith("505")) {
+			// Only apply to 501, 511, 504, 505, 507, 509, 513 datasets
+			final String[] allowedDatasets = { "501", "511", "504", "505", "507", "509", "513" };
+			String datasetName = dataset.getFileName().toString().substring(0, 3);
+			
+			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
 				return;
 			}
 			
