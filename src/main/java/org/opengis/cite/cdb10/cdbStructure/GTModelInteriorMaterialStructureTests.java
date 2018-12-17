@@ -14,16 +14,16 @@ import org.opengis.cite.cdb10.CommonFixture;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class GTModelInteriorTextureStructureTests extends CommonFixture {
+public class GTModelInteriorMaterialStructureTests extends CommonFixture {
 	/**
-	 * Validates that GTModelInteriorTexture filenames have valid codes/names.
+	 * Validates that GTModelInteriorMaterial filenames have valid codes/names.
 	 * Test based on Section 3.4.4, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
 	@Test
-	public void verifyModelInteriorTextureFile() throws IOException {
-		Path gtModelGeomPath = Paths.get(this.path, "GTModel", "507_GTModelInteriorTexture");
+	public void verifyModelInteriorMaterialFile() throws IOException {
+		Path gtModelGeomPath = Paths.get(this.path, "GTModel", "509_GTModelInteriorMaterial");
 
 		if (Files.notExists(gtModelGeomPath)) {
 			return;
@@ -32,10 +32,10 @@ public class GTModelInteriorTextureStructureTests extends CommonFixture {
 		ArrayList<String> errors = new ArrayList<String>();
 		/*
 		 * Example of valid filename:
-		 * D507_S001_T001_L10_AC_1.rgb
+		 * D509_S001_T001_L10_AC_1.tif
 		 */
 		Pattern filePattern = Pattern.compile(
-				"^D507_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<lod>LC|L\\d{2})_(?<tnam>[^.]+)\\.(?<ext>.+)$"
+				"^D509_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<lod>LC|L\\d{2})_(?<tnam>[^.]+)\\.(?<ext>.+)$"
 				);
 		
 		DirectoryStream<Path> tnamPrefixDirs = Files.newDirectoryStream(gtModelGeomPath);
@@ -105,8 +105,8 @@ public class GTModelInteriorTextureStructureTests extends CommonFixture {
 											+ filename);
 								}
 								
-								if (!match.group("ext").equals("rgb")) {
-									errors.add("Invalid file extension for D507: " + filename);
+								if (!match.group("ext").equals("tif")) {
+									errors.add("Invalid file extension for D509: " + filename);
 								}
 							}
 						}
