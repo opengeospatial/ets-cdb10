@@ -96,13 +96,14 @@ public class GTModelStructureTests extends CommonFixture {
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
-			// Only apply to 500, 503, 510, 506, 508 datasets
-			String datasetName = dataset.getFileName().toString();
-			if (!datasetName.startsWith("500") && !datasetName.startsWith("510") &&
-					!datasetName.startsWith("503") && !datasetName.startsWith("506") &&
-					!datasetName.startsWith("508")) {
+			// Only apply to 500, 503, 510, 506, 508
+			final String[] allowedDatasets = { "500", "503", "510", "506", "508" };
+			String datasetName = dataset.getFileName().toString().substring(0, 3);
+			
+			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
 				return;
 			}
+			
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
 
 			for (Path category : categories) {
@@ -166,13 +167,14 @@ public class GTModelStructureTests extends CommonFixture {
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
-			// Only apply to 500, 503, 510, 506, 508 datasets
-			String datasetName = dataset.getFileName().toString();
-			if (!datasetName.startsWith("500") && !datasetName.startsWith("510") &&
-					!datasetName.startsWith("503") && !datasetName.startsWith("506") &&
-					!datasetName.startsWith("508")) {
+			// Only apply to 500, 503, 510, 506, 508
+			final String[] allowedDatasets = { "500", "503", "510", "506", "508" };
+			String datasetName = dataset.getFileName().toString().substring(0, 3);
+			
+			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
 				return;
 			}
+			
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
 
 			for (Path category : categories) {
@@ -240,13 +242,14 @@ public class GTModelStructureTests extends CommonFixture {
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
-			// Only apply to 500, 503, 510, 506, 508 datasets
-			String datasetName = dataset.getFileName().toString();
-			if (!datasetName.startsWith("500") && !datasetName.startsWith("510") &&
-					!datasetName.startsWith("503") && !datasetName.startsWith("506") &&
-					!datasetName.startsWith("508")) {
+			// Only apply to 500, 503, 510, 506, 508
+			final String[] allowedDatasets = { "500", "503", "510", "506", "508" };
+			String datasetName = dataset.getFileName().toString().substring(0, 3);
+			
+			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
 				return;
 			}
+			
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
 
 			for (Path category : categories) {
@@ -323,13 +326,14 @@ public class GTModelStructureTests extends CommonFixture {
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
-			// Only apply to 500, 503, 510, 506, 508 datasets
-			String datasetName = dataset.getFileName().toString();
-			if (!datasetName.startsWith("500") && !datasetName.startsWith("510") &&
-					!datasetName.startsWith("503") && !datasetName.startsWith("506") &&
-					!datasetName.startsWith("508")) {
+			// Only apply to 500, 503, 510, 506, 508
+			final String[] allowedDatasets = { "500", "503", "510", "506", "508" };
+			String datasetName = dataset.getFileName().toString().substring(0, 3);
+			
+			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
 				return;
 			}
+			
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
 
 			for (Path category : categories) {
