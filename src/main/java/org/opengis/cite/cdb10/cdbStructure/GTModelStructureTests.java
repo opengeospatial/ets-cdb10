@@ -69,7 +69,8 @@ public class GTModelStructureTests extends CommonFixture {
 	}
 
 	/**
-	 * Validates that GTModel Category directories have valid codes/names. D500, D503, D510 only.
+	 * Validates that GTModel Category directories have valid codes/names.
+	 * D500, D503, D510, D506, D508 only.
 	 * 
 	 * Level 1: Dataset
 	 * Level 2: Feature Category
@@ -77,7 +78,7 @@ public class GTModelStructureTests extends CommonFixture {
 	 * Level 4: Feature Type
 	 * Level 5: LOD
 	 * 
-	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
+	 * Test based on Section 3.4.1/3.4.3, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -94,13 +95,13 @@ public class GTModelStructureTests extends CommonFixture {
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
-			// Only apply to 500, 503, 510 datasets
+			// Only apply to 500, 503, 510, 506, 508 datasets
 			String datasetName = dataset.getFileName().toString();
-			if (!datasetName.startsWith("500") && !datasetName.startsWith("510") && 
-					!datasetName.startsWith("503")) {
+			if (!datasetName.startsWith("500") && !datasetName.startsWith("510") &&
+					!datasetName.startsWith("503") && !datasetName.startsWith("506") &&
+					!datasetName.startsWith("508")) {
 				return;
 			}
-			
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
 
 			for (Path category : categories) {
@@ -138,7 +139,8 @@ public class GTModelStructureTests extends CommonFixture {
 	}
 
 	/**
-	 * Validates that GTModel Sub-Category directories have valid codes/names. D500, D503, D510 only.
+	 * Validates that GTModel Sub-Category directories have valid codes/names.
+	 * D500, D503, D510, D506, D508 only.
 	 * 
 	 * Level 1: Dataset
 	 * Level 2: Feature Category
@@ -146,7 +148,7 @@ public class GTModelStructureTests extends CommonFixture {
 	 * Level 4: Feature Type
 	 * Level 5: LOD
 	 * 
-	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
+	 * Test based on Section 3.4.1/3.4.3, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -163,10 +165,11 @@ public class GTModelStructureTests extends CommonFixture {
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
-			// Only apply to 500, 503, 510 datasets
+			// Only apply to 500, 503, 510, 506, 508 datasets
 			String datasetName = dataset.getFileName().toString();
-			if (!datasetName.startsWith("500") && !datasetName.startsWith("510") && 
-					!datasetName.startsWith("503")) {
+			if (!datasetName.startsWith("500") && !datasetName.startsWith("510") &&
+					!datasetName.startsWith("503") && !datasetName.startsWith("506") &&
+					!datasetName.startsWith("508")) {
 				return;
 			}
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
@@ -210,7 +213,8 @@ public class GTModelStructureTests extends CommonFixture {
 	}
 
 	/**
-	 * Validates that GTModel Feature Type directories have valid codes/names. D500, D503, D510 only.
+	 * Validates that GTModel Feature Type directories have valid codes/names.
+	 * D500, D503, D510, D506, D508 only.
 	 * 
 	 * Level 1: Dataset
 	 * Level 2: Feature Category
@@ -218,7 +222,7 @@ public class GTModelStructureTests extends CommonFixture {
 	 * Level 4: Feature Type
 	 * Level 5: LOD
 	 * 
-	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
+	 * Test based on Section 3.4.1/3.4.3, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -235,10 +239,11 @@ public class GTModelStructureTests extends CommonFixture {
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
-			// Only apply to 500, 503, 510 datasets
+			// Only apply to 500, 503, 510, 506, 508 datasets
 			String datasetName = dataset.getFileName().toString();
 			if (!datasetName.startsWith("500") && !datasetName.startsWith("510") &&
-					!datasetName.startsWith("503")) {
+					!datasetName.startsWith("503") && !datasetName.startsWith("506") &&
+					!datasetName.startsWith("508")) {
 				return;
 			}
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
@@ -291,7 +296,8 @@ public class GTModelStructureTests extends CommonFixture {
 	}
 
 	/**
-	 * Validates that GTModel LOD directories have valid names. D500, D503, D510 only.
+	 * Validates that GTModel LOD directories have valid names.
+	 * D500, D503, D510, D506, D508 only.
 	 * 
 	 * Level 1: Dataset
 	 * Level 2: Feature Category
@@ -299,7 +305,7 @@ public class GTModelStructureTests extends CommonFixture {
 	 * Level 4: Feature Type
 	 * Level 5: LOD
 	 * 
-	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
+	 * Test based on Section 3.4.1/3.4.3, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException
 	 */
@@ -316,10 +322,11 @@ public class GTModelStructureTests extends CommonFixture {
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
-			// Only apply to 500, 503, 510 datasets
+			// Only apply to 500, 503, 510, 506, 508 datasets
 			String datasetName = dataset.getFileName().toString();
 			if (!datasetName.startsWith("500") && !datasetName.startsWith("510") &&
-					!datasetName.startsWith("503")) {
+					!datasetName.startsWith("503") && !datasetName.startsWith("506") &&
+					!datasetName.startsWith("508")) {
 				return;
 			}
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);

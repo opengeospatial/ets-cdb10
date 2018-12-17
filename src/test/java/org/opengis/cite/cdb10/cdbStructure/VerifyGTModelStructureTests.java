@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.Test;
-import org.opengis.cite.cdb10.TestFixture;
 
 public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStructureTests> {
 
@@ -14,6 +12,9 @@ public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStr
 		this.testSuite = new GTModelStructureTests();
 	}
 
+	/*
+	 * Verify Dataset
+	 */
 	@Test(expected = AssertionError.class)
 	public void verifyDataset_BadShort() throws IOException {
 		// setup
@@ -67,7 +68,9 @@ public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStr
 	}
 
 
-
+	/*
+	 * Verify Category
+	 */
 	@Test(expected = AssertionError.class)
 	public void verifyCategory_WrongCategory() throws IOException {
 		// setup
@@ -109,9 +112,49 @@ public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStr
 	}
 
 	@Test
-	public void verifyCategory_Good() throws IOException {
+	public void verifyCategory_Good500() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Culture")));
+
+		// execute
+		this.testSuite.verifyCategory();
+	}
+	
+	@Test
+	public void verifyCategory_Good503() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "503_GTModelDescriptor",
+				"A_Culture")));
+
+		// execute
+		this.testSuite.verifyCategory();
+	}
+	
+	@Test
+	public void verifyCategory_Good510() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "510_GTModelGeometry",
+				"A_Culture")));
+
+		// execute
+		this.testSuite.verifyCategory();
+	}
+	
+	@Test
+	public void verifyCategory_Good506() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "506_GTModelInteriorGeometry",
+				"A_Culture")));
+
+		// execute
+		this.testSuite.verifyCategory();
+	}
+	
+	@Test
+	public void verifyCategory_Good508() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "508_GTModelInteriorDescriptor",
 				"A_Culture")));
 
 		// execute
@@ -126,7 +169,10 @@ public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStr
 	}
 
 
-
+	
+	/*
+	 * Verify SubCategory
+	 */
 	@Test(expected = AssertionError.class)
 	public void verifySubcategory_WrongCategory() throws IOException {
 		// setup
@@ -168,9 +214,49 @@ public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStr
 	}
 
 	@Test
-	public void verifySubcategory_Good() throws IOException {
+	public void verifySubcategory_Good500() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Culture", "A_Extraction")));
+
+		// execute
+		this.testSuite.verifySubcategory();
+	}
+	
+	@Test
+	public void verifySubcategory_Good503() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "503_GTModelDescriptor",
+				"A_Culture", "A_Extraction")));
+
+		// execute
+		this.testSuite.verifySubcategory();
+	}
+	
+	@Test
+	public void verifySubcategory_Good510() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "510_GTModelGeometry",
+				"A_Culture", "A_Extraction")));
+
+		// execute
+		this.testSuite.verifySubcategory();
+	}
+	
+	@Test
+	public void verifySubcategory_Good506() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "506_GTModelInteriorGeometry",
+				"A_Culture", "A_Extraction")));
+
+		// execute
+		this.testSuite.verifySubcategory();
+	}
+	
+	@Test
+	public void verifySubcategory_Good508() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "508_GTModelInteriorDescriptor",
 				"A_Culture", "A_Extraction")));
 
 		// execute
@@ -185,7 +271,9 @@ public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStr
 	}
 
 
-
+	/*
+	 * Verify Feature Type
+	 */
 	@Test(expected = AssertionError.class)
 	public void verifyFeatureType_WrongCategory() throws IOException {
 		// setup
@@ -227,9 +315,49 @@ public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStr
 	}
 
 	@Test
-	public void verifyFeatureType_Good() throws IOException {
+	public void verifyFeatureType_Good500() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Culture", "A_Extraction", "010_Mine")));
+
+		// execute
+		this.testSuite.verifyFeatureType();
+	}
+	
+	@Test
+	public void verifyFeatureType_Good510() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "510_GTModelGeometry",
+				"A_Culture", "A_Extraction", "010_Mine")));
+
+		// execute
+		this.testSuite.verifyFeatureType();
+	}
+	
+	@Test
+	public void verifyFeatureType_Good503() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "503_GTModelDescriptor",
+				"A_Culture", "A_Extraction", "010_Mine")));
+
+		// execute
+		this.testSuite.verifyFeatureType();
+	}
+	
+	@Test
+	public void verifyFeatureType_Good506() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "506_GTModelInteriorGeometry",
+				"A_Culture", "A_Extraction", "010_Mine")));
+
+		// execute
+		this.testSuite.verifyFeatureType();
+	}
+	
+	@Test
+	public void verifyFeatureType_Good508() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "508_GTModelInteriorDescriptor",
 				"A_Culture", "A_Extraction", "010_Mine")));
 
 		// execute
@@ -244,7 +372,9 @@ public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStr
 	}
 
 
-
+	/*
+	 * Verify LoD
+	 */
 	@Test(expected = AssertionError.class)
 	public void verifyLOD_BadLevel() throws IOException {
 		// setup
@@ -276,9 +406,49 @@ public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStr
 	}
 
 	@Test
-	public void verifyLOD_Good() throws IOException {
+	public void verifyLOD_Good500() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "500_GTModelGeometry",
+				"A_Culture", "A_Extraction", "010_Mine", "L23")));
+
+		// execute
+		this.testSuite.verifyLOD();
+	}
+	
+	@Test
+	public void verifyLOD_Good510() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "510_GTModelGeometry",
+				"A_Culture", "A_Extraction", "010_Mine", "L23")));
+
+		// execute
+		this.testSuite.verifyLOD();
+	}
+	
+	@Test
+	public void verifyLOD_Good503() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "503_GTModelDescriptor",
+				"A_Culture", "A_Extraction", "010_Mine", "L23")));
+
+		// execute
+		this.testSuite.verifyLOD();
+	}
+	
+	@Test
+	public void verifyLOD_Good506() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "506_GTModelInteriorGeometry",
+				"A_Culture", "A_Extraction", "010_Mine", "L23")));
+
+		// execute
+		this.testSuite.verifyLOD();
+	}
+	
+	@Test
+	public void verifyLOD_Good508() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "508_GTModelInteriorDescriptor",
 				"A_Culture", "A_Extraction", "010_Mine", "L23")));
 
 		// execute
