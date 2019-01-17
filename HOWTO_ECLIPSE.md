@@ -8,27 +8,38 @@ This short guide will get you set up with Eclipse and the ETS CDB 1.0 repository
 
 ## Download and Install Eclipse
 
-Eclipse is available for Windows, MacOS, and Linux. If you do not already have it, download the latest version of the IDE from their website. The latest version as of this guide is "Oxygen".
+Eclipse is available for Windows, MacOS, and Linux. If you do not already have it, download the latest version of the IDE from their website. The latest version as of this guide is "Photon".
 
 When you run Eclipse, it may prompt you to create or select a workspace. If it asks, then create a new folder for storing your Eclipse projects. This will include the ETS CDB 1.0 in a moment.
 
-Next we will install the Maven plugin for Eclipse, as the ETS CDB 1.0 test suite uses Maven for its compilation. We will use the [M2Eclipse](https://www.eclipse.org/m2e/) plugin as it works very well with Eclipse.
-
-To install, goto the "Help" menu and select "Install new software". In the window, select the "Add" button and create a new entry for "m2e" with the URL "http://download.eclipse.org/technology/m2e/releases". Save the new repository, and back in the "Install new software" window select the "filter" field and type `m2e`. After a few seconds, some results will be shown and you will only need to select "m2e - Maven Integration for Eclipse". Follow the installation instructions.
-
-While we are installing plugins, we will also install the TestNG plugin. Open the "Install new software" window and ensure "All available sites" are selected. In the filter field enter `TestNG`, and select the "TestNG" and "TestNG M2E Integration" packages, and install them.
+We will start by installing the TestNG plugin. To install, goto the "Help" menu and select "Install new software". In the window, select the "Add" button and create a new entry for "TestNG" with the URL "http://beust.com/eclipse". Save the new repository, and back in the "Install new software" window select the "filter" field and type `testng`. After a few seconds, some results will be shown and you will only need to select the "TestNG" and "TestNG M2E Integration" packages, and install them. Eclipse will prompt you to restart the application after installing, go ahead and do that.
 
 ## Import ETS CDB 1.0
 
-Next we can set up a project for the test suite. From the "File" menu, select "Import". Under the "Maven" folder, select the "Check out Maven Projects from SCM" item.
+*Note: Previous instructions used the Maven Eclipse Git connector to handle the import. This does not seem to work with Eclipse Photon in Jan 2019, so the following procedure is used instead.*
 
-For the SCM URL, use `https://github.com/opengeospatial/ets-cdb10`
+Go to the [ETS CDB 1.0 repository](https://github.com/opengeospatial/ets-cdb10) and click the green "Clone or download" button and select "Download ZIP". Once downloaded, extract the ZIP to its own folder.
 
-Leave the rest of the options at their default values. Import the project. In the main Eclipse window, the Package Explorer in the left pane will now contain "ets-cdb10".
+From the "File" menu, select "Import". Under the "Maven" folder, select the "Existing Maven Projects" item. In the next window, select your Downloads directory as your "Root Directory" (or the directory containing the ETS CDB 1.0 you extracted). In the "Projects" list a new entry should automatically appear; select it and click the "Finish" button.
+
+In the main Eclipse window, close the "Welcome" tab and the Package Explorer in the left pane will now contain "ets-cdb10".
 
 ![Maven Install in Eclipse](images/eclipse-run-as.png)
 
-Try using Maven to build the project dependencies by right-clicking (or control-clicking) the project and going down to "Run As" and selecting "Maven Install". The Eclipse Console should automatically open and show the Maven install progress, which should complete in under a minute. 
+Try using Maven to build the project dependencies by right-clicking (or control-clicking) the project and going down to "Run As" and selecting "Maven Install". The Eclipse Console should automatically open and show the Maven install progress, which should complete in under a minute.
+
+### Maven Error Messages
+
+If there are error messages in the console, you may have to change the Java version used by Eclipse. Select the `ets-cdb10` project in the Package Explorer list, and go to the "Project" menu and select "Properties".
+
+In the new window, select "Java Build Path", then the "Libraries" tab. Select "JRE System Library" and click "Edit…". Select "Alternate JRE", and in the list be sure to select one of the following:
+
+* Java 8 (1.8.0)
+* Java 10 (10.0)
+
+Ideally, they are JDK installations and not JRE installations. You can download the JDK for free from [Oracle](https://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html#javasejdk) or from [OpenJDK](https://jdk.java.net/10/). Once installed, they can be added to Eclipse by going to the same window and selecting "Installed JREs…" and in the "Preferences (filtered)" window selecting "Search…" and selecting your Java installation directory.
+
+Note that I have tested the ETS with OpenJDK 11 and it **does not** work yet.
 
 ## Run TestNG on included CDB
 
