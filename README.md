@@ -20,7 +20,7 @@ release are usually available at the [beta testing facility][Test Facility].
 You can also [build and deploy][TEAM Engine Source] the test harness 
 yourself and use a local installation.
 
-For a more detailed guide on installing TEAM Engine to test CDB, see the [HOW TO Guide](HOWTO_TEAMENGINE.md).
+For a more detailed guide on installing TEAM Engine to test CDB, see the [HOW TO Guide](src/site/markdown/how_to_team_engine.md).
 
 [TEAM Engine]: https://github.com/opengeospatial/teamengine
 [Test Facility]: http://cite.opengeospatial.org/te2/
@@ -51,7 +51,7 @@ You can modify the sample file in `src/main/config/test-run-props.xml`
 The TestNG results file (`testng-results.xml`) will be written to a subdirectory
 in `${user.home}/testng/` having a UUID value as its name.
 
-For a more detailed guide on using Eclipse to test CDB, see the [HOW TO Guide](HOWTO_ECLIPSE.md).
+For a more detailed guide on using Eclipse to test CDB, see the [HOW TO Guide](src/site/markdown/how_to_eclipse.md).
 
 #### 3. Command Shell (console)
 
@@ -61,7 +61,7 @@ suite in a command shell:
 
 `java -jar ets-cdb10-0.4-SNAPSHOT-aio.jar [-o|--outputDir $TMPDIR] [test-run-props.xml]`
 
-For a more detailed guide on using a JAR to test CDB, see the [HOW TO Guide](HOWTO_JAR.md).
+For a more detailed guide on using a JAR to test CDB, see the [HOW TO Guide](src/site/markdown/how_to_jar.md).
 
 ### Building
 

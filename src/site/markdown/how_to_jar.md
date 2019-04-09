@@ -111,4 +111,4 @@ I created a tool that can [convert these XML files into simple HTML files][testn
 [testng2html]: https://github.com/openfirmware/testng2html
 [ReportNG]: https://reportng.uncommons.org
 
-![TestNG2HTML Output](images/jar-testnghtml.png)
+![TestNG2HTML Output](img/jar-testnghtml.png)

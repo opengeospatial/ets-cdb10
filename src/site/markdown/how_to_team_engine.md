@@ -107,4 +107,4 @@ $ sudo chmod -R +r TE_BASE
 
 Now reload Tomcat and TEAM Engine should include ETS CDB10 as a test suite.
 
-![TEAM Engine with ETS CDB10 Support](images/team-engine-with-ets-cdb10.png)
+![TEAM Engine with ETS CDB10 Support](img/team-engine-with-ets-cdb10.png)
