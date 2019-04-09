@@ -6,3 +6,6 @@ jdk:
   - openjdk10
   - openjdk11
   - openjdk12
+
+notifications:
+  slack: geosensorweb:1M4tAP3ndr1IWvBeDrYZDD0p
