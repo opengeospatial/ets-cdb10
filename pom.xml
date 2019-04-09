@@ -36,9 +36,9 @@
   </issueManagement>
   <developers>
     <developer>
-      <name>Alpha Beta</name>
-      <url>https://github.com/</url>
-      <timezone>UTC</timezone>
+      <name>James Badger</name>
+      <url>https://github.com/openfirmware</url>
+      <timezone>-07:00</timezone>
     </developer>
   </developers>
 
