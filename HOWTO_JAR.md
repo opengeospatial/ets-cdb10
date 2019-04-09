@@ -57,7 +57,7 @@ $ mvn install
 
 This will take under a minute and will do a few things to compile the test suite. It will run the JUnit test suite to check for any broken code in the TestNG test suite. It will compile the documentation into a website for deployment on GitHub/TEAM Engine. It will build ZIP and JAR archive files for the tool and TEAM Engine.
 
-The only file we will need is in the `target` folder, and it is called `ets-cdb10-0.2-SNAPSHOT-aio.jar`. This is the all-in-one file that contains everything the test suite needs to run independently. This file can be deployed to other machines and used to test a CDB.
+The only file we will need is in the `target` folder, and it is called `ets-cdb10-0.4-SNAPSHOT-aio.jar`. This is the all-in-one file that contains everything the test suite needs to run independently. This file can be deployed to other machines and used to test a CDB.
 
 [Oracle Download Page]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
 [OpenJDK]: http://openjdk.java.net
@@ -91,7 +91,7 @@ Save the file as an XML file with a descriptive name referring to the CDB it poi
 Now we can use the all-in-one file to test the CDB.
 
 ```sh
-$ java -jar ets-cdb10-0.2-SNAPSHOT-aio.jar path/to/properties.xml
+$ java -jar ets-cdb10-0.4-SNAPSHOT-aio.jar path/to/properties.xml
 ```
 
 This will launch the test suite without a graphical user interface and generate the test results, usually in a few seconds for small CDBs.

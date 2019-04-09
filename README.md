@@ -61,7 +61,7 @@ One of the build artifacts is an "all-in-one" JAR file that includes the test
 suite and all of its dependencies; this makes it very easy to execute the test 
 suite in a command shell:
 
-`java -jar ets-cdb10-0.2-SNAPSHOT-aio.jar [-o|--outputDir $TMPDIR] [test-run-props.xml]`
+`java -jar ets-cdb10-0.4-SNAPSHOT-aio.jar [-o|--outputDir $TMPDIR] [test-run-props.xml]`
 
 For a more detailed guide on using a JAR to test CDB, see the [HOW TO Guide](HOWTO_JAR.md).
 
@@ -82,8 +82,8 @@ $ mvn install -Dmaven.buildNumber.skip=true
 ```
 
 
-The compiled JAR will be available at `target/ets-cdb10-0.2-SNAPSHOT-aio.jar`.
-For TEAM Engine, you will need `target/ets-cdb10-0.2-SNAPSHOT-ctl.zip` and `target/ets-cdb10-0.2-SNAPSHOT-deps.zip`.
+The compiled JAR will be available at `target/ets-cdb10-0.4-SNAPSHOT-aio.jar`.
+For TEAM Engine, you will need `target/ets-cdb10-0.4-SNAPSHOT-ctl.zip` and `target/ets-cdb10-0.4-SNAPSHOT-deps.zip`.
 
 ### Updating GitHub Pages Documentation
 
@@ -92,16 +92,16 @@ with a new release:
 
 ```sh
 $ mvn install
-$ cp target/ets-cdb10-0.2-SNAPSHOT-site.jar $HOME
+$ cp target/ets-cdb10-0.4-SNAPSHOT-site.jar $HOME
 $ git checkout gh-pages
 $ git rm -rf .
-$ jar xf $HOME/ets-cdb10-0.2-SNAPSHOT-site.jar
+$ jar xf $HOME/ets-cdb10-0.4-SNAPSHOT-site.jar
 $ git commit 
 ```
 
 ### Building CTL
 
-CTL is used by TEAM Engine and is generated in the `target/ets-cdb10-0.2-SNAPSHOT-ctl.zip` archive.
+CTL is used by TEAM Engine and is generated in the `target/ets-cdb10-0.4-SNAPSHOT-ctl.zip` archive.
 The archive is built when the project is built by maven.
 
 ### How to Contribute
