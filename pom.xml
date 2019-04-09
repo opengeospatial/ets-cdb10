@@ -45,7 +45,7 @@
   <properties>
     <ets-code>cdb10</ets-code>
     <spec-version>1.0</spec-version>
-    <javadoc-plugin.version>2.10.4</javadoc-plugin.version>
+    <javadoc-plugin.version>3.0.1</javadoc-plugin.version>
     <testng.javadoc.url>https://jitpack.io/com/github/cbeust/testng/master/javadoc</testng.javadoc.url>
   </properties>
 
@@ -89,6 +89,7 @@
         <configuration>
           <docfilessubdirs>true</docfilessubdirs>
           <show>package</show>
+          <source>8</source>
           <links>
             <link>${testng.javadoc.url}</link>
           </links>
@@ -163,6 +164,7 @@
             <configuration>
               <docfilessubdirs>true</docfilessubdirs>
               <show>package</show>
+              <source>8</source>
               <links>
                 <link>${testng.javadoc.url}</link>
               </links>
