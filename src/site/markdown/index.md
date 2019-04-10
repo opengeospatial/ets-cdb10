@@ -109,3 +109,31 @@ have the following values: M (mandatory), O (optional), or C (conditional).
     </tr>
 	</tbody>
 </table>
+
+## Test Suite Self-Test
+
+This test suite contains a self-test that will generate scenarios to ensure that
+the CITE test suite will properly catch problems in a CDB. This self-test is
+organized under the `src/test/java/org.opengis.cite.cdb10` package and runs using
+JUnit.
+
+Please see the "How To" guides for instructions on running this self-test suite
+in various environments.
+
+## JDK Support
+
+This test suite was developed to run on Oracle JDK 8. It has been tested to also
+run under OpenJDK 8.
+
+The following JDKs have been tested to run the self-test suite, but have not 
+been checked to run the CITE suite against a CDB.
+
+* Oracle JDK 9
+* OpenJDK 10
+* OpenJDK 11
+* OpenJDK 12
+
+Please note that [some of these JDKs no longer are supported][JDK-support] and 
+that this test suite will be moving to support the JDKs that are still supported by Oracle.
+
+[JDK-support]: https://www.oracle.com/technetwork/java/java-se-support-roadmap.html
