@@ -30,7 +30,7 @@ public class NavigationStructureTests extends CommonFixture {
 
 		for (Path file : Files.newDirectoryStream(navPath)) {
 			String filename = file.getFileName().toString();
-			if (!filename.equals("400_NavDat")) {
+			if (!filename.equals("400_NavData")) {
 				errors.add("Invalid dataset: " + filename);
 			}
 		}
@@ -46,7 +46,7 @@ public class NavigationStructureTests extends CommonFixture {
 	 */
 	@Test
 	public void verifyFile() throws IOException {
-		Path navPath = Paths.get(this.path, "Navigation", "400_NavDat");
+		Path navPath = Paths.get(this.path, "Navigation", "400_NavData");
 
 		if (Files.notExists(navPath)) {
 			return;

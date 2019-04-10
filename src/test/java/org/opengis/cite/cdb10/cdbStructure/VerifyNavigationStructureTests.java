@@ -26,7 +26,7 @@ public class VerifyNavigationStructureTests extends StructureTestFixture<Navigat
 	@Test
 	public void verifyDatasets_Good() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavDat")));
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavData")));
 
 		// execute
 		this.testSuite.verifyDatasets();
@@ -44,7 +44,7 @@ public class VerifyNavigationStructureTests extends StructureTestFixture<Navigat
 	@Test(expected = AssertionError.class)
 	public void verifyFile_WrongDataset() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavDat",
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavData",
 				"D300_S001_T002.dbf")));
 
 		// execute
@@ -54,7 +54,7 @@ public class VerifyNavigationStructureTests extends StructureTestFixture<Navigat
 	@Test(expected = AssertionError.class)
 	public void verifyFile_badCS1Length() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavDat",
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavData",
 				"D400_S1_T002.dbf")));
 
 		// execute
@@ -64,7 +64,7 @@ public class VerifyNavigationStructureTests extends StructureTestFixture<Navigat
 	@Test(expected = AssertionError.class)
 	public void verifyFile_badCS1Type() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavDat",
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavData",
 				"D400_SABC_T002.dbf")));
 
 		// execute
@@ -74,7 +74,7 @@ public class VerifyNavigationStructureTests extends StructureTestFixture<Navigat
 	@Test(expected = AssertionError.class)
 	public void verifyFile_badCS2Length() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavDat",
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavData",
 				"D400_S001_T2.dbf")));
 
 		// execute
@@ -84,7 +84,7 @@ public class VerifyNavigationStructureTests extends StructureTestFixture<Navigat
 	@Test(expected = AssertionError.class)
 	public void verifyFile_badCS2Type() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavDat",
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavData",
 				"D400_S001_TABC.dbf")));
 
 		// execute
@@ -94,7 +94,7 @@ public class VerifyNavigationStructureTests extends StructureTestFixture<Navigat
 	@Test
 	public void verifyFile_Good() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavDat",
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavData",
 				"D400_S001_T002.dbf")));
 
 		// execute
