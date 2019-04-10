@@ -8,10 +8,10 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.opengis.cite.cdb10.TestFixture;
 
-public class VerifyNavigationStructureTests extends StructureTestFixture<NavigationStructureTests> {
+public class VerifyNavigationLibraryStructureTests extends StructureTestFixture<NavigationLibraryStructureTests> {
 
-	public VerifyNavigationStructureTests() throws IOException {
-		this.testSuite = new NavigationStructureTests();
+	public VerifyNavigationLibraryStructureTests() throws IOException {
+		this.testSuite = new NavigationLibraryStructureTests();
 	}
 
 	@Test(expected = AssertionError.class)
