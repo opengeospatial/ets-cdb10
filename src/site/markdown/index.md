@@ -3,41 +3,45 @@
 
 ## Scope
 
-This executable test suite (ETS) verifies the conformance of the implementation 
-under test (IUT) with respect to the set of relevant specifications depicted in 
-Figure 1. Conformance testing is a kind of "black box" testing that examines the 
-externally visible characteristics or behaviors of the IUT while disregarding 
-any implementation details.
+This executable test suite (ETS) verifies the conformance of a CDB database (the
+IUT) with respect to the [OGC CDB 1.0 specification][CDB-10]. The test suite 
+currently validates the metadata, directory structure, and file naming against
+the specification and will report on any exceptions to the specification.
 
-**Figure 1: Relevant specifications**
+[CDB-10]: https://www.opengeospatial.org/standards/cdb
 
-![Set of relevant specifications](img/specifications.png)
+**Figure 1: Conceptual Model**
 
-Several conformance classes are defined in the principal specifications; the ones 
+![OGC CDB 1.0 Conceptual Model](img/conceptual-model.jpg)
+
+Figure source: *OGC CDB 1.0 Volume 11: OGC CDB Core Standard Conceptual Model*
+
+Several conformance classes are defined in the CDB 1.0 specification; the ones 
 listed below are covered by this test suite:
 
-* Class A 
-    - List capabilities of conformance class A
-* Class B 
-    - List capabilities of conformance class B
-
+* CDB Structure
+    - `/conf/core/file-structure`
+    - `/conf/core/gtmodel-naming`
+    - `/conf/core/mmodel-naming`
+    - `/conf/core/tiled-data`
+    - `/conf/core/navdata-naming`
+    - `/conf/core/nav-data`
+    - `/conf/core/tiled-raster-datasets-general`
+    - `/conf/core/tiled-raster-elevation-terrain`
+    - `/conf/core/tiled-terrain-bathymetry`
+* Metadata and Versioning
+    - `/conf/core/metadata-version`
+    - `/conf/core/metadata-datasets`
 
 ## Test requirements
 
 The documents listed below stipulate requirements that must be satisfied by a 
 conforming implementation.
 
-1. [Web Content Accessibility Guidelines (WCAG) 2.0](http://www.w3.org/TR/WCAG20/)
-2. [Extensible Markup Language (XML) 1.0, Fifth Edition](http://www.w3.org/TR/xml/)
-3. [RFC 7231](https://tools.ietf.org/html/rfc7231) - Hypertext Transfer Protocol 
-(HTTP/1.1): Semantics and Content 
+1. [OGC CDB Core Standard: Model and Physical Data Store Structure 1.0](https://portal.opengeospatial.org/files/?artifact_id=72712)
 
-If any of the following preconditions are not satisfied then all tests in the 
-suite will be marked as skipped.
-
-1. Precondition 1;
-2. Precondition 2.
-
+Tests for various dataset naming and directory placements will be skipped if the
+CDB (IUT) does not contain that dataset.
 
 ## Test suite structure
 
@@ -56,12 +60,12 @@ The general structure of the test suite is shown in Table 1.
   </thead>
   <tbody>
     <tr>
-      <td>Conformance Level 1</td>
-      <td>org.opengis.cite.cdb10.level1.*</td>
+      <td>CDB Structure</td>
+      <td>org.opengis.cite.cdb10.cdbStructure.*</td>
     </tr>
     <tr>
-      <td>Conformance Level 2</td>
-      <td>org.opengis.cite.cdb10.level2.*</td>
+      <td>Metadata And Versioning</td>
+      <td>org.opengis.cite.cdb10.metadataAndVersioning.*</td>
     </tr>
   </tbody>
 </table>
@@ -91,14 +95,17 @@ have the following values: M (mandatory), O (optional), or C (conditional).
       <td>URI</td>
       <td>M</td>
       <td>A URI that refers to the implementation under test or metadata about it.
-    Ampersand ('&amp;') characters must be percent-encoded as '%26'.</td>
+    Ampersand ('&amp;') characters must be percent-encoded as '%26'. This URI should 
+    refer to a CDB on the file system that is accessible by this test suite tool, and
+    not refer to a web URI. This also applies when running under TEAM Engine.</td>
     </tr>
 	  <tr>
       <td>ics</td>
       <td>A comma-separated list of string values.</td>
       <td>O</td>
       <td>An implementation conformance statement that indicates which conformance 
-      classes or options are supported.</td>
+      classes or options are supported. E.g. "1,2" would run both "CDB Structure" 
+      tests and "Metadata and Versioning" tests.</td>
     </tr>
 	</tbody>
 </table>
