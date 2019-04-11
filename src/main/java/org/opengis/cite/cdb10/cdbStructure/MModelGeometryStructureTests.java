@@ -148,9 +148,10 @@ public class MModelGeometryStructureTests extends CommonFixture {
 					Integer codeID = null;
 					String countryName = null;
 					try {
-						code = filename.split("_")[0];
+						Integer splitIndex = filename.indexOf("_");
+						code = filename.substring(0, splitIndex);
 						codeID = Integer.parseInt(code);
-						countryName = filename.split("_")[1];
+						countryName = filename.substring(splitIndex + 1, filename.length());
 					}
 					catch (NumberFormatException e) {
 						errors.add("Invalid number format: " + filename);
