@@ -31,6 +31,7 @@ public class GTModelGeometryStructureTests extends CommonFixture {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
+		
 		/*
 		 * Example of valid filename:
 		 * D500_S001_T001_12345_001_modelnamehere.flt
@@ -38,6 +39,7 @@ public class GTModelGeometryStructureTests extends CommonFixture {
 		Pattern filePattern = Pattern.compile(
 				"^D500_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<featureCode>.{5})_(?<fsc>\\d+)_(?<modl>[^.]+)\\.(?<ext>.+)$"
 				);
+		Pattern otherPattern = Pattern.compile("^(LC|L\\d{2}|D503.+)");
 
 		for (Path category : Files.newDirectoryStream(gtModelGeomPath)) {
 			DirectoryStream<Path> subcategories = Files.newDirectoryStream(category);
@@ -51,7 +53,12 @@ public class GTModelGeometryStructureTests extends CommonFixture {
 					for (Path file : files) {
 						String filename = file.getFileName().toString();
 
-						if (StringUtils.countMatches(filename, "_") != 5) {
+						// Ignore other valid directories/files that could be
+						// in this directory
+						Matcher otherMatch = otherPattern.matcher(filename);
+						if (otherMatch.find()) {
+							return;
+						} else if (StringUtils.countMatches(filename, "_") != 5) {
 							errors.add("Should be five underscore separators: " + filename);
 						} else {
 							Matcher match = filePattern.matcher(filename);
