@@ -150,7 +150,7 @@ public class MModelTextureStructureTests extends CommonFixture {
 		 * D601_S005_T001_W10_M1A2_SEP.rgb
 		 */
 		Pattern filePattern = Pattern.compile(
-				"^(?<dataset>D601|D604|D605)_S(?<cs1>\\d+)_T(?<cs2>\\d+)_W(?<tsc>\\d{2})_(?<tnam>[^.]+)\\.(?<ext>.+)$");
+				"^(?<dataset>D601|D604|D605)_S(?<cs1>\\d+)_T(?<cs2>\\d+)(_W(?<tsc>\\d{2}))?_(?<tnam>[^.]+)\\.(?<ext>.+)$");
 
 		for (Path firstDir : Files.newDirectoryStream(mmtPath)) {
 			DirectoryStream<Path> secondDirs = Files.newDirectoryStream(firstDir);
@@ -165,8 +165,8 @@ public class MModelTextureStructureTests extends CommonFixture {
 					for (Path file : files) {
 						String filename = file.getFileName().toString();
 
-						if (StringUtils.countMatches(filename, "_") != 4) {
-							errors.add("Should be four underscore separators: " + filename);
+						if (StringUtils.countMatches(filename, "_") < 4) {
+							errors.add("Should be at least four underscore separators: " + filename);
 						} else {
 							Matcher match = filePattern.matcher(filename);
 							if (!match.find()) {
