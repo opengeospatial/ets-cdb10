@@ -149,9 +149,13 @@ public class MModelGeometryStructureTests extends CommonFixture {
 					String countryName = null;
 					try {
 						Integer splitIndex = filename.indexOf("_");
-						code = filename.substring(0, splitIndex);
-						codeID = Integer.parseInt(code);
-						countryName = filename.substring(splitIndex + 1, filename.length());
+						if (splitIndex == -1) {
+							errors.add("Invalid DIS country code name: " + filename);
+						} else {
+							code = filename.substring(0, splitIndex);
+							codeID = Integer.parseInt(code);
+							countryName = filename.substring(splitIndex + 1, filename.length());
+						}
 					}
 					catch (NumberFormatException e) {
 						errors.add("Invalid number format: " + filename);
