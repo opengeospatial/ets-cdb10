@@ -37,6 +37,7 @@ public class GTModelInteriorTextureStructureTests extends CommonFixture {
 		Pattern filePattern = Pattern.compile(
 				"^D507_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<lod>LC|L\\d{2})_(?<tnam>[^.]+)\\.(?<ext>.+)$"
 				);
+		Pattern otherPattern = Pattern.compile("^(D509|D513).+");
 		
 		DirectoryStream<Path> tnamPrefixDirs = Files.newDirectoryStream(gtModelGeomPath);
 
@@ -55,8 +56,13 @@ public class GTModelInteriorTextureStructureTests extends CommonFixture {
 					for (Path file : files) {
 						String filename = file.getFileName().toString();
 
-						if (StringUtils.countMatches(filename, "_") != 5) {
-							errors.add("Should be five underscore separators: " + filename);
+						// Ignore other valid directories/files that could be
+						// in this directory
+						Matcher otherMatch = otherPattern.matcher(filename);
+						if (otherMatch.find()) {
+							return;
+						} else if (StringUtils.countMatches(filename, "_") < 4) {
+							errors.add("Should be at least four underscore separators: " + filename);
 						} else {
 							Matcher match = filePattern.matcher(filename);
 							if (!match.find()) {
