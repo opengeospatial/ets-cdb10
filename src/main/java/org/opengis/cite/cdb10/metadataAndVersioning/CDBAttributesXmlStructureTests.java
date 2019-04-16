@@ -2,7 +2,9 @@ package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.opengis.cite.cdb10.util.XMLUtils;
 import org.opengis.cite.cdb10.util.metadataXml.CDBAttributesXml;
@@ -16,25 +18,48 @@ import org.xml.sax.SAXException;
  * Created by martin on 2016-09-08.
  */
 public class CDBAttributesXmlStructureTests extends Capability2Tests {
+	
+	private CDBAttributesXml cdbAttributes;
 
+	private void loadXmlFile() {
+		this.cdbAttributes = new CDBAttributesXml(path);
+	}
+	
     @Test
     public void verifyCDBAttributesXmlFileExists() {
-        new CDBAttributesXml(path);
+    	this.loadXmlFile();
     }
 
     @Test
     public void verifyCDBAttributesXmlAgainstSchema() throws IOException, SAXException {
-        new CDBAttributesXml(path).verifyXmlAgainstSchema();
+    	this.loadXmlFile();
+        String errors = cdbAttributes.schemaValidationErrors();
+        Assert.assertEquals(errors, "", cdbAttributes.getXmlFileName() + 
+        		" does not contain valid XML. Errors: " + errors);
     }
 
     @Test
     public void verifyCDBAttributesXmlCodeIsAnInteger() {
-        new CDBAttributesXml(path).verifyCodeIsAnInteger();
+    	this.loadXmlFile();
+        NodeList nodeList = XMLUtils.getNodeList("//Attribute", cdbAttributes.getXmlFilePath());
+
+        ArrayList<String> values = new ArrayList<>();
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node currentItem = nodeList.item(i);
+            values.add(currentItem.getAttributes().getNamedItem("code").getNodeValue());
+        }
+
+        for (String value : values) {
+            Assert.assertTrue(value.matches("^\\d+$"),
+                    String.format("CDB_Attributes.xml attribute code " +
+                            "should be an integer. Code '%s' is not valid.", value));
+        }
     }
 
     @Test
     public void verifyCDBAttributesXmlSymbolIsUnique() {
-        CDBAttributesXml cdbAttributes = new CDBAttributesXml(path);
+    	this.loadXmlFile();
         NodeList nodeList = XMLUtils.getNodeList("//Attribute", cdbAttributes.getXmlFilePath());
 
         ArrayList<String> symbols = new ArrayList<>();
@@ -53,16 +78,57 @@ public class CDBAttributesXmlStructureTests extends Capability2Tests {
 
     @Test
     public void verifyCDBAttributesXmlValueHasAValidType() {
-        new CDBAttributesXml(path).verifyValueHasAValidType();
+    	this.loadXmlFile();
+        NodeList nodeList = XMLUtils.getNodeList("//Value/Type", cdbAttributes.getXmlFilePath());
+
+        ArrayList<String> types = new ArrayList<>();
+        List<String> VALID_TYPES = Arrays.asList("Text", "Numeric", "Boolean");
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node currentItem = nodeList.item(i);
+            types.add(currentItem.getTextContent());
+        }
+
+        for (String type : types) {
+            Assert.assertTrue(VALID_TYPES.contains(type),
+                    String.format("CDB_Attributes.xml element Type should have a value of " +
+                            "'Text', 'Numeric' or 'Boolean'. Type '%s' is not valid.", type));
+        }
     }
 
     @Test
     public void verifyCDBAttributesXmlScalerCodeIsValid() {
-        new CDBAttributesXml(path).verifyScalerCodeIsValid();
+    	this.loadXmlFile();
+        NodeList nodeList = XMLUtils.getNodeList("//Scalers/Scaler", cdbAttributes.getXmlFilePath());
+
+        ArrayList<String> values = new ArrayList<>();
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node currentItem = nodeList.item(i);
+            values.add(currentItem.getAttributes().getNamedItem("code").getNodeValue());
+        }
+
+        for (String value : values) {
+            Assert.assertTrue(value.matches("^[1-9]\\d*$"),
+                    String.format("CDB_Attributes.xml Scaler code should be a positive integer. Code '%s' is not valid.", value));
+        }
     }
 
     @Test
     public void verifyCDBAttributesXmlUnitCodeIsValid() {
-        new CDBAttributesXml(path).verifyUnitCodeIsValid();
+    	this.loadXmlFile();
+        NodeList nodeList = XMLUtils.getNodeList("//Units/Unit", cdbAttributes.getXmlFilePath());
+
+        ArrayList<String> values = new ArrayList<>();
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node currentItem = nodeList.item(i);
+            values.add(currentItem.getAttributes().getNamedItem("code").getNodeValue());
+        }
+
+        for (String value : values) {
+            Assert.assertTrue(value.matches("^[1-9]\\d*$"),
+                    String.format("CDB_Attributes.xml Unit code should be a positive integer. Code '%s' is not valid.", value));
+        }
     }
 }

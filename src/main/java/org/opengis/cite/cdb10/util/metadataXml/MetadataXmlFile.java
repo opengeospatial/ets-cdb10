@@ -27,14 +27,33 @@ public abstract class MetadataXmlFile {
 		this.verifyXmlFileExists();
 	}
 	
+	public String getXmlFileName() {
+		return this.xmlFile.getName();
+	}
+	
 	public Path getXmlFilePath() {
 		return this.xmlFile.toPath();
+	}
+	
+	public String getXsdFileName() {
+		return this.xsdFile.getName();
 	}
 	
 	public Path getXsdFilePath() {
 		return this.xsdFile.toPath();
 	}
+	
+	public String schemaValidationErrors() throws SAXException, IOException {
+		SchemaValidatorErrorHandler errorHandler = XMLUtils.validateXmlFileIsValid(this.xmlFile, this.xsdFile);
 
+		if (!errorHandler.noErrors()) {
+			return errorHandler.getMessages();
+		} else {
+			return "";
+		}
+	}
+
+	@Deprecated
 	public void verifyXmlAgainstSchema() throws IOException, SAXException {
 		SchemaValidatorErrorHandler errorHandler = XMLUtils.validateXmlFileIsValid(this.xmlFile, this.xsdFile);
 
@@ -43,6 +62,7 @@ public abstract class MetadataXmlFile {
 		}
 	}
 
+	@Deprecated
 	private void verifyXmlFileExists() {
 		Assert.assertTrue(Files.exists(this.xmlFile.toPath()), String.format("Metadata directory should contain %s file.", this.xmlFile.getName()));
 		Assert.assertTrue(Files.exists(this.xsdFile.toPath()), String.format("Metadata directory should contain %s file.", this.xsdFile.getName()));
