@@ -7,7 +7,7 @@
   xmlns:cdb="http://www.CDB-Spec.org/Schema/Version/3.2"
   xmlns="http://www.CDB-Spec.org/Schema/Version/3.2"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  version="3.2">
+  version="3.2.1">
   
   <xs:annotation>
     <xs:documentation xml:lang="en">
@@ -47,18 +47,44 @@
           <xs:element name="comment" type="xs:string"/>
         </xs:choice>
 
-        <!-- Note: Does it make sense to assume 3.0 since the Specification_Version.xml file could be present and indicate 3.1 instead. -->
-        <!-- Note: Should the element be mandatory?  I refrain from doing this for compatibility reasons. If the element is optional, a 3.0 file still complies with this schema. -->
-        
         <xs:element name="Specification" minOccurs="0">
           <xs:annotation>
             <xs:documentation xml:lang="en">
-              Specifies the version of the CDB Specification used to generate the current CDB Version.
-              If &apos;Specification&apos; is omitted, the version number is deemed to be 3.0.
+              Specifies the version of the CDB Standard used to generate the current CDB Version.
+              If &apos;Specification&apos; is present, the version number indicated here has preceedence over the one specified in &apos;Version_Specification.xml&apos;, if the file exist.
+              If no explicit version is provided either here or in Specification_Version.xml, the version number is deemed to be 3.0.
             </xs:documentation>
           </xs:annotation>
           <xs:complexType>
-            <xs:attribute name="version" type="xs:token" use="required"/>
+            <xs:attribute name="version" use="required">
+              <xs:annotation>
+                <xs:documentation xml:lang="en">
+                  The &apos;version&apos; attribute is a character string representing the version number of the Specification.
+                </xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:token">
+                  <xs:enumeration value="1.0"/>
+                  <xs:enumeration value="3.0"/>
+                  <xs:enumeration value="3.1"/>
+                  <xs:enumeration value="3.2"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="authority">
+              <xs:annotation>
+                <xs:documentation xml:lang="en">
+                  The &apos;authority&apos; attribute is an optional character string identifying the organization that has authority over the standard.
+                  When present, the only allowed value is "OGC" and the version number must be &apos;1.0&apos;.
+                  When absent, the valid version numbers are 3.0, 3.1, and 3.2.
+                </xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:token">
+                  <xs:enumeration value="OGC"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
           </xs:complexType>
         </xs:element>
 

@@ -39,7 +39,7 @@ public class VersionXml extends MetadataXmlFile {
         for (String value : values) {
             Assert.assertTrue(VALID_VALUES.contains(value),
                     String.format("Version.xml Specification elements attribute version can have values " +
-                            "of '3.0', '3.1', '3.1'. Value '%s' is not valid.", value));
+                            "of '3.0', '3.1', '3.2'. Value '%s' is not valid.", value));
         }
     }
 }
