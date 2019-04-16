@@ -25,6 +25,10 @@ public class CommonFixture {
      */
     public static final String ROOT_PKG_PATH = "/org/opengis/cite/cdb10/";
     /**
+     * Path to embedded sample CDB.
+     */
+    public static final String SAMPLE_CDB_PATH = "src/test/resources/CDB";
+    /**
      * HTTP client component (JAX-RS Client API).
      */
     protected Client client;

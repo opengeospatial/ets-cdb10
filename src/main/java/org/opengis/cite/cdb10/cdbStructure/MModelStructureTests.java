@@ -28,7 +28,7 @@ public class MModelStructureTests extends CommonFixture {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		DatasetsXml datasetDefs = new DatasetsXml(this.path);
+		DatasetsXml datasetDefs = new DatasetsXml(SAMPLE_CDB_PATH);
 
 		for (Path file : Files.newDirectoryStream(mmPath)) {
 			String filename = file.getFileName().toString();

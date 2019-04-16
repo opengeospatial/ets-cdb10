@@ -294,7 +294,7 @@ public class TilesStructureTests extends CommonFixture {
 
 		ArrayList<String> errors = new ArrayList<String>();
 		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(tilesPath);
-		DatasetsXml datasetDefs = new DatasetsXml("src/test/resources/CDB");
+		DatasetsXml datasetDefs = new DatasetsXml(SAMPLE_CDB_PATH);
 
 		for (Path latCell : latitudeCells) {
 			DirectoryStream<Path> longitudeCells = Files.newDirectoryStream(latCell);
