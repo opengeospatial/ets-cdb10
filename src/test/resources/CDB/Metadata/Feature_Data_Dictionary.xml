@@ -4,7 +4,7 @@
   xmlns="http://www.CDB-Spec.org/Schema/Feature_Data_Dictionary/1.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.CDB-Spec.org/Schema/Feature_Data_Dictionary/1.0 Schema/Feature_Data_Dictionary.xsd"
-  version="1.0">
+  version="1.1">
   <Category code="A">
     <Label>Culture</Label>
     <Subcategory code="A">
@@ -2056,6 +2056,7 @@
           <Concept_Definition>A sunken or cut passageway along a transportation route in mountainous regions constructed to protect vehicles from the elements. A series of openings on one side may be present for light or ventilation.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="080">
@@ -2437,6 +2438,7 @@
           <Concept_Definition>A type of Tower, a Bridge tower.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="002">
           <Label>Lookout</Label>
@@ -2881,84 +2883,98 @@
           <Concept_Definition>One or more railway tracks comprising a network that is operated for the conveyance of passengers and/or goods.</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>DGIWG FDD</Origin>
+          <Priority>90</Priority>
         </Subcode>
         <Subcode code="002">
           <Label>Car-Line</Label>
           <Concept_Definition>A LAND_TRANSPORTATION_ROUTE consisting of one or more RAILWAY_TRACKs; a Car-Line railway, or a Car-Line  railroad (US).</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>75</Priority>
         </Subcode>
         <Subcode code="003">
           <Label>Monorail</Label>
           <Concept_Definition>A LAND_TRANSPORTATION_ROUTE consisting of one RAILWAY_TRACK; a Monorail railway, or a Monorail  railroad (US).</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>75</Priority>
         </Subcode>
         <Subcode code="006">
           <Label>Subway</Label>
           <Concept_Definition>An underground LAND_TRANSPORTATION_ROUTE consisting of one or more RAILWAY_TRACKs; a Subway railway, or a Subway  railroad (US).</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>75</Priority>
         </Subcode>
         <Subcode code="008">
           <Label>Logging</Label>
           <Concept_Definition>A LAND_TRANSPORTATION_ROUTE consisting of one or more RAILWAY_TRACKs that is used for logging operations; a Logging railway, or a Logging  railroad (US).</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>75</Priority>
         </Subcode>
         <Subcode code="010">
           <Label>Miniature</Label>
           <Concept_Definition>A miniature LAND_TRANSPORTATION_ROUTE consisting of one or more RAILWAY_TRACKs; a Miniature railway, or a Miniature  railroad (US).</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>25</Priority>
         </Subcode>
         <Subcode code="011">
           <Label>Rapid_Transit_Route</Label>
           <Concept_Definition>A rapid transit LAND_TRANSPORTATION_ROUTE consisting of one or more RAILWAY_TRACKs; a Rapid_Transit_Route railway, or a Rapid_Transit_Route  railroad (US).</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>75</Priority>
         </Subcode>
         <Subcode code="013">
           <Label>Marine_Railroad</Label>
           <Concept_Definition>A LAND_TRANSPORTATION_ROUTE consisting of one or more RAILWAY_TRACKs that is used for marine operations;; a Marine_Railroad railway, or a Marine_Railroad  railroad (US).</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>75</Priority>
         </Subcode>
         <Subcode code="014">
           <Label>Tramway</Label>
           <Concept_Definition>A LAND_TRANSPORTATION_ROUTE consisting of one or more RAILWAY_TRACKs that is used for streetcars or cablecars; a Tramway railway, or a Tramway  railroad (US).</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>75</Priority>
         </Subcode>
         <Subcode code="015">
           <Label>Inclined_Railway</Label>
           <Concept_Definition>Ainclined LAND_TRANSPORTATION_ROUTE consisting of one or more RAILWAY_TRACKs; a Inclined_Railway railway, or a Inclined_Railway  railroad (US).</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>25</Priority>
         </Subcode>
         <Subcode code="016">
           <Label>Main_Line</Label>
           <Concept_Definition>A maain or primary LAND_TRANSPORTATION_ROUTE consisting of one or more RAILWAY_TRACKs; a Main_Line railway, or a Main_Line  railroad (US).</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>90</Priority>
         </Subcode>
         <Subcode code="017">
           <Label>Branch_Line</Label>
           <Concept_Definition>A branch or secondary LAND_TRANSPORTATION_ROUTE consisting of one or more RAILWAY_TRACKs; a Branch_Line railway, or a Branch_Line  railroad (US).</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>25</Priority>
         </Subcode>
         <Subcode code="021">
           <Label>Railroad_in_Road</Label>
           <Concept_Definition>A LAND_TRANSPORTATION_ROUTE consisting of one or more RAILWAY_TRACKs embedded in a road; a Railroad_in_Road railway, or a Railroad_in_Road  railroad (US).</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>75</Priority>
         </Subcode>
         <Subcode code="999">
           <Label>Other</Label>
           <Concept_Definition>A LAND_TRANSPORTATION_ROUTE type other than those listed above</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>75</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="015">
@@ -2968,6 +2984,7 @@
           <Concept_Definition>A rail or set of parallel rails on which a train, tram, or rail wagon runs.</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>DGIWG FDD</Origin>
+          <Priority>55</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="050">
@@ -2977,6 +2994,7 @@
           <Concept_Definition>A stretch of railroad tracks connected to the main track by switch(es) - used for temporary storage and loading/unloading.</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>25</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="060">
@@ -3043,6 +3061,7 @@
           <Concept_Definition>An unimproved roadway.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>25</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="020">
@@ -3127,120 +3146,140 @@
           <Concept_Definition>A generic term that refers to an open way  on land between two places maintained for vehicular use. Roads consist of one, or sometimes two, roadways, each with one or more lanes and also any associated sidewalks</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="001">
           <Label>Street</Label>
           <Concept_Definition>A low-capacity paved public road in a city, town, or village, onto which people and/or vehicles can move about and interact with one another.  Consists of 1 or 2 lanes.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="002">
           <Label>Rapid_Transit</Label>
           <Concept_Definition>Aroad used for the fast transportation of passengers (as by subway) in urban areas.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>100</Priority>
         </Subcode>
         <Subcode code="003">
           <Label>Laneway</Label>
           <Concept_Definition>Also known as Driveway.  A narrow street or alley running behind urban buildings, especially houses. Typically is a private road for local vehicle access to one or a small group of structures, and is owned and maintained by an individual or group.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>40</Priority>
         </Subcode>
         <Subcode code="004">
           <Label>Service_Lane</Label>
           <Concept_Definition>Also known as Alley or Alleyway. A narrow street or alley running behind urban buildings, especially houses or stores.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>40</Priority>
         </Subcode>
         <Subcode code="005">
           <Label>Backroad</Label>
           <Concept_Definition>A secondary type of road, usually found in rural areas, undivided, with 1-2 lanes, usually unpaved (dirt or gravel)</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
+          <Priority>25</Priority>
         </Subcode>
         <Subcode code="006">
           <Label>Collector</Label>
           <Concept_Definition>A type of road, termed for its low-to-medium capacity and its urban setting.  The primary function of an Collector is to deliver traffic from Streets to Arteries.  Typically 2 lanes, rarely 4 lanes</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
+          <Priority>60</Priority>
         </Subcode>
         <Subcode code="007">
           <Label>Artery_Generic</Label>
           <Concept_Definition>A type of road, termed for its high-capacity and its urban setting.  The primary function of an arterial road is to deliver traffic from collector roads to Highways.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
+          <Priority>80</Priority>
         </Subcode>
         <Subcode code="008">
           <Label>Artery_Major</Label>
           <Concept_Definition>An artery with 6 lanes or more, usually divided.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
+          <Priority>90</Priority>
         </Subcode>
         <Subcode code="009">
           <Label>Artery_Minor</Label>
           <Concept_Definition>An artery with less than 6 lanes, usually divided.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
+          <Priority>70</Priority>
         </Subcode>
         <Subcode code="010">
           <Label>Highway_Undivided_Generic</Label>
           <Concept_Definition>A type of road, consisting of a single roadway, termed for its high-capacity and high speed. Its primary function is to interconnect cities. Also known as expressways, motorways, freeways, autobahn, autoroute, thruways, toolway.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
+          <Priority>80</Priority>
         </Subcode>
         <Subcode code="011">
           <Label>Highway_Undivided_Major</Label>
           <Concept_Definition>An undivided highway with 4 lanes or more</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
+          <Priority>80</Priority>
         </Subcode>
         <Subcode code="012">
           <Label>Highway_Undivided_Minor</Label>
           <Concept_Definition>An undivided highway with less than 4 lanes</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
+          <Priority>70</Priority>
         </Subcode>
         <Subcode code="013">
           <Label>Highway_Divided_Generic</Label>
           <Concept_Definition>A type of road, consisting of a two or more roadways, termed for its high-capacity, high speed. Its primary function is to interconnect cities. All traffic flow and ingress/egress are regulated and no crossings at grade-level.  Also known as expressways, motorways, freeways, autobahn, autoroute, thruways, toolway.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
+          <Priority>90</Priority>
         </Subcode>
         <Subcode code="014">
           <Label>Highway_Divided_Major</Label>
           <Concept_Definition>A divided highway with 6 lanes or more</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
+          <Priority>100</Priority>
         </Subcode>
         <Subcode code="015">
           <Label>Highway_Divided_Minor</Label>
           <Concept_Definition>A divided highway with less than 6 lanes</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
+          <Priority>90</Priority>
         </Subcode>
         <Subcode code="016">
           <Label>Lane</Label>
           <Concept_Definition>A linear portion of a roadway surface marked out for use by a single line of vehicles in such a way as to control and guide drivers for the purpose of reducing traffic conflicts</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
+          <Priority>30</Priority>
         </Subcode>
         <Subcode code="017">
           <Label>Street_Major</Label>
           <Concept_Definition>A wide street consisting of one wide lane or 2  lanes of average width.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
+          <Priority>60</Priority>
         </Subcode>
         <Subcode code="018">
           <Label>Street_Minor</Label>
           <Concept_Definition>A narrow street usually consisting of 1 lane</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="999">
           <Label>Other</Label>
           <Concept_Definition>A road type other than those listed above</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="032">
@@ -3250,6 +3289,21 @@
           <Concept_Definition>A section of a road interchange connecting two or more roads at different levels by means of an inclined roadway.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>DGIWG FDD</Origin>
+          <Priority>75</Priority>
+        </Subcode>
+        <Subcode code="001">
+          <Label>Motorway_Ramp</Label>
+          <Concept_Definition>A section of a road interchange connecting two or more roads at different levels by means of an inclined roadway.</Concept_Definition>
+          <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
+          <Origin>DGIWG FDD</Origin>
+          <Priority>95</Priority>
+        </Subcode>
+        <Subcode code="002">
+          <Label>Trunk_Ramp</Label>
+          <Concept_Definition>A section of a road interchange connecting two or more roads at different levels by means of an inclined roadway.</Concept_Definition>
+          <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
+          <Origin>DGIWG FDD</Origin>
+          <Priority>85</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="040">
@@ -3277,6 +3331,7 @@
           <Concept_Definition>A path worn by the passage of people or animals.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>10</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="060">
@@ -3286,6 +3341,7 @@
           <Concept_Definition>Wide track on the land's surface due to the regular movement of animal herds (e.g. sheep, cattle).</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>10</Priority>
         </Subcode>
       </Feature_Type>
     </Subcategory>
@@ -3298,6 +3354,7 @@
           <Concept_Definition>Cables which are strung between elevated supports as part of a conveyor system on which cars, buckets, or other carrier units are suspended. (Superseeded by Revised Cableway AT041 which now covers this concept)</Concept_Definition>
           <Recommended_Dataset_Component>PowerLine Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="020">
@@ -3325,6 +3382,7 @@
           <Concept_Definition>A walkway made of wooden planks. (See also BB140)</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>20</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="035">
@@ -3343,6 +3401,7 @@
           <Concept_Definition>A border of concrete, asphalt or stone forming part of a gutter along the edge of a street or road.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>DGIWG FDD</Origin>
+          <Priority>20</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="040">
@@ -3352,174 +3411,203 @@
           <Concept_Definition>A structure that connects two locations and provides for the passage of a transportation route (for example: a road or a railway) over a terrain obstacle (for example: a waterbody, a gully, and/or a road).</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>DGIWG FDD</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="001">
           <Label>Arch_Open</Label>
           <Concept_Definition>An Arch_Open-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="002">
           <Label>Cantilever</Label>
           <Concept_Definition>A Cantilever-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="003">
           <Label>Deck</Label>
           <Concept_Definition>A Deck-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="004">
           <Label>Drawbridge</Label>
           <Concept_Definition>A Drawbridge-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="005">
           <Label>Pontoon</Label>
           <Concept_Definition>A Pontoon-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="006">
           <Label>Girder</Label>
           <Concept_Definition>A Girder-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="007">
           <Label>Tower_Suspension</Label>
           <Concept_Definition>A Tower_Suspension-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="008">
           <Label>Truss</Label>
           <Concept_Definition>A Truss-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="009">
           <Label>Suspension</Label>
           <Concept_Definition>A Suspension-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="010">
           <Label>Swing</Label>
           <Concept_Definition>A Swing-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="011">
           <Label>Lift</Label>
           <Concept_Definition>A Lift-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="012">
           <Label>Transporter</Label>
           <Concept_Definition>A Transporter-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="013">
           <Label>Bascule</Label>
           <Concept_Definition>A Bascule-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="014">
           <Label>Fixed_Unspecified</Label>
           <Concept_Definition>A Fixed_Unspecified-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="015">
           <Label>Slab</Label>
           <Concept_Definition>A Slab-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="016">
           <Label>Stringer_Beam</Label>
           <Concept_Definition>A Stringer_Beam-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="017">
           <Label>Arch_Suspension</Label>
           <Concept_Definition>A Arch_Suspension-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="018">
           <Label>Retractable</Label>
           <Concept_Definition>A Retractable-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="019">
           <Label>Suspension_Bow</Label>
           <Concept_Definition>A Suspension_Bow-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="020">
           <Label>Suspension_Cable</Label>
           <Concept_Definition>A Suspension_Cable-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="021">
           <Label>Moveable_Surface</Label>
           <Concept_Definition>A Moveable_Surface-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="022">
           <Label>Covered</Label>
           <Concept_Definition>A Covered-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="023">
           <Label>Opening</Label>
           <Concept_Definition>A Opening-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="024">
           <Label>Footbridge</Label>
           <Concept_Definition>A Footbridge-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="025">
           <Label>Fixed</Label>
           <Concept_Definition>A Fixed-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="026">
           <Label>Arch_Closed</Label>
           <Concept_Definition>A Arch_Closed-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="027">
           <Label>Cable_Stayed</Label>
           <Concept_Definition>A Cable_Stayed-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
         <Subcode code="999">
           <Label>Other</Label>
           <Concept_Definition>A Other-type STRUCTURE that connects two LOCATIONs and provides for the passage of a LAND_TRANSPORTATION_ROUTE over a TERRAIN_OBSTACLE (for example: a WATERBODY, a GULLY, and/or a ROAD); a bridge. A bridge consists of a SET of two or more BRIDGE_PIERs or BRIDGE_TOWERs joined by BRIDGE_SPANs.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="045">
@@ -3592,6 +3680,7 @@
           <Concept_Definition>A solid raised way across a terrain obstacle (for example: a wetland or a body of shallow water) that is intended to support a transportation route (for example: a road or a railway).</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>DGIWG FDD</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="064">
@@ -3601,6 +3690,7 @@
           <Concept_Definition>A raised roadway of solid structure built primarily to provide a route across wet ground or intertidal area.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="065">
@@ -3628,6 +3718,7 @@
           <Concept_Definition>A route in a body of water where a ferry crosses from one shoreline to another.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>10</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="075">
@@ -3637,6 +3728,7 @@
           <Concept_Definition>A route over a frozen watercourse.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>DGIWG FDD</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="080">
@@ -3682,6 +3774,7 @@
           <Concept_Definition>Utilities or pipeline network that is located underground or below a waterbody.</Concept_Definition>
           <Recommended_Dataset_Component>PowerLine Network Lineal</Recommended_Dataset_Component>
           <Origin>DGIWG FDD</Origin>
+          <Priority>20</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="110">
@@ -3709,6 +3802,7 @@
           <Concept_Definition>A tube for the conveyance of solids, liquids or gases.</Concept_Definition>
           <Recommended_Dataset_Component>PowerLine Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>30</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="114">
@@ -3913,6 +4007,7 @@
           <Concept_Definition>A single continuous rope-like bundle consisting of multiple strands of fiber, plastic, metal, and/or glass. (See also AT006, AT030 and AT060)</Concept_Definition>
           <Recommended_Dataset_Component>PowerLine Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="006">
@@ -3922,6 +4017,7 @@
           <Concept_Definition>An insulated wire, or group of wires formed into one continuous strand and located above ground or above water surface. (Retired) (See also AT005, AT030 and AT060)</Concept_Definition>
           <Recommended_Dataset_Component>PowerLine Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="010">
@@ -3967,6 +4063,7 @@
           <Concept_Definition>A cable that transmits or distributes electrical power.  (See also AT005, AT006 and AT060)</Concept_Definition>
           <Recommended_Dataset_Component>PowerLine Network Lineal</Recommended_Dataset_Component>
           <Origin>DGIWG FDD</Origin>
+          <Priority>75</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="040">
@@ -3985,6 +4082,7 @@
           <Concept_Definition>A transportation system consisting of load cables strung between pylons on which carrier units (for example: cars or buckets intended to transport people, material, and/or equipment) are suspended.</Concept_Definition>
           <Recommended_Dataset_Component>PowerLine Network Lineal</Recommended_Dataset_Component>
           <Origin>DGIWG FDD</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="042">
@@ -4021,6 +4119,7 @@
           <Concept_Definition>A cable that transmits communication signals. (Rrevised concept but same code). (See also AT005, AT006, and AT030)</Concept_Definition>
           <Recommended_Dataset_Component>PowerLine Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="070">
@@ -4066,6 +4165,7 @@
           <Concept_Definition>The line where a land mass is in contact with a body of water.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>40</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="011">
@@ -4075,6 +4175,7 @@
           <Concept_Definition>A line generally following the contact between a land mass and a body of water, based on the low water line, and used as a reference for measuring international boundaries such as Territorial Limits or Exclusive Economic Zone (EEZ).</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>40</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="020">
@@ -4084,6 +4185,7 @@
           <Concept_Definition>That part of the shore or beach which lies between the low water mark and the coastline/shoreline. The same condition may exist in non-contiguous off-shore areas. (Superseeded by BA023)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>40</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="021">
@@ -4120,6 +4222,7 @@
           <Concept_Definition>A line drawn along the normal limit of wave action above either Mean High Water Springs (MHWS) or Mean High High Water (MHHW) as defined by the National Authority.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>40</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="025">
@@ -4156,6 +4259,7 @@
           <Concept_Definition>The shore of the sea or lake, sandy or pebbly, brought up by the waves (including the foreshore area). (See also BA020, BA021, BA022 and BA023)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="051">
@@ -4165,6 +4269,7 @@
           <Concept_Definition>A man-made embankment to contain or hold back water.. (See also DB090)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="052">
@@ -4213,6 +4318,7 @@
           <Concept_Definition>Complex feature with possible components: BC099, BC098.  (Retired)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>40</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="008">
@@ -4321,6 +4427,7 @@
           <Concept_Definition>A structure which protects a harbor or beach from forces of the sea. (Superseeded by BB041) (See also BB140)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="041">
@@ -4330,6 +4437,7 @@
           <Concept_Definition>A structure that protects a waterbody region (for example: a shore, a harbour, and/or an anchorage) from water waves by preventing them from reaching the protected region or reducing their magnitude. (See also BB140 and BB042)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DGIWG FDD</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="042">
@@ -4348,6 +4456,7 @@
           <Concept_Definition>A low artificial wall-like structure of durable material extending from the land to seaward for a particular purpose, such as to prevent coast erosion.. (See also BB140 and BB041)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DGIWG FDD</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="050">
@@ -4456,6 +4565,7 @@
           <Concept_Definition>A fence or enclosure set in water to catch fish.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>30</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="111">
@@ -4492,6 +4602,7 @@
           <Concept_Definition>A man-made barrier built out into, or in the water, primarily to restrain or direct currents and waves. (See also AQ030 and BB040)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="149">
@@ -4642,6 +4753,7 @@
           <Concept_Definition>Floating barriers, anchored to the bottom, used to deflect the path of floating ice in order to prevent the obstruction of locks, intakes, etc., and to prevent damage to bridge piers and other structures.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>30</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="220">
@@ -4687,6 +4799,7 @@
           <Concept_Definition>A structure built to protect the shore from erosion.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="240">
@@ -4771,6 +4884,7 @@
           <Concept_Definition>A line generated by the straight line connection between two navigational aids, and which extends towards the area of navigational interest.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>30</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="032">
@@ -4972,6 +5086,7 @@
           <Concept_Definition>An object or area on the sea floor or underwater that is not identified by any other code in this specification. (Retired; Miscellaneous Feature Type (ZD019) may be used as appropriate). (Also see BD000)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>20</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="010">
@@ -5071,6 +5186,7 @@
           <Concept_Definition>A construction to dam oil flow on water.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>30</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="074">
@@ -5080,6 +5196,7 @@
           <Concept_Definition>A physical connection between two independent objects, e.g., between: anchor and mooring buoy; anchor and offshore platform; hulk and bollard on land.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>30</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="075">
@@ -5089,6 +5206,7 @@
           <Concept_Definition>A floating barrier used to enclose and contain rafted logs.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DGIWG FDD</Origin>
+          <Priority>30</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="076">
@@ -5230,6 +5348,7 @@
           <Concept_Definition>A narrow, flat surface or shelf, especially one that projects, as from a wall of rock. (Retired; unnecessarily specialized and not in current use)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="120">
@@ -5266,6 +5385,7 @@
           <Concept_Definition>A floating barrier used to protect a river or harbor mouth or to create a sheltered area for storage purposes.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>30</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="125">
@@ -5332,6 +5452,7 @@
           <Concept_Definition>A navigational safety line indicating that no sounding of a lesser depth exists seaward of the line, but greater depths may occur on the shallow side of the line.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>20</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="015">
@@ -5341,6 +5462,7 @@
           <Concept_Definition>A line connecting points of equal depth at and below the hydrographic datum.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>20</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="019">
@@ -5413,6 +5535,7 @@
           <Concept_Definition>The actual path or route of a craft over the ground or sea bottom. (Revised)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>10</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="050">
@@ -5422,6 +5545,7 @@
           <Concept_Definition>A representation of the three dimensional relief of the bottom along a line or series of connected lines and based on depth contours, soundings, and other measurements of the depth at or below the hydrographic datum.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>20</Priority>
         </Subcode>
       </Feature_Type>
     </Subcategory>
@@ -5539,6 +5663,7 @@
           <Concept_Definition>A pipe or artificial channel designed to transport water from a remote source, usually by gravity. (See also BH110)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="011">
@@ -5575,6 +5700,7 @@
           <Concept_Definition>A man-made or improved natural waterway used for transportation.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="030">
@@ -5584,6 +5710,7 @@
           <Concept_Definition>A channel constructed for the purpose of irrigation or drainage.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="040">
@@ -5629,6 +5756,7 @@
           <Concept_Definition>An open, inclined channel which carries water for use in such operations as mining or logging.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="065">
@@ -5638,6 +5766,7 @@
           <Concept_Definition>An artificial channel for a current of water, especially one built to provide water for industrial or agricultural purposes or for transporting water-borne materials.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DGIWG FDD</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="070">
@@ -5728,6 +5857,7 @@
           <Concept_Definition>A trench usually filled with water, that surrounds a body of land.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="110">
@@ -5737,6 +5867,7 @@
           <Concept_Definition>A pipeline or channel generally used by hydroelectric plants or water mills to transport water by gravity and under pressure. (See also BH010)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="115">
@@ -5782,6 +5913,7 @@
           <Concept_Definition>A natural flowing watercourse.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Areal or Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>90</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="141">
@@ -5791,6 +5923,7 @@
           <Concept_Definition>The limit line between the water area of a river and the area of land.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>40</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="145">
@@ -5836,6 +5969,7 @@
           <Concept_Definition>A passage for surplus water to run over or around a dam.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="170">
@@ -5935,6 +6069,7 @@
           <Concept_Definition>The land-water boundary for all inland hydrographic features having shorelines, Lake /Pond (BH080), or Island (BA030).</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>40</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="220">
@@ -6019,6 +6154,7 @@
           <Concept_Definition>A permanent barrier across a watercourse used to impound water or to control its flow. (See also BI040)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="030">
@@ -6064,6 +6200,7 @@
           <Concept_Definition>An open, inclined conduit fitted with a gate for regulating water flow and may be employed in mine ore washing operations. (See also BI020 and BI040)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="040">
@@ -6100,6 +6237,7 @@
           <Concept_Definition>An artificial obstruction placed in a water course to increase the depth or to divert it.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="044">
@@ -6136,6 +6274,7 @@
           <Concept_Definition>A series of ascending pools constructed to enable fish to swim upstream around or over a dam.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="070">
@@ -6154,6 +6293,7 @@
           <Concept_Definition>A section of canal or navigable waterway in which a barge or other vessel can be turned.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
     </Subcategory>
@@ -6610,6 +6750,7 @@
           <Concept_Definition>A natural route through a low place in a mountain range.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="160">
@@ -7804,6 +7945,7 @@
           <Concept_Definition>Terrain area 3 metres wide limited on the water side by the contact between land and water (under average level of water condition). (See also FA005)</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>20</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="045">
@@ -8053,6 +8195,7 @@
           <Concept_Definition>A maritime routing measure that separates opposing streams of traffic by appropriate means.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>10</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="042">
@@ -8188,6 +8331,7 @@
           <Concept_Definition>A route established for the safe passage of vessels through offshore oil and gas fields and minefields.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>10</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="177">
@@ -9967,6 +10111,7 @@
           <Concept_Definition>An underground, metropolitan electric railway or the tunnel through which it travels. (Revised concept but same code that is focused on the railway alone).</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="003">
@@ -10186,9 +10331,9 @@
         </Subcode>
       </Feature_Type>
       <Feature_Type code="002">
-        <Label>Building_Component_Entrance_Or_Exit</Label>
+        <Label>Building_Component_Entrance_Exit</Label>
         <Subcode code="000">
-          <Label>Building_Component_Entrance_Or_Exit</Label>
+          <Label>Building_Component_Entrance_Exit</Label>
           <Concept_Definition>An ENTRANCE_AND_OR_EXIT between BUILDING_COMPONENTs, such as a doorway or a passage to a STAIR landing.</Concept_Definition>
           <Recommended_Dataset_Component>N/A</Recommended_Dataset_Component>
           <Origin>UHRB</Origin>
@@ -11128,6 +11273,7 @@
           <Concept_Definition>A WATERCOURSE that is usable, sometimes after improvements, as a commercial MARINE_ROUTE; a navigable waterway.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="005">
@@ -11194,6 +11340,7 @@
           <Concept_Definition>A WATERBODY and its adjoining SHOREs; hydrography.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal, Hydrography Network Areal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="005">
@@ -11239,6 +11386,7 @@
           <Concept_Definition>A narrow channel joining two WATERBODYs; a marine strait [SOED, "strait", 3].</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="010">
@@ -11347,6 +11495,7 @@
           <Concept_Definition>That part of a WATERBODY, sometimes dredged, that is deep enough for navigation through a WATERBODY_SURFACE_REGION that would otherwise not be navigable; a water channel. It is usually marked by a single or double line of MARINE_AID_TO_NAVIGATIONs.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="022">
@@ -11365,6 +11514,7 @@
           <Concept_Definition>An artificial or natural channel for the conveyance of WATER; a watercourse.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="024">
@@ -11374,6 +11524,7 @@
           <Concept_Definition>A short, narrow WATERCOURSE connecting a MARINE_BAY or LAGOON with a SEA; an inlet.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
     </Subcategory>
@@ -11641,6 +11792,7 @@
           <Concept_Definition>A raised ROAD supported by a solid STRUCTURE and/or raised LAND providing a LAND_TRANSPORTATION_ROUTE across either a wet TERRAIN_SURFACE_REGION or an intertidal TERRAIN_SURFACE_REGION; a causeway.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="004">
@@ -11650,6 +11802,7 @@
           <Concept_Definition>A private ROAD alongside, in front of, or leading to a BUILDING (for example: a HOUSE and/or a PARKING_GARAGE); a driveway [SOED, "driveway"].</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>40</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="005">
@@ -11668,6 +11821,7 @@
           <Concept_Definition>A TRANSPORTATION_ROUTE located principally on LAND.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="007">
@@ -11722,6 +11876,7 @@
           <Concept_Definition>A rail or two parallel rails on which a TRAIN, tram, or RAIL_WAGON runs; a railway track.</Concept_Definition>
           <Recommended_Dataset_Component>Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>60</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="013">
@@ -11740,6 +11895,7 @@
           <Concept_Definition>A COMPONENT of a LAND_TRANSPORTATION_ROUTE that is typically designated by painted lines, is used to segregate the flow of GROUND_VEHICLEs according to speed or intended DIRECTION, and has enough WIDTH to pass a single file of GROUND_VEHICLEs; a route lane [SOED, "lane", 2.d].</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>30</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="015">
@@ -11758,6 +11914,7 @@
           <Concept_Definition>A passage under the TERRAIN that is open at both ends and usually contains a LAND_TRANSPORTATION_ROUTE; a tunnel.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="017">
@@ -11767,6 +11924,7 @@
           <Concept_Definition>A STRUCTURE consisting of a series of arches or TOWERs supporting a LAND_TRANSPORTATION_ROUTE across a TERRAIN_DEPRESSION; a viaduct.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="018">
@@ -11776,6 +11934,7 @@
           <Concept_Definition>The concealed access RAMP or LAND_TRANSPORTATION_ROUTE leading from the exterior of a WEAPON_FIGHTING_POSITION to the WEAPON_FULL_DEFILADE_POSITION and then to the WEAPON_HULL_DEFILADE_POSITION; a weapon fighting position access route.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>30</Priority>
         </Subcode>
       </Feature_Type>
     </Subcategory>
@@ -11827,6 +11986,7 @@
           <Concept_Definition>The narrow TERRAIN_STRIP in immediate contact with a WATERBODY, including the TRACT between high and low water LINEs; a shore.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
     </Subcategory>
@@ -12040,6 +12200,7 @@
           <Concept_Definition>A ROUTE used for transportation.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="018">
@@ -12631,6 +12792,7 @@
           <Concept_Definition>The dry bed of an intermittent RIVER, often with steep sides or located at the bottom of a TERRAIN_CHANNEL; a wadi, a wash, or an arroyo.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>70</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="039">
@@ -13267,6 +13429,7 @@
           <Concept_Definition>A COMPONENT of a ROUTE.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="006">
@@ -13276,6 +13439,7 @@
           <Concept_Definition>A measure for organizing a TRANSPORTATION_ROUTE that separates opposing streams of VESSELs by appropriate means, including the establishment of ROUTE_LANEs; a traffic separation scheme.</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>30</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="007">
@@ -13789,6 +13953,7 @@
           <Concept_Definition>A significant long, narrow, and characteristically very deep and asymmetrical TERRAIN_CHANNEL in a WATERBODY_FLOOR, with relatively steep sides; a trench.</Concept_Definition>
           <Recommended_Dataset_Component>Hydrography Network Lineal</Recommended_Dataset_Component>
           <Origin>SEDRIS</Origin>
+          <Priority>20</Priority>
         </Subcode>
       </Feature_Type>
     </Subcategory>
@@ -14032,6 +14197,7 @@
           <Concept_Definition>A system of inter-connected real world objects of the same type or directly related types. (Retired; not known to be used and prefered encoding would be based on specific type of network (e.g., road, railway, power line).</Concept_Definition>
           <Recommended_Dataset_Component>Road Network Lineal, Railroad Network Lineal, Hydrography Network Lineal, PowerLine Network Lineal</Recommended_Dataset_Component>
           <Origin>DIGEST 2.1</Origin>
+          <Priority>50</Priority>
         </Subcode>
       </Feature_Type>
       <Feature_Type code="003">

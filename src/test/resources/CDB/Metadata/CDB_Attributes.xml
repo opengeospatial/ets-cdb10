@@ -51,7 +51,9 @@
         Good examples of such markers are boundary markers between countries.
       </Description>
       <Level>
+        <Instance>Preferred</Instance>
         <Class>Supported</Class>
+        <Extended>Not Supported</Extended>
       </Level>
       <Value>
         <Type>Boolean</Type>
@@ -112,9 +114,9 @@
         Optional for Location Points, Environmental Light Points, and Moving Model Location features that fall within the confines of an airport and for which control of the feature is desirable.
       </Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Class>Deprecated</Class>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Text</Type>
@@ -141,8 +143,8 @@
         Refer to Appendix A – "How to Interpret the AHGT, HGT, BSR, BBH, and Z Attributes" for additional usage guidelines.
       </Description>
       <Level>
-        <Instance>Not Supported</Instance>
-        <Class>Preferred</Class>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
         <Extended>Supported</Extended>
       </Level>
       <Value>
@@ -164,8 +166,8 @@
         See BBH for a complete description.
       </Description>
       <Level>
-        <Instance>Not Supported</Instance>
-        <Class>Preferred</Class>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
         <Extended>Supported</Extended>
       </Level>
       <Value>
@@ -187,8 +189,8 @@
         See BBH for a complete description.
       </Description>
       <Level>
-        <Instance>Not Supported</Instance>
-        <Class>Preferred</Class>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
         <Extended>Supported</Extended>
       </Level>
       <Value>
@@ -211,8 +213,9 @@
         Can be used only with Boundary Point, Lineal or Areal Feature Datasets (which are part of the Geopolitical Datasets)
       </Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -241,7 +244,9 @@
         Refer to Appendix A – "How to Interpret the AHGT, HGT, BSR, BBH, and Z Attributes" for additional usage guidelines.
       </Description>
       <Level>
-        <Class>Preferred</Class>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -267,8 +272,9 @@
         Usage Note: Optional. Use when CDB extended attribution is required. A “blank” or a value of 0 indicates that there are no CDB Extended attributes.
       </Description>
       <Level>
-        <Instance>Supported</Instance>
+        <Instance>Preferred</Instance>
         <Class>Supported</Class>
+        <Extended>Not Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -313,8 +319,9 @@
         Refer to Section 2.5, Material Naming Conventions for a description on material naming conventions.
       </Description>
       <Level>
+        <Instance>Preferred</Instance>
         <Class>Supported</Class>
-        <Extended>Preferred</Extended>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -339,6 +346,7 @@
       <Level>
         <Instance>Supported</Instance>
         <Class>Supported</Class>
+        <Extended>Not Supported</Extended>
       </Level>
       <Value>
         <Type>Text</Type>
@@ -372,6 +380,7 @@
       </Description>
       <Level>
         <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
         <Extended>Supported</Extended>
       </Level>
       <Value>
@@ -422,9 +431,9 @@
         Not applicable to features that are intrinsically above ground.
       </Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Class>Deprecated</Class>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -448,8 +457,9 @@
         Usage Note: Recommended for lineal features. If absent, client-devices are required to default to a value of 3 – Omni-directional.
       </Description>
       <Level>
-        <Class>Deprecated</Class>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -469,8 +479,9 @@
         If this field is absent, client-devices shall assume 0%.
       </Description>
       <Level>
-        <Class>Deprecated</Class>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -491,8 +502,9 @@
         If absent, client-devices shall assume 0%.
       </Description>
       <Level>
-        <Class>Deprecated</Class>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -512,8 +524,9 @@
         Usage Note: Recommended for Areal features. If absent, client-devices shall assume 0.
       </Description>
       <Level>
-        <Class>Deprecated</Class>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -532,8 +545,9 @@
         Usage Note: Recommended for Areal features. If absent, client-devices shall assume 0%.
       </Description>
       <Level>
-        <Class>Deprecated</Class>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -556,6 +570,7 @@
       </Description>
       <Level>
         <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
         <Extended>Supported</Extended>
       </Level>
       <Value>
@@ -571,7 +586,9 @@
         The enumerated codes are in accordance to DIGEST 2.1.
       </Description>
       <Level>
+        <Instance>Preferred</Instance>
         <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Text</Type>
@@ -586,7 +603,9 @@
         The enumerated codes are in accordance to Appendix N.
       </Description>
       <Level>
+        <Instance>Preferred</Instance>
         <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -607,6 +626,8 @@
         Typically used (but not limited to) for models such as docking systems, marshallers and other models that are logically associated with a Terminal gate and that require some level of control by the simulation application.
       </Description>
       <Level>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
         <Extended>Supported</Extended>
       </Level>
       <Value>
@@ -629,8 +650,9 @@
         A “blank” or a value of 0 indicates that there are no Geomatics Extended attributes.
       </Description>
       <Level>
-        <Instance>Supported</Instance>
+        <Instance>Preferred</Instance>
         <Class>Supported</Class>
+        <Extended>Not Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -656,7 +678,9 @@
         Default: Value must be provided for Point and Figure Point features. For the lineal and areal features, a default value of 0.00 should be used.
       </Description>
       <Level>
+        <Instance>Preferred</Instance>
         <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -684,6 +708,7 @@
       </Description>
       <Level>
         <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
         <Extended>Supported</Extended>
       </Level>
       <Value>
@@ -699,8 +724,9 @@
         Usage Note: Optional. See Table 5-30: Location Accuracy Enumeration Values for a list of accepted values.
       </Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -724,6 +750,7 @@
       </Description>
       <Level>
         <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
         <Extended>Supported</Extended>
       </Level>
       <Value>
@@ -762,8 +789,9 @@
       <Name>Location Name</Name>
       <Description>A name that corresponds to a GeoPolitical Location. Usage Note: Optional. Blank indicates "no name".</Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Text</Type>
@@ -780,8 +808,9 @@
         Can be used only with Location Point, Lineal or Areal Feature Datasets (which are part of the Geopolitical Datasets).
       </Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -802,8 +831,9 @@
         Usage Note: Optional. In absence of a value, LPH defaults to a value of 0.
       </Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -825,8 +855,9 @@
         LPN is derived from priority information stored and maintained by the authoring tools.
       </Description>
       <Level>
-        <Instance>Supported</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -845,8 +876,9 @@
         Usage Note: Recommended for Road, RailRoad, and Powerline Network features. Optional for Hydrography Network features.
       </Description>
       <Level>
-        <Class>Deprecated</Class>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -867,7 +899,8 @@
         Usage Note: Mandatory for all Airport Light Point features, Environmental Light Point features.
       </Description>
       <Level>
-        <Class>Preferred</Class>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
         <Extended>Supported</Extended>
       </Level>
       <Value>
@@ -891,7 +924,9 @@
         In such case, the value of MLOD is not constrained and can indicate any LOD.
       </Description>
       <Level>
+        <Instance>Preferred</Instance>
         <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -910,7 +945,9 @@
         separated by an underscore character (“_”) and formatted like this: 1_2_3_4_5_6_7
       </Description>
       <Level>
+        <Instance>Preferred</Instance>
         <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Text</Type>
@@ -929,7 +966,9 @@
         Note that it is not permitted to specify a value for MODL simultaneously with a value for MMDC.
       </Description>
       <Level>
+        <Instance>Preferred</Instance>
         <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Text</Type>
@@ -947,7 +986,9 @@
         "T" for geo-typical, "S" for geo-specific, "M" for Moving Model. Default value is "S" when not present.
       </Description>
       <Level>
+        <Instance>Preferred</Instance>
         <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Text</Type>
@@ -962,8 +1003,9 @@
         Usage Note: Mandatory for Network datasets. Attribute is used in 2D relationship file.
       </Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -982,8 +1024,9 @@
         Usage Note: Mandatory for Network datasets. Attribute is used in 2D relationship file.
       </Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -1002,8 +1045,9 @@
         Usage Note: Mandatory for Network datasets. Attribute is used in 2D relationship file.
       </Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -1110,14 +1154,15 @@
       </Value>
     </Attribute>
     
-    <Attribute code="50" symbol="NVT" deprecated="true">
+    <Attribute code="50" symbol="NVT">
       <Name>Number of Vertices</Name>
       <Description>
-        Number of vertices of the 3D model associated with the cultural point feature.
+        Number of vertices of the 3D model associated with a point feature.
       </Description>
       <Level>
-        <Class>Deprecated</Class>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -1136,8 +1181,9 @@
         Applicable to Geopolitical features representing inhabited areas.
       </Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -1158,8 +1204,9 @@
         Enumeration per Table 5-32: Populated Place Type Enumeration Values.
       </Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -1192,7 +1239,9 @@
         Relative TActical Importance is mandatory. It has no default value.
       </Description>
       <Level>
-        <Instance>Supported</Instance>
+        <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
+        <Extended>Not Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -1220,9 +1269,9 @@
         and Moving Model Location features that are associated with a runway and for which control of the feature is desirable.
       </Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Class>Deprecated</Class>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Text</Type>
@@ -1242,8 +1291,9 @@
         Usage Note: Optional; defaults to a value of 1.0 if SCALx, SCALy, or SCALz is missing.
       </Description>
       <Level>
-        <Instance>Supported</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -1262,8 +1312,9 @@
         Scale factor to apply to the Y-axis of the model. See SCALx for a detailed description.
       </Description>
       <Level>
-        <Instance>Supported</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -1282,8 +1333,9 @@
         Scale factor to apply to the Z-axis of the model. See SCALx for a detailed description.
       </Description>
       <Level>
-        <Instance>Supported</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -1306,6 +1358,7 @@
       </Description>
       <Level>
         <Instance>Preferred</Instance>
+        <Class>Not Supported</Class>
         <Extended>Supported</Extended>
       </Level>
       <Value>
@@ -1325,8 +1378,9 @@
         Usage Note: Recommended for Areal features.
       </Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -1346,8 +1400,9 @@
         Usage Note: Recommended for Point features, and all Network Lineal/Areal Figure Points features.
       </Description>
       <Level>
-        <Class>Deprecated</Class>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -1367,8 +1422,9 @@
         Usage Note: Recommended for Point features, and all Network Lineal/Areal Point Figures.
       </Description>
       <Level>
-        <Class>Deprecated</Class>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -1388,8 +1444,9 @@
         Default: 004 (for RoadNetwork lineal features), 003 (for RailRoadNetwork lineal features)
       </Description>
       <Level>
-        <Class>Deprecated</Class>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -1409,6 +1466,8 @@
         Failure to appropriately tag airport culture with TXID attribute will result in reduced control of taxiway-related culture by a simulation device.
       </Description>
       <Level>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
         <Extended>Supported</Extended>
       </Level>
       <Value>
@@ -1425,8 +1484,9 @@
         Usage Note: Recommended for Areal features.
       </Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -1450,8 +1510,9 @@
         Usage Note: Optional. Use when Vendor extended attribution is required. A “blank” or a value of 0 indicates that there are no Vendor Extended attributes.
       </Description>
       <Level>
-        <Instance>Supported</Instance>
+        <Instance>Preferred</Instance>
         <Class>Supported</Class>
+        <Extended>Not Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
@@ -1468,13 +1529,13 @@
       <Description>
         For lineal features (such as roads, railways, runways, taxiways), WGP is a measurement of the shorter of two linear axes.
         For a bridge, the width is the measurement perpendicular to the axis between the abutments.
-        Usage Note: Recommended on all Network Lineal (except PowerLines) features.
-        When supplied for coastline, WGP corresponds to average width of coastline due to water height variations (such as tides) and wave action.
+        For powerlines, the width is the distance between the outermost wires.
+        Usage Note: Recommended on all Network Lineal features.
       </Description>
       <Level>
-        <Instance>Deprecated</Instance>
-        <Class>Deprecated</Class>
-        <Extended>Preferred</Extended>
+        <Instance>Preferred</Instance>
+        <Class>Supported</Class>
+        <Extended>Supported</Extended>
       </Level>
       <Value>
         <Type>Numeric</Type>
