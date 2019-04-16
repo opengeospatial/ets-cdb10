@@ -29,7 +29,7 @@ public class VersionXml extends MetadataXmlFile {
         NodeList nodeList = XMLUtils.getNodeList("//Specification", xmlFile.toPath());
 
         ArrayList<String> values = new ArrayList<>();
-        List<String> VALID_VALUES = Arrays.asList("3.0", "3.1", "3.2");
+        List<String> VALID_VALUES = Arrays.asList("1.0", "3.0", "3.1", "3.2");
 
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node currentItem = nodeList.item(i);
@@ -39,7 +39,7 @@ public class VersionXml extends MetadataXmlFile {
         for (String value : values) {
             Assert.assertTrue(VALID_VALUES.contains(value),
                     String.format("Version.xml Specification elements attribute version can have values " +
-                            "of '3.0', '3.1', '3.2'. Value '%s' is not valid.", value));
+                            "of '1.0', '3.0', '3.1', '3.2'. Value '%s' is not valid.", value));
         }
     }
 }

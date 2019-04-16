@@ -110,7 +110,7 @@ public class VerifyVersionXmlStructureTests extends MetadataTestFixture<VersionX
         Files.copy(XSD_FILE, schemaFolder.resolve("Version.xsd"), REPLACE_EXISTING);
 
         expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("Version.xml Specification elements attribute version can have values of '3.0', '3.1', '3.2'. Value '0.0' is not valid.");
+        expectedException.expectMessage("Version.xml Specification elements attribute version can have values of '1.0', '3.0', '3.1', '3.2'. Value '0.0' is not valid.");
 
         // execute
         testSuite.verifyVersionXmlSpecificationVersionIsValid();
