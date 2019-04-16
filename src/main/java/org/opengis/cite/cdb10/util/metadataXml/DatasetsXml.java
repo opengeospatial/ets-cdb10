@@ -13,6 +13,11 @@ public class DatasetsXml extends MetadataXmlFile {
 		super(path, "Datasets.xml", "Datasets.xsd");
 	}
 
+	/**
+	 * Check if an integer code is valid according to the embedded Datasets.xml
+	 * @param code Integer for Dataset code (no leading zeros)
+	 * @return true/false
+	 */
 	public boolean isValidCode(Integer code) {
 		NodeList nodeList = XMLUtils.getNodeList("//Dataset", this.xmlFile.toPath());
 
@@ -27,6 +32,11 @@ public class DatasetsXml extends MetadataXmlFile {
 		return codes.contains(code);
 	}
 
+	/**
+	 * Check if a dataset name is valid according to the embedded Datasets.xml
+	 * @param datasetName String name of the dataset
+	 * @return true/false
+	 */
 	public boolean isValidName(String datasetName) {
 		NodeList nodeList = XMLUtils.getNodeList("//Dataset", this.xmlFile.toPath());
 
@@ -40,6 +50,12 @@ public class DatasetsXml extends MetadataXmlFile {
 		return names.contains(datasetName);
 	}
 
+	/**
+	 * Lookup a String name dataset for an Integer code according to the 
+	 * embedded Datasets.xml
+	 * @param code Integer for Dataset code (no leading zeros)
+	 * @return String name for Dataset
+	 */
 	public String datasetNameForCode(Integer code) {
 		NodeList nodeList = XMLUtils.getNodeList("//Dataset", this.xmlFile.toPath());
 
