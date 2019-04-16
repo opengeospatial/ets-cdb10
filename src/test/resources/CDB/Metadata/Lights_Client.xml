@@ -10,7 +10,7 @@
   </Light>
   <Light type="\Light\Platform\Air\Aircraft_Helos\Landing">
     <Description>...</Description>
-    <Intensity>1.07</Intensity>
+    <Intensity>1.0</Intensity>
     <Color>1.0 0.9 0.9</Color>
     <Directionality>Directional</Directionality>
     <Residual_Intensity>0.05</Residual_Intensity>
