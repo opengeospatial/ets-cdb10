@@ -36,23 +36,6 @@ public class CDBAttributesXml extends MetadataXmlFile {
         }
     }
 
-    public void verifySymbolIsUnique() {
-        NodeList nodeList = XMLUtils.getNodeList("//Attribute", xmlFile.toPath());
-
-        ArrayList<String> symbols = new ArrayList<>();
-
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            Node currentItem = nodeList.item(i);
-            symbols.add(currentItem.getAttributes().getNamedItem("symbol").getNodeValue());
-        }
-
-        for (String symbol : symbols) {
-            Assert.assertEquals(Collections.frequency(symbols, symbol), 1,
-                    String.format("CDB_Attributes.xml element Attribute should " +
-                            "have unique symbols. Symbol '%s' is not unique.", symbol));
-        }
-    }
-
     public void verifyValueHasAValidType() {
         NodeList nodeList = XMLUtils.getNodeList("//Value/Type", xmlFile.toPath());
 

@@ -8,6 +8,7 @@ import org.xml.sax.SAXException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -24,6 +25,14 @@ public abstract class MetadataXmlFile {
 		this.xsdFile = Paths.get(path, "Metadata", "Schema", xsdFileName).toFile();
 
 		this.verifyXmlFileExists();
+	}
+	
+	public Path getXmlFilePath() {
+		return this.xmlFile.toPath();
+	}
+	
+	public Path getXsdFilePath() {
+		return this.xsdFile.toPath();
 	}
 
 	public void verifyXmlAgainstSchema() throws IOException, SAXException {
