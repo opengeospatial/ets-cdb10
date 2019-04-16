@@ -1,6 +1,5 @@
-package org.opengis.cite.cdb10.metadataAndVersioning;
+package org.opengis.cite.cdb10.util;
 
-import org.opengis.cite.cdb10.util.XMLUtils;
 import org.testng.Assert;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

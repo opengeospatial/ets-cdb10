@@ -1,7 +1,5 @@
-package org.opengis.cite.cdb10.metadataAndVersioning;
+package org.opengis.cite.cdb10.util;
 
-import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
-import org.opengis.cite.cdb10.util.XMLUtils;
 import org.testng.Assert;
 import org.xml.sax.SAXException;
 

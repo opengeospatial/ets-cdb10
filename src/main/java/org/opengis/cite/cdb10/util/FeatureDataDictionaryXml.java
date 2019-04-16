@@ -1,7 +1,5 @@
-package org.opengis.cite.cdb10.cdbStructure;
+package org.opengis.cite.cdb10.util;
 
-import org.opengis.cite.cdb10.metadataAndVersioning.MetadataXmlFile;
-import org.opengis.cite.cdb10.util.XMLUtils;
 import org.w3c.dom.NodeList;
 
 public class FeatureDataDictionaryXml extends MetadataXmlFile {

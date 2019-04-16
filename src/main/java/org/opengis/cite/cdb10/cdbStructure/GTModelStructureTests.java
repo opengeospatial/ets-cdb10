@@ -12,6 +12,8 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.opengis.cite.cdb10.CommonFixture;
+import org.opengis.cite.cdb10.util.DatasetsXml;
+import org.opengis.cite.cdb10.util.FeatureDataDictionaryXml;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

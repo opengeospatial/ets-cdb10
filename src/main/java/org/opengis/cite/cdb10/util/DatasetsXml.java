@@ -1,11 +1,9 @@
-package org.opengis.cite.cdb10.cdbStructure;
+package org.opengis.cite.cdb10.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.opengis.cite.cdb10.metadataAndVersioning.MetadataXmlFile;
-import org.opengis.cite.cdb10.util.XMLUtils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 

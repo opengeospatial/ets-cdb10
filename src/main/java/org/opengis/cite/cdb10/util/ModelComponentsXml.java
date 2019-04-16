@@ -1,4 +1,4 @@
-package org.opengis.cite.cdb10.metadataAndVersioning;
+package org.opengis.cite.cdb10.util;
 
 /**
  * Created by martin on 2016-09-20.
