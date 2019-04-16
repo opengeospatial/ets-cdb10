@@ -138,12 +138,12 @@
   </xs:complexType>
   
   <!-- A Texture group is identified by its group number and its group name.
-  	   Later, individual texture will refer to group numbers.
+       Later, individual texture will refer to group numbers.
   -->
   <xs:complexType name="Texture_Group">
-  	<xs:attribute name="no" type="xs:positiveInteger" use="required"/>
-  	<xs:attribute name="name" type="xs:token" use="required" />
-	<xs:attribute name="type" type="xs:token" />
+    <xs:attribute name="no" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="name" type="xs:token" use="required" />
+    <xs:attribute name="type" type="xs:token" />
   </xs:complexType>
   
   <!-- A texture is defined by a sequence of 5 mandatory elements and 2 optional elements.
@@ -155,6 +155,7 @@
   -->
   <xs:complexType name="Texture">
     <xs:sequence>
+      <xs:element name="Dataset" type="xs:positiveInteger" minOccurs="0"/>
       <xs:element name="Kind" type="xs:positiveInteger" />
       <xs:element name="Index" type="xs:positiveInteger" />
       <xs:element name="Mipmap">

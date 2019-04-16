@@ -2,45 +2,45 @@
 <?xml-stylesheet type="text/xsl" href="xs3p.xsl"?>
 <xs:schema
   attributeFormDefault="unqualified"
-  elementFormDefault="qualified"
+  elementFormDefault="qualified" 
   targetNamespace="http://www.CDB-Spec.org/Schema/Base_Material_Table/3.2"
   xmlns:cdb="http://www.CDB-Spec.org/Schema/Base_Material_Table/3.2"
   xmlns="http://www.CDB-Spec.org/Schema/Base_Material_Table/3.2"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   version="3.2">
 
-  <xs:annotation>
-    <xs:documentation xml:lang="en">
-      This XML schema defines the format of the CDB Base Material Table found in /CDB/Metadata/Materials.xml
-    </xs:documentation>
-  </xs:annotation>
+    <xs:annotation>
+        <xs:documentation xml:lang="en">
+            This XML schema defines the format of the CDB Base Material Table found in /CDB/Metadata/Materials.xml
+        </xs:documentation>
+    </xs:annotation>
 
-  <xs:element name="Base_Material_Table">
+    <xs:element name="Base_Material_Table">
     <xs:annotation>
       <xs:documentation xml:lang="en">
         The Base Material Table is a list of one or more CDB Base Materials.
       </xs:documentation>
     </xs:annotation>
 
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="Version" type="Version" minOccurs="0">
-          <xs:annotation>
-            <xs:documentation xml:lang="en">
-              This element is deprecated and should no longer be used.
-              It has been replaced by the &apos;version&apos; attribute.
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="Source" type="xs:token" minOccurs="0">
-          <xs:annotation>
-            <xs:documentation xml:lang="en">
-              This element is deprecated and should no longer be used.
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="Base_Material" type="Base_Material" maxOccurs="unbounded"/>
-      </xs:sequence>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Version" type="Version" minOccurs="0">
+                  <xs:annotation>
+                    <xs:documentation xml:lang="en">
+                      This element is deprecated and should no longer be used.
+                      It has been replaced by the &apos;version&apos; attribute.
+                    </xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Source" type="xs:token" minOccurs="0">
+                  <xs:annotation>
+                    <xs:documentation xml:lang="en">
+                      This element is deprecated and should no longer be used.
+                    </xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Base_Material" type="Base_Material" maxOccurs="unbounded" />
+            </xs:sequence>
       <xs:attribute name="version" use="required">
         <xs:simpleType>
           <xs:annotation>
@@ -54,24 +54,24 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
-    </xs:complexType>
+        </xs:complexType>
 
     <!-- Validate that all Base_Material are unique -->
     <xs:unique name="UniqueNames">
-      <xs:selector xpath="./cdb:Base_Material"/>
-      <xs:field xpath="cdb:Name"/>
+      <xs:selector xpath="./cdb:Base_Material" />
+      <xs:field xpath ="cdb:Name" />
     </xs:unique>
-  </xs:element>
+    </xs:element>
 
-  <!-- A base material has a name and an optional description. -->
-  <xs:complexType name="Base_Material">
+    <!-- A base material has a name and an optional description. -->
+    <xs:complexType name="Base_Material">
     <xs:annotation>
       <xs:documentation xml:lang="en">
         This element defines one CDB Base Material by giving it a unique name.
         It is recommended to provide a description.
       </xs:documentation>
     </xs:annotation>
-    <xs:sequence>
+        <xs:sequence>
       <xs:element name="Name">
         <xs:simpleType>
           <xs:restriction base="xs:string">
@@ -80,15 +80,15 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-      <xs:element name="Description" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
+            <xs:element name="Description" type="xs:string" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
 
   <!-- Deprecated -->
-  <xs:complexType name="Version">
-    <xs:sequence>
-      <xs:element name="Major" type="xs:positiveInteger"/>
-      <xs:element name="Minor" type="xs:nonNegativeInteger"/>
-    </xs:sequence>
-  </xs:complexType>
+    <xs:complexType name="Version">
+        <xs:sequence>
+            <xs:element name="Major" type="xs:positiveInteger" />
+            <xs:element name="Minor" type="xs:nonNegativeInteger" />
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>

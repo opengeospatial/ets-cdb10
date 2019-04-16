@@ -1,7 +1,7 @@
 <?xml version="1.0"  encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="xs3p.xsl"?>
 <xs:schema
-  version="1.0"
+  version="1.1"
   attributeFormDefault="unqualified" 
   elementFormDefault="qualified" 
   targetNamespace="http://www.CDB-Spec.org/Schema/Feature_Data_Dictionary/1.0"
@@ -119,8 +119,9 @@
     <xs:sequence>
       <xs:element name="Label" type="Label" />
       <xs:element name="Concept_Definition" type="xs:token" />
-      <xs:element name="Recommended_Dataset_Component" type="xs:token" />
+      <xs:element name="Recommended_Dataset_Component" type="xs:token" maxOccurs="unbounded" />
       <xs:element name="Origin" type="xs:token" />
+      <xs:element name="Priority" type="xs:decimal" minOccurs="0" default="50"/>
     </xs:sequence>
     <xs:attribute name="code" type="DigitCode" use="required" />
   </xs:complexType>

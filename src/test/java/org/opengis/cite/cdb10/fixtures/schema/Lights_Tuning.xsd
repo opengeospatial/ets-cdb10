@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<xs:schema id="Light_Tuning" xmlns="CDB" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="CDB"
-           elementFormDefault="qualified" version="1.0">
+<xs:schema id="Light_Tuning" xmlns="CDB" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="CDB" elementFormDefault="qualified" version="1.0">
 
   <xs:annotation>
     <xs:appinfo>CDB Light Tuning Schema</xs:appinfo>
@@ -50,7 +49,7 @@
       <xs:element name="Vertical" type="xs:decimal"/>
     </xs:sequence>
   </xs:complexType>
-
+  
   <!-- Tuning a color requires specifying three (3) floating point values. -->
   <xs:simpleType name="Color">
     <xs:restriction>
@@ -66,5 +65,5 @@
       <xs:length value="3"/>
     </xs:restriction>
   </xs:simpleType>
-
+  
 </xs:schema>
