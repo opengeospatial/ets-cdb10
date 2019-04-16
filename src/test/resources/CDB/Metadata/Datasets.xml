@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <Datasets xmlns="CDB" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="CDB Datasets.xsd">
+<!-- This list of datasets is used for validation of which codes/names are valid
+     in the Executable Test Suite. The list is sourced from Annex Q of Volume 2
+     of the OGC CDB Core Model and Physical Structure Informative Annexes 
+     (16-005r3). -->
 
   <Dataset code="1" name="Elevation" />
   <Dataset code="2" name="MinMaxElevation" />
@@ -7,6 +11,12 @@
   <Dataset code="4" name="Imagery" />
   <Dataset code="5" name="RMTexture" />
   <Dataset code="6" name="RMDescriptor" />
+  
+  <!-- RESERVED CODES 
+  <Dataset code="7" name="" />
+  <Dataset code="8" name="" />
+  <Dataset code="20" name="" />
+   -->
 
   <Dataset code="100" name="GSFeature" />
   <Dataset code="101" name="GTFeature" />
@@ -22,6 +32,15 @@
   <Dataset code="301" name="GSModelTexture" />
   <Dataset code="302" name="GSModelSignature" />
   <Dataset code="303" name="GSModelDescriptor" />
+  <Dataset code="304" name="GSModelMaterial" />
+  <Dataset code="305" name="GSModelInteriorGeometry" />
+  <Dataset code="306" name="GSModelInteriorTexture" />
+  <Dataset code="307" name="GSModelInteriorDescriptor" />
+  <Dataset code="308" name="GSModelInteriorMaterial" />
+  <Dataset code="309" name="GSModelCMT" />
+  <Dataset code="310" name="T2DModelGeometry" />
+  <Dataset code="311" name="GSModelInteriorCMT" />
+  <Dataset code="312" name="T2DModelCMT" />
 
   <Dataset code="400" name="NavData" />
   <Dataset code="401" name="Navigation" />
@@ -45,5 +64,11 @@
   <Dataset code="601" name="MModelTexture" />
   <Dataset code="602" name="MModelSignature" />
   <Dataset code="603" name="MModelDescriptor" />
+  <Dataset code="604" name="MModelMaterial" />
+  <Dataset code="605" name="MModelCMT" />
+  <Dataset code="606" name="MModelSignature" />
+  
+  <Dataset code="700" name="MModelGeometry" />
+  <Dataset code="701" name="MModelGeometry" />
 
 </Datasets>
