@@ -1,12 +1,19 @@
 <?xml version="1.0" ?>
-<xs:schema id="CDB_Model" targetNamespace="CDB" xmlns="CDB" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="3.2">
+<?xml-stylesheet type="text/xsl" href="xs3p.xsl"?>
+<xs:schema
+  attributeFormDefault="unqualified"
+  elementFormDefault="qualified"
+  targetNamespace="http://www.CDB-Spec.org/Schema/OpenFlight_Model_Extensions/3.2"
+  xmlns="http://www.CDB-Spec.org/Schema/OpenFlight_Model_Extensions/3.2"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  version="3.2.1">
 
   <xs:annotation>
     <xs:appinfo>CDB OpenFlight Model Extension Schema</xs:appinfo>
     <xs:documentation>
       XML schema to define and validate CDB extensions to OpenFlight models.
       In accordance with chapter 6 of the CDB specification.
-      Version 3.0
+      Version 3.2
     </xs:documentation>
   </xs:annotation>
 
@@ -107,4 +114,26 @@
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="Articulation">
+    <xs:sequence>
+      <xs:element name="Translation" type="Rates" minOccurs="0"/>
+      <xs:element name="Rotation" type="Rates" minOccurs="0"/>
+      <xs:element name="Scaling" type="Rates" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="id" type="xs:nonNegativeInteger"/>
+  </xs:complexType>
+
+  <xs:complexType name="Rates">
+    <xs:sequence>
+      <xs:element name="X" type="Rate"/>
+      <xs:element name="Y" type="Rate"/>
+      <xs:element name="Z" type="Rate"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Rate">
+    <xs:attribute name="value" type="xs:decimal" use="required"/>
+  </xs:complexType>
+  
 </xs:schema>
