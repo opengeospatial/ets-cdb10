@@ -1,4 +1,4 @@
-package org.opengis.cite.cdb10.util;
+package org.opengis.cite.cdb10.util.metadataXml;
 
 import org.testng.Assert;
 

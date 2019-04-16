@@ -1,7 +1,7 @@
 package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import org.opengis.cite.cdb10.CommonFixture;
-import org.opengis.cite.cdb10.util.VersionXml;
+import org.opengis.cite.cdb10.util.metadataXml.VersionXml;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 

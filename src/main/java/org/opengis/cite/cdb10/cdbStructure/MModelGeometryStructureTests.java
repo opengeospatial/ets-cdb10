@@ -11,8 +11,8 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.opengis.cite.cdb10.CommonFixture;
-import org.opengis.cite.cdb10.util.DISCountryCodesXml;
-import org.opengis.cite.cdb10.util.MovingModelCodesXml;
+import org.opengis.cite.cdb10.util.metadataXml.DISCountryCodesXml;
+import org.opengis.cite.cdb10.util.metadataXml.MovingModelCodesXml;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

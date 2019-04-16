@@ -1,9 +1,9 @@
 package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import org.opengis.cite.cdb10.CommonFixture;
-import org.opengis.cite.cdb10.util.MaterialsXml;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
 import org.opengis.cite.cdb10.util.XMLUtils;
+import org.opengis.cite.cdb10.util.metadataXml.MaterialsXml;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.w3c.dom.Node;
