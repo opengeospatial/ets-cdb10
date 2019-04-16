@@ -28,11 +28,21 @@ public class CDBAttributesXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyCDBAttributesXmlFileExists() {
     	this.loadXmlFile();
+    	Assert.assertTrue(cdbAttributes.xmlFileExists(),
+    			String.format("Metadata directory should contain %s file.", cdbAttributes.getXmlFileName()));
+		Assert.assertTrue(cdbAttributes.xsdFileExists(),
+				String.format("Metadata directory should contain %s file.", cdbAttributes.getXsdFileName()));
     }
 
     @Test
     public void verifyCDBAttributesXmlAgainstSchema() throws IOException, SAXException {
     	this.loadXmlFile();
+    	
+    	Assert.assertTrue(cdbAttributes.xmlFileExists(),
+    			String.format("Metadata directory should contain %s file.", cdbAttributes.getXmlFileName()));
+		Assert.assertTrue(cdbAttributes.xsdFileExists(),
+				String.format("Metadata directory should contain %s file.", cdbAttributes.getXsdFileName()));
+    	
         String errors = cdbAttributes.schemaValidationErrors();
         Assert.assertEquals(errors, "", cdbAttributes.getXmlFileName() + 
         		" does not contain valid XML. Errors: " + errors);
@@ -41,6 +51,12 @@ public class CDBAttributesXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyCDBAttributesXmlCodeIsAnInteger() {
     	this.loadXmlFile();
+    	
+    	Assert.assertTrue(cdbAttributes.xmlFileExists(),
+    			String.format("Metadata directory should contain %s file.", cdbAttributes.getXmlFileName()));
+    	Assert.assertTrue(cdbAttributes.xsdFileExists(),
+				String.format("Metadata directory should contain %s file.", cdbAttributes.getXsdFileName()));
+    	
         NodeList nodeList = XMLUtils.getNodeList("//Attribute", cdbAttributes.getXmlFilePath());
 
         ArrayList<String> values = new ArrayList<>();

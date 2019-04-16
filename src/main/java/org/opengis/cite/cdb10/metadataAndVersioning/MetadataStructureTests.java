@@ -48,6 +48,7 @@ public class MetadataStructureTests extends CommonFixture {
      * OpenFlight_Model_Extensions.xsd
      * Vector_Attributes.xsd
      * Version.xsd
+     * @throws IOException Error when loading filesystem
      */
     @Test
     public void verifyContentsOfSchemaFolder() throws IOException {

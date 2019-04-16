@@ -1,6 +1,18 @@
 package org.opengis.cite.cdb10.metadataAndVersioning;
 
-import org.opengis.cite.cdb10.CommonFixture;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.PathMatcher;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
 import org.opengis.cite.cdb10.util.XMLUtils;
 import org.testng.Assert;
@@ -9,14 +21,6 @@ import org.testng.annotations.Test;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by martin on 2016-09-12.
@@ -57,10 +61,10 @@ public class LightsXxxXmlStructureTests extends Capability2Tests {
 
     @Test
     public void verifyLightsTuningXsdFFileExists() {
-        for (File xmlFile : getCustomLightsXmlFiles()) {
-            Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema", "Lights_Tuning.xsd")),
+    	if (getCustomLightsXmlFiles().size() > 0) {
+    		Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema", "Lights_Tuning.xsd")),
                     "If a custom Lights_xxx.xml exists there should be Lights_Tuning.xsd in the Schema folder.");
-        }
+    	}
     }
 
     @Test
