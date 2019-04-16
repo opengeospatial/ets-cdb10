@@ -17,10 +17,7 @@ public enum SuiteAttribute {
     /**
      * An array of integers denoting the conformance levels to check.
      */
-    LEVELS("levels", Integer[].class),
-    DIRECTORIES("directories", String.class),
-    LATLONG("latlong", String.class),
-    MINMAXLOD("minmaxlod", String.class);
+    LEVELS("levels", Integer[].class);
 
     private final Class attrType;
     private final String attrName;

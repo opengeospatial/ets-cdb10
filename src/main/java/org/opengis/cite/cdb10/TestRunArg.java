@@ -9,7 +9,11 @@ public enum TestRunArg {
      * An absolute URI that refers to a representation of the test subject or
      * metadata about it.
      */
-    IUT, ICS, DIRECTORIES,LATLONG,MINMAXLOD;
+    IUT,
+    /**
+     * The conformance level(s) that are active
+     */
+    ICS;
 
 
     @Override

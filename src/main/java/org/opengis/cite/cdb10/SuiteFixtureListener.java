@@ -59,23 +59,6 @@ public class SuiteFixtureListener implements ISuiteListener {
 
 		suite.setAttribute(SuiteAttribute.LEVELS.getName(), levels);
 
-		String directories = params.get(TestRunArg.DIRECTORIES.toString());
-		if (null != directories) {
-			suite.setAttribute(SuiteAttribute.DIRECTORIES.getName(), directories);
-		}
-
-		String latlong = params.get(TestRunArg.LATLONG.toString());
-		if (null != latlong) {
-			suite.setAttribute(SuiteAttribute.LATLONG.getName(), latlong);
-		}
-
-		String minmaxlod = params.get(TestRunArg.MINMAXLOD.toString());
-		if (null != minmaxlod) {
-			suite.setAttribute(SuiteAttribute.MINMAXLOD.getName(), minmaxlod);
-		}
-
-
-
 		String iutParam = params.get(TestRunArg.IUT.toString());
 		suite.setAttribute(SuiteAttribute.TEST_SUBJECT.getName(), iutParam);
 		if (TestSuiteLogger.isLoggable(Level.FINE)) {

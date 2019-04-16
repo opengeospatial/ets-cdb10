@@ -19,9 +19,6 @@ public class CommonFixture {
     public static final String SAMPLE_CDB_PATH = "src/test/resources/CDB";
     
     protected String path;
-    protected String directories;
-    protected String latlong;
-    protected String minmaxlod;
 
     /**
      * Obtains the test subject from the ISuite context. The suite attribute
@@ -32,7 +29,8 @@ public class CommonFixture {
      */
     @BeforeClass
     public void obtainTestSubject(ITestContext testContext) {
-        path = testContext.getSuite().getAttribute(
-                SuiteAttribute.TEST_SUBJECT.getName()).toString().trim();
+        path = testContext.getSuite()
+        		.getAttribute(SuiteAttribute.TEST_SUBJECT.getName())
+        		.toString().trim();
     }
 }
