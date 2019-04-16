@@ -124,7 +124,10 @@
   
   <xs:simpleType name="Level_Presence">
     <xs:restriction base="xs:token">
-      <xs:pattern value="Preferred|Supported|Deprecated|Not Supported" />
+      <xs:enumeration value="Preferred"/>
+      <xs:enumeration value="Deprecated"/>
+      <xs:enumeration value="Supported"/>
+      <xs:enumeration value="Not Supported"/>
     </xs:restriction>
   </xs:simpleType>
   
@@ -133,14 +136,17 @@
       <xs:element name="Type">
         <xs:simpleType>
           <xs:restriction base="xs:token">
-            <xs:pattern value="Text|Numeric|Boolean" />
+            <xs:enumeration value="Text"/>
+            <xs:enumeration value="Numeric"/>
+            <xs:enumeration value="Boolean"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
       <xs:element name="Format" minOccurs="0">
         <xs:simpleType>
           <xs:restriction base="xs:token">
-            <xs:pattern value="Floating-Point|Integer"/>
+            <xs:enumeration value="Floating-Point"/>
+            <xs:enumeration value="Integer"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
@@ -160,7 +166,9 @@
           <xs:attribute name="interval">
             <xs:simpleType>
               <xs:restriction base="xs:token">
-                <xs:pattern value="Open|Left-Open|Right-Open"/>
+                <xs:enumeration value="Open"/>
+                <xs:enumeration value="Left-Open"/>
+                <xs:enumeration value="Right-Open"/>
               </xs:restriction>
             </xs:simpleType>
           </xs:attribute>
@@ -172,7 +180,7 @@
     </xs:sequence>
   </xs:complexType>
   
-	<xs:complexType name="Unit">
+    <xs:complexType name="Unit">
     <xs:sequence>
       <xs:element name="Name" type="xs:token" />
       <xs:element name="Description" type="xs:string" />
@@ -181,7 +189,7 @@
     <xs:attribute name="symbol" type="xs:token" use="required" />
   </xs:complexType>
   
-	<xs:complexType name="Scaler">
+    <xs:complexType name="Scaler">
     <xs:sequence>
       <xs:element name="Name" type="xs:token" />
       <xs:element name="Description" type="xs:string" />
