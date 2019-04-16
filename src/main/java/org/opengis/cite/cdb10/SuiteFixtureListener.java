@@ -1,21 +1,11 @@
 package org.opengis.cite.cdb10;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
 import java.util.Map;
 import java.util.logging.Level;
 
-import org.opengis.cite.cdb10.util.ClientUtils;
 import org.opengis.cite.cdb10.util.TestSuiteLogger;
-import org.opengis.cite.cdb10.util.URIUtils;
-import org.opengis.cite.cdb10.util.XMLUtils;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
-import org.w3c.dom.Document;
-import java.util.ArrayList;
-
-import com.sun.jersey.api.client.Client;
 
 /**
  * A listener that performs various tasks before and after a test suite is run,
@@ -35,7 +25,6 @@ public class SuiteFixtureListener implements ISuiteListener {
 	@Override
 	public void onStart(ISuite suite) {
 		this.processSuiteParameters(suite);
-		this.registerClientComponent(suite);
 	}
 
 	@Override
@@ -70,10 +59,6 @@ public class SuiteFixtureListener implements ISuiteListener {
 
 		suite.setAttribute(SuiteAttribute.LEVELS.getName(), levels);
 
-		//Added by Majeed
-
-
-
 		String directories = params.get(TestRunArg.DIRECTORIES.toString());
 		if (null != directories) {
 			suite.setAttribute(SuiteAttribute.DIRECTORIES.getName(), directories);
@@ -97,23 +82,7 @@ public class SuiteFixtureListener implements ISuiteListener {
 			StringBuilder logMsg = new StringBuilder(
 					"Parsed resource retrieved from ");
 			logMsg.append(TestRunArg.IUT).append("\n");
-			// logMsg.append(XMLUtils.writeNodeToString(iutDoc));
 			TestSuiteLogger.log(Level.FINE, logMsg.toString());
-		}
-	}
-
-	/**
-	 * A client component is added to the suite fixture as the value of the
-	 * {@link SuiteAttribute#CLIENT} attribute; it may be subsequently accessed
-	 * via the {@link org.testng.ITestContext#getSuite()} method.
-	 *
-	 * @param suite
-	 *            The test suite instance.
-	 */
-	void registerClientComponent(ISuite suite) {
-		Client client = ClientUtils.buildClient();
-		if (null != client) {
-			suite.setAttribute(SuiteAttribute.CLIENT.getName(), client);
 		}
 	}
 
@@ -129,9 +98,5 @@ public class SuiteFixtureListener implements ISuiteListener {
 		if (TestSuiteLogger.isLoggable(Level.CONFIG)) {
 			return;
 		}
-		//        File testSubjFile = (File) suite.getAttribute(SuiteAttribute.TEST_SUBJ_FILE.getName());
-		//        if (testSubjFile.exists()) {
-		//            testSubjFile.delete();
-		//        }
 	}
 }

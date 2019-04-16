@@ -18,6 +18,7 @@ import static org.mockito.Mockito.when;
 
 /**
  * Created by serene on 2016-09-01.
+ * @param <T> 
  */
 public abstract class TestFixture<T extends CommonFixture> {
 	protected Path cdb_root;
@@ -40,7 +41,6 @@ public abstract class TestFixture<T extends CommonFixture> {
 		this.cdb_root = Files.createTempDirectory("cdbTest-");
 
 		when(suite.getAttribute(SuiteAttribute.TEST_SUBJECT.getName())).thenReturn(this.cdb_root.toFile());
-		this.testSuite.initCommonFixture(testContext);
 		this.testSuite.obtainTestSubject(testContext);
 	}
 

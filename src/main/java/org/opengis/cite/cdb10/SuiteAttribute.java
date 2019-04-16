@@ -1,11 +1,6 @@
 package org.opengis.cite.cdb10;
 
-import com.sun.jersey.api.client.Client;
-
-import java.io.File;
-
 import org.w3c.dom.Document;
-import java.util.ArrayList;
 
 /**
  * An enumerated type defining ISuite attributes that may be set to constitute a
@@ -14,11 +9,6 @@ import java.util.ArrayList;
 @SuppressWarnings("rawtypes")
 public enum SuiteAttribute {
 
-
-    /**
-     * A client component for interacting with HTTP endpoints.
-     */
-    CLIENT("httpClient", Client.class),
     /**
      * A DOM Document that represents the test subject or metadata about it.
      */
