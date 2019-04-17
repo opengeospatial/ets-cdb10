@@ -80,6 +80,34 @@ public class Capability1Tests extends CommonFixture {
 	}
 	
 	/**
+	 * Validate that the Feature Sub Code is a valid format
+	 * @param featureSubCode The Feature Sub Code substring
+	 * @param file The path to the file being tested, used for errors
+	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 */
+	protected void validateFeatureSubCode(String featureSubCode, Path file, ArrayList<String> errors) {
+		String filename = file.getFileName().toString();
+		if (featureSubCode.length() != 3) {
+			errors.add("Feature Sub-Code should be 3 digits: " + filename);
+		}
+
+		try {
+			Integer fsc = Integer.parseInt(featureSubCode);
+
+			if (((fsc < 10) && !featureSubCode.substring(0,2).equals("00")) ||
+					((fsc < 100) && !featureSubCode.substring(0,1).equals("0"))) {
+				errors.add("Invalid padding on FSC: " + filename);
+			}
+		}
+		catch (NumberFormatException e) {
+			errors.add("Invalid FSC number format: " + filename);
+		}
+		catch (StringIndexOutOfBoundsException e) {
+			errors.add("Invalid FSC length: " + filename);
+		}
+	}
+	
+	/**
 	 * Validate that the texture name component of a filename matches the name
 	 * of the parent directory for that file.
 	 * @param textureName The texture name code substring of the file name
