@@ -19,7 +19,7 @@ public class GTModelInteriorDescriptorStructureTests extends Capability1Tests {
 	 * Validates that GTModelInteriorDescriptor filenames have valid codes/names.
 	 * Test based on Section 3.4.3, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyInteriorDescriptorFile() throws IOException {

@@ -17,7 +17,7 @@ public class MModelTextureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelTexture Texture Name Prefix directories have valid codes.
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyTNAMPrefix() throws IOException {
@@ -47,7 +47,7 @@ public class MModelTextureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelTexture Texture Name level 3 directories have valid codes.
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyTNAMSecond() throws IOException {
@@ -81,7 +81,7 @@ public class MModelTextureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelTexture Texture Name directories have valid names.
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyTNAM() throws IOException {
@@ -133,7 +133,7 @@ public class MModelTextureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelTexture filenames have valid codes/names.
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyFile() throws IOException {
@@ -159,7 +159,6 @@ public class MModelTextureStructureTests extends Capability1Tests {
 
 				for (Path textureName : textureNames) {
 					DirectoryStream<Path> files = Files.newDirectoryStream(textureName);
-					String textureNameFilename = textureName.getFileName().toString();
 
 					for (Path file : files) {
 						String filename = file.getFileName().toString();

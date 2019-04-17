@@ -20,7 +20,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	 * Validates that MModelSignature DIS Entity Kind directories have valid codes/names.
 	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyDISEntityKind() throws IOException {
@@ -70,7 +70,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	 * Validates that MModelSignature DIS Domain directories have valid codes/names.
 	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyDISDomain() throws IOException {
@@ -124,7 +124,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	 * Validates that MModelSignature DIS Country directories have valid codes/names.
 	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyDISCountry() throws IOException {
@@ -182,7 +182,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	 * Validates that MModelSignature DIS Category directories have valid codes/names.
 	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyDISCategory() throws IOException {
@@ -244,7 +244,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	 * Validates that MModelSignature DIS Entity directories have valid codes/names.
 	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyDISEntity() throws IOException {
@@ -321,7 +321,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	 * Validates that MModelSignature LOD directories have valid names.
 	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyLOD() throws IOException {
@@ -369,7 +369,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	 * Validates that MModelSignature filenames have valid codes/names.
 	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyFile() throws IOException {

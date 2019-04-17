@@ -10,7 +10,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
-import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.metadataXml.DatasetsXml;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -45,7 +44,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 * Validates that latitude geocell directories start with "S" or "N".
 	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyGeocellLatitudeDirNamePrefix() throws IOException {
@@ -73,7 +72,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 * latitudes should be zero-padded to 2 width.
 	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyGeocellLatitudeDirNameSlice() throws IOException {
@@ -120,7 +119,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 * Validates that longitude geocell directories start with "E" or "W".
 	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyGeocellLongitudeDirNamePrefix() throws IOException {
@@ -154,7 +153,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 * longitudes should be zero-padded to 3 width.
 	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyGeocellLongitudeDirNameSlice() throws IOException {
@@ -232,7 +231,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 * Validates that dataset directories begin with a 3-digit prefix.
 	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyDatasetPrefix() throws IOException {
@@ -282,7 +281,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 * Validates that dataset directories prefix code and name match and are valid values.
 	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyDatasetCodeName() throws IOException {
@@ -344,7 +343,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 * Validates that LOD directories have valid names.
 	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyLODName() throws IOException {
@@ -387,7 +386,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 * Validates that UREF directories have valid names and are in a valid range for the LOD.
 	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyUREFName() throws IOException {
@@ -447,7 +446,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 * Validates that tiled dataset files have valid names.
 	 * Test based on Section 3.6, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyDatasetFileName() throws IOException {

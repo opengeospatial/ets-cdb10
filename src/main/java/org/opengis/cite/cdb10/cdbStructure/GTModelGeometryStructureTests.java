@@ -19,7 +19,7 @@ public class GTModelGeometryStructureTests extends Capability1Tests {
 	 * Validates that GTModelGeometry Entry filenames have valid codes/names.
 	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyGeometryEntryFile() throws IOException {
@@ -112,7 +112,7 @@ public class GTModelGeometryStructureTests extends Capability1Tests {
 	 * Validates that GTModelGeometry LoD filenames have valid codes/names.
 	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyGeometryLoDFile() throws IOException {

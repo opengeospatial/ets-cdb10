@@ -20,7 +20,7 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 	 * Validates that MModelGeometry DIS Entity Kind directories have valid codes/names.
 	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyDISEntityKind() throws IOException {
@@ -70,7 +70,7 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 	 * Validates that MModelGeometry DIS Domain directories have valid codes/names.
 	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyDISDomain() throws IOException {
@@ -124,7 +124,7 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 	 * Validates that MModelGeometry DIS Country directories have valid codes/names.
 	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyDISCountry() throws IOException {
@@ -187,7 +187,7 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 	 * Validates that MModelGeometry DIS Category directories have valid codes/names.
 	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyDISCategory() throws IOException {
@@ -249,7 +249,7 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 	 * Validates that MModelGeometry DIS Entity directories have valid codes/names.
 	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyDISEntity() throws IOException {
@@ -326,7 +326,7 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 	 * Validates that MModelGeometry filenames have valid codes/names.
 	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyFile() throws IOException {

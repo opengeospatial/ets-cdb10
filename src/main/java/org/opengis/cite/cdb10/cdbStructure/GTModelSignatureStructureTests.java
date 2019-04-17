@@ -20,7 +20,7 @@ public class GTModelSignatureStructureTests extends Capability1Tests {
 	 * Validates that GTModelSignature filenames have valid codes/names.
 	 * Test based on Section 3.4.5, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyGeometrySignatureFile() throws IOException {

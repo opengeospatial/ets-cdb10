@@ -10,7 +10,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
-import org.opengis.cite.cdb10.CommonFixture;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -19,7 +18,7 @@ public class GTModelInteriorMaterialStructureTests extends Capability1Tests {
 	 * Validates that GTModelInteriorMaterial filenames have valid codes/names.
 	 * Test based on Section 3.4.4, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyModelInteriorMaterialFile() throws IOException {

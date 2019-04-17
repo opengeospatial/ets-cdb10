@@ -19,7 +19,7 @@ public class GTModelDescriptorStructureTests extends Capability1Tests {
 	 * Validates that GTModelDescriptor filenames have valid codes/names.
 	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyDescriptorFile() throws IOException {

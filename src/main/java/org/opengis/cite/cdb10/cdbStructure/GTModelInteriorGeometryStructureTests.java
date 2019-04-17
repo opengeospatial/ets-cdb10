@@ -20,7 +20,7 @@ public class GTModelInteriorGeometryStructureTests extends Capability1Tests {
 	 * Validates that GTModelInteriorGeometry filenames have valid codes/names.
 	 * Test based on Section 3.4.3, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyInteriorGeometryFile() throws IOException {

@@ -11,7 +11,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
-import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.metadataXml.DatasetsXml;
 import org.opengis.cite.cdb10.util.metadataXml.FeatureDataDictionaryXml;
 import org.testng.Assert;
@@ -22,7 +21,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Validates that GTModel directories have valid codes/names. 
 	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyDataset() throws IOException {
@@ -87,7 +86,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * 
 	 * Test based on Section 3.4.1/3.4.3/3.4.5, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyCategory() throws IOException {
@@ -158,7 +157,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * 
 	 * Test based on Section 3.4.1/3.4.3, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifySubcategory() throws IOException {
@@ -233,7 +232,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * 
 	 * Test based on Section 3.4.1/3.4.3, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyFeatureType() throws IOException {
@@ -317,7 +316,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * 
 	 * Test based on Section 3.4.1/3.4.3, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyLOD() throws IOException {
@@ -378,7 +377,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * 
 	 * Test based on Section 3.4.2/3.4.4, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyTNAMPrefix() throws IOException {
@@ -429,7 +428,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * 
 	 * Test based on Section 3.4.2/3.4.4, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyTNAMSecond() throws IOException {
@@ -484,7 +483,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * 
 	 * Test based on Section 3.4.2/3.4.4, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
-	 * @throws IOException
+	 * @throws IOException DirectoryStream error
 	 */
 	@Test
 	public void verifyTNAM() throws IOException {
