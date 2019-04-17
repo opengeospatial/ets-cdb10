@@ -1,4 +1,4 @@
-package org.opengis.cite.cdb10.cdbStructure;
+package org.opengis.cite.cdb10.util;
 
 /**
  * Class to hold filename matching patterns
