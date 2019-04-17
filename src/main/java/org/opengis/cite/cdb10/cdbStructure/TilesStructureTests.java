@@ -356,7 +356,6 @@ public class TilesStructureTests extends Capability1Tests {
 
 		ArrayList<String> errors = new ArrayList<String>();
 		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(tilesPath);
-		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
 
 		for (Path latCell : latitudeCells) {
 			DirectoryStream<Path> longitudeCells = Files.newDirectoryStream(latCell);
@@ -368,11 +367,7 @@ public class TilesStructureTests extends Capability1Tests {
 					DirectoryStream<Path> lods = Files.newDirectoryStream(dataset);
 
 					for (Path lod : lods) {
-						String filename = lod.getFileName().toString();
-						Matcher match = LODPattern.matcher(filename);
-						if (!match.find()) {
-							errors.add("Invalid LOD name: " + filename);
-						}
+						validateLOD(lod, errors);
 					}
 
 				}

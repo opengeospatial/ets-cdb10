@@ -2,6 +2,8 @@ package org.opengis.cite.cdb10.cdbStructure;
 
 import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.SuiteAttribute;
+import org.opengis.cite.cdb10.util.metadataXml.DISCountryCodesXml;
+import org.opengis.cite.cdb10.util.metadataXml.MovingModelCodesXml;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
@@ -9,6 +11,8 @@ import org.testng.annotations.BeforeClass;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Includes various tests of capability 1.
@@ -67,6 +71,194 @@ public class Capability1Tests extends CommonFixture {
 	}
 	
 	/**
+	 * Validate that a DIS Category directory is a valid format
+	 * @param file The Path to the DIS Country directory
+	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 */
+	protected void validateDISCategory(Path file, ArrayList<String> errors) {
+		MovingModelCodesXml mmcDefs = new MovingModelCodesXml(SAMPLE_CDB_PATH);
+		String filename = file.getFileName().toString();
+		String code = null;
+		Integer codeID = null;
+		String categoryName = null;
+		try {
+			code = filename.split("_")[0];
+			codeID = Integer.parseInt(code);
+			categoryName = filename.split("_")[1];
+		}
+		catch (NumberFormatException e) {
+			errors.add("Invalid number format: " + filename);
+		}
+		catch (ArrayIndexOutOfBoundsException e) {
+			errors.add("Missing kind name: " + filename);
+		}
+
+		if (codeID != null) {
+			if (codeID < 0) {
+				errors.add("Invalid prefix cannot be below 0: " + filename);
+			} else if (!mmcDefs.isValidCategoryCode(codeID)) {
+				errors.add("Invalid DIS Category code: " + filename);
+			} else if (!mmcDefs.isValidCategoryName(categoryName)) {
+				errors.add("Invalid DIS Category name: " + filename);
+			} else if (!mmcDefs.categoryNameForCode(codeID).equals(categoryName)) {
+				errors.add("Invalid DIS Category code/name combination: " + filename);
+			}
+		}
+	}
+	
+	/**
+	 * Validate that a DIS Country directory is a valid format
+	 * @param file The Path to the DIS Country directory
+	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 */
+	protected void validateDISCountry(Path file, ArrayList<String> errors) {
+		DISCountryCodesXml dccDefs = new DISCountryCodesXml(SAMPLE_CDB_PATH);
+		String filename = file.getFileName().toString();
+		String code = null;
+		Integer codeID = null;
+		String countryName = null;
+		try {
+			Integer splitIndex = filename.indexOf("_");
+			if (splitIndex == -1) {
+				errors.add("Invalid DIS country code name: " + filename);
+			} else {
+				code = filename.substring(0, splitIndex);
+				codeID = Integer.parseInt(code);
+				countryName = filename.substring(splitIndex + 1, filename.length());
+			}
+		}
+		catch (NumberFormatException e) {
+			errors.add("Invalid number format: " + filename);
+		}
+		catch (ArrayIndexOutOfBoundsException e) {
+			errors.add("Missing kind name: " + filename);
+		}
+
+		if (codeID != null) {
+			if (codeID < 0) {
+				errors.add("Invalid prefix cannot be below 0: " + filename);
+			} else if (!dccDefs.isValidCountryCode(codeID)) {
+				errors.add("Invalid DIS Country code: " + filename);
+			} else if (!dccDefs.isValidCountryName(countryName)) {
+				errors.add("Invalid DIS Country name: " + filename);
+			} else if (!dccDefs.countryNameForCode(codeID).equals(countryName)) {
+				errors.add("Invalid DIS Country code/name combination: " + filename);
+			}
+		}
+	}
+	
+	/**
+	 * Validate that a DIS Domain directory is a valid format
+	 * @param file The Path to the DIS Domain directory
+	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 */
+	protected void validateDISDomain(Path file, ArrayList<String> errors) {
+		MovingModelCodesXml mmcDefs = new MovingModelCodesXml(SAMPLE_CDB_PATH);
+		String filename = file.getFileName().toString();
+		String code = null;
+		Integer codeID = null;
+		String name = null;
+		try {
+			code = filename.split("_")[0];
+			codeID = Integer.parseInt(code);
+			name = filename.split("_")[1];
+		}
+		catch (NumberFormatException e) {
+			errors.add("Invalid number format: " + filename);
+		}
+		catch (ArrayIndexOutOfBoundsException e) {
+			errors.add("Missing kind name: " + filename);
+		}
+
+		if (codeID != null) {
+			if (codeID < 0) {
+				errors.add("Invalid prefix cannot be below 0: " + filename);
+			} else if (!mmcDefs.isValidDomainCode(codeID)) {
+				errors.add("Invalid DIS Domain code: " + filename);
+			} else if (!mmcDefs.isValidDomainName(name)) {
+				errors.add("Invalid DIS Domain name: " + filename);
+			} else if (!mmcDefs.domainNameForCode(codeID).equals(name)) {
+				errors.add("Invalid DIS Domain code/name combination: " + filename);
+			}
+		}
+	}
+	
+	/**
+	 * Validate that a DIS Entity Kind directory is a valid format
+	 * @param file The Path to the DIS Entity Kind directory
+	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 */
+	protected void validateDISEntityKind(Path file, ArrayList<String> errors) {
+		MovingModelCodesXml mmcDefs = new MovingModelCodesXml(SAMPLE_CDB_PATH);
+		String filename = file.getFileName().toString();
+		String code = null;
+		Integer codeID = null;
+		String name = null;
+		try {
+			code = filename.split("_")[0];
+			codeID = Integer.parseInt(code);
+			name = filename.split("_")[1];
+		}
+		catch (NumberFormatException e) {
+			errors.add("Invalid number format: " + filename);
+		}
+		catch (ArrayIndexOutOfBoundsException e) {
+			errors.add("Missing kind name: " + filename);
+		}
+
+		if (codeID != null) {
+			if (codeID < 0) {
+				errors.add("Invalid prefix cannot be below 0: " + filename);
+			} else if (!mmcDefs.isValidKindCode(codeID)) {
+				errors.add("Invalid DIS Entity Kind code: " + filename);
+			} else if (!mmcDefs.isValidKindName(name)) {
+				errors.add("Invalid DIS Entity Kind name: " + filename);
+			} else if (!mmcDefs.kindNameForCode(codeID).equals(name)) {
+				errors.add("Invalid DIS Entity Kind code/name combination: " + filename);
+			}
+		}
+	}
+	
+	/**
+	 * Validate that a DIS Entity directory is a valid format
+	 * @param file The Path to the DIS Entity directory
+	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 */
+	protected void validateDISEntity(Path file, ArrayList<String> errors) {
+		Pattern entityPattern = Pattern.compile("^(?<kind>\\d+)_(?<domain>\\d+)_(?<country>\\d+)_(?<category>\\d+)_(\\d+)_(\\d+)_(\\d+)$");
+		String filename = file.getFileName().toString();
+		String kindCode = file.getParent().getParent().getParent().getParent().getFileName().toString().split("_")[0];
+		String domainCode = file.getParent().getParent().getParent().getFileName().toString().split("_")[0];
+		String countryCode = file.getParent().getParent().getFileName().toString().split("_")[0];
+		String categoryCode = file.getParent().getFileName().toString().split("_")[0];
+
+		Matcher match = entityPattern.matcher(filename);
+		if (!match.find()) {
+			errors.add("Invalid DIS entity directory name: " + filename);
+		} else {
+			if (!match.group("kind").equals(kindCode)) {
+				errors.add("DIS Entity Code does not match parent directory: "
+						+ filename);
+			}
+
+			if (!match.group("domain").equals(domainCode)) {
+				errors.add("DIS Entity Domain does not match parent directory: "
+						+ filename);
+			}
+
+			if (!match.group("country").equals(countryCode)) {
+				errors.add("DIS Country Code does not match parent directory: "
+						+ filename);
+			}
+
+			if (!match.group("category").equals(categoryCode)) {
+				errors.add("DIS Entity Category does not match parent directory: "
+						+ filename);
+			}
+		}
+	}
+	
+	/**
 	 * Validate that the Feature Code is a valid format
 	 * @param featureCode The Feature Code substring
 	 * @param file The Path to the file being tested, used for errors
@@ -104,6 +296,20 @@ public class Capability1Tests extends CommonFixture {
 		}
 		catch (StringIndexOutOfBoundsException e) {
 			errors.add("Invalid FSC length: " + filename);
+		}
+	}
+	
+	/**
+	 * Validate that an LOD directory is a valid format
+	 * @param file The Path to the LOD directory
+	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 */
+	protected void validateLOD(Path file, ArrayList<String> errors) {
+		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
+		String filename = file.getFileName().toString();
+		Matcher match = LODPattern.matcher(filename);
+		if (!match.find()) {
+			errors.add("Invalid LOD name: " + filename);
 		}
 	}
 	
