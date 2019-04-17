@@ -29,13 +29,7 @@ public class GTModelMaterialStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		/*
-		 * Example of valid filename:
-		 * D504_S001_T001_L10_AC_1.tif
-		 */
-		Pattern filePattern = Pattern.compile(
-				"^D504_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<lod>LC|L\\d{2})_(?<tnam>[^.]+)\\.(?<ext>.+)$"
-				);
+		Pattern filePattern = Pattern.compile(FilenamePatterns.GTModelMaterial);
 		
 		DirectoryStream<Path> tnamPrefixDirs = Files.newDirectoryStream(gtModelGeomPath);
 

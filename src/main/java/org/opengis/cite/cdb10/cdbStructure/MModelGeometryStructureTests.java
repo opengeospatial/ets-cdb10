@@ -337,15 +337,7 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		/*
-		 * Example of valid filename:
-		 * D600_S001_T001_1_1_225_1_1_8_0.flt
-		 */
-		Pattern filePattern = Pattern.compile(
-				"^(?<dataset>D600|D603)_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<mmdc>(?<kind>\\d+)" +
-						"_(?<domain>\\d+)_(?<country>\\d+)_(?<category>\\d+)_(\\d+)_(\\d+)_(\\d+))\\." +
-						"(?<ext>.+)$"
-				);
+		Pattern filePattern = Pattern.compile(FilenamePatterns.MModelGeometry);
 
 		for (Path kindDir : Files.newDirectoryStream(mmodelGeomPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);

@@ -53,12 +53,7 @@ public class GTModelCMTStructureTests extends Capability1Tests {
 	}
 	
 	private void validateCMTFile(Path file, ArrayList<String> errors) {
-		/*
-		 * Example of valid filename:
-		 * D505_S001_T001_AC1.xml
-		 */
-		final Pattern cmtFilePattern = Pattern.compile(
-				"^D505_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<tnam>[^.]+)\\.(?<ext>.+)$");
+		final Pattern cmtFilePattern = Pattern.compile(FilenamePatterns.GTModelCMT);
 		
 		String filename = file.getFileName().toString();
 		Matcher match = cmtFilePattern.matcher(filename);

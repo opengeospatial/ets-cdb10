@@ -29,13 +29,7 @@ public class GTModelInteriorTextureStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		/*
-		 * Example of valid filename:
-		 * D507_S001_T001_L10_AC_1.rgb
-		 */
-		Pattern filePattern = Pattern.compile(
-				"^D507_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<lod>LC|L\\d{2})_(?<tnam>[^.]+)\\.(?<ext>.+)$"
-				);
+		Pattern filePattern = Pattern.compile(FilenamePatterns.GTModelInteriorTexture);
 		Pattern otherPattern = Pattern.compile("^(D509|D513).+");
 		
 		DirectoryStream<Path> tnamPrefixDirs = Files.newDirectoryStream(gtModelGeomPath);

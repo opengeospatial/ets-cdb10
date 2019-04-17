@@ -30,14 +30,7 @@ public class GTModelGeometryStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		
-		/*
-		 * Example of valid filename:
-		 * D500_S001_T001_12345_001_modelnamehere.flt
-		 */
-		Pattern filePattern = Pattern.compile(
-				"^D500_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<featureCode>.{5})_(?<fsc>\\d+)_(?<modl>[^.]+)\\.(?<ext>.+)$"
-				);
+		Pattern filePattern = Pattern.compile(FilenamePatterns.GTModelGeometry);
 		Pattern otherPattern = Pattern.compile("^(LC|L\\d{2}|D503.+)");
 
 		for (Path category : Files.newDirectoryStream(gtModelGeomPath)) {
@@ -123,14 +116,7 @@ public class GTModelGeometryStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		/*
-		 * Example of valid filename:
-		 * D510_S001_T001_L10_12345_001_modelnamehere.flt
-		 */
-		Pattern filePattern = Pattern.compile(
-				"^D510_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<lod>LC|L\\d{2})_(?<featureCode>.{5})_"
-				+ "(?<fsc>\\d+)_(?<modl>[^.]+)\\.(?<ext>.+)$"
-				);
+		Pattern filePattern = Pattern.compile(FilenamePatterns.GTModelGeometry510);
 
 		for (Path category : Files.newDirectoryStream(gtModelGeomPath)) {
 			DirectoryStream<Path> subcategories = Files.newDirectoryStream(category);

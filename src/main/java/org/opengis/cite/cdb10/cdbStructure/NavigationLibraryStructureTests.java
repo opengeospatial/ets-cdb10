@@ -53,11 +53,7 @@ public class NavigationLibraryStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		/*
-		 * Example of valid filename:
-		 * D400_S001_T002.dbf
-		 */
-		Pattern filePattern = Pattern.compile("^(?<dataset>[^_]+)_S(?<cs1>\\d+)_T(?<cs2>\\d+)\\.(?<ext>.+)$");
+		Pattern filePattern = Pattern.compile(FilenamePatterns.NavigationLibrary);
 
 		for (Path file : Files.newDirectoryStream(navPath)) {
 			String filename = file.getFileName().toString();

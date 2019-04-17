@@ -33,14 +33,7 @@ public class GTModelSignatureStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		/*
-		 * Example of valid filename:
-		 * D512_S001_T001_L10_12345_001_modelnamehere.flt
-		 */
-		Pattern filePattern = Pattern.compile(
-				"^D512_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<lod>LC|L\\d{2})_(?<featureCode>.{5})_"
-				+ "(?<fsc>\\d+)_(?<modl>[^.]+)\\.(?<ext>.+)$"
-				);
+		Pattern filePattern = Pattern.compile(FilenamePatterns.GTModelSignature);
 
 		for (Path category : Files.newDirectoryStream(gtModelGeomPath)) {
 			DirectoryStream<Path> subcategories = Files.newDirectoryStream(category);

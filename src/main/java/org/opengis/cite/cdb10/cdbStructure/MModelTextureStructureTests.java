@@ -144,12 +144,7 @@ public class MModelTextureStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		/*
-		 * Example of valid filename:
-		 * D601_S005_T001_W10_M1A2_SEP.rgb
-		 */
-		Pattern filePattern = Pattern.compile(
-				"^(?<dataset>D601|D604|D605)_S(?<cs1>\\d+)_T(?<cs2>\\d+)(_W(?<tsc>\\d{2}))?_(?<tnam>[^.]+)\\.(?<ext>.+)$");
+		Pattern filePattern = Pattern.compile(FilenamePatterns.MModelTexture);
 
 		for (Path firstDir : Files.newDirectoryStream(mmtPath)) {
 			DirectoryStream<Path> secondDirs = Files.newDirectoryStream(firstDir);

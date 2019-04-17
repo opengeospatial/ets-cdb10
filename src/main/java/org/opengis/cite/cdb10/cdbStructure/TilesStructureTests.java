@@ -458,7 +458,7 @@ public class TilesStructureTests extends Capability1Tests {
 
 		ArrayList<String> errors = new ArrayList<String>();
 		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(tilesPath);
-		Pattern filePattern = Pattern.compile("^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC|L[0-9]{2})_(?<uref>U[0-9]+)_R(?<rref>[0-9]+)\\.(?<ext>.+)$");
+		Pattern filePattern = Pattern.compile(FilenamePatterns.Tiles);
 
 		for (Path latCell : latitudeCells) {
 			String latFilename = latCell.getFileName().toString();

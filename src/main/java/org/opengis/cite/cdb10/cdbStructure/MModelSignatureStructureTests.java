@@ -380,15 +380,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		/*
-		 * Example of valid filename:
-		 * D606_S001_T001_LC_0_0_0_0_0_0_0.shp
-		 */
-		Pattern filePattern = Pattern.compile(
-				"^D606_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<lod>LC|L\\d{2})_(?<mmdc>(?<kind>\\d+)" +
-						"_(?<domain>\\d+)_(?<country>\\d+)_(?<category>\\d+)_(\\d+)_(\\d+)_(\\d+))\\." +
-						"(?<ext>.+)$"
-				);
+		Pattern filePattern = Pattern.compile(FilenamePatterns.MModelSignature);
 
 		for (Path kindDir : Files.newDirectoryStream(mmsPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);

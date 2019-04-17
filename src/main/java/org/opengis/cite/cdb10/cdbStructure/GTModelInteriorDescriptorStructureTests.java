@@ -30,13 +30,7 @@ public class GTModelInteriorDescriptorStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		/*
-		 * Example of valid filename:
-		 * D508_S001_T001_12345_001_modelnamehere.xml
-		 */
-		Pattern filePattern = Pattern.compile(
-				"^D508_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<featureCode>.{5})_(?<fsc>\\d+)_(?<modl>[^.]+)\\.(?<ext>.+)$"
-				);
+		Pattern filePattern = Pattern.compile(FilenamePatterns.GTModelInteriorDescriptor);
 
 		for (Path category : Files.newDirectoryStream(gtModelGeomPath)) {
 			DirectoryStream<Path> subcategories = Files.newDirectoryStream(category);

@@ -31,14 +31,7 @@ public class GTModelInteriorGeometryStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		/*
-		 * Example of valid filename:
-		 * D506_S001_T001_L03_AL015_004_Castle.flt
-		 */
-		Pattern filePattern = Pattern.compile(
-				"^D506_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<lod>LC|L\\d{2})_(?<featureCode>.{5})_"
-				+ "(?<fsc>\\d+)_(?<modl>[^.]+)\\.(?<ext>.+)$"
-				);
+		Pattern filePattern = Pattern.compile(FilenamePatterns.GTModelInteriorGeometry);
 
 		for (Path category : Files.newDirectoryStream(gtModelInteriorGeomPath)) {
 			DirectoryStream<Path> subcategories = Files.newDirectoryStream(category);
