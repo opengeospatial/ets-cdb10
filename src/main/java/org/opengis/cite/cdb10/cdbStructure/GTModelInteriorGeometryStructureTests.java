@@ -59,10 +59,7 @@ public class GTModelInteriorGeometryStructureTests extends Capability1Tests {
 
 									validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
 									validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
-									
-									if (match.group("featureCode").length() != 5) {
-										errors.add("Feature Code should be 5 characters: " + filename);
-									}
+									validateFeatureCode(match.group("featureCode"), file, errors);
 									
 									if (match.group("fsc").length() != 3) {
 										errors.add("Feature Sub-Code should be 3 digits: " + filename);

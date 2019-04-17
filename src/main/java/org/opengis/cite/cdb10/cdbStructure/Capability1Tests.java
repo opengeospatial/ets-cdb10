@@ -67,6 +67,19 @@ public class Capability1Tests extends CommonFixture {
 	}
 	
 	/**
+	 * Validate that the Feature Code is a valid format
+	 * @param featureCode The Feature Code substring
+	 * @param file The Path to the file being tested, used for errors
+	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 */
+	protected void validateFeatureCode(String featureCode, Path file, ArrayList<String> errors) {
+		if (featureCode.length() != 5) {
+			errors.add("Feature Code should be 5 characters: " + 
+					file.getFileName().toString());
+		}
+	}
+	
+	/**
 	 * Validate that the texture name component of a filename matches the name
 	 * of the parent directory for that file.
 	 * @param textureName The texture name code substring of the file name
