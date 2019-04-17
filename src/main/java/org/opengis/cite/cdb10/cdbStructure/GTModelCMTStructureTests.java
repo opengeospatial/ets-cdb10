@@ -55,7 +55,7 @@ public class GTModelCMTStructureTests extends Capability1Tests {
 	private void validateCMTFile(Path file, ArrayList<String> errors) {
 		/*
 		 * Example of valid filename:
-		 * D505_S001_T001_AC_1.xml
+		 * D505_S001_T001_AC1.xml
 		 */
 		final Pattern cmtFilePattern = Pattern.compile(
 				"^D505_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<tnam>[^.]+)\\.(?<ext>.+)$");
@@ -63,9 +63,7 @@ public class GTModelCMTStructureTests extends Capability1Tests {
 		String filename = file.getFileName().toString();
 		Matcher match = cmtFilePattern.matcher(filename);
 
-		if (StringUtils.countMatches(filename, "_") != 4) {
-			errors.add("Should be four underscore separators: " + filename);
-		} else if (!match.find()) {
+		if (!match.find()) {
 			errors.add("Invalid file name: " + filename);
 		} else {
 			validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
