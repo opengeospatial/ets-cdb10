@@ -108,6 +108,19 @@ public class Capability1Tests extends CommonFixture {
 	}
 	
 	/**
+	 * Validate that the Model Name substring is a valid format
+	 * @param modelName The Model Name substring
+	 * @param file The path to the file being tested
+	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 */
+	protected void validateModelName(String modelName, Path file, ArrayList<String> errors) {
+		String filename = file.getFileName().toString();
+		if (modelName.length() > 32) {
+			errors.add("Model name should not exceed 32 characters: " + filename);
+		}
+	}
+	
+	/**
 	 * Validate that the texture name component of a filename matches the name
 	 * of the parent directory for that file.
 	 * @param textureName The texture name code substring of the file name

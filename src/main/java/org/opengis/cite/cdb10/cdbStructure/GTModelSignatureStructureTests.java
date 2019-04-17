@@ -59,10 +59,7 @@ public class GTModelSignatureStructureTests extends Capability1Tests {
 								validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
 								validateFeatureCode(match.group("featureCode"), file, errors);
 								validateFeatureSubCode(match.group("fsc"), file, errors);
-
-								if (match.group("modl").length() > 32) {
-									errors.add("Model name should not exceed 32 characters: " + filename);
-								}
+								validateModelName(match.group("modl"), file, errors);
 
 							}
 						}
