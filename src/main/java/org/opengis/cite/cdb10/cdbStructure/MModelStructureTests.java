@@ -7,12 +7,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import org.apache.commons.lang3.StringUtils;
-import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.util.metadataXml.DatasetsXml;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class MModelStructureTests extends CommonFixture {
+public class MModelStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModel directories have valid codes/names.
 	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)

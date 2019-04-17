@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
-import org.opengis.cite.cdb10.CommonFixture;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -17,7 +16,7 @@ import org.testng.annotations.Test;
  * @author jpbadger
  *
  */
-public class RootStructureTests extends CommonFixture {
+public class RootStructureTests extends Capability1Tests {
 	/**
 	 * Validate the contents of the root directory of the CDB, checking for stray
 	 * files or directories not on the allowed list.

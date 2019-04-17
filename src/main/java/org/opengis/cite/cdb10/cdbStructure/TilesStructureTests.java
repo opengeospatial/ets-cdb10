@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
  * @author jpbadger
  *
  */
-public class TilesStructureTests extends CommonFixture {
+public class TilesStructureTests extends Capability1Tests {
 
 	public Integer sliceWidthForLatitude(Integer latitude) {
 		Integer dLonZone = 1;
@@ -459,7 +459,7 @@ public class TilesStructureTests extends CommonFixture {
 
 		ArrayList<String> errors = new ArrayList<String>();
 		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(tilesPath);
-		Pattern filePattern = Pattern.compile("^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<CS1>[0-9]{3})_T(?<CS2>[0-9]{3})_(?<lod>LC|L[0-9]{2})_(?<uref>U[0-9]+)_R(?<rref>[0-9]+)\\.(?<ext>.+)$");
+		Pattern filePattern = Pattern.compile("^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC|L[0-9]{2})_(?<uref>U[0-9]+)_R(?<rref>[0-9]+)\\.(?<ext>.+)$");
 
 		for (Path latCell : latitudeCells) {
 			String latFilename = latCell.getFileName().toString();
@@ -520,6 +520,9 @@ public class TilesStructureTests extends CommonFixture {
 									if (Integer.parseInt(match.group("rref")) > (Math.pow(2, lodLevel) - 1)) {
 										errors.add("RREF out of bounds for LOD: " + filename);
 									}
+									
+									validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
+									validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
 
 								}
 							}

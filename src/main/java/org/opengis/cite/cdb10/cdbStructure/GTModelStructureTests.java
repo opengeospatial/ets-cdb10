@@ -17,7 +17,7 @@ import org.opengis.cite.cdb10.util.metadataXml.FeatureDataDictionaryXml;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class GTModelStructureTests extends CommonFixture {
+public class GTModelStructureTests extends Capability1Tests {
 	/**
 	 * Validates that GTModel directories have valid codes/names. 
 	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)

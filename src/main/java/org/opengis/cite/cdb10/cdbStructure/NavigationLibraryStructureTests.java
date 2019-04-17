@@ -13,7 +13,7 @@ import org.opengis.cite.cdb10.CommonFixture;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class NavigationLibraryStructureTests extends CommonFixture {
+public class NavigationLibraryStructureTests extends Capability1Tests {
 	/**
 	 * Validate the Navigation datasets.
 	 * Test based on Section 3.7, Volume 1, OGC CDB Core Standard (Version 1.0)
@@ -73,44 +73,8 @@ public class NavigationLibraryStructureTests extends CommonFixture {
 						errors.add("Invalid dataset: " + filename);
 					}
 
-					if (match.group("cs1").length() != 3) {
-						errors.add("Component Selector 1 should be 3 characters: " + filename);
-					}
-
-					try {
-						Integer cs1 = Integer.parseInt(match.group("cs1"));
-
-						if (((cs1 < 10) && !match.group("cs1").substring(0,2).equals("00")) ||
-								((cs1 < 100) && !match.group("cs1").substring(0,1).equals("0"))) {
-							errors.add("Invalid padding on CS1: " + filename);
-						}
-					}
-					catch (NumberFormatException e) {
-						errors.add("Invalid CS1 number format: " + filename);
-					}
-					catch (StringIndexOutOfBoundsException e) {
-						errors.add("Invalid CS1 length: " + filename);
-					}
-
-					if (match.group("cs2").length() != 3) {
-						errors.add("Component Selector 2 should be 3 characters: " + filename);
-					}
-
-					try {
-						Integer cs2 = Integer.parseInt(match.group("cs2"));
-
-						if (((cs2 < 10) && !match.group("cs2").substring(0,2).equals("00")) ||
-								((cs2 < 100) && !match.group("cs2").substring(0,1).equals("0"))) {
-							errors.add("Invalid padding on CS2: " + filename);
-						}
-					}
-					catch (NumberFormatException e) {
-						errors.add("Invalid CS2 number format: " + filename);
-					}
-					catch (StringIndexOutOfBoundsException e) {
-						errors.add("Invalid CS2 length: " + filename);
-					}
-
+					validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
+					validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
 				}
 			}
 		}
