@@ -46,20 +46,16 @@ public class GTModelTextureStructureTests extends Capability1Tests {
 					for (Path file : files) {
 						String filename = file.getFileName().toString();
 
-						if (StringUtils.countMatches(filename, "_") != 5) {
-							errors.add("Should be five underscore separators: " + filename);
+						Matcher match = filePattern.matcher(filename);
+						if (!match.find()) {
+							errors.add("Invalid file name: " + filename);
 						} else {
-							Matcher match = filePattern.matcher(filename);
-							if (!match.find()) {
-								errors.add("Invalid file name: " + filename);
-							} else {
-								validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
-								validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
-								validateTextureNameCode(match.group("tnam"), file, errors);
-								
-								if (!match.group("ext").equals("rgb")) {
-									errors.add("Invalid file extension for D511: " + filename);
-								}
+							validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
+							validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
+							validateTextureNameCode(match.group("tnam"), file, errors);
+
+							if (!match.group("ext").equals("rgb")) {
+								errors.add("Invalid file extension for D511: " + filename);
 							}
 						}
 					}

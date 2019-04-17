@@ -159,37 +159,33 @@ public class MModelTextureStructureTests extends Capability1Tests {
 					for (Path file : files) {
 						String filename = file.getFileName().toString();
 
-						if (StringUtils.countMatches(filename, "_") < 4) {
-							errors.add("Should be at least four underscore separators: " + filename);
+						Matcher match = filePattern.matcher(filename);
+						if (!match.find()) {
+							errors.add("Invalid file name: " + filename);
 						} else {
-							Matcher match = filePattern.matcher(filename);
-							if (!match.find()) {
-								errors.add("Invalid file name: " + filename);
-							} else {
-								String dataset = match.group("dataset");
+							String dataset = match.group("dataset");
 
-								if (!dataset.equals("D601") && !dataset.equals("D604") &&
-										!dataset.equals("D605")) {
-									errors.add("Invalid dataset: " + filename);
-								}
-
-								if (dataset.equals("D601") && !match.group("ext").equals("rgb")) {
-									errors.add("Invalid file extension for D601: " + filename);
-								}
-
-								if (dataset.equals("D604") && !match.group("ext").equals("tif")) {
-									errors.add("Invalid file extension for D604: " + filename);
-								}
-
-								if (dataset.equals("D605") && !match.group("ext").equals("xml")) {
-									errors.add("Invalid file extension for D605: " + filename);
-								}
-
-								validateTextureNameCode(match.group("tnam"), file, errors);
-								validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
-								validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
-
+							if (!dataset.equals("D601") && !dataset.equals("D604") &&
+									!dataset.equals("D605")) {
+								errors.add("Invalid dataset: " + filename);
 							}
+
+							if (dataset.equals("D601") && !match.group("ext").equals("rgb")) {
+								errors.add("Invalid file extension for D601: " + filename);
+							}
+
+							if (dataset.equals("D604") && !match.group("ext").equals("tif")) {
+								errors.add("Invalid file extension for D604: " + filename);
+							}
+
+							if (dataset.equals("D605") && !match.group("ext").equals("xml")) {
+								errors.add("Invalid file extension for D605: " + filename);
+							}
+
+							validateTextureNameCode(match.group("tnam"), file, errors);
+							validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
+							validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
+
 						}
 					}
 				}

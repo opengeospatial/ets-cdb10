@@ -59,20 +59,16 @@ public class NavigationLibraryStructureTests extends Capability1Tests {
 		for (Path file : Files.newDirectoryStream(navPath)) {
 			String filename = file.getFileName().toString();
 
-			if (StringUtils.countMatches(filename, "_") != 2) {
-				errors.add("Should be two underscore separators: " + filename);
+			Matcher match = filePattern.matcher(filename);
+			if (!match.find()) {
+				errors.add("Invalid file name: " + filename);
 			} else {
-				Matcher match = filePattern.matcher(filename);
-				if (!match.find()) {
-					errors.add("Invalid file name: " + filename);
-				} else {
-					if (!match.group("dataset").equals("D400")) {
-						errors.add("Invalid dataset: " + filename);
-					}
-
-					validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
-					validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
+				if (!match.group("dataset").equals("D400")) {
+					errors.add("Invalid dataset: " + filename);
 				}
+
+				validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
+				validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
 			}
 		}
 

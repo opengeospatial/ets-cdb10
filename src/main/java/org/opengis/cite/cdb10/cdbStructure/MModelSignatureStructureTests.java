@@ -281,32 +281,28 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 						for (Path entityDir : entityDirs) {
 							String filename = entityDir.getFileName().toString();
 
-							if (StringUtils.countMatches(filename, "_") != 6) {
-								errors.add("Should be six underscore separators: " + filename);
+							Matcher match = entityPattern.matcher(filename);
+							if (!match.find()) {
+								errors.add("Invalid DIS entity directory name: " + filename);
 							} else {
-								Matcher match = entityPattern.matcher(filename);
-								if (!match.find()) {
-									errors.add("Invalid DIS entity directory name: " + filename);
-								} else {
-									if (!match.group("kind").equals(kindCode)) {
-										errors.add("DIS Entity Code does not match parent directory: "
-												+ filename);
-									}
+								if (!match.group("kind").equals(kindCode)) {
+									errors.add("DIS Entity Code does not match parent directory: "
+											+ filename);
+								}
 
-									if (!match.group("domain").equals(domainCode)) {
-										errors.add("DIS Entity Domain does not match parent directory: "
-												+ filename);
-									}
+								if (!match.group("domain").equals(domainCode)) {
+									errors.add("DIS Entity Domain does not match parent directory: "
+											+ filename);
+								}
 
-									if (!match.group("country").equals(countryCode)) {
-										errors.add("DIS Country Code does not match parent directory: "
-												+ filename);
-									}
+								if (!match.group("country").equals(countryCode)) {
+									errors.add("DIS Country Code does not match parent directory: "
+											+ filename);
+								}
 
-									if (!match.group("category").equals(categoryCode)) {
-										errors.add("DIS Entity Category does not match parent directory: "
-												+ filename);
-									}
+								if (!match.group("category").equals(categoryCode)) {
+									errors.add("DIS Entity Category does not match parent directory: "
+											+ filename);
 								}
 							}
 						}
@@ -405,22 +401,18 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 								for (Path file : files) {
 									String filename = file.getFileName().toString();
 
-									if (StringUtils.countMatches(filename, "_") != 10) {
-										errors.add("Should be ten underscore separators: " + filename);
+									Matcher match = filePattern.matcher(filename);
+									if (!match.find()) {
+										errors.add("Invalid file name: " + filename);
 									} else {
-										Matcher match = filePattern.matcher(filename);
-										if (!match.find()) {
-											errors.add("Invalid file name: " + filename);
-										} else {
-											if (!match.group("mmdc").equals(entityFilename)) {
-												errors.add("Moving Model DIS Code does not match parent directory: "
-														+ filename);
-											}
-
-											validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
-											validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
-
+										if (!match.group("mmdc").equals(entityFilename)) {
+											errors.add("Moving Model DIS Code does not match parent directory: "
+													+ filename);
 										}
+
+										validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
+										validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
+
 									}
 								}
 							}

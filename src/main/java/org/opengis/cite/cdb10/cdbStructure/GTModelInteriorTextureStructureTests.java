@@ -52,8 +52,6 @@ public class GTModelInteriorTextureStructureTests extends Capability1Tests {
 						Matcher otherMatch = otherPattern.matcher(filename);
 						if (otherMatch.find()) {
 							return;
-						} else if (StringUtils.countMatches(filename, "_") < 4) {
-							errors.add("Should be at least four underscore separators: " + filename);
 						} else {
 							Matcher match = filePattern.matcher(filename);
 							if (!match.find()) {

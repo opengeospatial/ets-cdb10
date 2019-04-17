@@ -51,41 +51,37 @@ public class GTModelSignatureStructureTests extends Capability1Tests {
 						for (Path file : files) {
 							String filename = file.getFileName().toString();
 	
-							if (StringUtils.countMatches(filename, "_") != 6) {
-								errors.add("Should be six underscore separators: " + filename);
+							Matcher match = filePattern.matcher(filename);
+							if (!match.find()) {
+								errors.add("Invalid file name: " + filename);
 							} else {
-								Matcher match = filePattern.matcher(filename);
-								if (!match.find()) {
-									errors.add("Invalid file name: " + filename);
-								} else {
-									validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
-									validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
-									validateFeatureCode(match.group("featureCode"), file, errors);
-									
-									if (match.group("fsc").length() != 3) {
-										errors.add("Feature Sub-Code should be 3 digits: " + filename);
-									}
-	
-									try {
-										Integer fsc = Integer.parseInt(match.group("fsc"));
-	
-										if (((fsc < 10) && !match.group("fsc").substring(0,2).equals("00")) ||
-												((fsc < 100) && !match.group("fsc").substring(0,1).equals("0"))) {
-											errors.add("Invalid padding on FSC: " + filename);
-										}
-									}
-									catch (NumberFormatException e) {
-										errors.add("Invalid FSC number format: " + filename);
-									}
-									catch (StringIndexOutOfBoundsException e) {
-										errors.add("Invalid FSC length: " + filename);
-									}
-									
-									if (match.group("modl").length() > 32) {
-										errors.add("Model name should not exceed 32 characters: " + filename);
-									}
-	
+								validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
+								validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
+								validateFeatureCode(match.group("featureCode"), file, errors);
+
+								if (match.group("fsc").length() != 3) {
+									errors.add("Feature Sub-Code should be 3 digits: " + filename);
 								}
+
+								try {
+									Integer fsc = Integer.parseInt(match.group("fsc"));
+
+									if (((fsc < 10) && !match.group("fsc").substring(0,2).equals("00")) ||
+											((fsc < 100) && !match.group("fsc").substring(0,1).equals("0"))) {
+										errors.add("Invalid padding on FSC: " + filename);
+									}
+								}
+								catch (NumberFormatException e) {
+									errors.add("Invalid FSC number format: " + filename);
+								}
+								catch (StringIndexOutOfBoundsException e) {
+									errors.add("Invalid FSC length: " + filename);
+								}
+
+								if (match.group("modl").length() > 32) {
+									errors.add("Model name should not exceed 32 characters: " + filename);
+								}
+
 							}
 						}
 					}
