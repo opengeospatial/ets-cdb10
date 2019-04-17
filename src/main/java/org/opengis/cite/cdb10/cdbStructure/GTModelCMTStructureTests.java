@@ -61,8 +61,6 @@ public class GTModelCMTStructureTests extends Capability1Tests {
 				"^D505_S(?<cs1>\\d+)_T(?<cs2>\\d+)_(?<tnam>[^.]+)\\.(?<ext>.+)$");
 		
 		String filename = file.getFileName().toString();
-		Path textureName = file.getParent();
-		String textureFilename = textureName.getFileName().toString();
 		Matcher match = cmtFilePattern.matcher(filename);
 
 		if (StringUtils.countMatches(filename, "_") != 4) {
@@ -72,11 +70,7 @@ public class GTModelCMTStructureTests extends Capability1Tests {
 		} else {
 			validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
 			validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
-
-			if (!match.group("tnam").equals(textureFilename)) {
-				errors.add("Texture Name Code does not match parent directory: "
-						+ filename);
-			}
+			validateTextureNameCode(match.group("tnam"), file, errors);
 
 			if (!match.group("ext").equals("xml")) {
 				errors.add("Invalid file extension for D505: " + filename);

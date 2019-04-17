@@ -190,11 +190,7 @@ public class MModelTextureStructureTests extends Capability1Tests {
 									errors.add("Invalid file extension for D605: " + filename);
 								}
 
-								if (!match.group("tnam").equals(textureNameFilename)) {
-									errors.add("Texture Name Code does not match parent directory: "
-											+ filename);
-								}
-
+								validateTextureNameCode(match.group("tnam"), file, errors);
 								validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
 								validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
 

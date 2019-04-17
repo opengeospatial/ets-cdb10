@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -62,6 +63,22 @@ public class Capability1Tests extends CommonFixture {
 		}
 		catch (StringIndexOutOfBoundsException e) {
 			errors.add(String.format("Invalid CS%d length: %s", index, filename));
+		}
+	}
+	
+	/**
+	 * Validate that the texture name component of a filename matches the name
+	 * of the parent directory for that file.
+	 * @param textureName The texture name code substring of the file name
+	 * @param file The Path to the file being tested, used for errors
+	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 */
+	protected void validateTextureNameCode(String textureName, Path file, ArrayList<String> errors) {
+		String parentTextureFilename = file.getParent().getFileName().toString();
+		
+		if (!textureName.equals(parentTextureFilename)) {
+			errors.add(String.format("Texture Name Code \"%s\" does not match parent directory \"%s\" for file: %s", 
+					textureName, parentTextureFilename, file.getFileName().toString()));
 		}
 	}
 }

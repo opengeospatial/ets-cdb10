@@ -47,7 +47,6 @@ public class GTModelMaterialStructureTests extends Capability1Tests {
 
 				for (Path textureName : textureNames) {
 					DirectoryStream<Path> files = Files.newDirectoryStream(textureName);
-					String textureFilename = textureName.getFileName().toString();
 
 					for (Path file : files) {
 						String filename = file.getFileName().toString();
@@ -61,11 +60,7 @@ public class GTModelMaterialStructureTests extends Capability1Tests {
 							} else {
 								validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
 								validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
-								
-								if (!match.group("tnam").equals(textureFilename)) {
-									errors.add("Texture Name Code does not match parent directory: "
-											+ filename);
-								}
+								validateTextureNameCode(match.group("tnam"), file, errors);
 								
 								if (!match.group("ext").equals("tif")) {
 									errors.add("Invalid file extension for D504: " + filename);
