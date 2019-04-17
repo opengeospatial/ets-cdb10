@@ -36,4 +36,32 @@ public class Capability1Tests extends CommonFixture {
 		}
 		super.obtainTestSubject(testContext);
 	}
+	
+	/**
+	 * Validate that a Component Selector is a valid format
+	 * @param cs The Component Selector substring
+	 * @param index Integer for "1" (CS1) or "2" (CS2)
+	 * @param filename The filename being tested, used for errors
+	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 */
+	protected void validateComponentSelectorFormat(String cs, Integer index, String filename, ArrayList<String> errors) {
+		if (cs.length() != 3) {
+			errors.add(String.format("Component Selector %d should be 3 characters: %s", index, filename));
+		}
+		
+		try {
+			Integer csInt = Integer.parseInt(cs);
+
+			if (((csInt < 10) && !cs.substring(0,2).equals("00")) ||
+					((csInt < 100) && !cs.substring(0,1).equals("0"))) {
+				errors.add(String.format("Invalid padding on CS%d: %s", index, filename));
+			}
+		}
+		catch (NumberFormatException e) {
+			errors.add(String.format("Invalid CS%d number format: %s", index, filename));
+		}
+		catch (StringIndexOutOfBoundsException e) {
+			errors.add(String.format("Invalid CS%d length: %s", index, filename));
+		}
+	}
 }
