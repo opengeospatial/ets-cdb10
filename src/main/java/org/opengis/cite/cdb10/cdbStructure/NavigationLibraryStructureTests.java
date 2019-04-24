@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.opengis.cite.cdb10.util.FilenamePatterns;
+import org.opengis.cite.cdb10.util.metadataXml.DatasetsXml;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -28,10 +29,27 @@ public class NavigationLibraryStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
+		DatasetsXml datasetDefs = new DatasetsXml(SAMPLE_CDB_PATH);
 
 		for (Path file : Files.newDirectoryStream(navPath)) {
 			String filename = file.getFileName().toString();
-			if (!filename.equals("400_NavData")) {
+			String prefix = null;
+			Integer prefixID = null;
+			try {
+				prefix = filename.substring(0, 3);
+				prefixID = Integer.parseInt(prefix);
+			}
+			catch (StringIndexOutOfBoundsException e) {
+				errors.add("Invalid prefix length: " + filename);
+			}
+			catch (NumberFormatException e) {
+				errors.add("Invalid number format: " + filename);
+			}
+			catch (ArrayIndexOutOfBoundsException e) {
+				errors.add("Missing dataset name: " + filename);
+			}
+			
+			if (!filename.equals("400_NavData") && !datasetDefs.isExtendedCode(prefixID)) {
 				errors.add("Invalid dataset: " + filename);
 			}
 		}

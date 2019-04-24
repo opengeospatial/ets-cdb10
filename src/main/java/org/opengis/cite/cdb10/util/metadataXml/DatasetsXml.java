@@ -12,13 +12,29 @@ public class DatasetsXml extends MetadataXmlFile {
 	public DatasetsXml(String path) {
 		super(path, "Datasets.xml", "Datasets.xsd");
 	}
+	
+	/**
+	 * Dataset codes between 900 - 999 (inclusive) will always be valid as
+	 * extended datasets.
+	 * @param code Integer for Dataset code (no leading zeros)
+	 * @return true/false
+	 */
+	public boolean isExtendedCode(Integer code) {
+		return code >= 900 && code <= 999;
+	}
 
 	/**
-	 * Check if an integer code is valid according to the embedded Datasets.xml
+	 * Check if an integer code is valid according to the embedded Datasets.xml.
+	 * Dataset codes between 900 - 999 (inclusive) will always be valid as
+	 * extended datasets.
 	 * @param code Integer for Dataset code (no leading zeros)
 	 * @return true/false
 	 */
 	public boolean isValidCode(Integer code) {
+		if (isExtendedCode(code)) {
+			return true;
+		}
+		
 		NodeList nodeList = XMLUtils.getNodeList("//Dataset", this.xmlFile.toPath());
 
 		ArrayList<Integer> codes = new ArrayList<Integer>();

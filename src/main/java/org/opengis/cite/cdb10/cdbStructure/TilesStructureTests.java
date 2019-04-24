@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
+import org.opengis.cite.cdb10.util.DirectoryStreamFilters;
 import org.opengis.cite.cdb10.util.FilenamePatterns;
 import org.opengis.cite.cdb10.util.metadataXml.DatasetsXml;
 import org.testng.Assert;
@@ -322,7 +323,7 @@ public class TilesStructureTests extends Capability1Tests {
 						errors.add("Missing dataset name: " + filename);
 					}
 
-					if ((prefixID != null) && (datasetName != null)) {
+					if ((prefixID != null) && (datasetName != null) && !datasetDefs.isExtendedCode(prefixID)) {
 						if (!datasetDefs.isValidCode(prefixID)) {
 							errors.add("Invalid dataset code: " + filename);
 						} else if (!datasetDefs.isValidName(datasetName)) {
@@ -364,7 +365,7 @@ public class TilesStructureTests extends Capability1Tests {
 				DirectoryStream<Path> datasets = Files.newDirectoryStream(lonCell);
 
 				for (Path dataset : datasets) {
-					DirectoryStream<Path> lods = Files.newDirectoryStream(dataset);
+					DirectoryStream<Path> lods = Files.newDirectoryStream(dataset, DirectoryStreamFilters.lodFilter());
 
 					for (Path lod : lods) {
 						validateLOD(lod, errors);
@@ -402,7 +403,7 @@ public class TilesStructureTests extends Capability1Tests {
 				DirectoryStream<Path> datasets = Files.newDirectoryStream(lonCell);
 
 				for (Path dataset : datasets) {
-					DirectoryStream<Path> lods = Files.newDirectoryStream(dataset);
+					DirectoryStream<Path> lods = Files.newDirectoryStream(dataset, DirectoryStreamFilters.lodFilter());
 
 					for (Path lod : lods) {
 						String lodFilename = lod.getFileName().toString();
@@ -466,7 +467,7 @@ public class TilesStructureTests extends Capability1Tests {
 
 				for (Path dataset : datasets) {
 					String datasetFilename = dataset.getFileName().toString();
-					DirectoryStream<Path> lods = Files.newDirectoryStream(dataset);
+					DirectoryStream<Path> lods = Files.newDirectoryStream(dataset, DirectoryStreamFilters.lodFilter());
 
 					for (Path lod : lods) {
 						String lodFilename = lod.getFileName().toString();

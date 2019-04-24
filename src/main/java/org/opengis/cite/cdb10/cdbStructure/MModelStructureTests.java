@@ -49,7 +49,7 @@ public class MModelStructureTests extends Capability1Tests {
 				errors.add("Missing dataset name: " + filename);
 			}
 
-			if (prefixID != null) {
+			if (prefixID != null && !datasetDefs.isExtendedCode(prefixID)) {
 				if (prefixID < 1) {
 					errors.add("Invalid prefix cannot be below 001: " + filename);
 				} else if (!datasetDefs.isValidCode(prefixID)) {
