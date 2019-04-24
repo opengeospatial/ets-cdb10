@@ -45,7 +45,7 @@ public class VerifyGTModelStructureTests extends StructureTestFixture<GTModelStr
 	@Test(expected = AssertionError.class)
 	public void verifyDataset_BadValue() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "999_GTModelGeometry")));
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "000_GTModelGeometry")));
 
 		// execute
 		this.testSuite.verifyDataset();

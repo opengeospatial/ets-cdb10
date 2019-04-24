@@ -44,7 +44,7 @@ public class VerifyMModelStructureTests extends StructureTestFixture<MModelStruc
 	@Test(expected = AssertionError.class)
 	public void verifyDataset_BadValue() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "999_MModelGeometry")));
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "000_MModelGeometry")));
 
 		// execute
 		this.testSuite.verifyDataset();

@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
+import org.opengis.cite.cdb10.util.DirectoryStreamFilters;
 import org.opengis.cite.cdb10.util.FilenamePatterns;
 import org.opengis.cite.cdb10.util.metadataXml.DISCountryCodesXml;
 import org.opengis.cite.cdb10.util.metadataXml.MovingModelCodesXml;
@@ -201,7 +202,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 						DirectoryStream<Path> entityDirs = Files.newDirectoryStream(categoryDir);
 
 						for (Path entityDir : entityDirs) {
-							DirectoryStream<Path> lods = Files.newDirectoryStream(entityDir);
+							DirectoryStream<Path> lods = Files.newDirectoryStream(entityDir, DirectoryStreamFilters.lodFilter());
 
 							for (Path lod : lods) {
 								validateLOD(lod, errors);
@@ -245,7 +246,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 						DirectoryStream<Path> entityDirs = Files.newDirectoryStream(categoryDir);
 
 						for (Path entityDir : entityDirs) {
-							DirectoryStream<Path> lods = Files.newDirectoryStream(entityDir);
+							DirectoryStream<Path> lods = Files.newDirectoryStream(entityDir, DirectoryStreamFilters.lodFilter());
 							String entityFilename = entityDir.getFileName().toString();
 
 							for (Path lod : lods) {

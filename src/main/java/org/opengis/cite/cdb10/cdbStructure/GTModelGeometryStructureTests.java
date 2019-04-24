@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
+import org.opengis.cite.cdb10.util.DirectoryStreamFilters;
 import org.opengis.cite.cdb10.util.FilenamePatterns;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -100,7 +101,7 @@ public class GTModelGeometryStructureTests extends Capability1Tests {
 				DirectoryStream<Path> featureTypes = Files.newDirectoryStream(subcategory);
 
 				for (Path featureType : featureTypes) {
-					DirectoryStream<Path> lods = Files.newDirectoryStream(featureType);
+					DirectoryStream<Path> lods = Files.newDirectoryStream(featureType, DirectoryStreamFilters.lodFilter());
 					
 					for (Path lod : lods) {
 						DirectoryStream<Path> files = Files.newDirectoryStream(lod);

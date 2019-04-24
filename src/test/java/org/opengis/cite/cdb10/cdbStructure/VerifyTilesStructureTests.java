@@ -333,7 +333,7 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetCodeName_BadCode() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "999_Imagery")));
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "000_Imagery")));
 
 		// execute
 		this.testSuite.verifyDatasetCodeName();
