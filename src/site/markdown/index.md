@@ -8,6 +8,11 @@ IUT) with respect to the [OGC CDB 1.0 specification][CDB-10]. The test suite
 currently validates the metadata, directory structure, and file naming against
 the specification and will report on any exceptions to the specification.
 
+The test suite has partial support for OGC CDB 1.1; some tests will correctly
+pass, and other will fail as they have not been updated to handle the changes in
+OGC CDB 1.1. The current goal is to maximize support for version 1.0 and add 
+support for version 1.1 as edge cases are discovered.
+
 [CDB-10]: https://www.opengeospatial.org/standards/cdb
 
 **Figure 1: Conceptual Model**
