@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <xsl:stylesheet
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:cdb="http://www.CDB-Spec.org/Schema/Vector_Attributes/1.2"
+  xmlns:cdb="http://www.opengis.net/cdb/1.0/Vector_Attributes"
   xmlns="http://www.w3.org/1999/xhtml" 
   xmlns:html="http://www.w3.org/1999/xhtml"
   version="1.0">

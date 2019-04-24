@@ -2,15 +2,18 @@
 <xs:schema
   attributeFormDefault="unqualified" 
   elementFormDefault="qualified" 
-  targetNamespace="http://www.CDB-Spec.org/Schema/Vector_Attributes/1.2"
-  xmlns:cdb="http://www.CDB-Spec.org/Schema/Vector_Attributes/1.2"    
-  xmlns="http://www.CDB-Spec.org/Schema/Vector_Attributes/1.2"    
+  targetNamespace="http://www.opengis.net/cdb/1.0/Vector_Attributes"
+  xmlns:cdb="http://www.opengis.net/cdb/1.0/Vector_Attributes"
+  xmlns="http://www.opengis.net/cdb/1.0/Vector_Attributes"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  version="1.2">
+  version="1.0">
 
   <xs:annotation>
     <xs:documentation>
       XML schema to define and validate CDB Vector Attributes as defined in chapter 5 of CDB Specification v3.2
+      CDB is an OGC Standard.
+      Copyright (c) 2016 Open Geospatial Consortium.
+      To obtain additional rights of use, visit http://www.opengeospatial.org/legal/.
     </xs:documentation>
   </xs:annotation>
   

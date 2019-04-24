@@ -3,16 +3,19 @@
 <xs:schema
   attributeFormDefault="unqualified"
   elementFormDefault="qualified"
-  targetNamespace="http://www.CDB-Spec.org/Schema/Composite_Material_Table/3.2"
-  xmlns:cdb="http://www.CDB-Spec.org/Schema/Composite_Material_Table/3.2"
-  xmlns="http://www.CDB-Spec.org/Schema/Composite_Material_Table/3.2"
+  targetNamespace="http://www.opengis.net/cdb/1.0/Composite_Material_Table"
+  xmlns:cdb="http://www.opengis.net/cdb/1.0/Composite_Material_Table"
+  xmlns="http://www.opengis.net/cdb/1.0/Composite_Material_Table"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  version="3.2">
+  version="1.0">
 
   <xs:annotation>
     <xs:documentation xml:lang="en">
       This XML schema defines the format of a CDB Composite Material Table (CMT);
       a collection of substrates each made of base materials. 
+      CDB is an OGC Standard.
+      Copyright (c) 2016 Open Geospatial Consortium.
+      To obtain additional rights of use, visit http://www.opengeospatial.org/legal/.
     </xs:documentation>
   </xs:annotation>
 

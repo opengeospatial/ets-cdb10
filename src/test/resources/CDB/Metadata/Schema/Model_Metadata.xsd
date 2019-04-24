@@ -1,11 +1,14 @@
 <?xml version="1.0"?>
-<xs:schema id="CDB_Model_Metadata" targetNamespace="CDB" xmlns="CDB" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="3.2">
+<xs:schema id="CDB_Model_Metadata" targetNamespace="CDB" xmlns="CDB" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="1.0">
 
   <xs:annotation>
     <xs:appinfo>3D Model Metadata Schema</xs:appinfo>
     <xs:documentation>
       This XML schema defines the metadata associated with 3D models.
       In accordance with version 3.0 of the CDB specification.
+      CDB is an OGC Standard.
+      Copyright (c) 2016 Open Geospatial Consortium.
+      To obtain additional rights of use, visit http://www.opengeospatial.org/legal/.
     </xs:documentation>
   </xs:annotation>
 

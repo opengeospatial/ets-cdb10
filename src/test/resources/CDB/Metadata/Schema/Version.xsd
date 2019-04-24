@@ -3,15 +3,18 @@
 <xs:schema
   attributeFormDefault="unqualified"
   elementFormDefault="qualified"
-  targetNamespace="http://www.CDB-Spec.org/Schema/Version/3.2"
-  xmlns:cdb="http://www.CDB-Spec.org/Schema/Version/3.2"
-  xmlns="http://www.CDB-Spec.org/Schema/Version/3.2"
+  targetNamespace="http://www.opengis.net/cdb/1.0/Version"
+  xmlns:cdb="http://www.opengis.net/cdb/1.0/Version"
+  xmlns="http://www.opengis.net/cdb/1.0/Version"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  version="3.2.1">
+  version="1.0">
   
   <xs:annotation>
     <xs:documentation xml:lang="en">
       All CDB Versions are identified by a file called &apos;Version.xml&apos;; this schema defines the format of this file.
+      CDB is an OGC Standard.
+      Copyright (c) 2016 Open Geospatial Consortium.
+      To obtain additional rights of use, visit http://www.opengeospatial.org/legal/.
     </xs:documentation>
   </xs:annotation>
   

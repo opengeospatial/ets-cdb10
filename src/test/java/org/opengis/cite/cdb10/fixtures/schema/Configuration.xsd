@@ -4,10 +4,19 @@
   version="1.0"
   attributeFormDefault="unqualified"
   elementFormDefault="qualified"
-  targetNamespace="http://www.CDB-Spec.org/Schema/Configuration/1.0"
-  xmlns:cdb="http://www.CDB-Spec.org/Schema/Configuration/1.0"
-  xmlns="http://www.CDB-Spec.org/Schema/Configuration/1.0"
+  targetNamespace="http://www.opengis.net/cdb/1.0/Configuration"
+  xmlns:cdb="http://www.opengis.net/cdb/1.0/Configuration"
+  xmlns="http://www.opengis.net/cdb/1.0/Configuration"
   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:annotation>
+    <xs:documentation xml:lang="en">
+      CDB is an OGC Standard.
+      Copyright (c) 2016 Open Geospatial Consortium.
+      To obtain additional rights of use, visit
+      http://www.opengeospatial.org/legal/.
+    </xs:documentation>
+  </xs:annotation>
   
   <xs:annotation>
     <xs:documentation xml:lang="en">

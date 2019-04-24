@@ -2,8 +2,8 @@
 <?xml-stylesheet type="text/xsl" href="Stylesheet/Vector_Attributes.xsl"?>
 <Vector_Attributes
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns="http://www.CDB-Spec.org/Schema/Vector_Attributes/1.2"
-  xsi:schemaLocation="http://www.CDB-Spec.org/Schema/Vector_Attributes/1.2 Schema/Vector_Attributes.xsd"
+  xmlns="http://www.opengis.net/cdb/1.0/Vector_Attributes"
+  xsi:schemaLocation="http://www.opengis.net/cdb/1.0/Vector_Attributes http://schemas.opengis.net/cdb/1.0/Vector_Attributes.xsd"
   version="3.2">
 
   <Attributes>

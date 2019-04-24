@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
 <?xml-stylesheet type="text/xsl" href="Stylesheet/Composite_Material_Table.xsl"?>
 <Composite_Material_Table
-  xmlns="http://www.CDB-Spec.org/Schema/Composite_Material_Table/3.2"
+  xmlns="http://www.opengis.net/cdb/1.0/Composite_Material_Table"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.CDB-Spec.org/Schema/Composite_Material_Table/3.2 Schema/Composite_Material_Table.xsd"
+  xsi:schemaLocation="http://www.opengis.net/cdb/1.0/Composite_Material_Table http://schemas.opengis.net/cdb/1.0/Composite_Material_Table.xsd"
   version="1.234">
   
   <!--

@@ -87,11 +87,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
 		Files.copy(INVALID_FILE, this.metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
 		Files.copy(XSD_FILE, this.schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
 
-		String expectedMessage = "CDB_Attributes.xml does not contain valid XML. " +
-				"Errors: cvc-minLength-valid: Value '' with length = '0' is not facet-valid with respect to minLength " +
-				"'1' for type '#AnonType_NameAttribute'., cvc-type.3.1.3: The value '' of element 'Name' is not valid., " +
-				"cvc-complex-type.2.4.a: Invalid content was found starting with element 'Format'. One of " +
-				"'{\"http://www.CDB-Spec.org/Schema/Vector_Attributes/1.2\":Type}' is expected.";
+		String expectedMessage = "CDB_Attributes.xml does not contain valid XML.";
 
 		this.expectedException.expect(AssertionError.class);
 		this.expectedException.expectMessage(expectedMessage);

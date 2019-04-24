@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="xs3p.xsl"?>
 <xs:schema
-  version="3.2"
+  version="1.0"
   attributeFormDefault="unqualified"
   elementFormDefault="qualified"
-  targetNamespace="http://www.CDB-Spec.org/Schema/Lights/3.2"
-  xmlns:cdb="http://www.CDB-Spec.org/Schema/Lights/3.2"
-  xmlns="http://www.CDB-Spec.org/Schema/Lights/3.2"
+  targetNamespace="http://www.opengis.net/cdb/1.0/Lights"
+  xmlns:cdb="http://www.opengis.net/cdb/1.0/Lights"
+  xmlns="http://www.opengis.net/cdb/1.0/Lights"
   xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:annotation>
     <xs:documentation>
       XML schema to define and validate the content of the CDB Light Names Hierarchy found in /CDB/Metadata/Lights.xml
+      CDB is an OGC Standard.
+      Copyright (c) 2016 Open Geospatial Consortium.
+      To obtain additional rights of use, visit http://www.opengeospatial.org/legal/.
     </xs:documentation>
   </xs:annotation>
 

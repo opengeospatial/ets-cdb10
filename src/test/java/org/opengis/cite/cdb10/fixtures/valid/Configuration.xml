@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="Stylesheet/Configuration.xsl"?>
 <Configuration
-  xmlns="http://www.CDB-Spec.org/Schema/Configuration/1.0"
+  xmlns="http://www.opengis.net/cdb/1.0/Configuration"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.CDB-Spec.org/Schema/Configuration/1.0 Schema/Configuration.xsd">
+  xsi:schemaLocation="http://www.opengis.net/cdb/1.0/Configuration http://schemas.opengis.net/cdb/1.0/Configuration.xsd">
 
   <Comment>
     An example of what could be a CDB Configuration for CDB 3.2.

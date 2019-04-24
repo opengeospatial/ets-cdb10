@@ -65,8 +65,7 @@ public class VerifyDefaultsXmlStructureTests extends MetadataTestFixture<Default
         Files.copy(INVALID_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
-        String expectedMessage = "Defaults.xml does not contain valid XML. Errors: cvc-complex-type.4: Attribute " +
-                "'version' must appear on element 'Default_Value_Table'.";
+        String expectedMessage = "Defaults.xml does not contain valid XML.";
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage(expectedMessage);
@@ -81,8 +80,7 @@ public class VerifyDefaultsXmlStructureTests extends MetadataTestFixture<Default
         Files.copy(ELEMENTS_OUT_OF_SEQUENCE_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
-        String expectedMessage = "cvc-complex-type.2.4.a: Invalid content was found starting with element 'R_W_Type'. " +
-                "One of '{\"http://www.CDB-Spec.org/Schema/Defaults/1.0\":Value}' is expected.";
+        String expectedMessage = "Invalid content was found";
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage(expectedMessage);

@@ -4,14 +4,17 @@
   version="1.1"
   attributeFormDefault="unqualified" 
   elementFormDefault="qualified" 
-  targetNamespace="http://www.CDB-Spec.org/Schema/Feature_Data_Dictionary/1.0"
-  xmlns:cdb="http://www.CDB-Spec.org/Schema/Feature_Data_Dictionary/1.0"
-  xmlns="http://www.CDB-Spec.org/Schema/Feature_Data_Dictionary/1.0"
+  targetNamespace="http://www.opengis.net/cdb/1.0/Feature_Data_Dictionary"
+  xmlns:cdb="http://www.opengis.net/cdb/1.0/Feature_Data_Dictionary"
+  xmlns="http://www.opengis.net/cdb/1.0/Feature_Data_Dictionary"
   xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:annotation>
     <xs:documentation xml:lang="en">
       This XML schema defines the format of the CDB Feature Data Dictionary.
+      CDB is an OGC Standard.
+      Copyright (c) 2016 Open Geospatial Consortium.
+      To obtain additional rights of use, visit http://www.opengeospatial.org/legal/.
     </xs:documentation>
   </xs:annotation>
 

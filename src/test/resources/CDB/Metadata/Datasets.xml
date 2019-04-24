@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Datasets xmlns="CDB" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="CDB Datasets.xsd">
+<Datasets xmlns="CDB" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="CDB http://schemas.opengis.net/cdb/1.0/Datasets.xsd">
 <!-- This list of datasets is used for validation of which codes/names are valid
      in the Executable Test Suite. The list is sourced from Annex Q of Volume 2
      of the OGC CDB Core Model and Physical Structure Informative Annexes 

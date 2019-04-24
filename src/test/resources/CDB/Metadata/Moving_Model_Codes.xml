@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <Moving_Model_Codes
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns="http://www.CDB-Spec.org/Schema/Moving_Model_Codes/1.0"
-  xsi:schemaLocation="http://www.CDB-Spec.org/Schema/Moving_Model_Codes/1.0 Schema/Moving_Model_Codes.xsd"
+  xmlns="http://www.opengis.net/cdb/1.0/Moving_Model_Codes"
+  xsi:schemaLocation="http://www.opengis.net/cdb/1.0/Moving_Model_Codes http://schemas.opengis.net/cdb/1.0/Moving_Model_Codes.xsd"
   version="2.0">
   
   <Kind code="0" name="Other">

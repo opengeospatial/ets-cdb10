@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="Stylesheet/DIS_Country_Codes.xsl"?>
 <DIS_Country_Codes
-  xmlns="http://www.CDB-Spec.org/Schema/DIS_Country_Codes/1.0"
-  xmlns:cdb="http://www.CDB-Spec.org/Schema/DIS_Country_Codes/1.0"
+  xmlns="http://www.opengis.net/cdb/1.0/DIS_Country_Codes"
+  xmlns:cdb="http://www.opengis.net/cdb/1.0/DIS_Country_Codes"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.CDB-Spec.org/Schema/DIS_Country_Codes/1.0 Schema/DIS_Country_Codes.xsd"
+  xsi:schemaLocation="http://www.opengis.net/cdb/1.0/DIS_Country_Codes http://schemas.opengis.net/cdb/1.0/DIS_Country_Codes.xsd"
   version="1.0">
   <Country code="0" name="Other" />
   <Country code="1" name="Afghanistan" />

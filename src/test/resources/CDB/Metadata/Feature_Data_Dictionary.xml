@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="Stylesheet/Feature_Data_Dictionary.xsl"?>
 <Feature_Data_Dictionary
-  xmlns="http://www.CDB-Spec.org/Schema/Feature_Data_Dictionary/1.0"
+  xmlns="http://www.opengis.net/cdb/1.0/Feature_Data_Dictionary"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.CDB-Spec.org/Schema/Feature_Data_Dictionary/1.0 Schema/Feature_Data_Dictionary.xsd"
+  xsi:schemaLocation="http://www.opengis.net/cdb/1.0/Feature_Data_Dictionary http://schemas.opengis.net/cdb/1.0/Feature_Data_Dictionary.xsd"
   version="1.1">
   <Category code="A">
     <Label>Culture</Label>
@@ -6525,14 +6525,14 @@
         </Subcode>
         <Subcode code="001">
           <Label>Terrain_Constraint_Line</Label>
-          <Concept_Definition>A line consisting of multiple segments  whose vertices and edges are used to constrain the terrain elevation</Concept_Definition>
-          <Recommended_Dataset_Component>Geopolitical Location Point</Recommended_Dataset_Component>
+          <Concept_Definition>A line consisting of multiple segments whose vertices and edges are used to constrain the terrain elevation</Concept_Definition>
+          <Recommended_Dataset_Component>Geopolitical Location Lineal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
         </Subcode>
         <Subcode code="002">
           <Label>Terrain_Constraint_Area</Label>
           <Concept_Definition>A multi-triangle convex or concave area whose vertices and edges are used to constrain the terrain elevation</Concept_Definition>
-          <Recommended_Dataset_Component>Geopolitical Location Point</Recommended_Dataset_Component>
+          <Recommended_Dataset_Component>Geopolitical Location Areal</Recommended_Dataset_Component>
           <Origin>CDB 3.2</Origin>
         </Subcode>
       </Feature_Type>

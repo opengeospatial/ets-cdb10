@@ -60,11 +60,7 @@ public class VerifyConfigurationXmlStructureTests extends MetadataTestFixture<Co
         Files.copy(INVALID_FILE, metadataFolder.resolve("Configuration.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Configuration.xsd"), REPLACE_EXISTING);
 
-        String expectedMessage = "Configuration.xml does not contain valid XML. " +
-                "Errors: cvc-complex-type.4: Attribute 'path' must appear on element 'Folder'., " +
-                "cvc-complex-type.4: Attribute 'version' must appear on element 'Specification'., " +
-                "cvc-complex-type.4: Attribute 'name' must appear on element 'Extension'., " +
-                "cvc-complex-type.4: Attribute 'version' must appear on element 'Extension'.";
+        String expectedMessage = "Configuration.xml does not contain valid XML.";
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage(expectedMessage);

@@ -2,8 +2,8 @@
 <xsl:stylesheet
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:fn="http://www.w3.org/2005/xpath-functions"
-  xmlns:cdb="http://www.CDB-Spec.org/Schema/Lights/3.2"
-  xmlns="http://www.CDB-Spec.org/Schema/Lights/3.2"
+  xmlns:cdb="http://www.opengis.net/cdb/1.0/Lights"
+  xmlns="http://www.opengis.net/cdb/1.0/Lights"
   version="1.0">
   
   <!--xmlns="http://www.w3.org/1999/xhtml"

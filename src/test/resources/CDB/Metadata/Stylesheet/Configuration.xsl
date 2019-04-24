@@ -2,7 +2,7 @@
 <xsl:stylesheet
   version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-  xmlns:cdb="http://www.CDB-Spec.org/Schema/Configuration/1.0"
+  xmlns:cdb="http://www.opengis.net/cdb/1.0/Configuration"
   xmlns="http://www.w3.org/1999/xhtml" 
   xmlns:html="http://www.w3.org/1999/xhtml" >
 

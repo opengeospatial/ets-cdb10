@@ -7,6 +7,9 @@
       XML schema to define and validate CDB Light Tuning.
       In accordance with chapter 2 of the CDB specification.
       Distribution B, Second Draft, March 16, 2005
+      CDB is an OGC Standard.
+      Copyright (c) 2016 Open Geospatial Consortium.
+      To obtain additional rights of use, visit http://www.opengeospatial.org/legal/.
     </xs:documentation>
   </xs:annotation>
 

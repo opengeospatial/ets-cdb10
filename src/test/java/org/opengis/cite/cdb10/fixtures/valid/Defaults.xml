@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <?xml-stylesheet type="text/xsl" href="Stylesheet/Defaults.xsl"?>
 <Default_Value_Table
-  xmlns="http://www.CDB-Spec.org/Schema/Defaults/1.0"
+  xmlns="http://www.opengis.net/cdb/1.0/Defaults"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.CDB-Spec.org/Schema/Defaults/1.0 Schema/Defaults.xsd"
+  xsi:schemaLocation="http://www.opengis.net/cdb/1.0/Defaults http://schemas.opengis.net/cdb/1.0/Defaults.xsd"
   version="3.2">
 
   <Default_Value>
