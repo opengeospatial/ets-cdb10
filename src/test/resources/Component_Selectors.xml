@@ -1,0 +1,399 @@
+<?xml version="1.0"?>
+<DatasetSelectors>
+<!-- This list of Component Selectors is used to validate file name components
+     in a CDB database. This data is sourced from Volume 2 of the OGC CDB Core
+     Model and Physical Structure: Informative Annexes (OGC 16-005r3). -->
+   
+  <!--  Selectors for CDB Model Textures (GT, GS, MM, T2D) -->
+  <DatasetSelector>
+    <Datasets>
+        <Dataset>5</Dataset>
+        <Dataset>301</Dataset>
+        <Dataset>306</Dataset>
+        <Dataset>501</Dataset>
+        <Dataset>507</Dataset>
+        <Dataset>511</Dataset>
+        <Dataset>601</Dataset>
+    </Datasets>
+    <!-- Annex O: List of Texture Component Selectors -->
+    <ComponentSelector kind="002" name="Month"expandable="no">
+      <ComponentSelector index="001" name="January" />
+      <ComponentSelector index="002" name="February" />
+      <ComponentSelector index="003" name="March" />
+      <ComponentSelector index="004" name="April" />
+      <ComponentSelector index="005" name="May" />
+      <ComponentSelector index="006" name="June" />
+      <ComponentSelector index="007" name="July" />
+      <ComponentSelector index="008" name="August" />
+      <ComponentSelector index="009" name="September" />
+      <ComponentSelector index="010" name="October" />
+      <ComponentSelector index="011" name="November" />
+      <ComponentSelector index="012" name="December" />
+    </ComponentSelector>
+    
+    <ComponentSelector kind="003" name="Season" expandable="no">
+      <ComponentSelector index="001" name="Spring" />
+      <ComponentSelector index="002" name="Summer" />
+      <ComponentSelector index="003" name="Autumn" />
+      <ComponentSelector index="004" name="Winter" />
+    </ComponentSelector>
+    
+    <ComponentSelector kind="004" name="Uniform Paint Scheme" expandable="yes">
+      <ComponentSelector index="001" name="Grey" />
+      <ComponentSelector index="002" name="White" />
+      <ComponentSelector index="003" name="Green" />
+      <ComponentSelector index="004" name="Black" />
+      <ComponentSelector index="005" name="Beige" />
+      <ComponentSelector index="006" name="Blue" />
+      <ComponentSelector index="007" name="Red" />
+      <ComponentSelector index="008" name="Yellow" />
+      <ComponentSelector index="009" name="Brown" />
+      <ComponentSelector index="010" name="Pink" />
+      <ComponentSelector index="011" name="Purple" />
+      <ComponentSelector index="012" name="Burgundy" />
+      <ComponentSelector index="013" name="Orange" />
+      <ComponentSelector index="014" name="Light Blue" />
+      <ComponentSelector index="015" name="Khaki" />
+      <ComponentSelector index="016" name="Dark Grey" />
+      <ComponentSelector index="017" name="Amber" />
+      <ComponentSelector index="018" name="Gold" />
+      <ComponentSelector index="019" name="Silver" />
+      <ComponentSelector index="020" name="Copper" />
+    </ComponentSelector>
+    
+    <ComponentSelector kind="005" name="Camouflage Paint Scheme" expandable="yes">
+      <ComponentSelector index="001" name="Desert" />
+      <ComponentSelector index="002" name="Winter" />
+      <ComponentSelector index="003" name="Forest" />
+      <ComponentSelector index="004" name="Generic" />
+      <ComponentSelector index="005" name="Urban" />
+    </ComponentSelector>
+    
+    <ComponentSelector kind="006" name="Airline Paint Scheme" expandable="yes">
+      <ComponentSelector index="001" name="AAH Aloha Airlines Inc." />
+      <ComponentSelector index="002" name="AAL American Airlines Inc." />
+      <ComponentSelector index="003" name="AAR Asiana Airlines Inc." />
+      <ComponentSelector index="004" name="AAW Afriqiyah Airways" />
+      <ComponentSelector index="005" name="ABR Air Contractors (UK) Limited" />
+      <ComponentSelector index="006" name="ACA Air Canada" />
+      <ComponentSelector index="007" name="ACI Air Caledonie International" />
+      <ComponentSelector index="008" name="ADR Adria Airways - The Airline of Slovenia" />
+      <ComponentSelector index="009" name="AEA Air Europa Lineas Aereas, S.A." />
+      <ComponentSelector index="010" name="AEE Aegean Airlines S.A." />
+      <ComponentSelector index="011" name="AEW Aerosvit Airlines" />
+      <ComponentSelector index="012" name="AFG Ariana Afghan Airlines" />
+      <ComponentSelector index="013" name="AFL Aeroflot Russian Airlines" />
+      <ComponentSelector index="014" name="AFR Air France" />
+      <ComponentSelector index="015" name="AGN Air Gabon" />
+      <ComponentSelector index="016" name="AHY Azerbaijan Hava Yollary" />
+      <ComponentSelector index="017" name="AIC Air-India Limited" />
+      <ComponentSelector index="018" name="AIZ Arkia - Israeli Airlines Ltd" />
+      <ComponentSelector index="019" name="AJM Air Jamaica" />
+      <ComponentSelector index="020" name="ALK SriLankan Airlines Limited" />
+      <ComponentSelector index="021" name="AMC Air Malta p.l.c." />
+      <ComponentSelector index="022" name="AML Air Malawi Limited" />
+      <ComponentSelector index="023" name="AMU Air Macau Company Limited" />
+      <ComponentSelector index="024" name="AMX Aeromexico" />
+      <ComponentSelector index="025" name="ANA All Nippon Airways Co. Ltd." />
+      <ComponentSelector index="026" name="ANG Air Niugini Pty Limited" />
+      <ComponentSelector index="027" name="ANS Air Nostrum L.A.M.S.A." />
+      <ComponentSelector index="028" name="ANZ Air New Zealand Limited" />
+      <ComponentSelector index="029" name="ARG Aerolineas Argentinas" />
+      <ComponentSelector index="030" name="ASA Alaska Airlines Inc." />
+      <ComponentSelector index="031" name="ATC Air Tanzania Company Ltd." />
+      <ComponentSelector index="032" name="AUA Austrian Airlines, Osterreichische" />
+      <ComponentSelector index="033" name="AUI Ukraine International Airlines" />
+      <ComponentSelector index="034" name="AUT Cielos del Sur S.A." />
+      <ComponentSelector index="035" name="AVA Aerovias del Continente Americano – Avianca" />
+      <ComponentSelector index="036" name="AVN Air Vanuatu (Operations) Limited" />
+      <ComponentSelector index="037" name="AWE America West Airlines Inc." />
+      <ComponentSelector index="038" name="AZA Alitalia - Linee Aeree Italiane" />
+      <ComponentSelector index="039" name="AZW Air Zimbabwe (Pvt) Ltd." />
+      <ComponentSelector index="040" name="BAG dba Luftfahrtgesellschaft mbH" />
+      <ComponentSelector index="041" name="BAW British Airways p.l.c." />
+      <ComponentSelector index="042" name="BBC Biman Bangladesh Airlines" />
+      <ComponentSelector index="043" name="BCS European Air Transport" />
+      <ComponentSelector index="044" name="BCY Cityjet" />
+      <ComponentSelector index="045" name="BEE Jersey European Airways Limited" />
+      <ComponentSelector index="046" name="BER Air Berlin GmbH &amp; Co. Luftverkehrs KG" />
+      <ComponentSelector index="047" name="BKP Bangkok Airways Co. Ltd." />
+      <ComponentSelector index="048" name="BLF Blue1 Oy" />
+      <ComponentSelector index="049" name="BLV Bellview Airlines Ltd." />
+      <ComponentSelector index="050" name="BMA British Midland Airways Ltd." />
+      <ComponentSelector index="051" name="BOT Air Botswana Corporation" />
+      <ComponentSelector index="052" name="BPA Blue Panorama Airlines S.p.A." />
+      <ComponentSelector index="053" name="BRA SAS Braathens AS" />
+      <ComponentSelector index="054" name="BRU Belavia" />
+      <ComponentSelector index="055" name="BRZ Samara Airlines" />
+      <ComponentSelector index="056" name="BWA BWIA West Indies Airways Limited" />
+      <ComponentSelector index="057" name="CAL China Airlines" />
+      <ComponentSelector index="058" name="CAW Comair Ltd." />
+      <ComponentSelector index="059" name="CCA Air China Limited" />
+      <ComponentSelector index="060" name="CDG Shandong Airlines" />
+      <ComponentSelector index="061" name="CES China Eastern Airlines" />
+      <ComponentSelector index="062" name="CHH Hainan Airlines Company Limited" />
+      <ComponentSelector index="063" name="CLH Lufthansa CityLine GmbH" />
+      <ComponentSelector index="064" name="CLX Cargolux Airlines International S.A." />
+      <ComponentSelector index="065" name="CMI Continental Micronesia, Inc." />
+      <ComponentSelector index="066" name="CMP Compania Panamena de Aviacion, S.A." />
+      <ComponentSelector index="067" name="CNW China Northwest Airlines" />
+      <ComponentSelector index="068" name="COA Continental Airlines, Inc." />
+      <ComponentSelector index="069" name="CPA Cathay Pacific Airways Ltd." />
+      <ComponentSelector index="070" name="CPN Caspian Airlines Service Company Ltd." />
+      <ComponentSelector index="071" name="CRL CORSAIR" />
+      <ComponentSelector index="072" name="CSA Czech Airlines a.s., CSA" />
+      <ComponentSelector index="073" name="CSN China Southern Airlines" />
+      <ComponentSelector index="074" name="CTN Croatia Airlines" />
+      <ComponentSelector index="075" name="CUB Cubana de Aviacion S.A." />
+      <ComponentSelector index="076" name="CXA Xiamen Airlines" />
+      <ComponentSelector index="077" name="CYP Cyprus Airways Limited" />
+      <ComponentSelector index="078" name="DAH Air Algerie" />
+      <ComponentSelector index="079" name="DAL Delta Air Lines Inc." />
+      <ComponentSelector index="080" name="DAN Maersk Air A.S." />
+      <ComponentSelector index="081" name="DAT Delta Air Transport N.V." />
+      <ComponentSelector index="082" name="DHK DHL Air Limited" />
+      <ComponentSelector index="083" name="DHX DHL International E.C." />
+      <ComponentSelector index="084" name="DLH Deutsche Lufthansa AG" />
+      <ComponentSelector index="085" name="DNM Denim Air" />
+      <ComponentSelector index="086" name="DTA TAAG - Linhas Aereas de Angola" />
+      <ComponentSelector index="087" name="EIN Aer Lingus Limited" />
+      <ComponentSelector index="088" name="ELG ALPI Eagles S.p.A." />
+      <ComponentSelector index="089" name="ELL Estonian Air" />
+      <ComponentSelector index="090" name="ELY El Al Israel Airlines Ltd." />
+      <ComponentSelector index="091" name="ETD Etihad Airways" />
+      <ComponentSelector index="092" name="CYH China Yunnan Airlines" />
+      <ComponentSelector index="093" name="ETH Ethiopian Airlines Enterprise" />
+      <ComponentSelector index="094" name="EWG Eurowings AG" />
+      <ComponentSelector index="095" name="FCN Falcon Air AB" />
+      <ComponentSelector index="096" name="FDX FedEx" />
+      <ComponentSelector index="097" name="FIN Finnair Oyj" />
+      <ComponentSelector index="098" name="FJI Air Pacific Ltd." />
+      <ComponentSelector index="099" name="GBL GB Airways Ltd." />
+      <ComponentSelector index="100" name="GEC Lufthansa Cargo AG" />
+      <ComponentSelector index="101" name="GFA Gulf Air Company G.S.C." />
+      <ComponentSelector index="102" name="GHA Ghana Airways Corp." />
+      <ComponentSelector index="103" name="GIA Garuda Indonesia" />
+      <ComponentSelector index="104" name="HCY Helios Airways" />
+      <ComponentSelector index="105" name="HDA Hong Kong Dragon Airlines Limited" />
+      <ComponentSelector index="106" name="HEJ Hellas Jet S.A." />
+      <ComponentSelector index="107" name="HHN Hahn Air Lines" />
+      <ComponentSelector index="108" name="HLF Hapag Lloyd Fluggesellschaft" />
+      <ComponentSelector index="109" name="HZL Hazelton Airlines dba Regional Express" />
+      <ComponentSelector index="110" name="IAC Indian Airlines" />
+      <ComponentSelector index="111" name="IAW Iraqi Airways" />
+      <ComponentSelector index="112" name="IBB Binter Canarias" />
+      <ComponentSelector index="113" name="IBE Iberia - Lineas Aereas de Espana" />
+      <ComponentSelector index="114" name="ICE Icelandair" />
+      <ComponentSelector index="115" name="ICL C.A.L. Cargo Airlines Ltd." />
+      <ComponentSelector index="116" name="IRA Iran Air" />
+      <ComponentSelector index="117" name="IRC Iran Aseman Airlines" />
+      <ComponentSelector index="118" name="IRM Mahan Airlines" />
+      <ComponentSelector index="119" name="ISR Israir Airlines and Tourism Ltd." />
+      <ComponentSelector index="120" name="ISS Meridiana S.p.A." />
+      <ComponentSelector index="121" name="IYE Yemenia - Yemen Airways" />
+      <ComponentSelector index="122" name="JAI Jet Airways (India) Limited" />
+      <ComponentSelector index="123" name="JAL Japan Airlines International Co., Ltd." />
+      <ComponentSelector index="124" name="JAT Jat Airways" />
+      <ComponentSelector index="125" name="JAZ JALways Co. Ltd." />
+      <ComponentSelector index="126" name="JKK Spanair S.A." />
+      <ComponentSelector index="127" name="KAC Kuwait Airways" />
+      <ComponentSelector index="128" name="KAL Korean Air Lines Co. Ltd." />
+      <ComponentSelector index="129" name="KHA Kitty Hawk Aircargo, Inc." />
+      <ComponentSelector index="130" name="KLM KLM Royal Dutch Airlines" />
+      <ComponentSelector index="131" name="KOR Air Koryo" />
+      <ComponentSelector index="132" name="KQA Kenya Airways" />
+      <ComponentSelector index="133" name="KRP Carpatair S.A." />
+      <ComponentSelector index="134" name="LAA Libyan Arab Airlines" />
+      <ComponentSelector index="135" name="LAM LAM - Linhas Aereas de Mocambique" />
+      <ComponentSelector index="136" name="LAN Lan Airlines S.A." />
+      <ComponentSelector index="137" name="LAP TAM - Transportes Aereos del" />
+      <ComponentSelector index="138" name="EVA EVA Airways Corporation" />
+      <ComponentSelector index="139" name="LBH Laker Airways (Bahamas) Limited" />
+      <ComponentSelector index="140" name="LBC Albanian Airlines MAK S.H.P.K." />
+      <ComponentSelector index="141" name="LCO Lan Chile Cargo S.A." />
+      <ComponentSelector index="142" name="LDA Lauda Air Luftfahrt AG" />
+      <ComponentSelector index="143" name="LDI Lauda Air S.p.A." />
+      <ComponentSelector index="144" name="LGL Luxair" />
+      <ComponentSelector index="145" name="LIL Lithuanian Airlines" />
+      <ComponentSelector index="146" name="LLB Lloyd Aereo Boliviano S.A. (LAB)" />
+      <ComponentSelector index="147" name="LOT LOT - Polish Airlines" />
+      <ComponentSelector index="148" name="LPE Lan Peru S.A." />
+      <ComponentSelector index="149" name="LRC Lineas Aereas Costarricenses S.A." />
+      <ComponentSelector index="150" name="LTU LTU International Airways" />
+      <ComponentSelector index="151" name="LXR Air Luxor, S.A." />
+      <ComponentSelector index="152" name="MAH Malev Hungarian Airlines Limited" />
+      <ComponentSelector index="153" name="MAK Macedonian Airlines" />
+      <ComponentSelector index="154" name="MAS Malaysia Airline System Berhad" />
+      <ComponentSelector index="155" name="MAU Air Mauritius" />
+      <ComponentSelector index="156" name="MAZ Zambian Airways" />
+      <ComponentSelector index="157" name="MDG Air Madagascar" />
+      <ComponentSelector index="158" name="MEA Middle East Airlines AirLiban" />
+      <ComponentSelector index="159" name="MGL MIAT - Mongolian Airlines" />
+      <ComponentSelector index="160" name="MGX Montenegro Airlines" />
+      <ComponentSelector index="161" name="MLD Air Moldova" />
+      <ComponentSelector index="162" name="MRS Air Marshall Islands, Inc." />
+      <ComponentSelector index="163" name="MSR Egyptair" />
+      <ComponentSelector index="164" name="MXA Compania Mexicana de Aviacion" />
+      <ComponentSelector index="165" name="NBK Albarka Air Services Ltd." />
+      <ComponentSelector index="166" name="NCA Nippon Cargo Airlines" />
+      <ComponentSelector index="167" name="NMB Air Namibia" />
+      <ComponentSelector index="168" name="NTW Nationwide Airlines (Pty) Ltd." />
+      <ComponentSelector index="169" name="NWA Northwest Airlines, Inc." />
+      <ComponentSelector index="170" name="OAL Olympic Airlines" />
+      <ComponentSelector index="171" name="OAS Oman Aviation Services Co. (SAOG)" />
+      <ComponentSelector index="172" name="PAL Philippine Airlines, Inc." />
+      <ComponentSelector index="173" name="PAO Polynesian Limited" />
+      <ComponentSelector index="174" name="PGA Portugalia - Companhia Portuguesa de" />
+      <ComponentSelector index="175" name="PIA Pakistan International Airlines" />
+      <ComponentSelector index="176" name="PLK Pulkovo Aviation Enterprise" />
+      <ComponentSelector index="177" name="PNW Palestinian Airlines" />
+      <ComponentSelector index="178" name="PUA Pluna Lineas Aereas Uruguayas S.A." />
+      <ComponentSelector index="179" name="QFA Qantas Airways Ltd." />
+      <ComponentSelector index="180" name="QTR Qatar Airways(Q.C.S.C)" />
+      <ComponentSelector index="181" name="RAM Royal Air Maroc" />
+      <ComponentSelector index="182" name="RBA Royal Brunei Airlines Sdn. Bhd." />
+      <ComponentSelector index="183" name="REU Air Austral" />
+      <ComponentSelector index="184" name="RJA Royal Jordanian" />
+      <ComponentSelector index="185" name="ROT TAROM - Transporturile Aeriene Romane" />
+      <ComponentSelector index="186" name="RSN Royal Swazi National Airways Corp." />
+      <ComponentSelector index="187" name="RWD Rwandair Express" />
+      <ComponentSelector index="188" name="MPX Aeromexpress S.A. de C.V." />
+      <ComponentSelector index="189" name="SAA South African Airways" />
+      <ComponentSelector index="190" name="SAS Scandinavian Airlines System (SAS)" />
+      <ComponentSelector index="191" name="SAT SATA - Air Acores" />
+      <ComponentSelector index="192" name="SBI Siberia Airlines" />
+      <ComponentSelector index="193" name="SER Aero California" />
+      <ComponentSelector index="194" name="SEY Air Seychelles Limited" />
+      <ComponentSelector index="195" name="SFR Safair (Proprietary) Ltd." />
+      <ComponentSelector index="196" name="SIA Singapore Airlines Limited" />
+      <ComponentSelector index="197" name="SKX Skyways AB" />
+      <ComponentSelector index="198" name="SLA Sierra National Airlines" />
+      <ComponentSelector index="199" name="SLK SilkAir (S) Pte. Ltd." />
+      <ComponentSelector index="200" name="SLM Surinam Airways Ltd." />
+      <ComponentSelector index="201" name="SNG Air Senegal International" />
+      <ComponentSelector index="202" name="SOL Solomon Airlines" />
+      <ComponentSelector index="203" name="SQC Singapore Airlines Cargo Pte. Ltd." />
+      <ComponentSelector index="204" name="SUD Sudan Airways Co. Ltd." />
+      <ComponentSelector index="205" name="SWD Southern Winds S.A." />
+      <ComponentSelector index="206" name="SWR SWISS International Air Lines Ltd" />
+      <ComponentSelector index="207" name="SYR Syrian Arab Airlines" />
+      <ComponentSelector index="208" name="TAI Taca International Airlines, S.A." />
+      <ComponentSelector index="209" name="TAM TAM Linhas Aereas S.A." />
+      <ComponentSelector index="210" name="TAP TAP - Air Portugal" />
+      <ComponentSelector index="211" name="TAR Tunisair" />
+      <ComponentSelector index="212" name="TAY TNT Airways S.A." />
+      <ComponentSelector index="213" name="THA Thai Airways International Public" />
+      <ComponentSelector index="214" name="THT Air Tahiti Nui" />
+      <ComponentSelector index="215" name="THY Turkish Airlines Inc." />
+      <ComponentSelector index="216" name="TMA Trans-Mediterranean Airways" />
+      <ComponentSelector index="217" name="TNA TransAsia Airways Corporation" />
+      <ComponentSelector index="218" name="TSO Transaero Airlines" />
+      <ComponentSelector index="219" name="TUA Turkmenistan Airlines" />
+      <ComponentSelector index="220" name="UAE Emirates" />
+      <ComponentSelector index="221" name="UAL United Airlines, Inc." />
+      <ComponentSelector index="222" name="UPS UPS" />
+      <ComponentSelector index="223" name="USA US Airways, Inc." />
+      <ComponentSelector index="224" name="UYC Cameroon Airlines" />
+      <ComponentSelector index="225" name="SVA Saudi Arabian Airlines" />
+      <ComponentSelector index="226" name="VIR Virgin Atlantic Airways Limited" />
+      <ComponentSelector index="227" name="VAP Phuket Airlines Co., Ltd." />
+      <ComponentSelector index="228" name="VDA Volga-Dnepr Airline Joint Stock" />
+      <ComponentSelector index="229" name="VLK Vladivostok Air JSC" />
+      <ComponentSelector index="230" name="VRG Varig S.A." />
+      <ComponentSelector index="231" name="VSP Viacao Aerea Sao Paulo, S.A. (VASP)" />
+      <ComponentSelector index="232" name="VTA Air Tahiti" />
+      <ComponentSelector index="233" name="WIF Wideroe's Flyveselskap A.S." />
+      <ComponentSelector index="234" name="WNT Cargojet Airways Ltd." />
+      <ComponentSelector index="235" name="CRX Crossair" />
+      <ComponentSelector index="236" name="VLE Volare Airlines S.p.A." />
+      <ComponentSelector index="237" name="WJA WestJet Airlines Ltd." />
+      <ComponentSelector index="238" name="JAS Japan Air System" />
+      <ComponentSelector index="239" name="NWW North West Airlines" />
+      <ComponentSelector index="240" name="MEP Midwest Express Airlines" />
+      <ComponentSelector index="241" name="TWA Trans World Airlines" />
+      <ComponentSelector index="242" name="SAB Sabena" />
+      <ComponentSelector index="243" name="TUI Tuninter" />
+      <ComponentSelector index="244" name="SRT Trans Asian Airlines" />
+      <ComponentSelector index="245" name="JBU JetBlue Airways" />
+      <ComponentSelector index="246" name="TSC Air Transat" />
+      <ComponentSelector index="247" name="SWG Sunwing Airlines" />
+      <ComponentSelector index="248" name="FFM Firefly" />
+      <ComponentSelector index="249" name="BVT Berjaya Air" />
+      <ComponentSelector index="250" name="VLG Vueling Airlines" />
+      <ComponentSelector index="251" name="SKY Skymark Airlines" />
+      <ComponentSelector index="252" name="JST Jetstar Airways" />
+      <ComponentSelector index="253" name="ABX ABX Air" />
+      <ComponentSelector index="254" name="CQH Spring Airlines" />
+      <ComponentSelector index="255" name="POE Porter Airlines" />
+      <ComponentSelector index="256" name="EAQ Eastern Australia" />
+      <ComponentSelector index="257" name="EZY EasyJet" />
+      <ComponentSelector index="258" name="NLY Niki" />
+      <ComponentSelector index="259" name="VOZ Virgin Australia" />
+      <ComponentSelector index="260" name="KNA Kunming Airlines" />
+      <ComponentSelector index="261" name="CSC Sichuan Airlines" />
+      <ComponentSelector index="262" name="VRD Virgin America" />
+      <ComponentSelector index="263" name="DKH Juneyao Airlines" />
+      <ComponentSelector index="264" name="KEN Kenmore Air" />
+      <ComponentSelector index="265" name="XAK Air Kenya" />
+      <ComponentSelector index="266" name="NZM Mount Cook Airline" />
+      <ComponentSelector index="267" name="FDA Fuji Dream Airlines" />
+      <ComponentSelector index="268" name="TAE TAME (Línea Aérea del Ecuador)" />
+      <ComponentSelector index="269" name="CFE BA CityFlyer" />
+      <ComponentSelector index="270" name="JZA Jazz Aviation" />
+      <ComponentSelector index="271" name="CSH Shanghai Airlines" />
+      <ComponentSelector index="272" name="BEE Flybe" />
+      <ComponentSelector index="273" name="TYR Tyrolean Airways" />
+      <ComponentSelector index="274" name="SWA Southwest Airlines" />
+      <ComponentSelector index="275" name="XME Australian Air Express" />
+      <ComponentSelector index="276" name="BEL Brussels Airlines" />
+      <ComponentSelector index="277" name="GCR Tianjin Airlines" />
+      <ComponentSelector index="278" name="ARA Arik Air" />
+      <ComponentSelector index="279" name="LNI Lion Air" />
+      <ComponentSelector index="280" name="RYR Ryanair" />
+      <ComponentSelector index="281" name="SHU Aurora" />
+      <ComponentSelector index="282" name="NIG Aero Contractors" />
+      <ComponentSelector index="283" name="SCW Malmö Aviation" />
+      <ComponentSelector index="284" name="VOI Volaris" />
+      <ComponentSelector index="285" name="NAX Norwegian Air Shuttle" />
+      <ComponentSelector index="286" name="RAR Air Rarotonga" />
+      <ComponentSelector index="287" name="CJR Caverton Helicopters" />
+      <ComponentSelector index="288" name="KZR Air Astana" />
+      <ComponentSelector index="289" name="ROU Air Canada Rouge" />
+      <ComponentSelector index="290" name="DWT Darwin Airline" />
+      <ComponentSelector index="291" name="UTA UTair Aviation" />
+      <ComponentSelector index="292" name="AZN Amaszonas" />
+      <ComponentSelector index="293" name="FDB Flydubai" />
+      <ComponentSelector index="294" name="UZB Uzbekistan Airways" />
+      <ComponentSelector index="295" name="PGT Pegasus Airlines" />
+      <ComponentSelector index="296" name="ABY Air Arabia" />
+      <ComponentSelector index="297" name="AXB Air India Express" />
+    </ComponentSelector>
+    
+    <ComponentSelector kind="009" name="Quarter" expandable="no">
+      <ComponentSelector index="001" name="First quarter of the year" />
+      <ComponentSelector index="002" name="Second quarter of the year" />
+      <ComponentSelector index="003" name="Third quarter of the year" />
+      <ComponentSelector index="004" name="Fourth quarter of the year" />
+    </ComponentSelector>
+    
+    <ComponentSelector kind="054" name="Containment" expandable="yes">
+      <ComponentSelector index="001" name="Wet Surface" />
+      <ComponentSelector index="002" name="Snowy Surface" />
+      <ComponentSelector index="003" name="Icy Surface" />
+      <ComponentSelector index="004" name="Slushy Surface" />
+      <ComponentSelector index="005" name="Patchy Wet Surface" />
+      <ComponentSelector index="006" name="Patchy Snowy Surface" />
+      <ComponentSelector index="007" name="Patchy Icy Surface" />
+      <ComponentSelector index="008" name="Patchy Sandy Surface" />
+      <ComponentSelector index="009" name="Patchy Dirty Surface" />
+      <ComponentSelector index="010" name="Volcanic Ash" />
+      <ComponentSelector index="011" name="Patchy Volcanic Ash" />
+    </ComponentSelector>
+    
+    <ComponentSelector kind="055" name="Skid Mark" expandable="yes">
+      <ComponentSelector index="001" name="Tire Mark" />
+    </ComponentSelector>
+  
+  </DatasetSelector>
+</DatasetSelectors>
+
