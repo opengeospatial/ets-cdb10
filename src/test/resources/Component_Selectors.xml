@@ -2,7 +2,9 @@
 <DatasetSelectors>
 <!-- This list of Component Selectors is used to validate file name components
      in a CDB database. This data is sourced from Volume 2 of the OGC CDB Core
-     Model and Physical Structure: Informative Annexes (OGC 16-005r3). -->
+     Model and Physical Structure: Informative Annexes (OGC 16-005r3).
+     This file is not part of any standard. It is an ad-hoc XML reference for 
+     the OGC CDB CITE suite. -->
    
   <!--  Selectors for CDB Model Textures (GT, GS, MM, T2D) -->
   <DatasetSelector>
@@ -395,5 +397,522 @@
     </ComponentSelector>
   
   </DatasetSelector>
+  
+  <!--  Table 5-2, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>400</Dataset>
+    </Datasets>
+    <ComponentSelector minimum="001" maximum="046" expandable="no">
+        <ComponentSelector index="002" />
+        <ComponentSelector minimum="101" maximum="126" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-9, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>500</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>510</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>506</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector minimum="001" maximum="999" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>503</Dataset>
+      <Dataset>508</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>504</Dataset>
+      <Dataset>509</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector minimum="001" maximum="255" name="Composite Material Index" />
+    </ComponentSelector>
+    <ComponentSelector kind="002" expandable="no">
+        <ComponentSelector minimum="001" maximum="254" name="Composite Material Mixture" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>505</Dataset>
+      <Dataset>513</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" name="Composite Material Table" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>512</Dataset>
+    </Datasets>
+    <ComponentSelector minimum="001" maximum="999" expandable="no">
+        <ComponentSelector minimum="001" maximum="016" name="RCS Signature" />
+        <ComponentSelector minimum="017" maximum="032" name="RCS Class Attributes" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-10, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>600</Dataset>
+    </Datasets>
+    <ComponentSelector minimum="001" maximum="999" expandable="no">
+        <ComponentSelector minimum="001" maximum="999" name="Geometry" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>603</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" name="Descriptor" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>604</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector minimum="001" maximum="255" name="Composite Material Index" />
+    </ComponentSelector>
+    <ComponentSelector kind="002" expandable="no">
+        <ComponentSelector minimum="001" maximum="254" name="Composite Material Mixture" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>605</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" name="Composite Material Table" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>606</Dataset>
+    </Datasets>
+    <ComponentSelector minimum="001" maximum="999" expandable="no">
+        <ComponentSelector minimum="001" maximum="016" name="RCS Signature" />
+        <ComponentSelector minimum="017" maximum="032" name="RCS Class Attributes" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-11, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>001</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" name="Primary Terrain Elevation" />
+        <ComponentSelector index="002" name="Primary Terrain Elevation Control" />
+        <ComponentSelector index="003" name="Primary Alternate Terrain Elevation" />
+    </ComponentSelector>
+    <ComponentSelector minimum="002" maximum="099" expandable="no">
+        <ComponentSelector index="001" name="Subordinate Terrain Elevation (Deprecated)" />
+        <ComponentSelector index="002" name="Subordinate Terrain Elevation Control (Deprecated)" />
+    </ComponentSelector>
+    <ComponentSelector kind="100" expandable="no">
+        <ComponentSelector index="001" name="Subordinate Bathymetry" />
+        <ComponentSelector index="002" name=Subordinate Alternate Bathymetry" />
+    </ComponentSelector>
+    <ComponentSelector kind="101" expandable="no">
+        <ComponentSelector index="001" name="Subordinate Tide Elevation" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>002</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" name="Minimum Elevation" />
+        <ComponentSelector index="002" name="Maximum Elevation" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>003</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" name="Primary Maximum Culture Elevation" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-15, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>004</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" name="Yearly VSTI Representation" />
+    </ComponentSelector>
+    <ComponentSelector kind="002" expandable="no">
+        <ComponentSelector minimum="001" maximum="004" name="Seasonal VSTI Repesentations (Deprecated)" />
+    </ComponentSelector>
+    <ComponentSelector kind="003" expandable="no">
+        <ComponentSelector minimum="001" maximum="012" name="Monthly VSTI Repesentations" />
+    </ComponentSelector>
+    <ComponentSelector kind="004" expandable="no">
+        <ComponentSelector minimum="001" maximum="004" name="Quarterly VSTI Repesentations" />
+    </ComponentSelector>
+    <ComponentSelector kind="005" expandable="no">
+        <ComponentSelector index="001" name="Subordinate VSTLM" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-17, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>005</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector minimum="001" maximum="255" name="Composite Material Index" />
+    </ComponentSelector>
+    <ComponentSelector kind="002" expandable="no">
+        <ComponentSelector minimum="001" maximum="254" name="Composite Material Mixture" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>006</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" name="Composite Material Table" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-28, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>401</Dataset>
+    </Datasets>
+    <ComponentSelector minimum="001" maximum="046" expandable="no">
+        <ComponentSelector index="001" name="Tiled Navigation Dataset" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-29, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>100</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" />
+        <ComponentSelector index="002" />
+        <ComponentSelector index="016" />
+        <ComponentSelector index="003" />
+        <ComponentSelector index="004" />
+        <ComponentSelector index="017" />
+        <ComponentSelector index="005" />
+        <ComponentSelector index="006" />
+        <ComponentSelector index="018" />
+    </ComponentSelector>
+    <ComponentSelector kind="002" expandable="no">
+        <ComponentSelector index="001" />
+        <ComponentSelector index="002" />
+        <ComponentSelector index="016" />
+        <ComponentSelector index="003" />
+        <ComponentSelector index="004" />
+        <ComponentSelector index="017" />
+        <ComponentSelector index="005" />
+        <ComponentSelector index="006" />
+        <ComponentSelector index="018" />
+    </ComponentSelector>
+    <ComponentSelector kind="003" expandable="no">
+        <ComponentSelector index="001" />
+        <ComponentSelector index="002" />
+        <ComponentSelector index="016" />
+    </ComponentSelector>
+    <ComponentSelector kind="004" expandable="no">
+        <ComponentSelector index="001" />
+        <ComponentSelector index="002" />
+        <ComponentSelector index="016" />
+        <ComponentSelector index="003" />
+        <ComponentSelector index="004" />
+        <ComponentSelector index="017" />
+        <ComponentSelector index="005" />
+        <ComponentSelector index="006" />
+        <ComponentSelector index="018" />
+    </ComponentSelector>
+    <ComponentSelector kind="005" expandable="no">
+        <ComponentSelector index="001" />
+        <ComponentSelector index="002" />
+        <ComponentSelector index="016" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-30, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>101</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" />
+        <ComponentSelector index="002" />
+        <ComponentSelector index="016" />
+        <ComponentSelector index="003" />
+        <ComponentSelector index="004" />
+        <ComponentSelector index="017" />
+        <ComponentSelector index="005" />
+        <ComponentSelector index="006" />
+        <ComponentSelector index="018" />
+    </ComponentSelector>
+    <ComponentSelector kind="002" expandable="no">
+        <ComponentSelector index="001" />
+        <ComponentSelector index="002" />
+        <ComponentSelector index="016" />
+        <ComponentSelector index="003" />
+        <ComponentSelector index="004" />
+        <ComponentSelector index="017" />
+        <ComponentSelector index="005" />
+        <ComponentSelector index="006" />
+        <ComponentSelector index="018" />
+    </ComponentSelector>
+    <ComponentSelector kind="003" expandable="no">
+        <ComponentSelector index="001" />
+        <ComponentSelector index="002" />
+        <ComponentSelector index="016" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-31, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>102</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" />
+        <ComponentSelector index="002" />
+        <ComponentSelector index="016" />
+        <ComponentSelector index="003" />
+        <ComponentSelector index="004" />
+        <ComponentSelector index="017" />
+        <ComponentSelector index="005" />
+        <ComponentSelector index="006" />
+        <ComponentSelector index="018" />
+    </ComponentSelector>
+    <ComponentSelector kind="002" expandable="no">
+        <ComponentSelector index="001" />
+        <ComponentSelector index="002" />
+        <ComponentSelector index="016" />
+        <ComponentSelector index="003" />
+        <ComponentSelector index="004" />
+        <ComponentSelector index="017" />
+        <ComponentSelector index="005" />
+        <ComponentSelector index="006" />
+        <ComponentSelector index="018" />
+    </ComponentSelector>
+    <ComponentSelector kind="003" expandable="no">
+        <ComponentSelector index="001" />
+        <ComponentSelector index="002" />
+        <ComponentSelector index="016" />
+        <ComponentSelector index="003" />
+        <ComponentSelector index="004" />
+        <ComponentSelector index="017" />
+        <ComponentSelector index="005" />
+        <ComponentSelector index="006" />
+        <ComponentSelector index="018" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-32, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>201</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="011" />
+        <ComponentSelector index="015" />
+    </ComponentSelector>
+    <ComponentSelector kind="002" expandable="no">
+        <ComponentSelector index="003" />
+        <ComponentSelector index="004" />
+        <ComponentSelector index="017" />
+        <ComponentSelector index="007" />
+        <ComponentSelector index="008" />
+        <ComponentSelector index="019" />
+    </ComponentSelector>
+    <ComponentSelector kind="003" expandable="no">
+        <ComponentSelector index="003" />
+        <ComponentSelector index="004" />
+        <ComponentSelector index="017" />
+        <ComponentSelector index="005" />
+        <ComponentSelector index="006" />
+        <ComponentSelector index="018" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-33, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>202</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="011" />
+        <ComponentSelector index="015" />
+    </ComponentSelector>
+    <ComponentSelector kind="002" expandable="no">
+        <ComponentSelector index="003" />
+        <ComponentSelector index="004" />
+        <ComponentSelector index="017" />
+        <ComponentSelector index="007" />
+        <ComponentSelector index="008" />
+        <ComponentSelector index="019" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-34, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>203</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="011" />
+        <ComponentSelector index="015" />
+    </ComponentSelector>
+    <ComponentSelector kind="002" expandable="no">
+        <ComponentSelector index="003" />
+        <ComponentSelector index="004" />
+        <ComponentSelector index="017" />
+        <ComponentSelector index="007" />
+        <ComponentSelector index="008" />
+        <ComponentSelector index="019" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-35, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>204</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="011" />
+        <ComponentSelector index="015" />
+    </ComponentSelector>
+    <ComponentSelector kind="002" expandable="no">
+        <ComponentSelector index="003" />
+        <ComponentSelector index="004" />
+        <ComponentSelector index="017" />
+        <ComponentSelector index="005" />
+        <ComponentSelector index="006" />
+        <ComponentSelector index="018" />
+        <ComponentSelector index="007" />
+        <ComponentSelector index="008" />
+        <ComponentSelector index="019" />
+        <ComponentSelector index="009" />
+        <ComponentSelector index="010" />
+        <ComponentSelector index="020" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-36, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>200</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-37, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>300</Dataset>
+      <Dataset>305</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" name="Geometry Archive" />
+        <ComponentSelector minimum="002" maximum="999" name="Individual Geometry" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>303</Dataset>
+      <Dataset>307</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" name="Descriptor" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>301</Dataset>
+      <Dataset>306</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" name="Texture Archive" />
+    </ComponentSelector>
+  </DatasetSelector> 
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>304</Dataset>
+      <Dataset>308</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector minimum="001" maximum="255" />
+    </ComponentSelector>
+    <ComponentSelector kind="002" expandable="no">
+        <ComponentSelector minimum="001" maximum="254" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>309</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
+  <!-- Table 5-38, Volume 1 -->
+  <DatasetSelector>
+    <Datasets>
+      <Dataset>310</Dataset>
+    </Datasets>
+    <ComponentSelector kind="001" expandable="no">
+        <ComponentSelector index="001" />
+    </ComponentSelector>
+  </DatasetSelector>
+  
 </DatasetSelectors>
 
