@@ -2,6 +2,7 @@ package org.opengis.cite.cdb10.cdbStructure;
 
 import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.SuiteAttribute;
+import org.opengis.cite.cdb10.util.metadataXml.ComponentSelectorsXml;
 import org.opengis.cite.cdb10.util.metadataXml.DISCountryCodesXml;
 import org.opengis.cite.cdb10.util.metadataXml.MovingModelCodesXml;
 import org.testng.Assert;
@@ -40,6 +41,30 @@ public class Capability1Tests extends CommonFixture {
 					"Conformance level 1 will not be checked as it is not included in ics");
 		}
 		super.obtainTestSubject(testContext);
+	}
+	
+	/**
+	 * Validate a first-level Component Selector based on a given Dataset.
+	 * @param cs1 String of Component Selector with leading zeros
+	 * @param Dataset String of Dataset ID with leading zeros
+	 */
+	protected void validateComponentSelector1(String cs1, String dataset, ArrayList<String> errors) {
+		ComponentSelectorsXml csDefs = new ComponentSelectorsXml("src/test/resources/Component_Selectors.xml");
+		
+		if (!csDefs.isValidComponentSelector1ForDataset(cs1, dataset)) {
+			errors.add(String.format("Invalid Component Selector 1 (%s) for Dataset (%s)", cs1, dataset));
+		}
+	}
+	
+	/**
+	 * Validate a second-level Component Selector based on the first-level
+	 * Component Selector and Dataset.
+	 * @param cs2 String of Component Selector 2 with leading zeros
+	 * @param cs1 String of Component Selector 1 with leading zeros
+	 * @param Dataset String of Dataset ID with leading zeros
+	 */
+	protected void validateComponentSelector2(String cs2, String cs1, String Dataset, ArrayList<String> errors) {
+		
 	}
 	
 	/**

@@ -18,7 +18,7 @@
         <Dataset>601</Dataset>
     </Datasets>
     <!-- Annex O: List of Texture Component Selectors -->
-    <ComponentSelector kind="002" name="Month"expandable="no">
+    <ComponentSelector kind="002" name="Month" expandable="no">
       <ComponentSelector index="001" name="January" />
       <ComponentSelector index="002" name="February" />
       <ComponentSelector index="003" name="March" />
@@ -546,7 +546,7 @@
     </ComponentSelector>
     <ComponentSelector kind="100" expandable="no">
         <ComponentSelector index="001" name="Subordinate Bathymetry" />
-        <ComponentSelector index="002" name=Subordinate Alternate Bathymetry" />
+        <ComponentSelector index="002" name="Subordinate Alternate Bathymetry" />
     </ComponentSelector>
     <ComponentSelector kind="101" expandable="no">
         <ComponentSelector index="001" name="Subordinate Tide Elevation" />
@@ -915,4 +915,3 @@
   </DatasetSelector>
   
 </DatasetSelectors>
-

@@ -69,6 +69,17 @@ public class VerifyGTModelInteriorTextureStructureTests extends StructureTestFix
 		// execute
 		this.testSuite.verifyModelInteriorTextureFile();
 	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyModelInteriorTextureFile_badCS1() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "507_GTModelInteriorTexture",
+				"A", "B", "AB_1",
+				"D507_S001_T001_L10_AC_1.rgb")));
+
+		// execute
+		this.testSuite.verifyModelInteriorTextureFile();
+	}
 
 	@Test(expected = AssertionError.class)
 	public void verifyModelInteriorTextureFile_badCS2Length() throws IOException {
@@ -97,7 +108,7 @@ public class VerifyGTModelInteriorTextureStructureTests extends StructureTestFix
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "507_GTModelInteriorTexture",
 				"A", "B", "AB_1",
-				"D507_S001_T001_L10_AB_1.rgb")));
+				"D507_S002_T001_L10_AB_1.rgb")));
 
 		// execute
 		this.testSuite.verifyModelInteriorTextureFile();

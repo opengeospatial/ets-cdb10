@@ -59,6 +59,7 @@ public class GTModelInteriorTextureStructureTests extends Capability1Tests {
 							} else {
 								validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
 								validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
+								validateComponentSelector1(match.group("cs1"), "507", errors);
 								validateTextureNameCode(match.group("tnam"), file, errors);
 								
 								if (!match.group("ext").equals("rgb")) {
