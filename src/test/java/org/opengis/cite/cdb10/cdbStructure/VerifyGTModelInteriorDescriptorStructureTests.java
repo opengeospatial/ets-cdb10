@@ -69,6 +69,17 @@ public class VerifyGTModelInteriorDescriptorStructureTests  extends StructureTes
 		// execute
 		this.testSuite.verifyInteriorDescriptorFile();
 	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyInteriorDescriptorFile_badCS1() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "508_GTModelInteriorDescriptor",
+				"A_Culture", "A_Extraction", "010_Mine",
+				"D508_S002_T001_12345_001_amodelname.xml")));
+
+		// execute
+		this.testSuite.verifyInteriorDescriptorFile();
+	}
 
 	@Test(expected = AssertionError.class)
 	public void verifyInteriorDescriptorFile_badCS2Length() throws IOException {
@@ -87,6 +98,17 @@ public class VerifyGTModelInteriorDescriptorStructureTests  extends StructureTes
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "508_GTModelInteriorDescriptor",
 				"A_Culture", "A_Extraction", "010_Mine",
 				"D508_S001_TABC_12345_001_amodelname.xml")));
+
+		// execute
+		this.testSuite.verifyInteriorDescriptorFile();
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyInteriorDescriptorFile_badCS2() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "508_GTModelInteriorDescriptor",
+				"A_Culture", "A_Extraction", "010_Mine",
+				"D508_S001_T002_12345_001_amodelname.xml")));
 
 		// execute
 		this.testSuite.verifyInteriorDescriptorFile();
