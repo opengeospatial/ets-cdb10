@@ -59,6 +59,17 @@ public class VerifyGTModelSignatureStructureTests  extends StructureTestFixture<
 		// execute
 		this.testSuite.verifyGeometrySignatureFile();
 	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyGeometrySignatureFile_badCS1() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "502_GTModelSignature",
+				"A_Culture", "A_Extraction", "010_Mine", "L10",
+				"D512_S000_T001_L10_12345_001_amodelname.flt")));
+
+		// execute
+		this.testSuite.verifyGeometrySignatureFile();
+	}
 
 	@Test(expected = AssertionError.class)
 	public void verifyGeometrySignatureFile_badCS2Length() throws IOException {
@@ -77,6 +88,17 @@ public class VerifyGTModelSignatureStructureTests  extends StructureTestFixture<
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "502_GTModelSignature",
 				"A_Culture", "A_Extraction", "010_Mine", "L10",
 				"D512_S001_TABC_L10_12345_001_amodelname.flt")));
+
+		// execute
+		this.testSuite.verifyGeometrySignatureFile();
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyGeometrySignatureFile_badCS2() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "502_GTModelSignature",
+				"A_Culture", "A_Extraction", "010_Mine", "L10",
+				"D512_S001_T033_L10_12345_001_amodelname.flt")));
 
 		// execute
 		this.testSuite.verifyGeometrySignatureFile();
