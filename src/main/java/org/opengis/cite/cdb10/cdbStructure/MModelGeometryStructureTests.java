@@ -11,8 +11,6 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.opengis.cite.cdb10.util.FilenamePatterns;
-import org.opengis.cite.cdb10.util.metadataXml.DISCountryCodesXml;
-import org.opengis.cite.cdb10.util.metadataXml.MovingModelCodesXml;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -232,8 +230,13 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 												+ filename);
 									}
 
-									validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
-									validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
+									String cs1 = match.group("cs1");
+									String cs2 = match.group("cs2");
+									
+									validateComponentSelectorFormat(cs1, 1, filename, errors);
+									validateComponentSelector1(cs1, "600", errors);
+									validateComponentSelectorFormat(cs2, 2, filename, errors);
+									validateComponentSelector2(cs2, cs1, "600", errors);
 								}
 							}
 						}
