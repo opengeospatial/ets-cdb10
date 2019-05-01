@@ -84,11 +84,14 @@ public class NavigationLibraryStructureTests extends Capability1Tests {
 				if (!match.group("dataset").equals("D400")) {
 					errors.add("Invalid dataset: " + filename);
 				}
-
-				validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
-				validateComponentSelector1(match.group("cs1"), "400", errors);
-				validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
-				validateComponentSelector2(match.group("cs2"), match.group("cs1"), "400", errors);
+				
+				String cs1 = match.group("cs1");
+				String cs2 = match.group("cs2");
+				
+				validateComponentSelectorFormat(cs1, 1, filename, errors);
+				validateComponentSelector1(cs1, "400", errors);
+				validateComponentSelectorFormat(cs2, 2, filename, errors);
+				validateComponentSelector2(cs2, cs1, "400", errors);
 			}
 		}
 
