@@ -182,13 +182,14 @@ public class MModelTextureStructureTests extends Capability1Tests {
 								errors.add("Invalid file extension for D605: " + filename);
 							}
 							
+							String datasetID = dataset.substring(1);
 							String cs1 = match.group("cs1");
 							String cs2 = match.group("cs2");
 							
 							validateComponentSelectorFormat(cs1, 1, filename, errors);
-							validateComponentSelector1(cs1, "601", errors);
+							validateComponentSelector1(cs1, datasetID, errors);
 							validateComponentSelectorFormat(cs2, 2, filename, errors);
-							validateComponentSelector2(cs2, cs1, "601", errors);
+							validateComponentSelector2(cs2, cs1, datasetID, errors);
 
 							validateTextureNameCode(match.group("tnam"), file, errors);
 
