@@ -9,7 +9,7 @@
   <!--  Selectors for CDB Model Textures (GT, GS, MM, T2D) -->
   <DatasetSelector>
     <Datasets>
-        <Dataset>5</Dataset>
+        <Dataset>005</Dataset>
         <Dataset>301</Dataset>
         <Dataset>306</Dataset>
         <Dataset>501</Dataset>
@@ -594,8 +594,10 @@
     </ComponentSelector>
   </DatasetSelector>
   
-  <!-- Table 5-17, Volume 1 -->
-  <DatasetSelector>
+  <!-- Table 5-17, Volume 1 
+       Ignored as 005 is covered in the first group in this file.
+  -->
+  <!-- <DatasetSelector>
     <Datasets>
       <Dataset>005</Dataset>
     </Datasets>
@@ -605,7 +607,7 @@
     <ComponentSelector kind="002" expandable="no">
         <ComponentSelector minimum="001" maximum="254" name="Composite Material Mixture" />
     </ComponentSelector>
-  </DatasetSelector>
+  </DatasetSelector> -->
   
   <DatasetSelector>
     <Datasets>
@@ -872,7 +874,7 @@
     </ComponentSelector>
   </DatasetSelector>
   
-  <DatasetSelector>
+  <!-- <DatasetSelector>
     <Datasets>
       <Dataset>301</Dataset>
       <Dataset>306</Dataset>
@@ -880,7 +882,7 @@
     <ComponentSelector kind="001" expandable="no">
         <ComponentSelector index="001" name="Texture Archive" />
     </ComponentSelector>
-  </DatasetSelector> 
+  </DatasetSelector> --> 
   
   <DatasetSelector>
     <Datasets>
