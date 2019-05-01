@@ -46,7 +46,8 @@ public class Capability1Tests extends CommonFixture {
 	/**
 	 * Validate a first-level Component Selector based on a given Dataset.
 	 * @param cs1 String of Component Selector with leading zeros
-	 * @param Dataset String of Dataset ID with leading zeros
+	 * @param dataset String of Dataset ID with leading zeros
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateComponentSelector1(String cs1, String dataset, ArrayList<String> errors) {
 		ComponentSelectorsXml csDefs = new ComponentSelectorsXml("src/test/resources/Component_Selectors.xml");
@@ -61,7 +62,8 @@ public class Capability1Tests extends CommonFixture {
 	 * Component Selector and Dataset.
 	 * @param cs2 String of Component Selector 2 with leading zeros
 	 * @param cs1 String of Component Selector 1 with leading zeros
-	 * @param Dataset String of Dataset ID with leading zeros
+	 * @param dataset String of Dataset ID with leading zeros
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateComponentSelector2(String cs2, String cs1, String dataset, ArrayList<String> errors) {
 		ComponentSelectorsXml csDefs = new ComponentSelectorsXml("src/test/resources/Component_Selectors.xml");
@@ -76,7 +78,7 @@ public class Capability1Tests extends CommonFixture {
 	 * @param cs The Component Selector substring
 	 * @param index Integer for "1" (CS1) or "2" (CS2)
 	 * @param filename The filename being tested, used for errors
-	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateComponentSelectorFormat(String cs, Integer index, String filename, ArrayList<String> errors) {
 		if (cs.length() != 3) {
@@ -102,7 +104,7 @@ public class Capability1Tests extends CommonFixture {
 	/**
 	 * Validate that a DIS Category directory is a valid format
 	 * @param file The Path to the DIS Country directory
-	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateDISCategory(Path file, ArrayList<String> errors) {
 		MovingModelCodesXml mmcDefs = new MovingModelCodesXml(SAMPLE_CDB_PATH);
@@ -138,7 +140,7 @@ public class Capability1Tests extends CommonFixture {
 	/**
 	 * Validate that a DIS Country directory is a valid format
 	 * @param file The Path to the DIS Country directory
-	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateDISCountry(Path file, ArrayList<String> errors) {
 		DISCountryCodesXml dccDefs = new DISCountryCodesXml(SAMPLE_CDB_PATH);
@@ -179,7 +181,7 @@ public class Capability1Tests extends CommonFixture {
 	/**
 	 * Validate that a DIS Domain directory is a valid format
 	 * @param file The Path to the DIS Domain directory
-	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateDISDomain(Path file, ArrayList<String> errors) {
 		MovingModelCodesXml mmcDefs = new MovingModelCodesXml(SAMPLE_CDB_PATH);
@@ -215,7 +217,7 @@ public class Capability1Tests extends CommonFixture {
 	/**
 	 * Validate that a DIS Entity Kind directory is a valid format
 	 * @param file The Path to the DIS Entity Kind directory
-	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateDISEntityKind(Path file, ArrayList<String> errors) {
 		MovingModelCodesXml mmcDefs = new MovingModelCodesXml(SAMPLE_CDB_PATH);
@@ -251,7 +253,7 @@ public class Capability1Tests extends CommonFixture {
 	/**
 	 * Validate that a DIS Entity directory is a valid format
 	 * @param file The Path to the DIS Entity directory
-	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateDISEntity(Path file, ArrayList<String> errors) {
 		Pattern entityPattern = Pattern.compile("^(?<kind>\\d+)_(?<domain>\\d+)_(?<country>\\d+)_(?<category>\\d+)_(\\d+)_(\\d+)_(\\d+)$");
@@ -291,7 +293,7 @@ public class Capability1Tests extends CommonFixture {
 	 * Validate that the Feature Code is a valid format
 	 * @param featureCode The Feature Code substring
 	 * @param file The Path to the file being tested, used for errors
-	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateFeatureCode(String featureCode, Path file, ArrayList<String> errors) {
 		if (featureCode.length() != 5) {
@@ -304,7 +306,7 @@ public class Capability1Tests extends CommonFixture {
 	 * Validate that the Feature Sub Code is a valid format
 	 * @param featureSubCode The Feature Sub Code substring
 	 * @param file The path to the file being tested, used for errors
-	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateFeatureSubCode(String featureSubCode, Path file, ArrayList<String> errors) {
 		String filename = file.getFileName().toString();
@@ -331,7 +333,7 @@ public class Capability1Tests extends CommonFixture {
 	/**
 	 * Validate that an LOD directory is a valid format
 	 * @param file The Path to the LOD directory
-	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateLOD(Path file, ArrayList<String> errors) {
 		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
@@ -346,7 +348,7 @@ public class Capability1Tests extends CommonFixture {
 	 * Validate that the Model Name substring is a valid format
 	 * @param modelName The Model Name substring
 	 * @param file The path to the file being tested
-	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateModelName(String modelName, Path file, ArrayList<String> errors) {
 		String filename = file.getFileName().toString();
@@ -360,7 +362,7 @@ public class Capability1Tests extends CommonFixture {
 	 * of the parent directory for that file.
 	 * @param textureName The texture name code substring of the file name
 	 * @param file The Path to the file being tested, used for errors
-	 * @param errors ArrayList<String> of errors, will be modified in-place
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateTextureNameCode(String textureName, Path file, ArrayList<String> errors) {
 		String parentTextureFilename = file.getParent().getFileName().toString();
