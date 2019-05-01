@@ -5,9 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.Test;
-import org.opengis.cite.cdb10.TestFixture;
 
 public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructureTests> {
 
@@ -514,7 +512,7 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	}
 
 	@Test(expected = AssertionError.class)
-	public void verifyDatasetFileName_BadCS1Code() throws IOException {
+	public void verifyDatasetFileName_BadCS1Format() throws IOException {
 		// setup
 		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
 				"001_Elevation", "L02", "U3")));
@@ -523,13 +521,35 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 		// execute
 		this.testSuite.verifyDatasetFileName();
 	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_BadCS1() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S102_T001_L02_U3_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
 
 	@Test(expected = AssertionError.class)
-	public void verifyDatasetFileName_BadCS2Code() throws IOException {
+	public void verifyDatasetFileName_BadCS2Format() throws IOException {
 		// setup
 		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
 				"001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T1_L02_U3_R0.tif")));
+
+		// execute
+		this.testSuite.verifyDatasetFileName();
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyDatasetFileName_BadCS2() throws IOException {
+		// setup
+		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
+				"001_Elevation", "L02", "U3")));
+		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T004_L02_U3_R0.tif")));
 
 		// execute
 		this.testSuite.verifyDatasetFileName();

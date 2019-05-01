@@ -517,8 +517,14 @@ public class TilesStructureTests extends Capability1Tests {
 										errors.add("RREF out of bounds for LOD: " + filename);
 									}
 									
-									validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
-									validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
+									String datasetID = datasetFilename.split("_")[0];
+									String cs1 = match.group("cs1");
+									String cs2 = match.group("cs2");
+									
+									validateComponentSelectorFormat(cs1, 1, filename, errors);
+									validateComponentSelector1(cs1, datasetID, errors);
+									validateComponentSelectorFormat(cs2, 2, filename, errors);
+									validateComponentSelector2(cs2, cs1, datasetID, errors);
 
 								}
 							}
