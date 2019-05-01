@@ -31,7 +31,7 @@ public class VerifyGTModelCMTStructureTests extends StructureTestFixture<GTModel
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "505_GTModelCMT",
 				"A", "B", "AB_1",
-				"D211_S001_T001_AC_1.xml")));
+				"D211_S001_T001_AB_1.xml")));
 
 		// execute
 		this.testSuite.verifyCMTFile();
@@ -42,7 +42,7 @@ public class VerifyGTModelCMTStructureTests extends StructureTestFixture<GTModel
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "505_GTModelCMT",
 				"A", "B", "AB_1",
-				"D505_S001_T001_AC_1.txt")));
+				"D505_S001_T001_AB_1.txt")));
 
 		// execute
 		this.testSuite.verifyCMTFile();
@@ -53,7 +53,7 @@ public class VerifyGTModelCMTStructureTests extends StructureTestFixture<GTModel
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "505_GTModelCMT",
 				"A", "B", "AB_1",
-				"D505_S1_T001_AC_1.xml")));
+				"D505_S1_T001_AB_1.xml")));
 
 		// execute
 		this.testSuite.verifyCMTFile();
@@ -64,7 +64,18 @@ public class VerifyGTModelCMTStructureTests extends StructureTestFixture<GTModel
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "505_GTModelCMT",
 				"A", "B", "AB_1",
-				"D505_SABC_T001_AC_1.xml")));
+				"D505_SABC_T001_AB_1.xml")));
+
+		// execute
+		this.testSuite.verifyCMTFile();
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyCMTFile_badCS1() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "505_GTModelCMT",
+				"A", "B", "AB_1",
+				"D505_S002_T001_AB_1.xml")));
 
 		// execute
 		this.testSuite.verifyCMTFile();
@@ -75,7 +86,7 @@ public class VerifyGTModelCMTStructureTests extends StructureTestFixture<GTModel
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "505_GTModelCMT",
 				"A", "B", "AB_1",
-				"D505_S001_T1_AC_1.xml")));
+				"D505_S001_T1_AB_1.xml")));
 
 		// execute
 		this.testSuite.verifyCMTFile();
@@ -86,7 +97,18 @@ public class VerifyGTModelCMTStructureTests extends StructureTestFixture<GTModel
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "505_GTModelCMT",
 				"A", "B", "AB_1",
-				"D505_S001_TABC_AC_1.xml")));
+				"D505_S001_TABC_AB_1.xml")));
+
+		// execute
+		this.testSuite.verifyCMTFile();
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyCMTFile_badCS2() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "505_GTModelCMT",
+				"A", "B", "AB_1",
+				"D505_S001_T002_AB_1.xml")));
 
 		// execute
 		this.testSuite.verifyCMTFile();
