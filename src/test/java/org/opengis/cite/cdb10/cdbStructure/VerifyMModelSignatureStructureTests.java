@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import org.junit.Test;
-import org.opengis.cite.cdb10.TestFixture;
 
 public class VerifyMModelSignatureStructureTests extends StructureTestFixture<MModelSignatureStructureTests> {
 
@@ -392,6 +391,17 @@ public class VerifyMModelSignatureStructureTests extends StructureTestFixture<MM
 		// execute
 		this.testSuite.verifyFile();
 	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS1() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
+				"D606_S000_T001_LC_0_0_0_0_0_0_0.shp")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
 
 	@Test(expected = AssertionError.class)
 	public void verifyFile_badCS2Length() throws IOException {
@@ -410,6 +420,17 @@ public class VerifyMModelSignatureStructureTests extends StructureTestFixture<MM
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
 				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
 				"D606_S001_TABC_LC_0_0_0_0_0_0_0.shp")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS2() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
+				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
+				"D606_S001_T033_LC_0_0_0_0_0_0_0.shp")));
 
 		// execute
 		this.testSuite.verifyFile();
