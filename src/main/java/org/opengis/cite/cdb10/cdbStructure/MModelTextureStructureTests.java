@@ -181,10 +181,16 @@ public class MModelTextureStructureTests extends Capability1Tests {
 							if (dataset.equals("D605") && !match.group("ext").equals("xml")) {
 								errors.add("Invalid file extension for D605: " + filename);
 							}
+							
+							String cs1 = match.group("cs1");
+							String cs2 = match.group("cs2");
+							
+							validateComponentSelectorFormat(cs1, 1, filename, errors);
+							validateComponentSelector1(cs1, "601", errors);
+							validateComponentSelectorFormat(cs2, 2, filename, errors);
+							validateComponentSelector2(cs2, cs1, "601", errors);
 
 							validateTextureNameCode(match.group("tnam"), file, errors);
-							validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
-							validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
 
 						}
 					}
