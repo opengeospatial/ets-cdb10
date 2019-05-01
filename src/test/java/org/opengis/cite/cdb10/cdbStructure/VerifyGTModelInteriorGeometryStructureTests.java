@@ -69,6 +69,17 @@ public class VerifyGTModelInteriorGeometryStructureTests extends StructureTestFi
 		// execute
 		this.testSuite.verifyInteriorGeometryFile();
 	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyInteriorGeometryFile_badCS1() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "506_GTModelInteriorGeometry",
+				"A_Culture", "A_Extraction", "010_Mine", "L20",
+				"D506_S002_T001_L20_12345_001_amodelname.flt")));
+
+		// execute
+		this.testSuite.verifyInteriorGeometryFile();
+	}
 
 	@Test(expected = AssertionError.class)
 	public void verifyInteriorGeometryFile_badCS2Length() throws IOException {
@@ -87,6 +98,17 @@ public class VerifyGTModelInteriorGeometryStructureTests extends StructureTestFi
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "506_GTModelInteriorGeometry",
 				"A_Culture", "A_Extraction", "010_Mine", "L20",
 				"D506_S001_TABC_L20_12345_001_amodelname.flt")));
+
+		// execute
+		this.testSuite.verifyInteriorGeometryFile();
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyInteriorGeometryFile_badCS2() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "506_GTModelInteriorGeometry",
+				"A_Culture", "A_Extraction", "010_Mine", "L20",
+				"D506_S001_T000_L20_12345_001_amodelname.flt")));
 
 		// execute
 		this.testSuite.verifyInteriorGeometryFile();
