@@ -57,10 +57,13 @@ public class GTModelInteriorTextureStructureTests extends Capability1Tests {
 							if (!match.find()) {
 								errors.add("Invalid file name: " + filename);
 							} else {
-								validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
-								validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
-								validateComponentSelector1(match.group("cs1"), "507", errors);
-								validateComponentSelector2(match.group("cs2"), match.group("cs1"), "507", errors);
+								String cs1 = match.group("cs1");
+								String cs2 = match.group("cs2");
+								
+								validateComponentSelectorFormat(cs1, 1, filename, errors);
+								validateComponentSelectorFormat(cs2, 2, filename, errors);
+								validateComponentSelector1(cs1, "507", errors);
+								validateComponentSelector2(cs2, cs1, "507", errors);
 								validateTextureNameCode(match.group("tnam"), file, errors);
 								
 								if (!match.group("ext").equals("rgb")) {
