@@ -69,6 +69,17 @@ public class VerifyGTModelDescriptorStructureTests extends StructureTestFixture<
 		// execute
 		this.testSuite.verifyDescriptorFile();
 	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyDescriptorFile_badCS1() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "503_GTModelDescriptor",
+				"A_Culture", "A_Extraction", "010_Mine",
+				"D503_S002_T001_12345_001_amodelname.xml")));
+
+		// execute
+		this.testSuite.verifyDescriptorFile();
+	}
 
 	@Test(expected = AssertionError.class)
 	public void verifyDescriptorFile_badCS2Length() throws IOException {
@@ -87,6 +98,17 @@ public class VerifyGTModelDescriptorStructureTests extends StructureTestFixture<
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "503_GTModelDescriptor",
 				"A_Culture", "A_Extraction", "010_Mine",
 				"D503_S001_TABC_12345_001_amodelname.xml")));
+
+		// execute
+		this.testSuite.verifyDescriptorFile();
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyDescriptorFile_badCS2() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "503_GTModelDescriptor",
+				"A_Culture", "A_Extraction", "010_Mine",
+				"D503_S001_T002_12345_001_amodelname.xml")));
 
 		// execute
 		this.testSuite.verifyDescriptorFile();
