@@ -1,6 +1,30 @@
 
 # Release Notes
 
+## Version 0.4 (2019-05-01)
+
+- Fix javadoc error under JDK 12
+- Update Maven plugins to support JDK 12
+- Move documentation to site documentation instead of root of repository
+- Add documentation on self testing and JDK support
+- Fix typo on 400 dataset
+- Update sample CDB used to test TestNG methods
+- Allow for other files in datasets aside from primary dataset
+- Fix false error on LOD directories in 502 dataset
+- Fix false errors on filenames with variable number of underscores
+- Replace sample CDB Metadata with OGC CDB 1.0 metadata (replaces CDB 3.2 metadata)
+- Use embedded Datasets.xml file instead of metadata from CDB under test
+- Reorganize XML utility classes
+- Fix false errors on Version.xml metadata
+- Update test fixtures with new OGC CDB 1.0 metadata
+- Remove unused HTTP client code (part of default ETS)
+- Extract validation methods for structure tests into re-usable classes
+- Move all filename regular expressions to single class
+- Partially support OGC CDB 1.1 for version tests
+- Support extended datasets (9xx)
+- Add reference XML for Component Selectors
+- Add tests to validate Component Selectors against datasets
+
 ## Version 0.3 (2019-01-09)
 
 - Only test directories that exist in CDB under test
