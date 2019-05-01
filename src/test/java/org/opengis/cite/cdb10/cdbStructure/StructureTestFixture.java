@@ -13,7 +13,7 @@ public class StructureTestFixture<T extends CommonFixture> extends TestFixture<T
 
 	/**
 	 * Import sample Metadata that can be used by the suite as sources for lookups.
-	 * @throws IOException
+	 * @throws IOException Could not load metadata from filesystem
 	 */
 	@Before
 	public void loadMetadata() throws IOException {

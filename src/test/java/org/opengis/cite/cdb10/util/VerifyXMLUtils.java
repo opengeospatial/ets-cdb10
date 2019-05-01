@@ -1,8 +1,8 @@
 package org.opengis.cite.cdb10.util;
 
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import junit.framework.Assert;
+
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -11,10 +11,6 @@ import org.junit.Test;
  */
 public class VerifyXMLUtils {
 
-    private static final String ATOM_NS = "http://www.w3.org/2005/Atom";
-    private static final String EX_NS = "http://example.org/ns1";
-    private static DocumentBuilder docBuilder;
-
     public VerifyXMLUtils() {
     }
 
@@ -22,7 +18,7 @@ public class VerifyXMLUtils {
     public static void setUpClass() throws Exception {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setNamespaceAware(true);
-        docBuilder = dbf.newDocumentBuilder();
+        dbf.newDocumentBuilder();
     }
 
     @Test

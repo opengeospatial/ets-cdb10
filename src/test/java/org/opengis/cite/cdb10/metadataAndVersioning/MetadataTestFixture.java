@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 
 /**
  * Created by serene on 2016-09-06.
+ * @param <T> Fixture class
  */
 public class MetadataTestFixture<T extends CommonFixture> extends TestFixture<T> {
 

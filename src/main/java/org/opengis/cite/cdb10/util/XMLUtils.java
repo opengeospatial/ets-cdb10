@@ -417,6 +417,8 @@ public class XMLUtils {
      *              Schema file to validate against
      *
      * @return A error handler of errors after schema validation.
+     * @throws SAXException Could not parse
+     * @throws IOException Could not read file
      */
     public static SchemaValidatorErrorHandler validateXmlFileIsValid(File xmlFile, File xsdFile) throws SAXException, IOException {
         SchemaValidatorErrorHandler errorHandler = new SchemaValidatorErrorHandler();
