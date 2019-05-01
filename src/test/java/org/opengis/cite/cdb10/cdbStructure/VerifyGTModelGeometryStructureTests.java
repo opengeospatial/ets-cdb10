@@ -212,6 +212,17 @@ public class VerifyGTModelGeometryStructureTests extends StructureTestFixture<GT
 		// execute
 		this.testSuite.verifyGeometryLoDFile();
 	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyGeometryLoDFile_badCS1() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "510_GTModelGeometry",
+				"A_Culture", "A_Extraction", "010_Mine", "L10",
+				"D510_S002_T001_L10_12345_001_amodelname.flt")));
+
+		// execute
+		this.testSuite.verifyGeometryLoDFile();
+	}
 
 	@Test(expected = AssertionError.class)
 	public void verifyGeometryLoDFile_badCS2Length() throws IOException {
@@ -230,6 +241,17 @@ public class VerifyGTModelGeometryStructureTests extends StructureTestFixture<GT
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "510_GTModelGeometry",
 				"A_Culture", "A_Extraction", "010_Mine", "L10",
 				"D510_S001_TABC_L10_12345_001_amodelname.flt")));
+
+		// execute
+		this.testSuite.verifyGeometryLoDFile();
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyGeometryLoDFile_badCS2() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "510_GTModelGeometry",
+				"A_Culture", "A_Extraction", "010_Mine", "L10",
+				"D510_S001_T002_L10_12345_001_amodelname.flt")));
 
 		// execute
 		this.testSuite.verifyGeometryLoDFile();
