@@ -25,7 +25,7 @@ public class ComponentSelectorsXml {
 	 */
 	public boolean isValidComponentSelector1ForDataset(String cs1, String dataset) {
 		String datasetPath = String.format("/DatasetSelectors/DatasetSelector/Datasets/Dataset[text()='%s']/../..", dataset);
-		String csAttrPath = String.format("ComponentSelector[@kind='%s']", cs1);
+		String csAttrPath = String.format("ComponentSelector[@kind='%s'] | ComponentSelector[@minimum <= '%s' and @maximum >= '%s']", cs1, cs1, cs1);
 		NodeList selector = XMLUtils.getNodeList(datasetPath, this.xmlFile.toPath());
 		
 		// Check if Dataset is not located in reference
