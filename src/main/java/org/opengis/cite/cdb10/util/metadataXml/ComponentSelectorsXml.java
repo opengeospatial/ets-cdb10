@@ -6,7 +6,6 @@ import java.nio.file.Paths;
 import javax.xml.xpath.XPathExpressionException;
 
 import org.opengis.cite.cdb10.util.XMLUtils;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class ComponentSelectorsXml {
@@ -64,7 +63,15 @@ public class ComponentSelectorsXml {
 			return false;
 		}
 		
-		String cs2Path = String.format("ComponentSelector[@kind='%s']/ComponentSelector[@index='%s']", cs1, cs2);
+		// Select all possible combinations of exact and range values for
+		// component selectors.
+		String cs2Path = String.format(
+				"ComponentSelector[@kind='%s']/ComponentSelector[@index='%s'] | " +
+				"ComponentSelector[@minimum <= '%s' and @maximum >= '%s']/ComponentSelector[@index='%s'] | " +
+				"ComponentSelector[@kind='%s']/ComponentSelector[@minimum <= '%s' and @maximum >= '%s'] | " +
+				"ComponentSelector[@minimum <= '%s' and @maximum >= '%s']/ComponentSelector[@minimum <= '%s' and @maximum >= '%s']",
+				cs1, cs2, cs1, cs1, cs2, cs1, cs2, cs2, cs1, cs1, cs2, cs2
+				);
 		NodeList cs2Nodes = null;
 		try {
 			cs2Nodes = XMLUtils.evaluateXPath(selector.item(0), cs2Path, null);

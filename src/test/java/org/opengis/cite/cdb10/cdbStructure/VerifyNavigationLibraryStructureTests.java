@@ -70,6 +70,16 @@ public class VerifyNavigationLibraryStructureTests extends StructureTestFixture<
 		// execute
 		this.testSuite.verifyFile();
 	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS1() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavData",
+				"D400_S050_T002.dbf")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
 
 	@Test(expected = AssertionError.class)
 	public void verifyFile_badCS2Length() throws IOException {
@@ -90,12 +100,32 @@ public class VerifyNavigationLibraryStructureTests extends StructureTestFixture<
 		// execute
 		this.testSuite.verifyFile();
 	}
+	
+	@Test(expected = AssertionError.class)
+	public void verifyFile_badCS2() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavData",
+				"D400_S001_T001.dbf")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
 
 	@Test
 	public void verifyFile_Good() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavData",
 				"D400_S001_T002.dbf")));
+
+		// execute
+		this.testSuite.verifyFile();
+	}
+	
+	@Test
+	public void verifyFile_GoodCS2() throws IOException {
+		// setup
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Navigation", "400_NavData",
+				"D400_S001_T102.dbf")));
 
 		// execute
 		this.testSuite.verifyFile();

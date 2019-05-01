@@ -86,7 +86,9 @@ public class NavigationLibraryStructureTests extends Capability1Tests {
 				}
 
 				validateComponentSelectorFormat(match.group("cs1"), 1, filename, errors);
+				validateComponentSelector1(match.group("cs1"), "400", errors);
 				validateComponentSelectorFormat(match.group("cs2"), 2, filename, errors);
+				validateComponentSelector2(match.group("cs2"), match.group("cs1"), "400", errors);
 			}
 		}
 
