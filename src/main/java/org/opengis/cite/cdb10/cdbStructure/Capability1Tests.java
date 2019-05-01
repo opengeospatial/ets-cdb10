@@ -63,8 +63,12 @@ public class Capability1Tests extends CommonFixture {
 	 * @param cs1 String of Component Selector 1 with leading zeros
 	 * @param Dataset String of Dataset ID with leading zeros
 	 */
-	protected void validateComponentSelector2(String cs2, String cs1, String Dataset, ArrayList<String> errors) {
+	protected void validateComponentSelector2(String cs2, String cs1, String dataset, ArrayList<String> errors) {
+		ComponentSelectorsXml csDefs = new ComponentSelectorsXml("src/test/resources/Component_Selectors.xml");
 		
+		if (!csDefs.isValidComponentSelector2ForDataset(cs2, cs1, dataset)) {
+			errors.add(String.format("Invalid Component Selector 2 (%s) for CS1 (%s) and Dataset (%s)", cs2, cs1, dataset));
+		}
 	}
 	
 	/**
