@@ -25,7 +25,7 @@ public class ComponentSelectorsXml {
 	 */
 	public boolean isValidComponentSelector1ForDataset(String cs1, String dataset) {
 		String datasetPath = String.format("/DatasetSelectors/DatasetSelector/Datasets/Dataset[text()='%s']/../..", dataset);
-		String csAttrPath = String.format("self::node()[@kind='%s']", cs1);
+		String csAttrPath = String.format("ComponentSelector[@kind='%s']", cs1);
 		NodeList selector = XMLUtils.getNodeList(datasetPath, this.xmlFile.toPath());
 		
 		// Check if Dataset is not located in reference
@@ -35,25 +35,15 @@ public class ComponentSelectorsXml {
 		
 		NodeList csNodes = null;
 		try {
-			csNodes = XMLUtils.evaluateXPath(selector.item(0), "ComponentSelector", null);
+			csNodes = XMLUtils.evaluateXPath(selector.item(0), csAttrPath, null);
 		} catch (XPathExpressionException e) {
 			return false;
 		}
 		
-		for (int i = 0; i < csNodes.getLength(); i++) {
-			Node item = csNodes.item(i);
-			NodeList matchingKinds;
-			try {
-				matchingKinds = XMLUtils.evaluateXPath(item, csAttrPath, null);
-			} catch (XPathExpressionException e) {
-				return false;
-			}
-			
-			if (matchingKinds.getLength() > 0) {
-				return true;
-			}
+		if (csNodes.getLength() > 0) {
+			return true;
 		}
-
+	
 		return false;
 	}
 
