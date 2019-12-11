@@ -8,6 +8,8 @@
    
   <!--  Selectors for CDB Model Textures (GT, GS, MM, T2D) -->
   <DatasetSelector>
+    <!--  List of Datasets in this "group" that share the same set of Component
+          Selectors -->
     <Datasets>
         <Dataset>005</Dataset>
         <Dataset>301</Dataset>
@@ -19,6 +21,10 @@
         <Dataset>601</Dataset>
     </Datasets>
     <!-- Annex O: List of Texture Component Selectors -->
+    <!--  List of Component Selector 1 (CS1) for the datasets in this group.
+          "expandable" is if the set of Component Selectors 2 (CS2) is not 
+          fixed and an arbitrary number of values may be added beyond what is
+          listed below. -->
     <ComponentSelector kind="002" name="Month" expandable="no">
       <ComponentSelector index="001" name="January" />
       <ComponentSelector index="002" name="February" />
@@ -875,7 +881,8 @@
     </ComponentSelector>
   </DatasetSelector>
   
-  <!-- <DatasetSelector>
+  <!-- These selectors are a duplicate listing.
+  <DatasetSelector>
     <Datasets>
       <Dataset>301</Dataset>
       <Dataset>306</Dataset>
@@ -883,7 +890,7 @@
     <ComponentSelector kind="001" expandable="no">
         <ComponentSelector index="001" name="Texture Archive" />
     </ComponentSelector>
-  </DatasetSelector> --> 
+  </DatasetSelector> -->
   
   <DatasetSelector>
     <Datasets>
