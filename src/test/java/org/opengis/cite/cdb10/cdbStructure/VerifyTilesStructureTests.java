@@ -421,7 +421,7 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	public void verifyUREFName_TooLarge() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
-				"LC", "U8")));
+				"L00", "U8")));
 
 		// execute
 		this.testSuite.verifyUREFName();
@@ -431,7 +431,7 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	public void verifyUREFName_OutOfBounds() throws IOException {
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
-				"LC", "U-8")));
+				"L00", "U-8")));
 
 		// execute
 		this.testSuite.verifyUREFName();
@@ -669,8 +669,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	public void verifyDatasetFileName_Good() throws IOException {
 		// setup
 		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
-		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_L02_U3_R0.tif")));
+				"001_Elevation", "LC", "U0")));
+		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_LC01_U0_R0.tif")));
 
 		// execute
 		this.testSuite.verifyDatasetFileName();

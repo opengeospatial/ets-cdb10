@@ -408,9 +408,7 @@ public class TilesStructureTests extends Capability1Tests {
 					for (Path lod : lods) {
 						String lodFilename = lod.getFileName().toString();
 						Integer lodLevel = null;
-						if (lodFilename.equals("LC")) {
-							lodLevel = 0;
-						} else {
+						if (!lodFilename.equals("LC")) {
 							lodLevel = Integer.parseInt(lodFilename.substring(1, lodFilename.length()));
 						}
 
@@ -424,7 +422,9 @@ public class TilesStructureTests extends Capability1Tests {
 							} else {
 								Integer urefValue = Integer.parseInt(filename.substring(1, filename.length()));
 
-								if ((urefValue < 0) || (urefValue > (Math.pow(2, lodLevel) - 1))) {
+								// Negative LODs cannot be calculated here as we
+								// only know that the LOD is < 0
+								if ((lodLevel != null) && ((urefValue < 0) || (urefValue > (Math.pow(2, lodLevel) - 1)))) {
 									errors.add("UREF value out of bounds: " + filename);
 								}
 							}
@@ -481,7 +481,7 @@ public class TilesStructureTests extends Capability1Tests {
 								String filename = datasetFile.getFileName().toString();
 								Matcher match = filePattern.matcher(filename);
 								if (!match.find()) {
-									errors.add("Invalid dataset file name: " + filename);
+									errors.add("Invalid dataset file name: " + filename + " according to test pattern.");
 								} else {
 									if (!match.group("lat").equals(latFilename)) {
 										errors.add("Latitude geocell prefix does not match parent directory: "
@@ -498,7 +498,8 @@ public class TilesStructureTests extends Capability1Tests {
 												+ filename);
 									}
 
-									if (!match.group("lod").equals(lodFilename)) {
+									if ((match.group("lod").startsWith("LC") && !lodFilename.equals("LC")) ||
+										(!match.group("lod").startsWith("LC") && !match.group("lod").equals(lodFilename))) {
 										errors.add("LOD does not match parent directory: " + filename);
 									}
 
@@ -506,17 +507,15 @@ public class TilesStructureTests extends Capability1Tests {
 										errors.add("UREF does not match parent directory: " + filename);
 									}
 
-									Integer lodLevel = null;
-									if (lodFilename.equals("LC")) {
-										lodLevel = 0;
-									} else {
-										lodLevel = Integer.parseInt(lodFilename.substring(1, lodFilename.length()));
+									// Only check RREF bounds for positive LODs
+									if (!lodFilename.equals("LC")) {
+										Integer lodLevel = Integer.parseInt(lodFilename.substring(1, lodFilename.length()));
+										
+										if (Integer.parseInt(match.group("rref")) > (Math.pow(2, lodLevel) - 1)) {
+											errors.add("RREF out of bounds for LOD: " + filename);
+										}
 									}
 
-									if (Integer.parseInt(match.group("rref")) > (Math.pow(2, lodLevel) - 1)) {
-										errors.add("RREF out of bounds for LOD: " + filename);
-									}
-									
 									String datasetID = datasetFilename.split("_")[0];
 									String cs1 = match.group("cs1");
 									String cs2 = match.group("cs2");

@@ -353,7 +353,7 @@ public class VerifyMModelSignatureStructureTests extends StructureTestFixture<MM
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
 				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
-				"D600_S001_T001_LC_0_0_0_0_0_0_0.shp")));
+				"D600_S001_T001_LC10_0_0_0_0_0_0_0.shp")));
 
 		// execute
 		this.testSuite.verifyFile();
@@ -364,7 +364,7 @@ public class VerifyMModelSignatureStructureTests extends StructureTestFixture<MM
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
 				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
-				"D606_S001_T001_LC_1_1_0_0_0_0_0.shp")));
+				"D606_S001_T001_LC10_1_1_0_0_0_0_0.shp")));
 
 		// execute
 		this.testSuite.verifyFile();
@@ -375,7 +375,7 @@ public class VerifyMModelSignatureStructureTests extends StructureTestFixture<MM
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
 				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
-				"D606_S1_T001_LC_0_0_0_0_0_0_0.shp")));
+				"D606_S1_T001_LC10_0_0_0_0_0_0_0.shp")));
 
 		// execute
 		this.testSuite.verifyFile();
@@ -386,7 +386,7 @@ public class VerifyMModelSignatureStructureTests extends StructureTestFixture<MM
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
 				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
-				"D606_SABC_T001_LC_0_0_0_0_0_0_0.shp")));
+				"D606_SABC_T001_LC10_0_0_0_0_0_0_0.shp")));
 
 		// execute
 		this.testSuite.verifyFile();
@@ -397,7 +397,7 @@ public class VerifyMModelSignatureStructureTests extends StructureTestFixture<MM
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
 				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
-				"D606_S000_T001_LC_0_0_0_0_0_0_0.shp")));
+				"D606_S000_T001_LC10_0_0_0_0_0_0_0.shp")));
 
 		// execute
 		this.testSuite.verifyFile();
@@ -408,7 +408,7 @@ public class VerifyMModelSignatureStructureTests extends StructureTestFixture<MM
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
 				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
-				"D606_S001_T1_LC_0_0_0_0_0_0_0.shp")));
+				"D606_S001_T1_LC10_0_0_0_0_0_0_0.shp")));
 
 		// execute
 		this.testSuite.verifyFile();
@@ -419,7 +419,7 @@ public class VerifyMModelSignatureStructureTests extends StructureTestFixture<MM
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
 				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
-				"D606_S001_TABC_LC_0_0_0_0_0_0_0.shp")));
+				"D606_S001_TABC_LC10_0_0_0_0_0_0_0.shp")));
 
 		// execute
 		this.testSuite.verifyFile();
@@ -430,7 +430,7 @@ public class VerifyMModelSignatureStructureTests extends StructureTestFixture<MM
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
 				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
-				"D606_S001_T033_LC_0_0_0_0_0_0_0.shp")));
+				"D606_S001_T033_LC10_0_0_0_0_0_0_0.shp")));
 
 		// execute
 		this.testSuite.verifyFile();
@@ -441,7 +441,7 @@ public class VerifyMModelSignatureStructureTests extends StructureTestFixture<MM
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "606_MModelSignature",
 				"1_Platform", "0_Other", "0_Other", "0_Other", "0_0_0_0_0_0_0", "LC",
-				"D606_S001_T001_LC_0_0_0_0_0_0_0.shp")));
+				"D606_S001_T001_LC10_0_0_0_0_0_0_0.shp")));
 
 		// execute
 		this.testSuite.verifyFile();
