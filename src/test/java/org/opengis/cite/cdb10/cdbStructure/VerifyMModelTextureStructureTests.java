@@ -219,16 +219,6 @@ public class VerifyMModelTextureStructureTests extends StructureTestFixture<MMod
 		// execute
 		this.testSuite.verifyFile();
 	}
-	
-	@Test(expected = AssertionError.class)
-	public void verifyFile_badCS1() throws IOException {
-		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
-				"A", "B", "AB", "D601_S001_T001_W10_AB.rgb")));
-
-		// execute
-		this.testSuite.verifyFile();
-	}
 
 	@Test(expected = AssertionError.class)
 	public void verifyFile_badCS2Length() throws IOException {
@@ -245,16 +235,6 @@ public class VerifyMModelTextureStructureTests extends StructureTestFixture<MMod
 		// setup
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
 				"A", "B", "AB", "D601_S001_TABC_W10_AB.rgb")));
-
-		// execute
-		this.testSuite.verifyFile();
-	}
-	
-	@Test(expected = AssertionError.class)
-	public void verifyFile_badCS2() throws IOException {
-		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("MModel", "601_MModelTexture",
-				"A", "B", "AB", "D601_S002_T014_W10_AB.rgb")));
 
 		// execute
 		this.testSuite.verifyFile();

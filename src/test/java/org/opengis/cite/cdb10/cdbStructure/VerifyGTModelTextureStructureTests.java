@@ -69,17 +69,6 @@ public class VerifyGTModelTextureStructureTests extends StructureTestFixture<GTM
 		// execute
 		this.testSuite.verifyModelTextureFile();
 	}
-	
-	@Test(expected = AssertionError.class)
-	public void verifyModelTextureFile_badCS1() throws IOException {
-		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "511_GTModelTexture",
-				"A", "B", "AB_1",
-				"D511_S001_T001_L10_AB_1.rgb")));
-
-		// execute
-		this.testSuite.verifyModelTextureFile();
-	}
 
 	@Test(expected = AssertionError.class)
 	public void verifyModelTextureFile_badCS2Length() throws IOException {
@@ -98,17 +87,6 @@ public class VerifyGTModelTextureStructureTests extends StructureTestFixture<GTM
 		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "511_GTModelTexture",
 				"A", "B", "AB_1",
 				"D511_S002_TABC_L10_AB_1.rgb")));
-
-		// execute
-		this.testSuite.verifyModelTextureFile();
-	}
-	
-	@Test(expected = AssertionError.class)
-	public void verifyModelTextureFile_badCS2() throws IOException {
-		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("GTModel", "511_GTModelTexture",
-				"A", "B", "AB_1",
-				"D511_S002_T014_L10_AB_1.rgb")));
 
 		// execute
 		this.testSuite.verifyModelTextureFile();
