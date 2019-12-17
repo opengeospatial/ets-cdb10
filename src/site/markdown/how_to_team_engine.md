@@ -51,7 +51,7 @@ $ cd ets-cdb10
 $ mvn install
 ```
 
-Extract the TEAM Engine CTL scripts from `target/ets-cdb10-0.4-SNAPSHOT-ctl.zip` into the `TE_BASE/scripts/` directory. The scripts directory should look like this:
+Extract the TEAM Engine CTL scripts from `target/ets-cdb10-0.5-SNAPSHOT-ctl.zip` into the `TE_BASE/scripts/` directory. The scripts directory should look like this:
 
 ```
 scripts/
@@ -59,7 +59,7 @@ scripts/
   note
 ```
 
-Next install the CDB10 ETS dependencies from `target/ets-cdb10-0.4-SNAPSHOT-deps.zip` into the TEAM Engine library directory (`TE_BASE/lib`).
+Next install the CDB10 ETS dependencies from `target/ets-cdb10-0.5-SNAPSHOT-deps.zip` into the TEAM Engine library directory (`TE_BASE/lib`).
 
 It is possible a duplicate SLF4J library is installed into TEAM Engine. If the file `TE_BASE/lib/slf4j-log4j12-1.7.6.jar` exists, delete it. If you do not then TEAM Engine will not start.
 
@@ -78,12 +78,12 @@ Now we need to create a `config.xml` file for TEAM Engine to read the new test s
                     <suite>
                         <namespace-uri>http://www.opengis.net/cite/cdb10</namespace-uri>
                         <prefix>tns</prefix>
-                        <local-name>ets-cdb10-0.4-SNAPSHOT</local-name>
+                        <local-name>ets-cdb10-0.5-SNAPSHOT</local-name>
                         <title>Test suite ets-cdb10</title>
                         <description>Describe scope of testing.</description>
                     </suite>
                     <revision>
-                        <name>0.4-SNAPSHOT</name>
+                        <name>0.5-SNAPSHOT</name>
                         <status>Beta</status>
                         <sources>
                             <source>cdb10/1.0/ctl</source>
