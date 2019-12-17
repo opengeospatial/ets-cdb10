@@ -36,7 +36,7 @@ public class VersionXmlStructureTests extends Capability2Tests {
         this.loadXmlFile();
         String errors = version.schemaValidationErrors();
         Assert.assertEquals(errors, "", version.getXmlFileName() + 
-        		" does not contain valid XML. Errors: " + errors);
+        		" does not validate against its XML Schema file. Errors: " + errors);
     }
 
     @Test

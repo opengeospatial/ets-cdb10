@@ -49,7 +49,7 @@ public class MaterialsXmlStructureTests extends Capability2Tests {
         this.loadXmlFile();
         String errors = materials.schemaValidationErrors();
         Assert.assertEquals(errors, "", materials.getXmlFileName() + 
-        		" does not contain valid XML. Errors: " + errors);
+        		" does not validate against its XML Schema file. Errors: " + errors);
     }
 
     @Test

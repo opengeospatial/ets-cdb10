@@ -45,7 +45,7 @@ public class CDBAttributesXmlStructureTests extends Capability2Tests {
     	
         String errors = cdbAttributes.schemaValidationErrors();
         Assert.assertEquals(errors, "", cdbAttributes.getXmlFileName() + 
-        		" does not contain valid XML. Errors: " + errors);
+        		" does not validate against its XML Schema file. Errors: " + errors);
     }
 
     @Test

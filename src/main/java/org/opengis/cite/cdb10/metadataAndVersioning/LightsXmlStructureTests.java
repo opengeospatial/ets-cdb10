@@ -35,7 +35,7 @@ public class LightsXmlStructureTests extends Capability2Tests {
         this.loadXmlFile();
         String errors = lights.schemaValidationErrors();
         Assert.assertEquals(errors, "", lights.getXmlFileName() + 
-        		" does not contain valid XML. Errors: " + errors);
+        		" does not validate against its XML Schema file. Errors: " + errors);
     }
 
     @Test

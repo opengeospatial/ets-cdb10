@@ -32,6 +32,6 @@ public class ModelComponentsXmlStructureTests extends Capability2Tests {
         this.loadXmlFile();
         String errors = modelComponents.schemaValidationErrors();
         Assert.assertEquals(errors, "", modelComponents.getXmlFileName() + 
-        		" does not contain valid XML. Errors: " + errors);
+        		" does not validate against its XML Schema file. Errors: " + errors);
     }
 }

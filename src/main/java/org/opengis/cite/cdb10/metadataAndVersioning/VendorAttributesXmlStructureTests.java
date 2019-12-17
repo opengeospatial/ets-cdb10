@@ -43,6 +43,6 @@ public class VendorAttributesXmlStructureTests extends Capability2Tests {
         
         String errors = vendorAttributes.schemaValidationErrors();
         Assert.assertEquals(errors, "", vendorAttributes.getXmlFileName() + 
-        		" does not contain valid XML. Errors: " + errors);
+        		" does not validate against its XML Schema file. Errors: " + errors);
     }
 }

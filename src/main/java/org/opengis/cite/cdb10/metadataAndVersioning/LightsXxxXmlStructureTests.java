@@ -75,7 +75,7 @@ public class LightsXxxXmlStructureTests extends Capability2Tests {
             SchemaValidatorErrorHandler errorHandler = XMLUtils.validateXmlFileIsValid(xmlFile, xsdFile);
 
             if (!errorHandler.noErrors()) {
-                Assert.fail(xmlFile.getName() + " does not contain valid XML. Errors: " + errorHandler.getMessages());
+                Assert.fail(xmlFile.getName() + " does not validate against its XML Schema file. Errors: " + errorHandler.getMessages());
             }
         }
     }
