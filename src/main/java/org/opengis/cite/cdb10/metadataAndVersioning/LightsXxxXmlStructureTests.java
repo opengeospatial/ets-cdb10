@@ -29,11 +29,6 @@ public class LightsXxxXmlStructureTests extends Capability2Tests {
 
     private static final List<String> DIRECTIONALITY_VALUES = Arrays.asList("Omnidirectional", "Directional", "Bidirectional");
 
-    @BeforeClass
-    public void checkFilesExist() {
-        Assert.assertFalse(getCustomLightsXmlFiles().isEmpty(), "No custom Lights xml files.");
-    }
-
     @Test
     public void verifyLights_XxxXmlFileExists() {
         for (File xmlFile : getCustomLightsXmlFiles()) {
@@ -148,6 +143,12 @@ public class LightsXxxXmlStructureTests extends Capability2Tests {
         }
     }
 
+    /**
+     * Retrieve all custom Lights_XXX.xml files in the CDB. If there are no
+     * custom Lights XML files, the list will be empty.
+     * 
+     * @return List of Files, each File pointing to a custom Lights XML file.
+     */
     private List<File> getCustomLightsXmlFiles() {
         String glob = "glob:Lights_*.xml";
 

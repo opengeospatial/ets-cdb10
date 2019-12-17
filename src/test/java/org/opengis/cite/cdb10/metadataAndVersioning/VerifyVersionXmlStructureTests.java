@@ -63,7 +63,7 @@ public class VerifyVersionXmlStructureTests extends MetadataTestFixture<VersionX
         Files.copy(XSD_FILE, schemaFolder.resolve("Version.xsd"), REPLACE_EXISTING);
 
         expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("Version.xml does not contain valid XML. Errors: cvc-complex-type.4: " +
+        expectedException.expectMessage("Version.xml does not validate against its XML Schema file. Errors: cvc-complex-type.4: " +
                 "Attribute 'name' must appear on element 'PreviousIncrementalRootDirectory'.");
 
         // execute

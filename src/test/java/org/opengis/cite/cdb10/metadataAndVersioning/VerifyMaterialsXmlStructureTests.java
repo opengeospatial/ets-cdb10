@@ -29,25 +29,6 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
     }
 
     @Test
-    public void verifyMaterialsXmlFileExists_DoesNotExist() throws IOException {
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("Metadata directory should contain Materials.xml file.");
-
-        // execute
-        testSuite.verifyMaterialsXmlFileExists();
-    }
-
-    @Test
-    public void verifyMaterialsXmlFileExists_DoesExist() throws IOException {
-        // setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Materials.xml")));
-        Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
-
-        // execute
-        testSuite.verifyMaterialsXmlFileExists();
-    }
-
-    @Test
     public void verifyMaterialsXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
         // setup
         Files.copy(VALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
@@ -63,7 +44,7 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
         Files.copy(INVALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Base_Material_Table.xsd"), REPLACE_EXISTING);
 
-        String expectedMessage = "Materials.xml does not contain valid XML. Errors: cvc-pattern-valid: " +
+        String expectedMessage = "Materials.xml does not validate against its XML Schema file. Errors: cvc-pattern-valid: " +
                 "Value 'BMASH' is not facet-valid with respect to pattern '[B][M][_]([A-Za-z0-9_-])+' " +
                 "for type '#AnonType_NameBase_Material'., cvc-type.3.1.3: The value 'BMASH' " +
                 "of element 'Name' is not valid.";

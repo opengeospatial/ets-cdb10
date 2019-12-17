@@ -33,6 +33,11 @@ public class GTModelStructureTests extends Capability1Tests {
 
 		ArrayList<String> errors = new ArrayList<String>();
 		DatasetsXml datasetDefs = new DatasetsXml(SAMPLE_CDB_PATH);
+		
+		if (Files.notExists(datasetDefs.getXmlFilePath())) {
+			return;
+		}
+		
 		final String[] allowedDatasets = { "500", "501", "502", "503", "504", "505", "506", "507", "508", 
 				"509", "510", "511", "512", "513" };
 
@@ -98,6 +103,10 @@ public class GTModelStructureTests extends Capability1Tests {
 
 		ArrayList<String> errors = new ArrayList<String>();
 		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml(SAMPLE_CDB_PATH);
+		
+		if (Files.notExists(fddDefs.getXmlFilePath())) {
+			return;
+		}
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
@@ -169,6 +178,10 @@ public class GTModelStructureTests extends Capability1Tests {
 
 		ArrayList<String> errors = new ArrayList<String>();
 		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml(SAMPLE_CDB_PATH);
+		
+		if (Files.notExists(fddDefs.getXmlFilePath())) {
+			return;
+		}
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
@@ -244,6 +257,10 @@ public class GTModelStructureTests extends Capability1Tests {
 
 		ArrayList<String> errors = new ArrayList<String>();
 		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml(SAMPLE_CDB_PATH);
+		
+		if (Files.notExists(fddDefs.getXmlFilePath())) {
+			return;
+		}
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			

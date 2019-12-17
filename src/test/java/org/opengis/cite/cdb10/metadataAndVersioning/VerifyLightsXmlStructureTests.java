@@ -29,25 +29,6 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
     }
 
     @Test
-    public void verifyLightsXmlExists_DoesNotExist() throws IOException {
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("Metadata directory should contain Lights.xml file.");
-
-        // execute
-        testSuite.verifyLightsXmlFileExists();
-    }
-
-    @Test
-    public void verifyLightsXmlExists_DoesExist() throws IOException {
-        // setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Lights.xml")));
-        Files.createFile(schemaFolder.resolve(Paths.get("Lights.xsd")));
-
-        // execute
-        testSuite.verifyLightsXmlFileExists();
-    }
-
-    @Test
     public void verifyLightsXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
         // setup
         Files.copy(VALID_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
@@ -65,7 +46,7 @@ public class VerifyLightsXmlStructureTests extends MetadataTestFixture<LightsXml
         Files.copy(INVALID_FILE, metadataFolder.resolve("Lights.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Lights.xsd"), REPLACE_EXISTING);
 
-        String expectedMessage = "Lights.xml does not contain valid XML. Errors: cvc-minInclusive-valid: Value '-1' " +
+        String expectedMessage = "Lights.xml does not validate against its XML Schema file. Errors: cvc-minInclusive-valid: Value '-1' " +
                 "is not facet-valid with respect to minInclusive '0' for type '#AnonType_codeLight'., " +
                 "cvc-attribute.3: The value '-1' of attribute 'code' on element 'Light' is not valid with respect " +
                 "to its type, '#AnonType_codeLight'.";

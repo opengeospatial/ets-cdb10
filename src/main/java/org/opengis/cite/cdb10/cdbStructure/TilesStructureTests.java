@@ -296,6 +296,10 @@ public class TilesStructureTests extends Capability1Tests {
 		ArrayList<String> errors = new ArrayList<String>();
 		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(tilesPath);
 		DatasetsXml datasetDefs = new DatasetsXml(SAMPLE_CDB_PATH);
+		
+		if (Files.notExists(datasetDefs.getXmlFilePath())) {
+			return;
+		}
 
 		for (Path latCell : latitudeCells) {
 			DirectoryStream<Path> longitudeCells = Files.newDirectoryStream(latCell);

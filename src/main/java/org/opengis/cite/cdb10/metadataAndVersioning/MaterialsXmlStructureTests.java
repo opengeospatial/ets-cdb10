@@ -1,6 +1,7 @@
 package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -23,6 +24,10 @@ public class MaterialsXmlStructureTests extends Capability2Tests {
 		this.materials = new MaterialsXml(path);
 	}
 	
+	private Boolean xmlFileExists() {
+		return Files.exists(this.materials.getXmlFilePath());
+	}
+	
 	private ArrayList<String> getNameValues() {
         NodeList nameNodes = XMLUtils.getNodeList("//Base_Material/Name", materials.getXmlFilePath());
 
@@ -36,17 +41,10 @@ public class MaterialsXmlStructureTests extends Capability2Tests {
     }
 
     @Test
-    public void verifyMaterialsXmlFileExists() {
-        this.loadXmlFile();
-    	Assert.assertTrue(materials.xmlFileExists(),
-    			String.format("Metadata directory should contain %s file.", materials.getXmlFileName()));
-		Assert.assertTrue(materials.xsdFileExists(),
-				String.format("Metadata directory should contain %s file.", materials.getXsdFileName()));
-    }
-
-    @Test
     public void verifyMaterialsXmlAgainstSchema() throws IOException, SAXException {
         this.loadXmlFile();
+        if (!this.xmlFileExists()) { return; }
+        
         String errors = materials.schemaValidationErrors();
         Assert.assertEquals(errors, "", materials.getXmlFileName() + 
         		" does not validate against its XML Schema file. Errors: " + errors);
@@ -55,6 +53,8 @@ public class MaterialsXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyMaterialsXmlElementNameIsUnique() {
         this.loadXmlFile();
+        if (!this.xmlFileExists()) { return; }
+        
         ArrayList<String> names = getNameValues();
         
         for (String name : names) {
@@ -66,6 +66,8 @@ public class MaterialsXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName() {
     	this.loadXmlFile();
+    	if (!this.xmlFileExists()) { return; }
+    	
         NodeList baseMaterialNodes = XMLUtils.getNodeList("//Base_Material[not(Name)]", materials.getXmlFilePath());
         Assert.assertEquals(baseMaterialNodes.getLength(), 0, "Materials.xml element Base_Material requires a child element Name.");
     }
@@ -73,6 +75,8 @@ public class MaterialsXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyMaterialsXmlBaseMaterialNameIsValid() {
         this.loadXmlFile();
+        if (!this.xmlFileExists()) { return; }
+        
     	ArrayList<String> names = getNameValues();
 
         ArrayList<String> invalidNames = new ArrayList<>();

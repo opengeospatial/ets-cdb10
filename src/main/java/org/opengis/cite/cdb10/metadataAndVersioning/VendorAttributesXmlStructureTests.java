@@ -1,6 +1,7 @@
 package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import java.io.IOException;
+import java.nio.file.Files;
 
 import org.opengis.cite.cdb10.util.metadataXml.VendorAttributesXml;
 import org.testng.Assert;
@@ -17,17 +18,16 @@ public class VendorAttributesXmlStructureTests extends Capability2Tests {
 	private void loadXmlFile() {
 		this.vendorAttributes = new VendorAttributesXml(path);
 	}
-
-    @Test
-    public void verifyVendorAttributesXmlFileExists() {
-        this.loadXmlFile();
-    	Assert.assertTrue(vendorAttributes.xmlFileExists(),
-    			String.format("Metadata directory should contain %s file.", vendorAttributes.getXmlFileName()));
-    }
+	
+	private Boolean xmlFileExists() {
+		return Files.exists(this.vendorAttributes.getXmlFilePath());
+	}
 
     @Test
     public void verifyVendorAttributesXsdFileExists() {
         this.loadXmlFile();
+        if (!this.xmlFileExists()) { return; }
+        
 		Assert.assertTrue(vendorAttributes.xsdFileExists(),
 				String.format("Metadata directory should contain %s file.", vendorAttributes.getXsdFileName()));
     }
@@ -35,6 +35,7 @@ public class VendorAttributesXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyVendorAttributesXmlAgainstSchema() throws IOException, SAXException {
         this.loadXmlFile();
+        if (!this.xmlFileExists()) { return; }
         
         Assert.assertTrue(vendorAttributes.xmlFileExists(),
     			String.format("Metadata directory should contain %s file.", vendorAttributes.getXmlFileName()));

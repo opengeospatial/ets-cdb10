@@ -63,24 +63,10 @@ public class VerifyVendorAttributesXmlStructureTests extends MetadataTestFixture
         Files.copy(INVALID_FILE, metadataFolder.resolve("Vendor_Attributes.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Vendor_Attributes.xsd"), REPLACE_EXISTING);
 
-        String expectedMessage = "Vendor_Attributes.xml does not contain valid XML. " +
+        String expectedMessage = "Vendor_Attributes.xml does not validate against its XML Schema file. " +
                 "Errors: cvc-complex-type.2.4.b: The content of element 'Vendor_Attributes' is not complete. " +
                 "One of '{\"http://www.CDB-Spec.org/Schema/Version/3.2\":Example_Element_2}' is expected.";
 
-
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage(expectedMessage);
-
-        // execute
-        testSuite.verifyVendorAttributesXmlAgainstSchema();
-    }
-
-    @Test
-    public void verifyVendorAttributesXmlAgainstSchema_VendorAttributesXmlFileDoesNotExist() throws IOException, SAXException {
-        // setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Vendor_Attributes.xsd")));
-
-        String expectedMessage = "Metadata directory should contain Vendor_Attributes.xml file.";
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage(expectedMessage);

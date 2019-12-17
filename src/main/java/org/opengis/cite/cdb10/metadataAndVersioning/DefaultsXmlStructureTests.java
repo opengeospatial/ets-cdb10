@@ -9,6 +9,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,6 +27,10 @@ public class DefaultsXmlStructureTests extends Capability2Tests {
 		this.defaults = new DefaultsXml(path);
 	}
 	
+	private Boolean xmlFileExists() {
+		return Files.exists(this.defaults.getXmlFilePath());
+	}
+	
 	private ArrayList<String> collectNameNodesWithDatasetValue(String datasetValue) {
         NodeList nameNodes = XMLUtils.getNodeList("//Default_Value[Dataset/text() = \"" + datasetValue + "\"]/Name", defaults.getXmlFilePath());
 
@@ -35,19 +40,12 @@ public class DefaultsXmlStructureTests extends Capability2Tests {
         }
         return names;
     }
-	
-    @Test
-    public void verifyDefaultsXmlFileExists() {
-        this.loadXmlFile();
-    	Assert.assertTrue(defaults.xmlFileExists(),
-    			String.format("Metadata directory should contain %s file.", defaults.getXmlFileName()));
-		Assert.assertTrue(defaults.xsdFileExists(),
-				String.format("Metadata directory should contain %s file.", defaults.getXsdFileName()));
-    }
 
     @Test
     public void verifyDefaultsXmlAgainstSchema() throws IOException, SAXException {
         this.loadXmlFile();
+        if (!this.xmlFileExists()) { return; }
+        
         String errors = defaults.schemaValidationErrors();
         Assert.assertEquals(errors, "", defaults.getXmlFileName() + 
         		" does not validate against its XML Schema file. Errors: " + errors);
@@ -56,6 +54,8 @@ public class DefaultsXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyDefaultsXmlElementR_W_TypeHasValidValues() {
     	this.loadXmlFile();
+    	if (!this.xmlFileExists()) { return; }
+    	
     	NodeList nodeList = XMLUtils.getNodeList("//R_W_Type", defaults.getXmlFilePath());
 
         ArrayList<String> values = new ArrayList<>();
@@ -76,6 +76,8 @@ public class DefaultsXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyDefaultsXmlNameIsUniqueForEachDataset() {
     	this.loadXmlFile();
+    	if (!this.xmlFileExists()) { return; }
+    	
     	NodeList datasetNodes = XMLUtils.getNodeList("//Dataset", defaults.getXmlFilePath());
 
         HashSet<String> datasetValues = new HashSet<>();
@@ -99,6 +101,8 @@ public class DefaultsXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyDefaultsXmlElementTypeHasValidValue() {
     	this.loadXmlFile();
+    	if (!this.xmlFileExists()) { return; }
+    	
         NodeList nodeList = XMLUtils.getNodeList("//Type", defaults.getXmlFilePath());
 
         ArrayList<String> values = new ArrayList<>();

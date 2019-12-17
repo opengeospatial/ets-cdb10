@@ -30,26 +30,6 @@ public class VerifyDefaultsXmlStructureTests extends MetadataTestFixture<Default
     }
 
     @Test
-    public void verifyDefaultsXmlExists_DoesNotExist() throws IOException {
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("Metadata directory should contain Defaults.xml file.");
-
-        // execute
-        testSuite.verifyDefaultsXmlFileExists();
-    }
-
-    @Test
-    public void verifyDefaultsXmlExists_DoesExist() throws IOException {
-        // setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Defaults.xml")));
-        Files.createFile(schemaFolder.resolve(Paths.get("Defaults.xsd")));
-
-        // execute
-        testSuite.verifyDefaultsXmlFileExists();
-    }
-
-
-    @Test
     public void verifyDefaultsXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
         // setup
         Files.copy(VALID_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
@@ -65,7 +45,7 @@ public class VerifyDefaultsXmlStructureTests extends MetadataTestFixture<Default
         Files.copy(INVALID_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
-        String expectedMessage = "Defaults.xml does not contain valid XML.";
+        String expectedMessage = "Defaults.xml does not validate against its XML Schema file.";
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage(expectedMessage);

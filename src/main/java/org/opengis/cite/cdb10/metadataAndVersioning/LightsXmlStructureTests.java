@@ -9,6 +9,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -22,17 +23,16 @@ public class LightsXmlStructureTests extends Capability2Tests {
 	private void loadXmlFile() {
 		this.lights = new LightsXml(path);
 	}
-
-    @Test
-    public void verifyLightsXmlFileExists() {
-        this.loadXmlFile();
-    	Assert.assertTrue(lights.xmlFileExists(),
-    			String.format("Metadata directory should contain %s file.", lights.getXmlFileName()));
-    }
+	
+	private Boolean xmlFileExists() {
+		return Files.exists(this.lights.getXmlFilePath());
+	}
 
     @Test
     public void verifyLightsXmlFileAgainstSchema() throws IOException, SAXException {
         this.loadXmlFile();
+        if (!this.xmlFileExists()) { return; }
+        
         String errors = lights.schemaValidationErrors();
         Assert.assertEquals(errors, "", lights.getXmlFileName() + 
         		" does not validate against its XML Schema file. Errors: " + errors);
@@ -41,6 +41,8 @@ public class LightsXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyLightsXmlHasUniqueCodes() {
         this.loadXmlFile();
+        if (!this.xmlFileExists()) { return; }
+        
         NodeList nodeList = XMLUtils.getNodeList("//Light", lights.getXmlFilePath());
 
         ArrayList<String> codes = new ArrayList<>();
@@ -59,6 +61,8 @@ public class LightsXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyLightsXmlCodesAreWithinRange() {
         this.loadXmlFile();
+        if (!this.xmlFileExists()) { return; }
+        
         NodeList nodeList = XMLUtils.getNodeList("//Light", lights.getXmlFilePath());
 
         for (int i = 0; i < nodeList.getLength(); i++) {

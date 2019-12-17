@@ -126,7 +126,7 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
         Files.copy(INVALID_FILE, metadataFolder.resolve("Lights_Client.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Lights_Tuning.xsd"), REPLACE_EXISTING);
 
-        String expectedMessage = "Lights_Client.xml does not contain valid XML. " +
+        String expectedMessage = "Lights_Client.xml does not validate against its XML Schema file. " +
                 "Errors: cvc-pattern-valid: Value 'Invalid' is not facet-valid with respect to pattern " +
                 "'Omnidirectional|Directional|Bidirectional' for type '#AnonType_DirectionalityLight'., " +
                 "cvc-type.3.1.3: The value 'Invalid' of element 'Directionality' is not valid.";

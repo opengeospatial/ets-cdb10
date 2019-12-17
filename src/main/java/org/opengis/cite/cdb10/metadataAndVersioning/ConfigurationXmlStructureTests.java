@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.nio.file.Files;
 
 /**
  * Created by martin on 2016-09-07.
@@ -17,21 +18,20 @@ public class ConfigurationXmlStructureTests extends Capability2Tests {
 	private void loadXmlFile() {
 		this.configuration = new ConfigurationXml(path);
 	}
-
-    @Test
-    public void verifyConfigurationXmlFileExists() {
-    	this.loadXmlFile();
-    	Assert.assertTrue(configuration.xmlFileExists(),
-    			String.format("Metadata directory should contain %s file.", configuration.getXmlFileName()));
-		Assert.assertTrue(configuration.xsdFileExists(),
-				String.format("Metadata directory should contain %s file.", configuration.getXsdFileName()));
-    }
+	
+	private Boolean xmlFileExists() {
+		return Files.exists(this.configuration.getXmlFilePath());
+	}
 
     @Test
     public void verifyConfigurationXmlAgainstSchema() throws IOException, SAXException {
         this.loadXmlFile();
-        String errors = configuration.schemaValidationErrors();
-        Assert.assertEquals(errors, "", configuration.getXmlFileName() + 
-        		" does not validate against its XML Schema file. Errors: " + errors);
+        if (!this.xmlFileExists()) { return; }
+        
+        if (configuration.xmlFileExists()) {
+        	String errors = configuration.schemaValidationErrors();
+	        Assert.assertEquals(errors, "", configuration.getXmlFileName() + 
+	        		" does not validate against its XML Schema file. Errors: " + errors);
+        }
     }
 }

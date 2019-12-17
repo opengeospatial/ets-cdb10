@@ -1,6 +1,7 @@
 package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,18 +26,14 @@ public class CDBAttributesXmlStructureTests extends Capability2Tests {
 		this.cdbAttributes = new CDBAttributesXml(path);
 	}
 	
-    @Test
-    public void verifyCDBAttributesXmlFileExists() {
-    	this.loadXmlFile();
-    	Assert.assertTrue(cdbAttributes.xmlFileExists(),
-    			String.format("Metadata directory should contain %s file.", cdbAttributes.getXmlFileName()));
-		Assert.assertTrue(cdbAttributes.xsdFileExists(),
-				String.format("Metadata directory should contain %s file.", cdbAttributes.getXsdFileName()));
-    }
+	private Boolean xmlFileExists() {
+		return Files.exists(this.cdbAttributes.getXmlFilePath());
+	}
 
     @Test
     public void verifyCDBAttributesXmlAgainstSchema() throws IOException, SAXException {
     	this.loadXmlFile();
+    	if (!this.xmlFileExists()) { return; }
     	
     	Assert.assertTrue(cdbAttributes.xmlFileExists(),
     			String.format("Metadata directory should contain %s file.", cdbAttributes.getXmlFileName()));
@@ -51,6 +48,7 @@ public class CDBAttributesXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyCDBAttributesXmlCodeIsAnInteger() {
     	this.loadXmlFile();
+    	if (!this.xmlFileExists()) { return; }
     	
     	Assert.assertTrue(cdbAttributes.xmlFileExists(),
     			String.format("Metadata directory should contain %s file.", cdbAttributes.getXmlFileName()));
@@ -76,6 +74,8 @@ public class CDBAttributesXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyCDBAttributesXmlSymbolIsUnique() {
     	this.loadXmlFile();
+    	if (!this.xmlFileExists()) { return; }
+    	
         NodeList nodeList = XMLUtils.getNodeList("//Attribute", cdbAttributes.getXmlFilePath());
 
         ArrayList<String> symbols = new ArrayList<>();
@@ -95,6 +95,8 @@ public class CDBAttributesXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyCDBAttributesXmlValueHasAValidType() {
     	this.loadXmlFile();
+    	if (!this.xmlFileExists()) { return; }
+    	
         NodeList nodeList = XMLUtils.getNodeList("//Value/Type", cdbAttributes.getXmlFilePath());
 
         ArrayList<String> types = new ArrayList<>();
@@ -115,6 +117,8 @@ public class CDBAttributesXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyCDBAttributesXmlScalerCodeIsValid() {
     	this.loadXmlFile();
+    	if (!this.xmlFileExists()) { return; }
+    	
         NodeList nodeList = XMLUtils.getNodeList("//Scalers/Scaler", cdbAttributes.getXmlFilePath());
 
         ArrayList<String> values = new ArrayList<>();
@@ -133,6 +137,8 @@ public class CDBAttributesXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyCDBAttributesXmlUnitCodeIsValid() {
     	this.loadXmlFile();
+    	if (!this.xmlFileExists()) { return; }
+    	
         NodeList nodeList = XMLUtils.getNodeList("//Units/Unit", cdbAttributes.getXmlFilePath());
 
         ArrayList<String> values = new ArrayList<>();

@@ -31,51 +31,10 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
 	}
 
 	@Test
-	public void verifyCDBAttributesXmlExists_MetadataFolderDoesNotExist() throws IOException {
-		// setup
-		Files.delete(this.cdb_root.resolve(Paths.get("Metadata", "Schema")));
-		Files.delete(this.cdb_root.resolve(Paths.get("Metadata")));
-
-		this.expectedException.expect(AssertionError.class);
-		this.expectedException.expectMessage("Metadata directory is missing, needed for CDB_Attributes.xml");
-
-		// execute
-		this.testSuite.verifyCDBAttributesXmlFileExists();
-	}
-
-	@Test
-	public void verifyCDBAttributesXmlExists_DoesNotExist() throws IOException {
-		this.expectedException.expect(AssertionError.class);
-		this.expectedException.expectMessage("Metadata directory should contain CDB_Attributes.xml file.");
-
-		// execute
-		this.testSuite.verifyCDBAttributesXmlFileExists();
-	}
-
-	@Test
-	public void verifyCDBAttributesXmlExists_DoesExist() throws IOException {
-		// setup
-		Files.createFile(this.metadataFolder.resolve(Paths.get("CDB_Attributes.xml")));
-		Files.createFile(this.schemaFolder.resolve(Paths.get("Vector_Attributes.xsd")));
-
-		// execute
-		this.testSuite.verifyCDBAttributesXmlFileExists();
-	}
-
-	@Test
 	public void verifyCDBAttributesXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
 		// setup
 		Files.copy(VALID_FILE, this.metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
 		Files.copy(XSD_FILE, this.schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
-
-		// execute
-		this.testSuite.verifyCDBAttributesXmlAgainstSchema();
-	}
-
-	@Test
-	public void verifyCDBAttributesXmlAgainstSchema_FileDoesNotExist() throws IOException, SAXException {
-		this.expectedException.expect(AssertionError.class);
-		this.expectedException.expectMessage("Metadata directory should contain CDB_Attributes.xml file.");
 
 		// execute
 		this.testSuite.verifyCDBAttributesXmlAgainstSchema();
@@ -87,7 +46,7 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
 		Files.copy(INVALID_FILE, this.metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
 		Files.copy(XSD_FILE, this.schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
 
-		String expectedMessage = "CDB_Attributes.xml does not contain valid XML.";
+		String expectedMessage = "CDB_Attributes.xml does not validate against its XML Schema file.";
 
 		this.expectedException.expect(AssertionError.class);
 		this.expectedException.expectMessage(expectedMessage);

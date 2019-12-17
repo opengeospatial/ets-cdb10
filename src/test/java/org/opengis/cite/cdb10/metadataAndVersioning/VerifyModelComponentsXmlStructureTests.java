@@ -26,25 +26,6 @@ public class VerifyModelComponentsXmlStructureTests extends MetadataTestFixture<
     }
 
     @Test
-    public void verifyModelComponentsXmlExists_DoesNotExist() throws IOException {
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("Metadata directory should contain Model_Components.xml file.");
-
-        // execute
-        testSuite.verifyModelComponentsXmlFileExists();
-    }
-
-    @Test
-    public void verifyModelComponentsXmlExists_XmlDoesExist() throws IOException {
-        // setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Model_Components.xml")));
-        Files.createFile(schemaFolder.resolve(Paths.get("Model_Components.xsd")));
-
-        // execute
-        testSuite.verifyModelComponentsXmlFileExists();
-    }
-
-    @Test
     public void verifyModelComponentsXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
         // setup
         Files.copy(VALID_FILE, metadataFolder.resolve("Model_Components.xml"), REPLACE_EXISTING);
@@ -60,7 +41,7 @@ public class VerifyModelComponentsXmlStructureTests extends MetadataTestFixture<
         Files.copy(INVALID_FILE, metadataFolder.resolve("Model_Components.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Model_Components.xsd"), REPLACE_EXISTING);
 
-        String expectedMessage = "Model_Components.xml does not contain valid XML. " +
+        String expectedMessage = "Model_Components.xml does not validate against its XML Schema file. " +
                 "Errors: cvc-complex-type.4: Attribute 'name' must appear on element 'Component'., " +
                 "cvc-complex-type.2.4.b: The content of element 'Component' is not complete. One of " +
                 "'{\"CDB\":Description}' is expected.";

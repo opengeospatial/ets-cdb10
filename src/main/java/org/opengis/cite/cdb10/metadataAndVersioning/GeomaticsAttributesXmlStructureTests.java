@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.nio.file.Files;
 
 /**
  * Created by martin on 2016-09-10.
@@ -17,17 +18,16 @@ public class GeomaticsAttributesXmlStructureTests extends Capability2Tests {
 	private void loadXmlFile() {
 		this.geomaticsAttributes = new GeomaticsAttributesXml(path);
 	}
-
-    @Test
-    public void verifyGeomaticsAttributesXmlFileExists() {
-        this.loadXmlFile();
-    	Assert.assertTrue(geomaticsAttributes.xmlFileExists(),
-    			String.format("Metadata directory should contain %s file.", geomaticsAttributes.getXmlFileName()));
-    }
+	
+	private Boolean xmlFileExists() {
+		return Files.exists(this.geomaticsAttributes.getXmlFilePath());
+	}
 
     @Test
     public void verifyGeomaticsAttributesXsdFileExists() {
         this.loadXmlFile();
+        if (!this.xmlFileExists()) { return; }
+        
 		Assert.assertTrue(geomaticsAttributes.xsdFileExists(),
 				String.format("Metadata directory should contain %s file.", geomaticsAttributes.getXsdFileName()));
     }
@@ -35,6 +35,7 @@ public class GeomaticsAttributesXmlStructureTests extends Capability2Tests {
     @Test
     public void verifyGeomaticsAttributesXmlAgainstSchema() throws IOException, SAXException {
         this.loadXmlFile();
+        if (!this.xmlFileExists()) { return; }
         
         Assert.assertTrue(geomaticsAttributes.xmlFileExists(),
     			String.format("Metadata directory should contain %s file.", geomaticsAttributes.getXmlFileName()));

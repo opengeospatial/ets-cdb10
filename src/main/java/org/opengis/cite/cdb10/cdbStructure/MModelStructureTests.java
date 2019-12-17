@@ -28,6 +28,10 @@ public class MModelStructureTests extends Capability1Tests {
 
 		ArrayList<String> errors = new ArrayList<String>();
 		DatasetsXml datasetDefs = new DatasetsXml(SAMPLE_CDB_PATH);
+		
+		if (Files.notExists(datasetDefs.getXmlFilePath())) {
+			return;
+		}
 
 		for (Path file : Files.newDirectoryStream(mmPath)) {
 			String filename = file.getFileName().toString();

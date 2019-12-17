@@ -62,24 +62,13 @@ public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixt
         Files.copy(INVALID_FILE, metadataFolder.resolve("Geomatics_Attributes.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Geomatics_Attributes.xsd"), REPLACE_EXISTING);
 
-        String expectedMessage = "Geomatics_Attributes.xml does not contain valid XML. " +
+        String expectedMessage = "Geomatics_Attributes.xml does not validate against its XML Schema file. " +
                 "Errors: cvc-complex-type.2.4.b: The content of element 'Geomatics_Attributes' is not complete. " +
                 "One of '{\"http://www.CDB-Spec.org/Schema/Version/3.2\":Example_Element_2}' is expected.";
 
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage(expectedMessage);
-
-        // execute
-        testSuite.verifyGeomaticsAttributesXmlAgainstSchema();
-    }
-
-    @Test
-    public void verifyGeomaticsAttributesXmlAgainstSchema_GeomaticsAttributesXmlFileDoesNotExist() throws IOException, SAXException {
-        // setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Geomatics_Attributes.xsd")));
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("Metadata directory should contain Geomatics_Attributes.xml file.");
 
         // execute
         testSuite.verifyGeomaticsAttributesXmlAgainstSchema();

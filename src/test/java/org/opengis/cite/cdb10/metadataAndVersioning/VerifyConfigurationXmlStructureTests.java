@@ -26,25 +26,6 @@ public class VerifyConfigurationXmlStructureTests extends MetadataTestFixture<Co
     }
 
     @Test
-    public void verifyConfigurationXmlExists_DoesNotExist() throws IOException {
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("Metadata directory should contain Configuration.xml file.");
-
-        // execute
-        testSuite.verifyConfigurationXmlFileExists();
-    }
-
-    @Test
-    public void verifyConfigurationXmlExists_DoesExist() throws IOException {
-        // setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Configuration.xml")));
-        Files.createFile(schemaFolder.resolve(Paths.get("Configuration.xsd")));
-
-        // execute
-        testSuite.verifyConfigurationXmlFileExists();
-    }
-
-    @Test
     public void verifyConfigurationXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
         // setup
         Files.copy(VALID_FILE, metadataFolder.resolve("Configuration.xml"), REPLACE_EXISTING);
@@ -60,7 +41,7 @@ public class VerifyConfigurationXmlStructureTests extends MetadataTestFixture<Co
         Files.copy(INVALID_FILE, metadataFolder.resolve("Configuration.xml"), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve("Configuration.xsd"), REPLACE_EXISTING);
 
-        String expectedMessage = "Configuration.xml does not contain valid XML.";
+        String expectedMessage = "Configuration.xml does not validate against its XML Schema file.";
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage(expectedMessage);

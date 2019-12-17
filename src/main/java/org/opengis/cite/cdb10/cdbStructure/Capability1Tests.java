@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -108,6 +109,11 @@ public class Capability1Tests extends CommonFixture {
 	 */
 	protected void validateDISCategory(Path file, ArrayList<String> errors) {
 		MovingModelCodesXml mmcDefs = new MovingModelCodesXml(SAMPLE_CDB_PATH);
+		
+		if (Files.notExists(mmcDefs.getXmlFilePath())) {
+			return;
+		}
+		
 		String filename = file.getFileName().toString();
 		String code = null;
 		Integer codeID = null;
@@ -144,6 +150,11 @@ public class Capability1Tests extends CommonFixture {
 	 */
 	protected void validateDISCountry(Path file, ArrayList<String> errors) {
 		DISCountryCodesXml dccDefs = new DISCountryCodesXml(SAMPLE_CDB_PATH);
+		
+		if (Files.notExists(dccDefs.getXmlFilePath())) {
+			return;
+		}
+		
 		String filename = file.getFileName().toString();
 		String code = null;
 		Integer codeID = null;
@@ -185,6 +196,11 @@ public class Capability1Tests extends CommonFixture {
 	 */
 	protected void validateDISDomain(Path file, ArrayList<String> errors) {
 		MovingModelCodesXml mmcDefs = new MovingModelCodesXml(SAMPLE_CDB_PATH);
+		
+		if (Files.notExists(mmcDefs.getXmlFilePath())) {
+			return;
+		}
+		
 		String filename = file.getFileName().toString();
 		String code = null;
 		Integer codeID = null;
@@ -221,6 +237,11 @@ public class Capability1Tests extends CommonFixture {
 	 */
 	protected void validateDISEntityKind(Path file, ArrayList<String> errors) {
 		MovingModelCodesXml mmcDefs = new MovingModelCodesXml(SAMPLE_CDB_PATH);
+		
+		if (Files.notExists(mmcDefs.getXmlFilePath())) {
+			return;
+		}
+		
 		String filename = file.getFileName().toString();
 		String code = null;
 		Integer codeID = null;
