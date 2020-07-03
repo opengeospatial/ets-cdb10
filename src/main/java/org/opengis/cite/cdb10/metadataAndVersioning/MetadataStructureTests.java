@@ -17,7 +17,12 @@ import java.util.List;
  */
 public class MetadataStructureTests extends CommonFixture {
 
-    @Test
+	/**
+	 * Verify the allowable contents of the Metadata directory.
+	 * 
+	 * @throws IOException Error reading from CDB
+	 */
+    @Test(description = "OGC 15-113r5, Section 5.1")
     public void verifyMetaDataFoldersExist() throws IOException {
         Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema")), "Metadata should contain Schema folder.");
         Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Stylesheet")), "Metadata should contain Stylesheet folder.");
@@ -48,9 +53,10 @@ public class MetadataStructureTests extends CommonFixture {
      * OpenFlight_Model_Extensions.xsd
      * Vector_Attributes.xsd
      * Version.xsd
+     * 
      * @throws IOException Error when loading filesystem
      */
-    @Test
+    @Test(description = "OGC 15-113r5, Section 1.4.2")
     public void verifyContentsOfSchemaFolder() throws IOException {
         List<String> REQUIRED_FILES = Arrays.asList("Base_Material_Table.xsd",
                 "Composite_Material_Table.xsd",

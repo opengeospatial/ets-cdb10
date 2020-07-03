@@ -24,14 +24,23 @@ public class VersionXmlStructureTests extends Capability2Tests {
 		this.version = new VersionXml(path);
 	}
 
-    @Test
+	/**
+	 * Check that Version.xml exists.
+	 */
+    @Test(description = "OGC 15-113r5, A.1.9, Test 33")
     public void verifyVersionXmlFileExists() {
         this.loadXmlFile();
     	Assert.assertTrue(version.xmlFileExists(),
     			String.format("Metadata directory should contain %s file.", version.getXmlFileName()));
     }
 
-    @Test
+    /**
+     * Verify Version.xml against Version.xsd.
+     * 
+     * @throws IOException Error reading XML or XSD file
+     * @throws SAXException Error parsing XML or XSD file
+     */
+    @Test(description = "OGC 15-113r5, A.1.19, Test 76")
     public void verifyVersionXmlAgainstSchema() throws IOException, SAXException {
         this.loadXmlFile();
         String errors = version.schemaValidationErrors();
@@ -39,7 +48,10 @@ public class VersionXmlStructureTests extends Capability2Tests {
         		" does not validate against its XML Schema file. Errors: " + errors);
     }
 
-    @Test
+    /**
+     * Check for "<Specification>" element in Version.xml.
+     */
+    @Test(description = "OGC 15-113r5, A.1.19, Test 76")
     public void verifyVersionXmlHasSpecificationElement() {
     	this.loadXmlFile();
         NodeList nodeList = XMLUtils.getNodeList("//Specification", version.getXmlFilePath());
@@ -49,7 +61,11 @@ public class VersionXmlStructureTests extends Capability2Tests {
         }
     }
 
-    @Test
+    /**
+     * Check that the "<Specification>" element has valid values for the
+     * "version" attribute.
+     */
+    @Test(description = "OGC 15-113r5, A.1.19, Test 77")
     public void verifyVersionXmlSpecificationVersionIsValid() {
     	this.loadXmlFile();
         NodeList nodeList = XMLUtils.getNodeList("//Specification", version.getXmlFilePath());

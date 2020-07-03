@@ -28,7 +28,7 @@ public class LightsXmlStructureTests extends Capability2Tests {
 		return Files.exists(this.lights.getXmlFilePath());
 	}
 
-    @Test
+    @Test(description = "OGC 15-113r5, A.1.19, Test 76")
     public void verifyLightsXmlFileAgainstSchema() throws IOException, SAXException {
         this.loadXmlFile();
         if (!this.xmlFileExists()) { return; }
@@ -38,7 +38,7 @@ public class LightsXmlStructureTests extends Capability2Tests {
         		" does not validate against its XML Schema file. Errors: " + errors);
     }
 
-    @Test
+    @Test(description = "OGC 15-113r5, A.1.19, Test 77")
     public void verifyLightsXmlHasUniqueCodes() {
         this.loadXmlFile();
         if (!this.xmlFileExists()) { return; }
@@ -58,7 +58,7 @@ public class LightsXmlStructureTests extends Capability2Tests {
         }
     }
 
-    @Test
+    @Test(description = "OGC 15-113r5, A.1.19, Test 77")
     public void verifyLightsXmlCodesAreWithinRange() {
         this.loadXmlFile();
         if (!this.xmlFileExists()) { return; }

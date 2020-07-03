@@ -23,7 +23,13 @@ public class ModelComponentsXmlStructureTests extends Capability2Tests {
 		return Files.exists(this.modelComponents.getXmlFilePath());
 	}
 
-    @Test
+    /** If the Model Components XML and Schema files exist, then verify the
+     * XML against the schema.
+     * 
+     * @throws IOException Error reading XML or Schema file
+     * @throws SAXException Error parsing XML or Schema file
+     */
+    @Test(description = "OGC 15-113r5, A.1.19, Test 76")
     public void verifyModelComponentsXmlAgainstSchema() throws IOException, SAXException {
         this.loadXmlFile();
         if (!this.xmlFileExists()) { return; }
