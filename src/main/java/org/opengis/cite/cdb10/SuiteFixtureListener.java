@@ -1,9 +1,17 @@
 package org.opengis.cite.cdb10;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URI;
 import java.util.Map;
 import java.util.logging.Level;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 import org.opengis.cite.cdb10.util.TestSuiteLogger;
+import org.opengis.cite.cdb10.util.URIUtils;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 
@@ -60,6 +68,25 @@ public class SuiteFixtureListener implements ISuiteListener {
 		suite.setAttribute(SuiteAttribute.LEVELS.getName(), levels);
 
 		String iutParam = params.get(TestRunArg.IUT.toString());
+		// Start of download and unzip function
+		if(TestSuiteLogger.isLoggable(Level.FINE)) TestSuiteLogger.log(Level.FINE, "iutParam BEFORE dereferencing URI "+iutParam);
+	      if ((null == iutParam) || iutParam.isEmpty()) {
+	            throw new IllegalArgumentException("Required test run parameter not found: " + TestRunArg.IUT.toString());
+	        }
+	      File iutFile = null;
+	      if(iutParam.startsWith("http") && iutParam.endsWith(".zip"))
+	      {	    
+	        URI iutRef = URI.create(iutParam.trim());	        
+	        try {		        	
+	            iutFile = URIUtils.dereferenceURI(iutRef);	    
+	        } catch (IOException iox) {
+	            throw new RuntimeException("Failed to dereference resource located at " + iutRef, iox);
+	        }
+	        iutParam = iutFile.getAbsolutePath();
+	      }	    
+	    if(iutFile!=null && TestSuiteLogger.isLoggable(Level.FINE)) TestSuiteLogger.log(Level.FINE, "iutParam AFTER dereferencing URI "+iutFile);   
+	    // End of download and unzip function
+	    
 		suite.setAttribute(SuiteAttribute.TEST_SUBJECT.getName(), iutParam);
 		if (TestSuiteLogger.isLoggable(Level.FINE)) {
 			StringBuilder logMsg = new StringBuilder(
@@ -68,6 +95,8 @@ public class SuiteFixtureListener implements ISuiteListener {
 			TestSuiteLogger.log(Level.FINE, logMsg.toString());
 		}
 	}
+	
+	
 
 	/**
 	 * Deletes temporary files created during the test run if TestSuiteLogger is

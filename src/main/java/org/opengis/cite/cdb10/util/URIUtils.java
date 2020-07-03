@@ -1,12 +1,15 @@
 package org.opengis.cite.cdb10.util;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.util.logging.Level;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 import javax.ws.rs.core.HttpHeaders;
 import javax.xml.parsers.DocumentBuilder;
@@ -81,6 +84,7 @@ public class URIUtils {
      *             If an IO error occurred.
      */
     public static File dereferenceURI(URI uriRef) throws IOException {
+
         if ((null == uriRef) || !uriRef.isAbsolute()) {
             throw new IllegalArgumentException(
                     "Absolute URI is required, but received " + uriRef);
@@ -88,6 +92,7 @@ public class URIUtils {
         if (uriRef.getScheme().equalsIgnoreCase("file")) {
             return new File(uriRef);
         }
+        
         Client client = Client.create();
         WebResource webRes = client.resource(uriRef);
         ClientResponse rsp = webRes.get(ClientResponse.class);
@@ -96,6 +101,7 @@ public class URIUtils {
             suffix = ".xml";
         }
         File destFile = File.createTempFile("entity-", suffix);
+        
         if (rsp.hasEntity()) {
             InputStream is = rsp.getEntityInputStream();
             OutputStream os = new FileOutputStream(destFile);
@@ -108,10 +114,54 @@ public class URIUtils {
             os.flush();
             os.close();
         }
+        
+        File destDir = new File(destFile.getParent()+"/CDB"+System.currentTimeMillis());
+        destDir.mkdir();
+        
+        unzipFile(destFile,destDir);
+        
         TestSuiteLogger.log(Level.FINE, "Wrote " + destFile.length()
                 + " bytes to file at " + destFile.getAbsolutePath());
-        return destFile;
+
+        return destDir;
     }
+    
+    /**
+     * Unzips a file to a directory.
+     * 
+     * @param zippedFile
+     *            The zipped file
+     * @param destDir
+     *            The destination directory       
+     * @throws IOException
+     *             If an IO error occurred.
+     */    
+    
+    public static void unzipFile(File zippedFile, File destDir) throws IOException {
+ 
+        byte[] buffer = new byte[1024];
+        ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(zippedFile));
+        ZipEntry zipEntry = zipInputStream.getNextEntry();
+        while (zipEntry != null) {
+        	File outFile = new File(destDir, zipEntry.getName());
+            if(zipEntry.isDirectory()) {
+            	outFile.mkdir();
+            }
+            else{
+            	FileOutputStream fileOutputStream = new FileOutputStream(outFile);
+            	int len;
+            	while ((len = zipInputStream.read(buffer)) > 0) {
+            		fileOutputStream.write(buffer, 0, len);
+            	}
+            	fileOutputStream.close();
+            }
+            zipEntry = zipInputStream.getNextEntry();
+        }
+        zipInputStream.closeEntry();
+        zipInputStream.close();
+    }	
+	
+
 
     /**
      * Constructs an absolute URI from the given URI reference and a base URI.
