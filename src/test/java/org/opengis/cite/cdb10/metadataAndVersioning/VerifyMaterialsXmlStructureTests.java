@@ -72,7 +72,7 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
         Files.copy(NAME_NOT_UNIQUE_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
         Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
 
-        String expectedMessage = "Materials.xml element Name should be unique. " +
+        String expectedMessage = "Materials.xml element \"<Name>\" should be unique. " +
                 "'BM_ASH-VOLCANIC' is not unique. expected [1] but found [2]";
 
         expectedException.expect(AssertionError.class);
@@ -98,8 +98,8 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
         Files.copy(MISSING_NAME_ELEMENT_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
         Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
 
-        String expectedMessage = "Materials.xml element Base_Material requires a " +
-                "child element Name. expected [0] but found [1]";
+        String expectedMessage = "Materials.xml element \"<Base_Material>\" requires a " +
+                "child element \"<Name>\". expected [0] but found [1]";
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage(expectedMessage);
@@ -124,11 +124,11 @@ public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<Materi
         Files.copy(INVALID_NAME_VALUE_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
         Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
 
-        String expectedMessage = "Materials.xml element Name is always in format \"BM__*\", " +
+        String expectedMessage = "Materials.xml element \"<Name>\" is always in format \"BM__*\", " +
                 "has a maximum of 32 characters, and can only contain letters, digits, " +
                 "underscores, and hyphens. " +
                 "[ASH, BM_ASH-VOLCANIC*, BM_12345123451234512345123451234512345] " +
-                "do not conform expected [0] but found [3]";
+                "does not conform. expected [0] but found [3]";
 
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage(expectedMessage);
