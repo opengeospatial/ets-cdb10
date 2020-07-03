@@ -19,11 +19,10 @@ public class GTModelInteriorGeometryStructureTests extends Capability1Tests {
 	
 	/**
 	 * Validates that GTModelInteriorGeometry filenames have valid codes/names.
-	 * Test based on Section 3.4.3, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.14, Test 52 - based on Section 3.4.3")
 	public void verifyInteriorGeometryFile() throws IOException {
 		Path gtModelInteriorGeomPath = Paths.get(this.path, "GTModel", "506_GTModelInteriorGeometry");
 

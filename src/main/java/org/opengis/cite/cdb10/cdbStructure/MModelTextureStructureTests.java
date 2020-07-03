@@ -20,7 +20,7 @@ public class MModelTextureStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 60 - based on Section 3.5.2")
 	public void verifyTNAMPrefix() throws IOException {
 		Path mmtPath = Paths.get(this.path, "MModel", "601_MModelTexture");
 
@@ -50,7 +50,7 @@ public class MModelTextureStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 60 - based on Section 3.5.2")
 	public void verifyTNAMSecond() throws IOException {
 		Path mmtPath = Paths.get(this.path, "MModel", "601_MModelTexture");
 
@@ -84,7 +84,7 @@ public class MModelTextureStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 60 - based on Section 3.5.2")
 	public void verifyTNAM() throws IOException {
 		Path mmtPath = Paths.get(this.path, "MModel", "601_MModelTexture");
 
@@ -136,7 +136,7 @@ public class MModelTextureStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 60 - based on Section 3.5.2")
 	public void verifyFile() throws IOException {
 		Path mmtPath = Paths.get(this.path, "MModel", "601_MModelTexture");
 

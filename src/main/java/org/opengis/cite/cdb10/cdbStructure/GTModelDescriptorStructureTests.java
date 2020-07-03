@@ -18,11 +18,10 @@ public class GTModelDescriptorStructureTests extends Capability1Tests {
 	
 	/**
 	 * Validates that GTModelDescriptor filenames have valid codes/names.
-	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.14, Test 48 - based on Section 3.4.1")
 	public void verifyDescriptorFile() throws IOException {
 		Path gtModelGeomPath = Paths.get(this.path, "GTModel", "503_GTModelDescriptor");
 

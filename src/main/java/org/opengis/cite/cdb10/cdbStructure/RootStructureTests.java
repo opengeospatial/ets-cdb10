@@ -13,17 +13,15 @@ import org.testng.annotations.Test;
 
 /**
  * File/directory structure tests for the root of the CDB directory
- * @author jpbadger
- *
  */
 public class RootStructureTests extends Capability1Tests {
 	/**
 	 * Validate the contents of the root directory of the CDB, checking for stray
 	 * files or directories not on the allowed list.
-	 * Test based on Section 3.1, Volume 1, OGC CDB Core Standard (Version 1.0)
+	 * 
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.18, Test 29 - based on Section 3.1")
 	public void verifyRootContents() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
 		ArrayList<String> permittedRootDirectories = new ArrayList<String>(

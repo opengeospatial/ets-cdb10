@@ -17,11 +17,10 @@ import org.testng.annotations.Test;
 public class MModelGeometryStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelGeometry DIS Entity Kind directories have valid codes/names.
-	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 58 - based on Section 3.5.1")
 	public void verifyDISEntityKind() throws IOException {
 		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
@@ -40,11 +39,10 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelGeometry DIS Domain directories have valid codes/names.
-	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 58 - based on Section 3.5.1")
 	public void verifyDISDomain() throws IOException {
 		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
@@ -67,11 +65,10 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelGeometry DIS Country directories have valid codes/names.
-	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 58 - based on Section 3.5.1")
 	public void verifyDISCountry() throws IOException {
 		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
@@ -98,11 +95,10 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelGeometry DIS Category directories have valid codes/names.
-	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 58 - based on Section 3.5.1")
 	public void verifyDISCategory() throws IOException {
 		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
@@ -133,11 +129,10 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelGeometry DIS Entity directories have valid codes/names.
-	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 58 - based on Section 3.5.1")
 	public void verifyDISEntity() throws IOException {
 		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 
@@ -173,11 +168,10 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelGeometry filenames have valid codes/names.
-	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 58 - based on Section 3.5.1")
 	public void verifyFile() throws IOException {
 		Path mmodelGeomPath = Paths.get(this.path, "MModel", "600_MModelGeometry");
 

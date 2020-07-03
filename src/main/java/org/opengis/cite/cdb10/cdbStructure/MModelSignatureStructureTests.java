@@ -18,11 +18,10 @@ import org.testng.annotations.Test;
 public class MModelSignatureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelSignature DIS Entity Kind directories have valid codes/names.
-	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISEntityKind() throws IOException {
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
@@ -41,11 +40,10 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelSignature DIS Domain directories have valid codes/names.
-	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISDomain() throws IOException {
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
@@ -68,11 +66,10 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelSignature DIS Country directories have valid codes/names.
-	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISCountry() throws IOException {
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
@@ -99,11 +96,10 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelSignature DIS Category directories have valid codes/names.
-	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISCategory() throws IOException {
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
@@ -134,11 +130,10 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelSignature DIS Entity directories have valid codes/names.
-	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISEntity() throws IOException {
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
@@ -173,11 +168,10 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelSignature LOD directories have valid names.
-	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyLOD() throws IOException {
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
@@ -216,11 +210,10 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelSignature filenames have valid codes/names.
-	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyFile() throws IOException {
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 

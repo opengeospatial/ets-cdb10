@@ -18,12 +18,11 @@ import org.testng.annotations.Test;
 
 public class GTModelStructureTests extends Capability1Tests {
 	/**
-	 * Validates that GTModel directories have valid codes/names. 
-	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
+	 * Validates that GTModel directories have valid codes/names.
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.14, Test 45 - based on Section 3.4.1")
 	public void verifyDataset() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
@@ -88,12 +87,10 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Level 3: Feature Sub-Category
 	 * Level 4: Feature Type
 	 * Level 5: LOD
-	 * 
-	 * Test based on Section 3.4.1/3.4.3/3.4.5, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifyCategory() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
@@ -163,12 +160,10 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Level 3: Feature Sub-Category
 	 * Level 4: Feature Type
 	 * Level 5: LOD
-	 * 
-	 * Test based on Section 3.4.1/3.4.3, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifySubcategory() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
@@ -242,12 +237,10 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Level 3: Feature Sub-Category
 	 * Level 4: Feature Type
 	 * Level 5: LOD
-	 * 
-	 * Test based on Section 3.4.1/3.4.3, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifyFeatureType() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
@@ -330,12 +323,10 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Level 3: Feature Sub-Category
 	 * Level 4: Feature Type
 	 * Level 5: LOD
-	 * 
-	 * Test based on Section 3.4.1/3.4.3, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifyLOD() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
@@ -386,12 +377,10 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Level 2: TNAM First Character
 	 * Level 3: TNAM Second Character
 	 * Level 4: Texture Name (TNAM)
-	 * 
-	 * Test based on Section 3.4.2/3.4.4, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.14, Test 49/50/51/54/55 - based on Section 3.4.2")
 	public void verifyTNAMPrefix() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
@@ -437,12 +426,10 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Level 2: TNAM First Character
 	 * Level 3: TNAM Second Character
 	 * Level 4: Texture Name (TNAM)
-	 * 
-	 * Test based on Section 3.4.2/3.4.4, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.14, Test 49/50/51/54/55 - based on Section 3.4.2")
 	public void verifyTNAMSecond() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
@@ -493,11 +480,9 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Level 3: TNAM Second Character
 	 * Level 4: Texture Name (TNAM)
 	 * 
-	 * Test based on Section 3.4.2/3.4.4, Volume 1, OGC CDB Core Standard (Version 1.0)
-	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.14, Test 49/50/51/54/55 - based on Section 3.4.2")
 	public void verifyTNAM() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 

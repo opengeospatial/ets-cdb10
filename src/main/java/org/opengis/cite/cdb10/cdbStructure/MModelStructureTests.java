@@ -14,11 +14,10 @@ import org.testng.annotations.Test;
 public class MModelStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModel directories have valid codes/names.
-	 * Test based on Section 3.5.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.15, Test 57 - based on Section 3.5.1")
 	public void verifyDataset() throws IOException {
 		Path mmPath = Paths.get(this.path, "MModel");
 
