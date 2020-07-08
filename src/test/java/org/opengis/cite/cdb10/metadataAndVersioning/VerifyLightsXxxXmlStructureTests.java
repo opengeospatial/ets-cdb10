@@ -83,34 +83,6 @@ public class VerifyLightsXxxXmlStructureTests extends MetadataTestFixture<Lights
     }
 
     @Test
-    public void verifyLightsTuningXsdFileExists_DoesNotExist() throws IOException {
-        //setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Lights_Client.xml")));
-
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("If a custom Lights_xxx.xml exists there should be Lights_Tuning.xsd in the Schema folder.");
-
-        // execute
-        testSuite.verifyLightsTuningXsdFFileExists();
-    }
-
-    @Test
-    public void verifyLightsTuningXsdFileExists_DoesExist() throws IOException {
-        // setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Lights_Client.xml")));
-        Files.createFile(schemaFolder.resolve(Paths.get("Lights_Tuning.xsd")));
-
-        // execute
-        testSuite.verifyLightsTuningXsdFFileExists();
-    }
-
-    @Test
-    public void verifyLights_XxxXmlFileExists_DoesNotExist() throws IOException {
-        // execute
-        testSuite.verifyLights_XxxXmlFileExists();
-    }
-
-    @Test
     public void verifyLightsXxxXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
         // setup
         Files.copy(VALID_FILE, metadataFolder.resolve("Lights_Client.xml"), REPLACE_EXISTING);

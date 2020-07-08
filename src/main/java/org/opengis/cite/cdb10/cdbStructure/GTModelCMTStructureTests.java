@@ -18,11 +18,10 @@ public class GTModelCMTStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that GTModelCMT filenames have valid codes/names.
-	 * Test based on Section 3.4.2, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.14, Test 51 - based on Section 3.4.2")
 	public void verifyCMTFile() throws IOException {
 		Path gtModelGeomPath = Paths.get(this.path, "GTModel", "505_GTModelCMT");
 

@@ -19,11 +19,10 @@ public class GTModelGeometryStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that GTModelGeometry Entry filenames have valid codes/names.
-	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.14, Test 46 - based on Section 3.4.1")
 	public void verifyGeometryEntryFile() throws IOException {
 		Path gtModelGeomPath = Paths.get(this.path, "GTModel", "500_GTModelGeometry");
 
@@ -84,11 +83,10 @@ public class GTModelGeometryStructureTests extends Capability1Tests {
 	
 	/**
 	 * Validates that GTModelGeometry LoD filenames have valid codes/names.
-	 * Test based on Section 3.4.1, Volume 1, OGC CDB Core Standard (Version 1.0)
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test
+	@Test(description = "OGC 15-113r5, A.1.14, Test 47 - based on Section 3.4.1")
 	public void verifyGeometryLoDFile() throws IOException {
 		Path gtModelGeomPath = Paths.get(this.path, "GTModel", "510_GTModelGeometry");
 

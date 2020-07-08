@@ -40,7 +40,13 @@ public class MaterialsXmlStructureTests extends Capability2Tests {
         return nameValues;
     }
 
-    @Test
+    /** If the Materials XML and Schema files exist, then verify the
+     * XML against the schema.
+     * 
+     * @throws IOException Error reading XML or Schema file
+     * @throws SAXException Error parsing XML or Schema file
+     */
+    @Test(description = "OGC 15-113r5, A.1.19, Test 76")
     public void verifyMaterialsXmlAgainstSchema() throws IOException, SAXException {
         this.loadXmlFile();
         if (!this.xmlFileExists()) { return; }
@@ -50,7 +56,7 @@ public class MaterialsXmlStructureTests extends Capability2Tests {
         		" does not validate against its XML Schema file. Errors: " + errors);
     }
 
-    @Test
+    @Test(description = "OGC 15-113r5, A.1.19, Test 77")
     public void verifyMaterialsXmlElementNameIsUnique() {
         this.loadXmlFile();
         if (!this.xmlFileExists()) { return; }
@@ -59,20 +65,20 @@ public class MaterialsXmlStructureTests extends Capability2Tests {
         
         for (String name : names) {
             Assert.assertEquals(Collections.frequency(names, name), 1,
-                    String.format("Materials.xml element Name should be unique. '%s' is not unique.", name));
+                    String.format("Materials.xml element \"<Name>\" should be unique. '%s' is not unique.", name));
         }
     }
 
-    @Test
+    @Test(description = "OGC 15-113r5, A.1.19, Test 76")
     public void verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName() {
     	this.loadXmlFile();
     	if (!this.xmlFileExists()) { return; }
     	
         NodeList baseMaterialNodes = XMLUtils.getNodeList("//Base_Material[not(Name)]", materials.getXmlFilePath());
-        Assert.assertEquals(baseMaterialNodes.getLength(), 0, "Materials.xml element Base_Material requires a child element Name.");
+        Assert.assertEquals(baseMaterialNodes.getLength(), 0, "Materials.xml element \"<Base_Material>\" requires a child element \"<Name>\".");
     }
 
-    @Test
+    @Test(description = "OGC 15-113r5, A.1.19, Test 76")
     public void verifyMaterialsXmlBaseMaterialNameIsValid() {
         this.loadXmlFile();
         if (!this.xmlFileExists()) { return; }
@@ -88,8 +94,8 @@ public class MaterialsXmlStructureTests extends Capability2Tests {
         }
 
         Assert.assertEquals(invalidNames.size(), 0,
-                String.format("Materials.xml element Name is always in format \"BM__*\", " +
+                String.format("Materials.xml element \"<Name>\" is always in format \"BM__*\", " +
                         "has a maximum of 32 characters, and can only contain letters, digits, " +
-                        "underscores, and hyphens. %s do not conform", invalidNames.toString()));
+                        "underscores, and hyphens. %s does not conform.", invalidNames.toString()));
     }
 }

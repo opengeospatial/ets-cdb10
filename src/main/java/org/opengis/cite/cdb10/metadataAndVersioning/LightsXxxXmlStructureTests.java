@@ -16,7 +16,6 @@ import java.util.List;
 import org.opengis.cite.cdb10.util.SchemaValidatorErrorHandler;
 import org.opengis.cite.cdb10.util.XMLUtils;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -29,14 +28,7 @@ public class LightsXxxXmlStructureTests extends Capability2Tests {
 
     private static final List<String> DIRECTIONALITY_VALUES = Arrays.asList("Omnidirectional", "Directional", "Bidirectional");
 
-    @Test
-    public void verifyLights_XxxXmlFileExists() {
-        for (File xmlFile : getCustomLightsXmlFiles()) {
-            Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", xmlFile.getName())), "Optional file.");
-        }
-    }
-
-    @Test
+    @Test(description = "OGC 15-113r5, A.1.6, Test 18")
     public void verifyLightsXmlFileNameIsValid() {
         ArrayList<String> invalidFileNames = new ArrayList<>();
 
@@ -54,15 +46,15 @@ public class LightsXxxXmlStructureTests extends Capability2Tests {
         }
     }
 
-    @Test
-    public void verifyLightsTuningXsdFFileExists() {
+    @Test(description = "OGC 15-113r5, A.1.6, Test 18")
+    public void verifyLightsTuningXsdFileExists() {
     	if (getCustomLightsXmlFiles().size() > 0) {
     		Assert.assertTrue(Files.exists(Paths.get(path, "Metadata", "Schema", "Lights_Tuning.xsd")),
                     "If a custom Lights_xxx.xml exists there should be Lights_Tuning.xsd in the Schema folder.");
     	}
     }
 
-    @Test
+    @Test(description = "OGC 15-113r5, A.1.19, Test 76")
     public void verifyLightsXxxXmlAgainstSchema() throws IOException, SAXException {
         for (File xmlFile : getCustomLightsXmlFiles()) {
             File xsdFile = Paths.get(path, "Metadata", "Schema", "Lights_Tuning.xsd").toFile();
@@ -75,7 +67,7 @@ public class LightsXxxXmlStructureTests extends Capability2Tests {
         }
     }
 
-    @Test
+    @Test(description = "OGC 15-113r5, A.1.19, Test 77")
     public void verifyLightsXxxXmlDirectionalityValueIsValid() {
         for (File xmlFile : getCustomLightsXmlFiles()) {
             ArrayList<String> directionalityValues = getDirectionalityValues(xmlFile);
@@ -88,7 +80,7 @@ public class LightsXxxXmlStructureTests extends Capability2Tests {
         }
     }
 
-    @Test
+    @Test(description = "OGC 15-113r5, A.1.19, Test 77")
     public void verifyLightsXxxXmlElementIntensityIsInRange() {
         for (File xmlFile : getCustomLightsXmlFiles()) {
             ArrayList<String> invalidIntensityValues = getInvalidPercentageValues(xmlFile, "//Intensity");
@@ -99,7 +91,7 @@ public class LightsXxxXmlStructureTests extends Capability2Tests {
         }
     }
 
-    @Test
+    @Test(description = "OGC 15-113r5, A.1.19, Test 77")
     public void verifyLightsXxxXmlElementResidualIntensityIsInRange() {
         for (File xmlFile : getCustomLightsXmlFiles()) {
             ArrayList<String> invalidResidualIntensityValues = getInvalidPercentageValues(xmlFile, "//Residual_Intensity");
@@ -110,7 +102,7 @@ public class LightsXxxXmlStructureTests extends Capability2Tests {
         }
     }
 
-    @Test
+    @Test(description = "OGC 15-113r5, A.1.19, Test 77")
     public void verifyLightsXxxXmlElementDuty_CycleIsInRange() {
         for (File xmlFile : getCustomLightsXmlFiles()) {
             ArrayList<String> invalidResidualIntensityValues = getInvalidPercentageValues(xmlFile, "//Duty_Cycle");
@@ -121,7 +113,7 @@ public class LightsXxxXmlStructureTests extends Capability2Tests {
         }
     }
 
-    @Test
+    @Test(description = "OGC 15-113r5, A.1.19, Test 77")
     public void verifyLightsXxxXmlFrequencyValueIsValid() {
         for (File xmlFile : getCustomLightsXmlFiles()) {
             ArrayList<String> invalidFrequencyValues = getInvalidFrequencyValues(xmlFile);
@@ -132,7 +124,7 @@ public class LightsXxxXmlStructureTests extends Capability2Tests {
         }
     }
 
-    @Test
+    @Test(description = "OGC 15-113r5, A.1.19, Test 77")
     public void verifyLightsXxxXmlColorIsInRange() {
         for (File xmlFile : getCustomLightsXmlFiles()) {
             ArrayList<String> invalidColorValues = getInvalidColorValues(xmlFile);
