@@ -90,7 +90,18 @@ public class URIUtils {
                     "Absolute URI is required, but received " + uriRef);
         }
         if (uriRef.getScheme().equalsIgnoreCase("file")) {
-            return new File(uriRef);
+            if (uriRef.getRawSchemeSpecificPart().endsWith(".zip")) {
+                File destFile = new File(uriRef);
+
+                File destDir = new File(destFile.getParent() + "/CDB" + System.currentTimeMillis());
+                destDir.mkdir();
+                
+                unzipFile(destFile,destDir);
+                
+                return destDir;
+            } else {
+                return new File(uriRef);
+            }
         }
         
         Client client = Client.create();

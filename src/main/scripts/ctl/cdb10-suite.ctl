@@ -45,6 +45,12 @@
               <input id="uri" name="uri" size="128" type="text" value=""/>
             </p>
             <p>
+              <label for="doc">
+                <h4 style="margin-bottom: 0.5em">Upload CDB resource</h4>
+              </label>
+              <input name="doc" size="128" type="file" />
+            </p>
+            <p>
               <label for="level">Conformance Class:</label>
               <input checked="checked" id="level-1" name="level" type="radio" value="1"/>
               <label class="form-label" for="level-1">Level 1 | </label>
@@ -57,13 +63,13 @@
           </p>
         </ctl:form>
       </xsl:variable>
-      <xsl:variable name="iut-file" select="$form-data//value[@key='uri']"/>
+      <xsl:variable name="iut-file" select="$form-data//value[@key='doc']/ctl:file-entry/@full-path"/>
       <xsl:variable name="test-run-props">
         <properties version="1.0">
           <entry key="iut">
             <xsl:choose>
               <xsl:when test="empty($iut-file)">
-                <xsl:value-of select="$iut-file"/>
+                <xsl:value-of select="$form-data//value[@key='uri']"/>
               </xsl:when>
               <xsl:otherwise>
                 <xsl:copy-of select="concat('file:///', $iut-file)"/>
