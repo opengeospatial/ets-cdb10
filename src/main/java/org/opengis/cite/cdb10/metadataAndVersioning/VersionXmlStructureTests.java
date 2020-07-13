@@ -49,7 +49,7 @@ public class VersionXmlStructureTests extends Capability2Tests {
     }
 
     /**
-     * Check for "<Specification>" element in Version.xml.
+     * Check for "Specification" element in Version.xml.
      */
     @Test(description = "OGC 15-113r5, A.1.19, Test 76")
     public void verifyVersionXmlHasSpecificationElement() {
@@ -62,7 +62,7 @@ public class VersionXmlStructureTests extends Capability2Tests {
     }
 
     /**
-     * Check that the "<Specification>" element has valid values for the
+     * Check that the "Specification" element has valid values for the
      * "version" attribute.
      */
     @Test(description = "OGC 15-113r5, A.1.19, Test 77")
