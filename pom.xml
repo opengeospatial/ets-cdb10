@@ -154,6 +154,26 @@
         <artifactId>buildnumber-maven-plugin</artifactId>
       </plugin>
     </plugins>
+    
+    <resources>
+      <resource>
+        <directory>.</directory>
+        <includes>
+          <include>src/test/resources/CDB/**/*.*</include>
+        </includes>
+      </resource>
+      
+      <!--  resources from ets-common. here because there is no (easy) merge of POM resources -->
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+      <resource>
+        <directory>src/main/javadoc</directory>
+        <filtering>true</filtering>
+        <targetPath>doc/${ets-code}/${project.version}</targetPath>
+      </resource>
+    </resources>
   </build>
   
   <reporting>
