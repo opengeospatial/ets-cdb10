@@ -44,4 +44,29 @@ public class CdbReference {
 		
 		return new ComponentSelectorValidator(doc);
 	}
+	
+	/**
+	 * Create a Validator for "Datasets" from the reference files.
+	 * @return A Validator for Datasets
+	 */
+	public DatasetsValidator buildDatasetsValidator() {
+		InputStream in = getClass().getResourceAsStream("/Reference/Datasets.xml");
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		
+		DocumentBuilder builder = null;
+		try {
+			builder = factory.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}
+		
+		Document doc = null;
+		try {
+			doc = builder.parse(in);
+		} catch (SAXException | IOException e) {
+			e.printStackTrace();
+		}
+		
+		return new DatasetsValidator(doc);
+	}
 }

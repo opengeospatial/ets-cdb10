@@ -11,8 +11,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
-import org.opengis.cite.cdb10.util.metadataXml.DatasetsXml;
 import org.opengis.cite.cdb10.util.metadataXml.FeatureDataDictionaryXml;
+import org.opengis.cite.cdb10.util.reference.CdbReference;
+import org.opengis.cite.cdb10.util.reference.DatasetsValidator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -31,11 +32,8 @@ public class GTModelStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		DatasetsXml datasetDefs = new DatasetsXml(SAMPLE_CDB_PATH);
-		
-		if (Files.notExists(datasetDefs.getXmlFilePath())) {
-			return;
-		}
+		CdbReference references = new CdbReference();
+		DatasetsValidator validator = references.buildDatasetsValidator();
 		
 		final String[] allowedDatasets = { "500", "501", "502", "503", "504", "505", "506", "507", "508", 
 				"509", "510", "511", "512", "513" };
@@ -60,14 +58,14 @@ public class GTModelStructureTests extends Capability1Tests {
 				errors.add("Missing dataset name: " + filename);
 			}
 
-			if (prefixID != null && !datasetDefs.isExtendedCode(prefixID)) {
+			if (prefixID != null && !validator.isExtendedCode(prefixID)) {
 				if (prefixID < 1) {
 					errors.add("Invalid prefix cannot be below 001: " + filename);
-				} else if (!datasetDefs.isValidCode(prefixID)) {
+				} else if (!validator.isValidCode(prefixID)) {
 					errors.add("Invalid dataset code: " + filename);
-				} else if (!datasetDefs.isValidName(datasetName)) {
+				} else if (!validator.isValidName(datasetName)) {
 					errors.add("Invalid dataset name: " + filename);
-				} else if (!datasetDefs.datasetNameForCode(prefixID).equals(datasetName)) {
+				} else if (!validator.datasetNameForCode(prefixID).equals(datasetName)) {
 					errors.add("Invalid dataset code/name combination: " + filename);
 				} else if (!Arrays.asList(allowedDatasets).contains(prefix)) {
 					errors.add("Invalid dataset for GTModel: " + filename);
