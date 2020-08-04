@@ -13,7 +13,14 @@ import org.w3c.dom.NodeList;
  * Provides methods to validate if a Component Selector is used properly.
  */
 public class ComponentSelectorValidator {
+	/**
+	 * Document from Components_Selectors.xml
+	 */
 	private Document doc;
+	/**
+	 * XPath query used for filtering Datasets
+	 */
+	protected final String DATASETS_QUERY = "/DatasetSelectors/DatasetSelector/Datasets/Dataset[text()='%s']/../..";
 
 	/**
 	 * Initialize this validator with the contents of an XML Document.
@@ -31,15 +38,12 @@ public class ComponentSelectorValidator {
 	 * @return true/false
 	 */
 	public boolean isValidComponentSelector1ForDataset(String cs1, String dataset) {
-		String datasetPath = String.format("/DatasetSelectors/DatasetSelector/Datasets/Dataset[text()='%s']/../..", dataset);
+		String datasetPath = String.format(DATASETS_QUERY, dataset);
 		String csAttrPath = String.format("ComponentSelector[@kind='%s'] | ComponentSelector[@minimum <= '%s' and @maximum >= '%s']", cs1, cs1, cs1);
 		
-		XPath xPath = XPathFactory.newInstance().newXPath();
-		XPathExpression datasetExp = null;
 		NodeList selector = null;
 		try {
-			datasetExp = xPath.compile(datasetPath);
-			selector = (NodeList) datasetExp.evaluate(doc, XPathConstants.NODESET);
+			selector = compileAndEvaluate(datasetPath, doc);
 		} catch (XPathExpressionException e) {
 			return false;
 		}
@@ -50,11 +54,9 @@ public class ComponentSelectorValidator {
 			return false;
 		}
 		
-		XPathExpression csAttrExp = null;
 		NodeList csNodes = null;
 		try {
-			csAttrExp = xPath.compile(csAttrPath);
-			csNodes = (NodeList) csAttrExp.evaluate(selector.item(0), XPathConstants.NODESET);
+			csNodes = compileAndEvaluate(csAttrPath, selector.item(0));
 		} catch (XPathExpressionException e) {
 			return false;
 		}
@@ -75,14 +77,11 @@ public class ComponentSelectorValidator {
 	 * @return true/false
 	 */
 	public boolean isValidComponentSelector2ForDataset(String cs2, String cs1, String dataset) {
-		String datasetPath = String.format("/DatasetSelectors/DatasetSelector/Datasets/Dataset[text()='%s']/../..", dataset);
+		String datasetPath = String.format(DATASETS_QUERY, dataset);
 		
-		XPath xPath = XPathFactory.newInstance().newXPath();
-		XPathExpression datasetExp = null;
 		NodeList selector = null;
 		try {
-			datasetExp = xPath.compile(datasetPath);
-			selector = (NodeList) datasetExp.evaluate(doc, XPathConstants.NODESET);
+			selector = compileAndEvaluate(datasetPath, doc);
 		} catch (XPathExpressionException e) {
 			return false;
 		}
@@ -101,11 +100,9 @@ public class ComponentSelectorValidator {
 				"ComponentSelector[@minimum <= '%s' and @maximum >= '%s']/ComponentSelector[@minimum <= '%s' and @maximum >= '%s']",
 				cs1, cs2, cs1, cs1, cs2, cs1, cs2, cs2, cs1, cs1, cs2, cs2
 				);
-		XPathExpression cs2Exp = null;
 		NodeList cs2Nodes = null;
 		try {
-			cs2Exp = xPath.compile(cs2Path);
-			cs2Nodes = (NodeList) cs2Exp.evaluate(selector.item(0), XPathConstants.NODESET);
+			cs2Nodes = compileAndEvaluate(cs2Path, selector.item(0));
 		} catch (XPathExpressionException e) {
 			return false;
 		}
@@ -115,5 +112,18 @@ public class ComponentSelectorValidator {
 		}
 
 		return false;
+	}
+	
+	/**
+	 * Wrap the compilation and evaluation of an XPath in a function.
+	 * @param expression The XPath expression
+	 * @param doc A Document or Node
+	 * @return List of Nodes
+	 * @throws XPathExpressionException Error when evaluating XPath Expression
+	 */
+	private NodeList compileAndEvaluate(String expression, Object doc) throws XPathExpressionException {
+		XPath xPath = XPathFactory.newInstance().newXPath();
+		XPathExpression datasetExp = xPath.compile(expression);
+		return (NodeList) datasetExp.evaluate(doc, XPathConstants.NODESET);
 	}
 }
