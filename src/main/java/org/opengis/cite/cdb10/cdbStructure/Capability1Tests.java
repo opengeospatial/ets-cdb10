@@ -5,6 +5,8 @@ import org.opengis.cite.cdb10.SuiteAttribute;
 import org.opengis.cite.cdb10.util.metadataXml.ComponentSelectorsXml;
 import org.opengis.cite.cdb10.util.metadataXml.DISCountryCodesXml;
 import org.opengis.cite.cdb10.util.metadataXml.MovingModelCodesXml;
+import org.opengis.cite.cdb10.util.reference.CdbReference;
+import org.opengis.cite.cdb10.util.reference.ComponentSelectorValidator;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
@@ -51,9 +53,10 @@ public class Capability1Tests extends CommonFixture {
 	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateComponentSelector1(String cs1, String dataset, ArrayList<String> errors) {
-		ComponentSelectorsXml csDefs = new ComponentSelectorsXml("src/test/resources/Component_Selectors.xml");
+		CdbReference references = new CdbReference();
+		ComponentSelectorValidator validator = references.buildComponentSelectorValidator();
 		
-		if (!csDefs.isValidComponentSelector1ForDataset(cs1, dataset)) {
+		if (!validator.isValidComponentSelector1ForDataset(cs1, dataset)) {
 			errors.add(String.format("Invalid Component Selector 1 (%s) for Dataset (%s)", cs1, dataset));
 		}
 	}
