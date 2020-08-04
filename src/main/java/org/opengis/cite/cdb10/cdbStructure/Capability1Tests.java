@@ -2,7 +2,6 @@ package org.opengis.cite.cdb10.cdbStructure;
 
 import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.SuiteAttribute;
-import org.opengis.cite.cdb10.util.metadataXml.ComponentSelectorsXml;
 import org.opengis.cite.cdb10.util.metadataXml.DISCountryCodesXml;
 import org.opengis.cite.cdb10.util.metadataXml.MovingModelCodesXml;
 import org.opengis.cite.cdb10.util.reference.CdbReference;
