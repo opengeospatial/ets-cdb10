@@ -11,6 +11,8 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
 import org.opengis.cite.cdb10.util.FilenamePatterns;
 import org.opengis.cite.cdb10.util.metadataXml.DatasetsXml;
+import org.opengis.cite.cdb10.util.reference.CdbReference;
+import org.opengis.cite.cdb10.util.reference.DatasetsValidator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -28,7 +30,8 @@ public class NavigationLibraryStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		DatasetsXml datasetDefs = new DatasetsXml(SAMPLE_CDB_PATH);
+		CdbReference references = new CdbReference();
+		DatasetsValidator validator = references.buildDatasetsValidator();
 
 		for (Path file : Files.newDirectoryStream(navPath)) {
 			String filename = file.getFileName().toString();
@@ -48,7 +51,7 @@ public class NavigationLibraryStructureTests extends Capability1Tests {
 				errors.add("Missing dataset name: " + filename);
 			}
 			
-			if (!filename.equals("400_NavData") && !datasetDefs.isExtendedCode(prefixID)) {
+			if (!filename.equals("400_NavData") && !validator.isExtendedCode(prefixID)) {
 				errors.add("Invalid dataset: " + filename);
 			}
 		}

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import org.apache.commons.lang3.StringUtils;
 import org.opengis.cite.cdb10.util.metadataXml.DatasetsXml;
+import org.opengis.cite.cdb10.util.reference.CdbReference;
+import org.opengis.cite.cdb10.util.reference.DatasetsValidator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -26,11 +28,8 @@ public class MModelStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		DatasetsXml datasetDefs = new DatasetsXml(SAMPLE_CDB_PATH);
-		
-		if (Files.notExists(datasetDefs.getXmlFilePath())) {
-			return;
-		}
+		CdbReference references = new CdbReference();
+		DatasetsValidator validator = references.buildDatasetsValidator();
 
 		for (Path file : Files.newDirectoryStream(mmPath)) {
 			String filename = file.getFileName().toString();
@@ -52,14 +51,14 @@ public class MModelStructureTests extends Capability1Tests {
 				errors.add("Missing dataset name: " + filename);
 			}
 
-			if (prefixID != null && !datasetDefs.isExtendedCode(prefixID)) {
+			if (prefixID != null && !validator.isExtendedCode(prefixID)) {
 				if (prefixID < 1) {
 					errors.add("Invalid prefix cannot be below 001: " + filename);
-				} else if (!datasetDefs.isValidCode(prefixID)) {
+				} else if (!validator.isValidCode(prefixID)) {
 					errors.add("Invalid dataset code: " + filename);
-				} else if (!datasetDefs.isValidName(datasetName)) {
+				} else if (!validator.isValidName(datasetName)) {
 					errors.add("Invalid dataset name: " + filename);
-				} else if (!datasetDefs.datasetNameForCode(prefixID).equals(datasetName)) {
+				} else if (!validator.datasetNameForCode(prefixID).equals(datasetName)) {
 					errors.add("Invalid dataset code/name combination: " + filename);
 				}
 			}

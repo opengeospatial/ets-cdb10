@@ -13,6 +13,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.opengis.cite.cdb10.util.DirectoryStreamFilters;
 import org.opengis.cite.cdb10.util.FilenamePatterns;
 import org.opengis.cite.cdb10.util.metadataXml.DatasetsXml;
+import org.opengis.cite.cdb10.util.reference.CdbReference;
+import org.opengis.cite.cdb10.util.reference.DatasetsValidator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -287,11 +289,8 @@ public class TilesStructureTests extends Capability1Tests {
 
 		ArrayList<String> errors = new ArrayList<String>();
 		DirectoryStream<Path> latitudeCells = Files.newDirectoryStream(tilesPath);
-		DatasetsXml datasetDefs = new DatasetsXml(SAMPLE_CDB_PATH);
-		
-		if (Files.notExists(datasetDefs.getXmlFilePath())) {
-			return;
-		}
+		CdbReference references = new CdbReference();
+		DatasetsValidator validator = references.buildDatasetsValidator();
 
 		for (Path latCell : latitudeCells) {
 			DirectoryStream<Path> longitudeCells = Files.newDirectoryStream(latCell);
@@ -319,12 +318,12 @@ public class TilesStructureTests extends Capability1Tests {
 						errors.add("Missing dataset name: " + filename);
 					}
 
-					if ((prefixID != null) && (datasetName != null) && !datasetDefs.isExtendedCode(prefixID)) {
-						if (!datasetDefs.isValidCode(prefixID)) {
+					if ((prefixID != null) && (datasetName != null) && !validator.isExtendedCode(prefixID)) {
+						if (!validator.isValidCode(prefixID)) {
 							errors.add("Invalid dataset code: " + filename);
-						} else if (!datasetDefs.isValidName(datasetName)) {
+						} else if (!validator.isValidName(datasetName)) {
 							errors.add("Invalid dataset name: " + filename);
-						} else if (!datasetDefs.datasetNameForCode(prefixID).equals(datasetName)) {
+						} else if (!validator.datasetNameForCode(prefixID).equals(datasetName)) {
 							errors.add("Invalid dataset code/name combination: " + filename);
 						}
 					}
