@@ -70,9 +70,10 @@ public class Capability1Tests extends CommonFixture {
 	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateComponentSelector2(String cs2, String cs1, String dataset, ArrayList<String> errors) {
-		ComponentSelectorsXml csDefs = new ComponentSelectorsXml("src/test/resources/Component_Selectors.xml");
+		CdbReference references = new CdbReference();
+		ComponentSelectorValidator validator = references.buildComponentSelectorValidator();
 		
-		if (!csDefs.isValidComponentSelector2ForDataset(cs2, cs1, dataset)) {
+		if (!validator.isValidComponentSelector2ForDataset(cs2, cs1, dataset)) {
 			errors.add(String.format("Invalid Component Selector 2 (%s) for CS1 (%s) and Dataset (%s)", cs2, cs1, dataset));
 		}
 	}
