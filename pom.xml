@@ -157,10 +157,8 @@
     
     <resources>
       <resource>
-        <directory>.</directory>
-        <includes>
-          <include>src/test/resources/CDB/**/*.*</include>
-        </includes>
+        <directory>src/test/resources/Reference</directory>
+        <targetPath>Reference</targetPath>
       </resource>
       
       <!--  resources from ets-common. here because there is no (easy) merge of POM resources -->
