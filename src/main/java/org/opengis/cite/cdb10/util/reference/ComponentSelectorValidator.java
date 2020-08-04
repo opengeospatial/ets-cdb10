@@ -65,4 +65,55 @@ public class ComponentSelectorValidator {
 	
 		return false;
 	}
+
+	/**
+	 * Use Component Selector reference to check that a Component Selector level
+	 * 2 is allowed for a CS1 and Dataset.
+	 * @param cs2 String of the level two Component Selector
+	 * @param cs1 String of the level one Component Selector
+	 * @param dataset String of the Dataset ID
+	 * @return true/false
+	 */
+	public boolean isValidComponentSelector2ForDataset(String cs2, String cs1, String dataset) {
+		String datasetPath = String.format("/DatasetSelectors/DatasetSelector/Datasets/Dataset[text()='%s']/../..", dataset);
+		
+		XPath xPath = XPathFactory.newInstance().newXPath();
+		XPathExpression datasetExp = null;
+		NodeList selector = null;
+		try {
+			datasetExp = xPath.compile(datasetPath);
+			selector = (NodeList) datasetExp.evaluate(doc, XPathConstants.NODESET);
+		} catch (XPathExpressionException e) {
+			return false;
+		}
+		
+		// Check if Dataset is not located in reference
+		if (selector.getLength() == 0) {
+			return false;
+		}
+		
+		// Select all possible combinations of exact and range values for
+		// component selectors.
+		String cs2Path = String.format(
+				"ComponentSelector[@kind='%s']/ComponentSelector[@index='%s'] | " +
+				"ComponentSelector[@minimum <= '%s' and @maximum >= '%s']/ComponentSelector[@index='%s'] | " +
+				"ComponentSelector[@kind='%s']/ComponentSelector[@minimum <= '%s' and @maximum >= '%s'] | " +
+				"ComponentSelector[@minimum <= '%s' and @maximum >= '%s']/ComponentSelector[@minimum <= '%s' and @maximum >= '%s']",
+				cs1, cs2, cs1, cs1, cs2, cs1, cs2, cs2, cs1, cs1, cs2, cs2
+				);
+		XPathExpression cs2Exp = null;
+		NodeList cs2Nodes = null;
+		try {
+			cs2Exp = xPath.compile(cs2Path);
+			cs2Nodes = (NodeList) cs2Exp.evaluate(selector.item(0), XPathConstants.NODESET);
+		} catch (XPathExpressionException e) {
+			return false;
+		}
+		
+		if (cs2Nodes.getLength() > 0) {
+			return true;
+		}
+
+		return false;
+	}
 }
