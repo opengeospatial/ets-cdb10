@@ -71,6 +71,31 @@ public class CdbReference {
 	}
 	
 	/**
+	 * Create a Validator for "Datasets" from the reference files.
+	 * @return A Validator for Datasets
+	 */
+	public DisCountryCodesValidator buildDisCountryCodesValidator() {
+		InputStream in = getClass().getResourceAsStream("/Reference/DIS_Country_Codes.xml");
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		
+		DocumentBuilder builder = null;
+		try {
+			builder = factory.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}
+		
+		Document doc = null;
+		try {
+			doc = builder.parse(in);
+		} catch (SAXException | IOException e) {
+			e.printStackTrace();
+		}
+		
+		return new DisCountryCodesValidator(doc);
+	}
+	
+	/**
 	 * Create a Validator for "Moving Model Codes" from the reference files.
 	 * @return A Validator for Moving Model Codes
 	 */
