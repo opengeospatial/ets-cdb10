@@ -4,12 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -17,7 +12,7 @@ import org.w3c.dom.NodeList;
 /**
  * Provides methods to validate if a Dataset follows the standard.
  */
-public class DatasetsValidator {
+public class DatasetsValidator extends Validator {
 	/**
 	 * Document from Components_Selectors.xml
 	 */
@@ -117,18 +112,5 @@ public class DatasetsValidator {
 			codeMap.put(intCode, name);
 		}
 		return codeMap.get(code);
-	}
-	
-	/**
-	 * Wrap the compilation and evaluation of an XPath in a function.
-	 * @param expression The XPath expression
-	 * @param doc A Document or Node
-	 * @return List of Nodes
-	 * @throws XPathExpressionException Error when evaluating XPath Expression
-	 */
-	private NodeList compileAndEvaluate(String expression, Object doc) throws XPathExpressionException {
-		XPath xPath = XPathFactory.newInstance().newXPath();
-		XPathExpression datasetExp = xPath.compile(expression);
-		return (NodeList) datasetExp.evaluate(doc, XPathConstants.NODESET);
 	}
 }

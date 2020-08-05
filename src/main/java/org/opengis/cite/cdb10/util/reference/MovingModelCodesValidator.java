@@ -1,11 +1,6 @@
 package org.opengis.cite.cdb10.util.reference;
 
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -13,7 +8,7 @@ import org.w3c.dom.NodeList;
 /**
  * Provides methods to validate Moving Model Codes.
  */
-public class MovingModelCodesValidator {
+public class MovingModelCodesValidator extends Validator {
 
 	/**
 	 * Document from Moving_Model_Codes.xml
@@ -147,18 +142,5 @@ public class MovingModelCodesValidator {
 		Node currentItem = matches.item(0);
 		String name = currentItem.getAttributes().getNamedItem("name").getNodeValue();
 		return name;
-	}
-	
-	/**
-	 * Wrap the compilation and evaluation of an XPath in a function.
-	 * @param expression The XPath expression
-	 * @param doc A Document or Node
-	 * @return List of Nodes
-	 * @throws XPathExpressionException Error when evaluating XPath Expression
-	 */
-	private NodeList compileAndEvaluate(String expression, Object doc) throws XPathExpressionException {
-		XPath xPath = XPathFactory.newInstance().newXPath();
-		XPathExpression datasetExp = xPath.compile(expression);
-		return (NodeList) datasetExp.evaluate(doc, XPathConstants.NODESET);
 	}
 }
