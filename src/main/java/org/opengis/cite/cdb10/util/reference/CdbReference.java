@@ -39,12 +39,21 @@ public class CdbReference {
 	}
 	
 	/**
-	 * Create a Validator for "Datasets" from the reference files.
-	 * @return A Validator for Datasets
+	 * Create a Validator for "DIS Country Codes" from the reference files.
+	 * @return A Validator for DIS Country Codes
 	 */
 	public DisCountryCodesValidator buildDisCountryCodesValidator() {
 		Document doc = documentForResource("/Reference/DIS_Country_Codes.xml");
 		return new DisCountryCodesValidator(doc);
+	}
+	
+	/**
+	 * Create a Validator for "Feature Data Dictionary" from the reference files.
+	 * @return A Validator for Feature Data Dictionary
+	 */
+	public FeatureDataDictionaryValidator buildFeatureDataDictionaryValidator() {
+		Document doc = documentForResource("/Reference/Feature_Data_Dictionary.xml");
+		return new FeatureDataDictionaryValidator(doc);
 	}
 	
 	/**

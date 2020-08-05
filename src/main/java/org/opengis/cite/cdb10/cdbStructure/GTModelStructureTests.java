@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.opengis.cite.cdb10.util.metadataXml.FeatureDataDictionaryXml;
 import org.opengis.cite.cdb10.util.reference.CdbReference;
 import org.opengis.cite.cdb10.util.reference.DatasetsValidator;
+import org.opengis.cite.cdb10.util.reference.FeatureDataDictionaryValidator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -97,11 +98,8 @@ public class GTModelStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml(SAMPLE_CDB_PATH);
-		
-		if (Files.notExists(fddDefs.getXmlFilePath())) {
-			return;
-		}
+		CdbReference references = new CdbReference();
+		FeatureDataDictionaryValidator validator = references.buildFeatureDataDictionaryValidator();
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
@@ -131,15 +129,15 @@ public class GTModelStructureTests extends Capability1Tests {
 				}
 
 				if ((code != null) && (categoryLabel != null)) {
-					if (!fddDefs.isValidCategoryCode(code)) {
+					if (!validator.isValidCategoryCode(code)) {
 						errors.add("Invalid category code: " + filename);
 					}
 
-					if (!fddDefs.isValidCategoryLabel(categoryLabel)) {
+					if (!validator.isValidCategoryLabel(categoryLabel)) {
 						errors.add("Invalid category label: " + filename);
 					}
 
-					if (!fddDefs.isCategoryLabelinCategoryCode(categoryLabel, code)) {
+					if (!validator.isCategoryLabelinCategoryCode(categoryLabel, code)) {
 						errors.add("Category label not a child of category code: " + filename);
 					}
 				}
@@ -170,11 +168,8 @@ public class GTModelStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml(SAMPLE_CDB_PATH);
-		
-		if (Files.notExists(fddDefs.getXmlFilePath())) {
-			return;
-		}
+		CdbReference references = new CdbReference();
+		FeatureDataDictionaryValidator validator = references.buildFeatureDataDictionaryValidator();
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
@@ -207,15 +202,15 @@ public class GTModelStructureTests extends Capability1Tests {
 					}
 
 					if ((code != null) && (subcategoryLabel != null)) {
-						if (!fddDefs.isValidSubcategoryCode(code)) {
+						if (!validator.isValidSubcategoryCode(code)) {
 							errors.add("Invalid subcategory code: " + filename);
 						}
 
-						if (!fddDefs.isValidSubcategoryLabel(subcategoryLabel)) {
+						if (!validator.isValidSubcategoryLabel(subcategoryLabel)) {
 							errors.add("Invalid subcategory label: " + filename);
 						}
 
-						if (!fddDefs.isSubcategoryLabelinSubcategoryCode(subcategoryLabel, code)) {
+						if (!validator.isSubcategoryLabelinSubcategoryCode(subcategoryLabel, code)) {
 							errors.add("Subcategory label not a child of subcategory code: " + filename);
 						}
 					}
@@ -247,11 +242,8 @@ public class GTModelStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		FeatureDataDictionaryXml fddDefs = new FeatureDataDictionaryXml(SAMPLE_CDB_PATH);
-		
-		if (Files.notExists(fddDefs.getXmlFilePath())) {
-			return;
-		}
+		CdbReference references = new CdbReference();
+		FeatureDataDictionaryValidator validator = references.buildFeatureDataDictionaryValidator();
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
 			
@@ -292,15 +284,15 @@ public class GTModelStructureTests extends Capability1Tests {
 						}
 
 						if ((code != null) && (codeID != null) && (featureTypeLabel != null)) {
-							if (!fddDefs.isValidFeatureTypeCode(code)) {
+							if (!validator.isValidFeatureTypeCode(code)) {
 								errors.add("Invalid subcategory code: " + filename);
 							}
 
-							if (!fddDefs.isValidFeatureTypeLabel(featureTypeLabel)) {
+							if (!validator.isValidFeatureTypeLabel(featureTypeLabel)) {
 								errors.add("Invalid subcategory label: " + filename);
 							}
 
-							if (!fddDefs.isFeatureTypeLabelinFeatureTypeCode(featureTypeLabel, code)) {
+							if (!validator.isFeatureTypeLabelinFeatureTypeCode(featureTypeLabel, code)) {
 								errors.add("Subcategory label not a child of subcategory code: " + filename);
 							}
 						}
