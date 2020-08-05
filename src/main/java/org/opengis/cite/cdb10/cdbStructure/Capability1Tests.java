@@ -6,6 +6,7 @@ import org.opengis.cite.cdb10.util.metadataXml.DISCountryCodesXml;
 import org.opengis.cite.cdb10.util.metadataXml.MovingModelCodesXml;
 import org.opengis.cite.cdb10.util.reference.CdbReference;
 import org.opengis.cite.cdb10.util.reference.ComponentSelectorValidator;
+import org.opengis.cite.cdb10.util.reference.MovingModelCodesValidator;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
@@ -111,11 +112,8 @@ public class Capability1Tests extends CommonFixture {
 	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateDISCategory(Path file, ArrayList<String> errors) {
-		MovingModelCodesXml mmcDefs = new MovingModelCodesXml(SAMPLE_CDB_PATH);
-		
-		if (Files.notExists(mmcDefs.getXmlFilePath())) {
-			return;
-		}
+		CdbReference references = new CdbReference();
+		MovingModelCodesValidator validator = references.buildMovingModelCodesValidator();
 		
 		String filename = file.getFileName().toString();
 		String code = null;
@@ -136,11 +134,11 @@ public class Capability1Tests extends CommonFixture {
 		if (codeID != null) {
 			if (codeID < 0) {
 				errors.add("Invalid prefix cannot be below 0: " + filename);
-			} else if (!mmcDefs.isValidCategoryCode(codeID)) {
+			} else if (!validator.isValidCategoryCode(codeID)) {
 				errors.add("Invalid DIS Category code: " + filename);
-			} else if (!mmcDefs.isValidCategoryName(categoryName)) {
+			} else if (!validator.isValidCategoryName(categoryName)) {
 				errors.add("Invalid DIS Category name: " + filename);
-			} else if (!mmcDefs.categoryNameForCode(codeID).equals(categoryName)) {
+			} else if (!validator.categoryNameForCode(codeID).equals(categoryName)) {
 				errors.add("Invalid DIS Category code/name combination: " + filename);
 			}
 		}
@@ -198,11 +196,8 @@ public class Capability1Tests extends CommonFixture {
 	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateDISDomain(Path file, ArrayList<String> errors) {
-		MovingModelCodesXml mmcDefs = new MovingModelCodesXml(SAMPLE_CDB_PATH);
-		
-		if (Files.notExists(mmcDefs.getXmlFilePath())) {
-			return;
-		}
+		CdbReference references = new CdbReference();
+		MovingModelCodesValidator validator = references.buildMovingModelCodesValidator();
 		
 		String filename = file.getFileName().toString();
 		String code = null;
@@ -223,11 +218,11 @@ public class Capability1Tests extends CommonFixture {
 		if (codeID != null) {
 			if (codeID < 0) {
 				errors.add("Invalid prefix cannot be below 0: " + filename);
-			} else if (!mmcDefs.isValidDomainCode(codeID)) {
+			} else if (!validator.isValidDomainCode(codeID)) {
 				errors.add("Invalid DIS Domain code: " + filename);
-			} else if (!mmcDefs.isValidDomainName(name)) {
+			} else if (!validator.isValidDomainName(name)) {
 				errors.add("Invalid DIS Domain name: " + filename);
-			} else if (!mmcDefs.domainNameForCode(codeID).equals(name)) {
+			} else if (!validator.domainNameForCode(codeID).equals(name)) {
 				errors.add("Invalid DIS Domain code/name combination: " + filename);
 			}
 		}
@@ -239,11 +234,8 @@ public class Capability1Tests extends CommonFixture {
 	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateDISEntityKind(Path file, ArrayList<String> errors) {
-		MovingModelCodesXml mmcDefs = new MovingModelCodesXml(SAMPLE_CDB_PATH);
-		
-		if (Files.notExists(mmcDefs.getXmlFilePath())) {
-			return;
-		}
+		CdbReference references = new CdbReference();
+		MovingModelCodesValidator validator = references.buildMovingModelCodesValidator();
 		
 		String filename = file.getFileName().toString();
 		String code = null;
@@ -264,11 +256,11 @@ public class Capability1Tests extends CommonFixture {
 		if (codeID != null) {
 			if (codeID < 0) {
 				errors.add("Invalid prefix cannot be below 0: " + filename);
-			} else if (!mmcDefs.isValidKindCode(codeID)) {
+			} else if (!validator.isValidKindCode(codeID)) {
 				errors.add("Invalid DIS Entity Kind code: " + filename);
-			} else if (!mmcDefs.isValidKindName(name)) {
+			} else if (!validator.isValidKindName(name)) {
 				errors.add("Invalid DIS Entity Kind name: " + filename);
-			} else if (!mmcDefs.kindNameForCode(codeID).equals(name)) {
+			} else if (!validator.kindNameForCode(codeID).equals(name)) {
 				errors.add("Invalid DIS Entity Kind code/name combination: " + filename);
 			}
 		}
