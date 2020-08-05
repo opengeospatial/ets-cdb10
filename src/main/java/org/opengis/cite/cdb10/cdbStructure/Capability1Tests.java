@@ -2,7 +2,6 @@ package org.opengis.cite.cdb10.cdbStructure;
 
 import org.opengis.cite.cdb10.CommonFixture;
 import org.opengis.cite.cdb10.SuiteAttribute;
-import org.opengis.cite.cdb10.util.metadataXml.DISCountryCodesXml;
 import org.opengis.cite.cdb10.util.reference.CdbReference;
 import org.opengis.cite.cdb10.util.reference.ComponentSelectorValidator;
 import org.opengis.cite.cdb10.util.reference.DisCountryCodesValidator;
@@ -11,7 +10,6 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -11,7 +11,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
-import org.opengis.cite.cdb10.util.metadataXml.FeatureDataDictionaryXml;
 import org.opengis.cite.cdb10.util.reference.CdbReference;
 import org.opengis.cite.cdb10.util.reference.DatasetsValidator;
 import org.opengis.cite.cdb10.util.reference.FeatureDataDictionaryValidator;
