@@ -98,7 +98,7 @@ Now we need to create a `config.xml` file for TEAM Engine to read the new test s
 </config>
 ```
 
-(If you have other test suites you want to enable, then they also need to be included in this XML file.)
+(If you have other test suites you want to enable, then they also need to be included in this XML file by placing them as an additional `/config/scripts/organisation/standard` element i.e. there should be only one organisation in the script)
 
 Next make sure Tomcat has read access to `TE_BASE`. On Linux/UNIX you can make `TE_BASE` readable by all users.
 
