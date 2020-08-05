@@ -5,6 +5,7 @@ import org.opengis.cite.cdb10.SuiteAttribute;
 import org.opengis.cite.cdb10.util.metadataXml.DISCountryCodesXml;
 import org.opengis.cite.cdb10.util.reference.CdbReference;
 import org.opengis.cite.cdb10.util.reference.ComponentSelectorValidator;
+import org.opengis.cite.cdb10.util.reference.DisCountryCodesValidator;
 import org.opengis.cite.cdb10.util.reference.MovingModelCodesValidator;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -148,12 +149,9 @@ public class Capability1Tests extends CommonFixture {
 	 * @param file The Path to the DIS Country directory
 	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
-	protected void validateDISCountry(Path file, ArrayList<String> errors) {
-		DISCountryCodesXml dccDefs = new DISCountryCodesXml(SAMPLE_CDB_PATH);
-		
-		if (Files.notExists(dccDefs.getXmlFilePath())) {
-			return;
-		}
+	protected void validateDISCountry(Path file, ArrayList<String> errors) {		
+		CdbReference references = new CdbReference();
+		DisCountryCodesValidator validator = references.buildDisCountryCodesValidator();
 		
 		String filename = file.getFileName().toString();
 		String code = null;
@@ -179,11 +177,11 @@ public class Capability1Tests extends CommonFixture {
 		if (codeID != null) {
 			if (codeID < 0) {
 				errors.add("Invalid prefix cannot be below 0: " + filename);
-			} else if (!dccDefs.isValidCountryCode(codeID)) {
+			} else if (!validator.isValidCountryCode(codeID)) {
 				errors.add("Invalid DIS Country code: " + filename);
-			} else if (!dccDefs.isValidCountryName(countryName)) {
+			} else if (!validator.isValidCountryName(countryName)) {
 				errors.add("Invalid DIS Country name: " + filename);
-			} else if (!dccDefs.countryNameForCode(codeID).equals(countryName)) {
+			} else if (!validator.countryNameForCode(codeID).equals(countryName)) {
 				errors.add("Invalid DIS Country code/name combination: " + filename);
 			}
 		}
