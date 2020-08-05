@@ -59,7 +59,8 @@ scripts/
   note
 ```
 
-Next install the CDB10 ETS dependencies from `target/ets-cdb10-0.5-SNAPSHOT-deps.zip` into the TEAM Engine library directory (`TE_BASE/lib`).
+Next install the CDB10 ETS dependencies from `target/ets-cdb10-0.5-SNAPSHOT-deps.zip` by unpackaging `ets-cdb10-0.5-SNAPSHOT-deps.zip` and then copying all of the jar files to the `/WEB-INF/lib` folder of teamengine webapp.
+
 
 It is possible a duplicate SLF4J library is installed into TEAM Engine. If the file `TE_BASE/lib/slf4j-log4j12-1.7.6.jar` exists, delete it. If you do not then TEAM Engine will not start.
 
