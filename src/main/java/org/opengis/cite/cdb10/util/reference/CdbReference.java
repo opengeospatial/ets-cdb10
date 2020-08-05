@@ -25,23 +25,7 @@ public class CdbReference {
 	 * @return A Validator for Component Selectors
 	 */
 	public ComponentSelectorValidator buildComponentSelectorValidator() {
-		InputStream in = getClass().getResourceAsStream("/Reference/Component_Selectors.xml");
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		
-		DocumentBuilder builder = null;
-		try {
-			builder = factory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		}
-		
-		Document doc = null;
-		try {
-			doc = builder.parse(in);
-		} catch (SAXException | IOException e) {
-			e.printStackTrace();
-		}
-		
+		Document doc = documentForResource("/Reference/Component_Selectors.xml");
 		return new ComponentSelectorValidator(doc);
 	}
 	
@@ -50,23 +34,7 @@ public class CdbReference {
 	 * @return A Validator for Datasets
 	 */
 	public DatasetsValidator buildDatasetsValidator() {
-		InputStream in = getClass().getResourceAsStream("/Reference/Datasets.xml");
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		
-		DocumentBuilder builder = null;
-		try {
-			builder = factory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		}
-		
-		Document doc = null;
-		try {
-			doc = builder.parse(in);
-		} catch (SAXException | IOException e) {
-			e.printStackTrace();
-		}
-		
+		Document doc = documentForResource("/Reference/Datasets.xml");
 		return new DatasetsValidator(doc);
 	}
 	
@@ -75,23 +43,7 @@ public class CdbReference {
 	 * @return A Validator for Datasets
 	 */
 	public DisCountryCodesValidator buildDisCountryCodesValidator() {
-		InputStream in = getClass().getResourceAsStream("/Reference/DIS_Country_Codes.xml");
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		
-		DocumentBuilder builder = null;
-		try {
-			builder = factory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		}
-		
-		Document doc = null;
-		try {
-			doc = builder.parse(in);
-		} catch (SAXException | IOException e) {
-			e.printStackTrace();
-		}
-		
+		Document doc = documentForResource("/Reference/DIS_Country_Codes.xml");
 		return new DisCountryCodesValidator(doc);
 	}
 	
@@ -100,7 +52,17 @@ public class CdbReference {
 	 * @return A Validator for Moving Model Codes
 	 */
 	public MovingModelCodesValidator buildMovingModelCodesValidator() {
-		InputStream in = getClass().getResourceAsStream("/Reference/Moving_Model_Codes.xml");
+		Document doc = documentForResource("/Reference/Moving_Model_Codes.xml");
+		return new MovingModelCodesValidator(doc);
+	}
+	
+	/**
+	 * Get a Resource from a path, and load it into an XML Document.
+	 * @param resourcePath Path to resource bundled by Maven
+	 * @return XML Document
+	 */
+	private Document documentForResource(String resourcePath) {
+		InputStream in = getClass().getResourceAsStream(resourcePath);
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		
 		DocumentBuilder builder = null;
@@ -117,6 +79,6 @@ public class CdbReference {
 			e.printStackTrace();
 		}
 		
-		return new MovingModelCodesValidator(doc);
+		return doc;
 	}
 }
