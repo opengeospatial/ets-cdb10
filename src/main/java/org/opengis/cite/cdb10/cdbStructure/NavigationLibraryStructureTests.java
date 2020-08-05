@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.opengis.cite.cdb10.util.FilenamePatterns;
-import org.opengis.cite.cdb10.util.metadataXml.DatasetsXml;
 import org.opengis.cite.cdb10.util.reference.CdbReference;
 import org.opengis.cite.cdb10.util.reference.DatasetsValidator;
 import org.testng.Assert;
