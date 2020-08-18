@@ -68,31 +68,25 @@ public class SuiteFixtureListener implements ISuiteListener {
 		suite.setAttribute(SuiteAttribute.LEVELS.getName(), levels);
 
 		String iutParam = params.get(TestRunArg.IUT.toString());
-		// Start of download and unzip function
-		if(TestSuiteLogger.isLoggable(Level.FINE)) TestSuiteLogger.log(Level.FINE, "iutParam BEFORE dereferencing URI "+iutParam);
-	      if ((null == iutParam) || iutParam.isEmpty()) {
-	            throw new IllegalArgumentException("Required test run parameter not found: " + TestRunArg.IUT.toString());
-	        }
-	      File iutFile = null;
-	      if(iutParam.startsWith("http") && iutParam.endsWith(".zip"))
-	      {	    
-	        URI iutRef = URI.create(iutParam.trim());	        
-	        try {		        	
-	            iutFile = URIUtils.dereferenceURI(iutRef);	    
+		
+		// Process ZIP file for IUT, if present
+        File iutFile = null;
+        URI iutRef = URI.create(iutParam.trim());
+        
+        if (iutParam.trim().endsWith(".zip")) {
+        	try {
+	            iutFile = URIUtils.dereferenceURI(iutRef);
 	        } catch (IOException iox) {
 	            throw new RuntimeException("Failed to dereference resource located at " + iutRef, iox);
 	        }
+	        
 	        iutParam = iutFile.getAbsolutePath();
-	      }	    
-	    if(iutFile!=null && TestSuiteLogger.isLoggable(Level.FINE)) TestSuiteLogger.log(Level.FINE, "iutParam AFTER dereferencing URI "+iutFile);   
-	    // End of download and unzip function
+        }
 	    
 		suite.setAttribute(SuiteAttribute.TEST_SUBJECT.getName(), iutParam);
+		
 		if (TestSuiteLogger.isLoggable(Level.FINE)) {
-			StringBuilder logMsg = new StringBuilder(
-					"Parsed resource retrieved from ");
-			logMsg.append(TestRunArg.IUT).append("\n");
-			TestSuiteLogger.log(Level.FINE, logMsg.toString());
+			TestSuiteLogger.log(Level.FINE, String.format("Parsed resource retrieved from %s\n", TestRunArg.IUT));
 		}
 	}
 	
