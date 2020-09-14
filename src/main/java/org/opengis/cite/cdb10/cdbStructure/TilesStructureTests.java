@@ -22,6 +22,12 @@ import org.testng.annotations.Test;
  */
 public class TilesStructureTests extends Capability1Tests {
 
+	/**
+	 * Return the number of degrees of Longitude a Geocell encompasses, given a
+	 * latitude. (Geocells have variable sizes.) 
+	 * @param latitude The latitude in integer degrees
+	 * @return An integer amount of degrees of longitude
+	 */
 	public Integer sliceWidthForLatitude(Integer latitude) {
 		Integer dLonZone = 1;
 		if (((latitude >= 89) && (latitude < 90)) || ((latitude >= -90) && (latitude < -89))) {
