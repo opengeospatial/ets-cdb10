@@ -2,6 +2,7 @@ package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import org.opengis.cite.cdb10.util.metadataXml.GeomaticsAttributesXml;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
@@ -13,8 +14,13 @@ import java.nio.file.Files;
  */
 public class GeomaticsAttributesXmlStructureTests extends Capability2Tests {
 	
+	private final static String NO_XML_SKIP = "Will not check for Geomatics Attributes Schema file as no Geomatics Attributes XML file exists.";
+	
 	private GeomaticsAttributesXml geomaticsAttributes;
 
+	/**
+	 * Initialize the GeomaticsAttributesXml validation class.
+	 */
 	private void loadXmlFile() {
 		this.geomaticsAttributes = new GeomaticsAttributesXml(path);
 	}
@@ -24,18 +30,24 @@ public class GeomaticsAttributesXmlStructureTests extends Capability2Tests {
 	}
 
     @Test(description = "OGC 15-113r5, Section 3.1.1")
-    public void verifyGeomaticsAttributesXsdFileExists() {
+    public void verifyGeomaticsAttributesSchemaExists() {
         this.loadXmlFile();
-        if (!this.xmlFileExists()) { return; }
+        // If there is no "Geomatics_Attributes.xml", then skip
+        if (!this.xmlFileExists()) {
+        	throw new SkipException(NO_XML_SKIP);
+        }
         
 		Assert.assertTrue(geomaticsAttributes.xsdFileExists(),
 				"Schema could not be loaded from XML 'schemaLocation'.");
     }
 
     @Test(description = "OGC 15-113r5, A.1.19, Test 77")
-    public void verifyGeomaticsAttributesXmlAgainstSchema() throws IOException, SAXException {
+    public void verifyGeomaticsAttributesAgainstSchema() throws IOException, SAXException {
         this.loadXmlFile();
-        if (!this.xmlFileExists()) { return; }
+        // If there is no "Geomatics_Attributes.xml", then skip
+        if (!this.xmlFileExists()) {
+        	throw new SkipException(NO_XML_SKIP);
+        }
         
         Assert.assertTrue(geomaticsAttributes.xmlFileExists(),
     			String.format("Metadata directory should contain %s file.", geomaticsAttributes.getXmlFileName()));

@@ -1,6 +1,7 @@
 package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import org.junit.Test;
+import org.testng.SkipException;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
@@ -31,8 +32,11 @@ public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixt
     @Test
     public void verifyGeomaticsAttributesXsdFileExists_XmlFileDoesNotExist() {
     	// setup: No Geomatics_Attributes.xml
+    	expectedException.expect(SkipException.class);
+        expectedException.expectMessage("Will not check for Geomatics Attributes Schema file as no Geomatics Attributes XML file exists.");
+        
     	// execute
-    	testSuite.verifyGeomaticsAttributesXsdFileExists();
+    	testSuite.verifyGeomaticsAttributesSchemaExists();
     }
 
     @Test
@@ -43,7 +47,7 @@ public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixt
         expectedException.expectMessage("Schema could not be loaded from XML 'schemaLocation'.");
 
         // execute
-        testSuite.verifyGeomaticsAttributesXsdFileExists();
+        testSuite.verifyGeomaticsAttributesSchemaExists();
     }
     
     @Test
@@ -54,7 +58,7 @@ public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixt
         expectedException.expectMessage("Schema could not be loaded from XML 'schemaLocation'.");
 
         // execute
-        testSuite.verifyGeomaticsAttributesXsdFileExists();
+        testSuite.verifyGeomaticsAttributesSchemaExists();
     }
 
     @Test
@@ -64,7 +68,7 @@ public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixt
         Files.copy(XSD_FILE, schemaFolder.resolve(GEOMATICS_ATTRIBUTES_XSD), REPLACE_EXISTING);
 
         // execute
-        testSuite.verifyGeomaticsAttributesXsdFileExists();
+        testSuite.verifyGeomaticsAttributesSchemaExists();
     }
 
     @Test
@@ -74,7 +78,7 @@ public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixt
         Files.copy(XSD_FILE, schemaFolder.resolve(GEOMATICS_ATTRIBUTES_XSD), REPLACE_EXISTING);
 
         // execute
-        testSuite.verifyGeomaticsAttributesXmlAgainstSchema();
+        testSuite.verifyGeomaticsAttributesAgainstSchema();
     }
 
     @Test
@@ -92,6 +96,6 @@ public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixt
         expectedException.expectMessage(expectedMessage);
 
         // execute
-        testSuite.verifyGeomaticsAttributesXmlAgainstSchema();
+        testSuite.verifyGeomaticsAttributesAgainstSchema();
     }
 }
