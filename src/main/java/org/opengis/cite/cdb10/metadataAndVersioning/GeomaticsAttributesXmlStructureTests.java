@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
-import java.nio.file.Files;
 
 /**
  * Created by martin on 2016-09-10.
@@ -26,7 +25,7 @@ public class GeomaticsAttributesXmlStructureTests extends Capability2Tests {
 	}
 	
 	private Boolean xmlFileExists() {
-		return Files.exists(this.geomaticsAttributes.getXmlFilePath());
+		return this.geomaticsAttributes.xmlFileExists();
 	}
 
     @Test(description = "OGC 15-113r5, Section 3.1.1")
