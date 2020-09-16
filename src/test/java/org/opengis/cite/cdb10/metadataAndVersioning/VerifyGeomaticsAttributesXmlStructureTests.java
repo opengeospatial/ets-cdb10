@@ -40,7 +40,7 @@ public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixt
     }
 
     @Test
-    public void verifyGeomaticsAttributesXsdFileExists_DoesNotExist() throws IOException {
+    public void verifyGeomaticsAttributesXsdFileExists_XsdDoesNotExist() throws IOException {
         // setup
         Files.copy(XML_LOCAL_XSD, metadataFolder.resolve(GEOMATICS_ATTRIBUTES_XML), REPLACE_EXISTING);
         expectedException.expect(AssertionError.class);
@@ -62,7 +62,7 @@ public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixt
     }
 
     @Test
-    public void verifyGeomaticsAttributesXsdFileExists_DoesExist() throws IOException {
+    public void verifyGeomaticsAttributesXsdFileExists_XsdDoesExist() throws IOException {
         // setup
         Files.copy(XML_LOCAL_XSD, metadataFolder.resolve(GEOMATICS_ATTRIBUTES_XML), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve(GEOMATICS_ATTRIBUTES_XSD), REPLACE_EXISTING);

@@ -2,8 +2,9 @@
 <Vendor_Attributes
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://www.CDB-Spec.org/Schema/Version/3.2"
-  xsi:schemaLocation="Schema/Vendor_Attributes.xsd">
+  xsi:schemaLocation="http://www.CDB-Spec.org/Schema/Version/3.2 Schema/Vendor_Attributes.xsd">
 
   <Example_Element_1></Example_Element_1>
+  <Example_Element_2></Example_Element_2>
 
 </Vendor_Attributes>

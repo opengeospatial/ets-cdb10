@@ -1,10 +1,10 @@
 package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import java.io.IOException;
-import java.nio.file.Files;
 
 import org.opengis.cite.cdb10.util.metadataXml.VendorAttributesXml;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
@@ -13,14 +13,19 @@ import org.xml.sax.SAXException;
  */
 public class VendorAttributesXmlStructureTests extends Capability2Tests {
 	
+	private final static String NO_XML_SKIP = "Will not check for Vendor Attributes Schema file as no Vendor Attributes XML file exists.";
+	
 	private VendorAttributesXml vendorAttributes;
 
+	/**
+	 * Initialize the VendorAttributesXml validation class.
+	 */
 	private void loadXmlFile() {
 		this.vendorAttributes = new VendorAttributesXml(path);
 	}
 	
 	private Boolean xmlFileExists() {
-		return Files.exists(this.vendorAttributes.getXmlFilePath());
+		return this.vendorAttributes.xmlFileExists();
 	}
 
 	/**
@@ -30,10 +35,13 @@ public class VendorAttributesXmlStructureTests extends Capability2Tests {
     @Test(description = "OGC 15-113r5, Section 3.1.1")
     public void verifyVendorAttributesXsdFileExists() {
         this.loadXmlFile();
-        if (!this.xmlFileExists()) { return; }
+        // If there is no "Vendor_Attributes.xml", then skip
+        if (!this.xmlFileExists()) {
+        	throw new SkipException(NO_XML_SKIP);
+        }
         
 		Assert.assertTrue(vendorAttributes.xsdFileExists(),
-				String.format("Metadata directory should contain %s file.", vendorAttributes.getXsdFileName()));
+				"Schema could not be loaded from XML 'schemaLocation'.");
     }
 
     /** If the Vendor Attributes XML and Schema files exist, then verify the
@@ -45,10 +53,11 @@ public class VendorAttributesXmlStructureTests extends Capability2Tests {
     @Test(description = "OGC 15-113r5, A.1.19, Test 76")
     public void verifyVendorAttributesXmlAgainstSchema() throws IOException, SAXException {
         this.loadXmlFile();
-        if (!this.xmlFileExists()) { return; }
+        // If there is no "Vendor_Attributes.xml", then skip
+        if (!this.xmlFileExists()) {
+        	throw new SkipException(NO_XML_SKIP);
+        }
         
-        Assert.assertTrue(vendorAttributes.xmlFileExists(),
-    			String.format("Metadata directory should contain %s file.", vendorAttributes.getXmlFileName()));
         Assert.assertTrue(vendorAttributes.xsdFileExists(),
 				String.format("Metadata directory should contain %s file.", vendorAttributes.getXsdFileName()));
         

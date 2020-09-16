@@ -48,8 +48,6 @@ public class GeomaticsAttributesXmlStructureTests extends Capability2Tests {
         	throw new SkipException(NO_XML_SKIP);
         }
         
-        Assert.assertTrue(geomaticsAttributes.xmlFileExists(),
-    			String.format("Metadata directory should contain %s file.", geomaticsAttributes.getXmlFileName()));
         Assert.assertTrue(geomaticsAttributes.xsdFileExists(),
 				String.format("Metadata directory should contain %s file.", geomaticsAttributes.getXsdFileName()));
         

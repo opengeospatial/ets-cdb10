@@ -1,6 +1,7 @@
 package org.opengis.cite.cdb10.metadataAndVersioning;
 
 import org.junit.Test;
+import org.testng.SkipException;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
@@ -14,34 +15,54 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
  * Created by martin on 2016-09-09.
  */
 public class VerifyVendorAttributesXmlStructureTests extends MetadataTestFixture<VendorAttributesXmlStructureTests> {
-
-    private final static Path XSD_FILE = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Vendor_Attributes.xsd"));
-
-    private final static Path VALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Vendor_Attributes.xml"));
-
-    private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Vendor_AttributesInvalid.xml"));
+	
+	private static final String VENDOR_ATTRIBUTES_XSD = "Vendor_Attributes.xsd";
+	private static final String VENDOR_ATTRIBUTES_XML = "Vendor_Attributes.xml";
+    
+	private final static Path XSD_FILE = SOURCE_DIRECTORY.resolve(Paths.get("schema", VENDOR_ATTRIBUTES_XSD));
+    private final static Path XML_LOCAL_XSD = SOURCE_DIRECTORY.resolve(Paths.get("valid", VENDOR_ATTRIBUTES_XML));
+    private final static Path XML_REMOTE_XSD_MISSING = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Vendor_AttributesRemoteMissing.xml"));
+    private final static Path XML_INVALID = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Vendor_AttributesInvalid.xml"));
 
     public VerifyVendorAttributesXmlStructureTests() { testSuite = new VendorAttributesXmlStructureTests(); }
+    
+    @Test
+    public void verifyVendorAttributesXsdFileExists_XmlFileDoesNotExist() {
+    	// setup: No Vendor_Attributes.xml
+    	expectedException.expect(SkipException.class);
+        expectedException.expectMessage("Will not check for Vendor Attributes Schema file as no Vendor Attributes XML file exists.");
+        
+    	// execute
+    	testSuite.verifyVendorAttributesXsdFileExists();
+    }
 
     @Test
-    public void verifyVendorAttributesXsdFileExists_DoesNotExist() throws IOException {
+    public void verifyVendorAttributesXsdFileExists_XsdDoesNotExist() throws IOException {
         // setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Vendor_Attributes.xml")));
-
-        String expectedMessage = "Metadata directory should contain Vendor_Attributes.xsd file.";
-
+        Files.copy(XML_LOCAL_XSD, metadataFolder.resolve(VENDOR_ATTRIBUTES_XML), REPLACE_EXISTING);
         expectedException.expect(AssertionError.class);
-        expectedException.expectMessage(expectedMessage);
+        expectedException.expectMessage("Schema could not be loaded from XML 'schemaLocation'.");
 
         // execute
         testSuite.verifyVendorAttributesXsdFileExists();
     }
-
+    
     @Test
-    public void verifyVendorAttributesXsdFileExists_DoesExist() throws IOException {
+    public void verifyVendorAttributesXsdFileExists_RemoteXsdDoesNotExist() throws IOException {
         // setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Vendor_Attributes.xml")));
-        Files.createFile(schemaFolder.resolve(Paths.get("Vendor_Attributes.xsd")));
+        Files.copy(XML_REMOTE_XSD_MISSING, metadataFolder.resolve(VENDOR_ATTRIBUTES_XML), REPLACE_EXISTING);
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Schema could not be loaded from XML 'schemaLocation'.");
+
+        // execute
+        testSuite.verifyVendorAttributesXsdFileExists();
+    }
+    
+    @Test
+    public void verifyVendorAttributesXsdFileExists_XsdDoesExist() throws IOException {
+        // setup
+        Files.copy(XML_LOCAL_XSD, metadataFolder.resolve(VENDOR_ATTRIBUTES_XML), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve(VENDOR_ATTRIBUTES_XSD), REPLACE_EXISTING);
 
         // execute
         testSuite.verifyVendorAttributesXsdFileExists();
@@ -50,8 +71,8 @@ public class VerifyVendorAttributesXmlStructureTests extends MetadataTestFixture
     @Test
     public void verifyVendorAttributesXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
         // setup
-        Files.copy(VALID_FILE, metadataFolder.resolve("Vendor_Attributes.xml"), REPLACE_EXISTING);
-        Files.copy(XSD_FILE, schemaFolder.resolve("Vendor_Attributes.xsd"), REPLACE_EXISTING);
+        Files.copy(XML_LOCAL_XSD, metadataFolder.resolve(VENDOR_ATTRIBUTES_XML), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve(VENDOR_ATTRIBUTES_XSD), REPLACE_EXISTING);
 
         // execute
         testSuite.verifyVendorAttributesXmlAgainstSchema();
@@ -60,8 +81,8 @@ public class VerifyVendorAttributesXmlStructureTests extends MetadataTestFixture
     @Test
     public void verifyVendorAttributesXmlAgainstSchema_XmlIsNotValid() throws IOException, SAXException {
         // setup
-        Files.copy(INVALID_FILE, metadataFolder.resolve("Vendor_Attributes.xml"), REPLACE_EXISTING);
-        Files.copy(XSD_FILE, schemaFolder.resolve("Vendor_Attributes.xsd"), REPLACE_EXISTING);
+        Files.copy(XML_INVALID, metadataFolder.resolve(VENDOR_ATTRIBUTES_XML), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve(VENDOR_ATTRIBUTES_XSD), REPLACE_EXISTING);
 
         String expectedMessage = "Vendor_Attributes.xml does not validate against its XML Schema file. " +
                 "Errors: cvc-complex-type.2.4.b: The content of element 'Vendor_Attributes' is not complete. " +
@@ -73,19 +94,5 @@ public class VerifyVendorAttributesXmlStructureTests extends MetadataTestFixture
 
         // execute
         testSuite.verifyVendorAttributesXmlAgainstSchema();
-    }
-
-    @Test
-    public void verifyVendorAttributesXmlAgainstSchema_VendorAttributesXsdFileDoesNotExist() throws IOException, SAXException {
-        // setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Vendor_Attributes.xml")));
-
-        String expectedMessage = "Metadata directory should contain Vendor_Attributes.xsd file.";
-
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage(expectedMessage);
-
-        // execute
-        testSuite.verifyVendorAttributesXmlAgainstSchema(); // will not return an assertion error
     }
 }
