@@ -33,7 +33,7 @@ public class VendorAttributesXmlStructureTests extends Capability2Tests {
 	 * If no Vendor Attributes XML file exists, then this test is skipped.
 	 */
     @Test(description = "OGC 15-113r5, Section 3.1.1")
-    public void verifyVendorAttributesXsdFileExists() {
+    public void verifyVendorAttributesSchemaExists() {
         this.loadXmlFile();
         // If there is no "Vendor_Attributes.xml", then skip
         if (!this.xmlFileExists()) {

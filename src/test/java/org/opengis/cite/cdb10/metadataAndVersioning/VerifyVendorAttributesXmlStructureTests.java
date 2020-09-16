@@ -27,45 +27,45 @@ public class VerifyVendorAttributesXmlStructureTests extends MetadataTestFixture
     public VerifyVendorAttributesXmlStructureTests() { testSuite = new VendorAttributesXmlStructureTests(); }
     
     @Test
-    public void verifyVendorAttributesXsdFileExists_XmlFileDoesNotExist() {
+    public void verifyVendorAttributesSchemaExists_XmlFileDoesNotExist() {
     	// setup: No Vendor_Attributes.xml
     	expectedException.expect(SkipException.class);
         expectedException.expectMessage("Will not check for Vendor Attributes Schema file as no Vendor Attributes XML file exists.");
         
     	// execute
-    	testSuite.verifyVendorAttributesXsdFileExists();
+    	testSuite.verifyVendorAttributesSchemaExists();
     }
 
     @Test
-    public void verifyVendorAttributesXsdFileExists_XsdDoesNotExist() throws IOException {
+    public void verifyVendorAttributesSchemaExists_XsdDoesNotExist() throws IOException {
         // setup
         Files.copy(XML_LOCAL_XSD, metadataFolder.resolve(VENDOR_ATTRIBUTES_XML), REPLACE_EXISTING);
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Schema could not be loaded from XML 'schemaLocation'.");
 
         // execute
-        testSuite.verifyVendorAttributesXsdFileExists();
+        testSuite.verifyVendorAttributesSchemaExists();
     }
     
     @Test
-    public void verifyVendorAttributesXsdFileExists_RemoteXsdDoesNotExist() throws IOException {
+    public void verifyVendorAttributesSchemaExists_RemoteXsdDoesNotExist() throws IOException {
         // setup
         Files.copy(XML_REMOTE_XSD_MISSING, metadataFolder.resolve(VENDOR_ATTRIBUTES_XML), REPLACE_EXISTING);
         expectedException.expect(AssertionError.class);
         expectedException.expectMessage("Schema could not be loaded from XML 'schemaLocation'.");
 
         // execute
-        testSuite.verifyVendorAttributesXsdFileExists();
+        testSuite.verifyVendorAttributesSchemaExists();
     }
     
     @Test
-    public void verifyVendorAttributesXsdFileExists_XsdDoesExist() throws IOException {
+    public void verifyVendorAttributesSchemaExists_XsdDoesExist() throws IOException {
         // setup
         Files.copy(XML_LOCAL_XSD, metadataFolder.resolve(VENDOR_ATTRIBUTES_XML), REPLACE_EXISTING);
         Files.copy(XSD_FILE, schemaFolder.resolve(VENDOR_ATTRIBUTES_XSD), REPLACE_EXISTING);
 
         // execute
-        testSuite.verifyVendorAttributesXsdFileExists();
+        testSuite.verifyVendorAttributesSchemaExists();
     }
 
     @Test
