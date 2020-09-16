@@ -15,22 +15,43 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
  */
 public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixture<GeomaticsAttributesXmlStructureTests> {
 
-    private final static Path XSD_FILE = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Geomatics_Attributes.xsd"));
-
-    private final static Path VALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Geomatics_Attributes.xml"));
-
-    private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Geomatics_AttributesInvalid.xml"));
+    private static final String GEOMATICS_ATTRIBUTES_XSD = "Geomatics_Attributes.xsd";
+	private static final String GEOMATICS_ATTRIBUTES_XML = "Geomatics_Attributes.xml";
+    
+	private final static Path XSD_FILE = SOURCE_DIRECTORY.resolve(Paths.get("schema", GEOMATICS_ATTRIBUTES_XSD));
+    private final static Path XML_LOCAL_XSD = SOURCE_DIRECTORY.resolve(Paths.get("valid", GEOMATICS_ATTRIBUTES_XML));
+    private final static Path XML_REMOTE_XSD = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Geomatics_Attributes_remote.xml"));
+    private final static Path XML_REMOTE_XSD_MISSING = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Geomatics_Attributes_remote.xml"));
+    private final static Path XML_INVALID = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "Geomatics_AttributesInvalid.xml"));
 
     public VerifyGeomaticsAttributesXmlStructureTests() {
         testSuite = new GeomaticsAttributesXmlStructureTests();
     }
+    
+    @Test
+    public void verifyGeomaticsAttributesXsdFileExists_XmlFileDoesNotExist() {
+    	// setup: No Geomatics_Attributes.xml
+    	// execute
+    	testSuite.verifyGeomaticsAttributesXsdFileExists();
+    }
 
     @Test
-    public void verifyVendorAttributesXsdFileExists_DoesNotExist() throws IOException {
+    public void verifyGeomaticsAttributesXsdFileExists_DoesNotExist() throws IOException {
         // setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Geomatics_Attributes.xml")));
+        Files.copy(XML_LOCAL_XSD, metadataFolder.resolve(GEOMATICS_ATTRIBUTES_XML), REPLACE_EXISTING);
         expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("Metadata directory should contain Geomatics_Attributes.xsd file.");
+        expectedException.expectMessage("Schema could not be loaded from XML 'schemaLocation'.");
+
+        // execute
+        testSuite.verifyGeomaticsAttributesXsdFileExists();
+    }
+    
+    @Test
+    public void verifyGeomaticsAttributesXsdFileExists_RemoteXsdDoesNotExist() throws IOException {
+        // setup
+        Files.copy(XML_REMOTE_XSD_MISSING, metadataFolder.resolve(GEOMATICS_ATTRIBUTES_XML), REPLACE_EXISTING);
+        expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Schema could not be loaded from XML 'schemaLocation'.");
 
         // execute
         testSuite.verifyGeomaticsAttributesXsdFileExists();
@@ -39,8 +60,8 @@ public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixt
     @Test
     public void verifyGeomaticsAttributesXsdFileExists_DoesExist() throws IOException {
         // setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Geomatics_Attributes.xml")));
-        Files.createFile(schemaFolder.resolve(Paths.get("Geomatics_Attributes.xsd")));
+        Files.copy(XML_LOCAL_XSD, metadataFolder.resolve(GEOMATICS_ATTRIBUTES_XML), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve(GEOMATICS_ATTRIBUTES_XSD), REPLACE_EXISTING);
 
         // execute
         testSuite.verifyGeomaticsAttributesXsdFileExists();
@@ -49,8 +70,8 @@ public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixt
     @Test
     public void verifyGeomaticsAttributesXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
         // setup
-        Files.copy(VALID_FILE, metadataFolder.resolve("Geomatics_Attributes.xml"), REPLACE_EXISTING);
-        Files.copy(XSD_FILE, schemaFolder.resolve("Geomatics_Attributes.xsd"), REPLACE_EXISTING);
+        Files.copy(XML_LOCAL_XSD, metadataFolder.resolve(GEOMATICS_ATTRIBUTES_XML), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve(GEOMATICS_ATTRIBUTES_XSD), REPLACE_EXISTING);
 
         // execute
         testSuite.verifyGeomaticsAttributesXmlAgainstSchema();
@@ -59,8 +80,8 @@ public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixt
     @Test
     public void verifyGeomaticsAttributesXmlAgainstSchema_XmlIsNotValid() throws IOException, SAXException {
         // setup
-        Files.copy(INVALID_FILE, metadataFolder.resolve("Geomatics_Attributes.xml"), REPLACE_EXISTING);
-        Files.copy(XSD_FILE, schemaFolder.resolve("Geomatics_Attributes.xsd"), REPLACE_EXISTING);
+        Files.copy(XML_INVALID, metadataFolder.resolve(GEOMATICS_ATTRIBUTES_XML), REPLACE_EXISTING);
+        Files.copy(XSD_FILE, schemaFolder.resolve(GEOMATICS_ATTRIBUTES_XSD), REPLACE_EXISTING);
 
         String expectedMessage = "Geomatics_Attributes.xml does not validate against its XML Schema file. " +
                 "Errors: cvc-complex-type.2.4.b: The content of element 'Geomatics_Attributes' is not complete. " +
@@ -72,16 +93,5 @@ public class VerifyGeomaticsAttributesXmlStructureTests extends MetadataTestFixt
 
         // execute
         testSuite.verifyGeomaticsAttributesXmlAgainstSchema();
-    }
-
-    @Test
-    public void verifyGeomaticsAttributesXmlAgainstSchema_GeomaticsAttributesXsdFileDoesNotExist() throws IOException, SAXException {
-        // setup
-        Files.createFile(metadataFolder.resolve(Paths.get("Geomatics_Attributes.xml")));
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage("Metadata directory should contain Geomatics_Attributes.xsd file.");
-
-        // execute
-        testSuite.verifyGeomaticsAttributesXmlAgainstSchema(); // will not return an assertion error
     }
 }

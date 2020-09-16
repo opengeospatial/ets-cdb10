@@ -29,7 +29,7 @@ public class GeomaticsAttributesXmlStructureTests extends Capability2Tests {
         if (!this.xmlFileExists()) { return; }
         
 		Assert.assertTrue(geomaticsAttributes.xsdFileExists(),
-				String.format("Metadata directory should contain %s file.", geomaticsAttributes.getXsdFileName()));
+				"Schema could not be loaded from XML 'schemaLocation'.");
     }
 
     @Test(description = "OGC 15-113r5, A.1.19, Test 77")
