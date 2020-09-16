@@ -73,6 +73,12 @@ public class GeomaticsAttributesXml {
 		
     	try {
 			this.xsdFile = URIUtils.dereferenceURI(schemaURI);
+			
+			// If nothing is downloaded, then an empty directory is created
+			// and we need to catch that.
+			if (!this.xsdFile.isFile()) {
+				this.xsdFile = null;
+			}
 		} catch (IOException e) {
 			// Cannot retrieve schema
 		}
