@@ -49,7 +49,7 @@ public class GeomaticsAttributesXml {
         // Get local copy of schema, if necessary
         if (schemaLocation.isEmpty()) {
         	// Do nothing, leave xsdFile as null
-        } else if (schemaLocation.matches("/^http/i")) {
+        } else if (schemaLocation.toLowerCase().startsWith("http")) {
         	// Schema starts with HTTP, download it
         	this.loadRemoteSchema(schemaLocation);
         } else {
