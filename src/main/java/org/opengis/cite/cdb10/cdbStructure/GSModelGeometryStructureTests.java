@@ -44,8 +44,8 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 				errors.add("Invalid file name: " + filename);
 			} else {
 				// groups: lat, lon, datasetCode, cs1, cs2, lod, uref, rref, ext
-				validateLatitude(Integer.parseInt(match.group("lat")), errors);
-				validateLongitude(Integer.parseInt(match.group("lon")), errors);
+				validateLatitude(match.group("lat"), errors);
+				validateLongitude(match.group("lon"), errors);
 				
 				int datasetCode = Integer.parseInt(match.group("datasetCode"));
 				if (!datasetsValidator.isValidCode(datasetCode)) {
@@ -65,13 +65,13 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 				
 				Integer lodLevel = null;
 				if (!lod.equals("LC")) {
-					lodLevel = Integer.parseInt(lod);
+					lodLevel = Integer.parseInt(lod.substring(1));
 				}
-				Integer uref = Integer.parseInt(match.group("uref"));
+				Integer uref = Integer.parseInt(match.group("uref").substring(1));
 				
 				validateUref(uref, lodLevel, errors);
 				
-				validateRref(Integer.parseInt(match.group("rref")), lodLevel, errors);
+				validateRref(Integer.parseInt(match.group("rref").substring(1)), lodLevel, errors);
 				
 				String ext = match.group("ext");
 				if (!ext.equalsIgnoreCase("zip")) {

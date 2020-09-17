@@ -342,13 +342,18 @@ public class Capability1Tests extends CommonFixture {
 	}
 	
 	/**
-	 * Validate an integer as being a valid latitude.
+	 * Validate a latitude code as being a valid latitude.
 	 * @param latitude 
 	 * @param errors
 	 */
-	protected void validateLatitude(Integer latitude, ArrayList<String> errors) {
-		if (latitude > 90 || latitude < -90) {
-			errors.add(String.format("Invalid latitude (%s)", latitude));
+	protected void validateLatitude(String latitude, ArrayList<String> errors) {
+		if (!latitude.startsWith("N") && !latitude.startsWith("S")) {
+			errors.add(String.format("Latitude must start with N or S: %s", latitude));
+		} else {
+			Integer lat = Integer.parseInt(latitude.substring(1));
+			if (lat > 90 || lat < -90) {
+				errors.add(String.format("Invalid latitude (%s)", latitude));
+			}
 		}
 	}
 	
@@ -376,13 +381,18 @@ public class Capability1Tests extends CommonFixture {
 	}
 	
 	/**
-	 * Validate an integer as being a valid longitude.
-	 * @param latitude 
+	 * Validate a longitude code as being a valid longitude.
+	 * @param longitude
 	 * @param errors
 	 */
-	protected void validateLongitude(Integer longitude, ArrayList<String> errors) {
-		if (longitude > 180 || longitude < -180) {
-			errors.add(String.format("Invalid longitude (%s)", longitude));
+	protected void validateLongitude(String longitude, ArrayList<String> errors) {
+		if (!longitude.startsWith("E") && !longitude.startsWith("W")) {
+			errors.add(String.format("Longitude must start with E or W: %s", longitude));
+		} else {
+			Integer lon = Integer.parseInt(longitude.substring(1));
+			if (lon > 180 || lon < -180) {
+				errors.add(String.format("Invalid longitude (%s)", longitude));
+			}
 		}
 	}
 	
