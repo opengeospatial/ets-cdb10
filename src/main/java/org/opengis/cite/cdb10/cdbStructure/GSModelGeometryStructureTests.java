@@ -10,7 +10,10 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.opengis.cite.cdb10.util.FilenamePatterns;
+import org.opengis.cite.cdb10.util.reference.CdbReference;
+import org.opengis.cite.cdb10.util.reference.DatasetsValidator;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 public class GSModelGeometryStructureTests extends Capability1Tests {
@@ -25,8 +28,11 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 		
 		// Skip test if CDB does not have a GSModelGeometry directory.
 		if (Files.notExists(gsModelGeomPath)) {
-			return;
+			throw new SkipException("No GSModelGeometry present; test skipped.");
 		}
+		
+		CdbReference references = new CdbReference();
+		DatasetsValidator datasetsValidator = references.buildDatasetsValidator();
 		
 		ArrayList<String> errors = new ArrayList<String>();
 		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelGeometry);
@@ -38,6 +44,14 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 				errors.add("Invalid file name: " + filename);
 			} else {
 				// groups: lat, lon, datasetCode, cs1, cs2, lod, uref, rref, ext
+				validateLatitude(Integer.parseInt(match.group("lat")), errors);
+				validateLongitude(Integer.parseInt(match.group("lon")), errors);
+				
+				int datasetCode = Integer.parseInt(match.group("datasetCode"));
+				if (!datasetsValidator.isValidCode(datasetCode)) {
+					errors.add(String.format("Invalid code %s", datasetCode));
+				}
+				
 				String cs1 = match.group("cs1");
 				String cs2 = match.group("cs2");
 				
@@ -45,6 +59,17 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 				validateComponentSelector1(cs1, "300", errors);
 				validateComponentSelectorFormat(cs2, 2, filename, errors);
 				validateComponentSelector2(cs2, cs1, "300", errors);
+				
+				String lod = match.group("lod");
+				validateLod(lod, errors);
+				
+				Integer lodLevel = null;
+				if (!lod.equals("LC")) {
+					lodLevel = Integer.parseInt(lod);
+				}
+				Integer uref = Integer.parseInt(match.group("uref"));
+				
+				validateUref(uref, lodLevel, errors);
 			}
 		}
 		

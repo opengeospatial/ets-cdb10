@@ -420,11 +420,7 @@ public class TilesStructureTests extends Capability1Tests {
 							} else {
 								Integer urefValue = Integer.parseInt(filename.substring(1, filename.length()));
 
-								// Negative LODs cannot be calculated here as we
-								// only know that the LOD is < 0
-								if ((lodLevel != null) && ((urefValue < 0) || (urefValue > (Math.pow(2, lodLevel) - 1)))) {
-									errors.add("UREF value out of bounds: " + filename);
-								}
+								validateUref(urefValue, lodLevel, errors);
 							}
 						}
 					}

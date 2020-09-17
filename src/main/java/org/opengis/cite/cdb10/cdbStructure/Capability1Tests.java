@@ -342,16 +342,47 @@ public class Capability1Tests extends CommonFixture {
 	}
 	
 	/**
+	 * Validate an integer as being a valid latitude.
+	 * @param latitude 
+	 * @param errors
+	 */
+	protected void validateLatitude(Integer latitude, ArrayList<String> errors) {
+		if (latitude > 90 || latitude < -90) {
+			errors.add(String.format("Invalid latitude (%s)", latitude));
+		}
+	}
+	
+	/**
 	 * Validate that an LOD directory is a valid format
 	 * @param file The Path to the LOD directory
 	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateLOD(Path file, ArrayList<String> errors) {
-		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
 		String filename = file.getFileName().toString();
-		Matcher match = LODPattern.matcher(filename);
+		validateLod(filename, errors);
+	}
+	
+	/**
+	 * Validate a level-of-detail code.
+	 * @param lod String of level-of-detail code
+	 * @param errors
+	 */
+	protected void validateLod(String lod, ArrayList<String> errors) {
+		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
+		Matcher match = LODPattern.matcher(lod);
 		if (!match.find()) {
-			errors.add("Invalid LOD name: " + filename);
+			errors.add("Invalid LOD name: " + lod);
+		}
+	}
+	
+	/**
+	 * Validate an integer as being a valid longitude.
+	 * @param latitude 
+	 * @param errors
+	 */
+	protected void validateLongitude(Integer longitude, ArrayList<String> errors) {
+		if (longitude > 180 || longitude < -180) {
+			errors.add(String.format("Invalid longitude (%s)", longitude));
 		}
 	}
 	
@@ -381,6 +412,20 @@ public class Capability1Tests extends CommonFixture {
 		if (!textureName.equals(parentTextureFilename)) {
 			errors.add(String.format("Texture Name Code \"%s\" does not match parent directory \"%s\" for file: %s", 
 					textureName, parentTextureFilename, file.getFileName().toString()));
+		}
+	}
+	
+	/**
+	 * Validate that a UREF value is valid for a given LoD.
+	 * @param uref
+	 * @param lod
+	 * @param errors
+	 */
+	protected void validateUref(Integer uref, Integer lod, ArrayList<String> errors) {
+		// Negative LODs cannot be calculated here as we
+		// only know that the LOD is < 0
+		if ((lod != null) && ((uref < 0) || (uref > (Math.pow(2, lod) - 1)))) {
+			errors.add("UREF value out of bounds: " + uref);
 		}
 	}
 }
