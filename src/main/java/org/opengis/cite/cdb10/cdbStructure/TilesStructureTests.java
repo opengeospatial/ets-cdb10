@@ -503,10 +503,7 @@ public class TilesStructureTests extends Capability1Tests {
 									// Only check RREF bounds for positive LODs
 									if (!lodFilename.equals("LC")) {
 										Integer lodLevel = Integer.parseInt(lodFilename.substring(1, lodFilename.length()));
-										
-										if (Integer.parseInt(match.group("rref")) > (Math.pow(2, lodLevel) - 1)) {
-											errors.add("RREF out of bounds for LOD: " + filename);
-										}
+										validateRref(Integer.parseInt(match.group("rref")), lodLevel, errors);
 									}
 
 									String datasetID = datasetFilename.split("_")[0];

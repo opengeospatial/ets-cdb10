@@ -400,6 +400,18 @@ public class Capability1Tests extends CommonFixture {
 	}
 	
 	/**
+	 * Validates a RREF value is valid for an LOD.
+	 * @param rref
+	 * @param lod
+	 * @param errors
+	 */
+	protected void validateRref(Integer rref, Integer lod, ArrayList<String> errors) {
+		if (rref > (Math.pow(2, lod) - 1)) {
+			errors.add("RREF out of bounds for LOD: " + rref);
+		}
+	}
+	
+	/**
 	 * Validate that the texture name component of a filename matches the name
 	 * of the parent directory for that file.
 	 * @param textureName The texture name code substring of the file name

@@ -70,6 +70,13 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 				Integer uref = Integer.parseInt(match.group("uref"));
 				
 				validateUref(uref, lodLevel, errors);
+				
+				validateRref(Integer.parseInt(match.group("rref")), lodLevel, errors);
+				
+				String ext = match.group("ext");
+				if (!ext.equalsIgnoreCase("zip")) {
+					errors.add("Invalid archive extension: " + ext);
+				}
 			}
 		}
 		
