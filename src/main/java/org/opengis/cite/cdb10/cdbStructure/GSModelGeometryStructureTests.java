@@ -22,6 +22,8 @@ import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 public class GSModelGeometryStructureTests extends Capability1Tests {
+	
+	protected static final String DATASET_CODE = "300";
 
 	/**
 	 * Validates that GSModelGeometry filenames have valid codes/names.
@@ -61,9 +63,9 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 				String cs2 = match.group("cs2");
 				
 				validateComponentSelectorFormat(cs1, 1, filename, errors);
-				validateComponentSelector1(cs1, "300", errors);
+				validateComponentSelector1(cs1, DATASET_CODE, errors);
 				validateComponentSelectorFormat(cs2, 2, filename, errors);
-				validateComponentSelector2(cs2, cs1, "300", errors);
+				validateComponentSelector2(cs2, cs1, DATASET_CODE, errors);
 				
 				String lod = match.group("lod");
 				validateLod(lod, errors);
@@ -131,6 +133,99 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 								String.format("Entry '%s' in ZIP archive '%s' should not be compressed",
 										entry.getName(), filename)
 							);
+						}
+					}
+					
+					zip.close();
+					
+				} catch (ZipException e) {
+					errors.add("Invalid ZIP archive file: " + filename);
+				} catch (IOException e) {
+					errors.add("Could not open file: " + filename);
+				}
+				
+			}
+		}
+		
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
+	
+	/**
+	 * Validates that GSModelGeometry entries inside ZIP archive follow naming
+	 * conventions.
+	 * @throws IOException DirectoryStream error 
+	 */
+	@Test(description = "OGC 15-113r5, A.1.13, Test 69")
+	public void verifyGSModelGeometryEntry() throws IOException {
+		Path gsModelGeomPath = Paths.get(this.path, "Tiles", "300_GSModelGeometry");
+		
+		// Skip test if CDB does not have a GSModelGeometry directory.
+		if (Files.notExists(gsModelGeomPath)) {
+			throw new SkipException("No GSModelGeometry present; test skipped.");
+		}
+		
+		CdbReference references = new CdbReference();
+		DatasetsValidator datasetsValidator = references.buildDatasetsValidator();
+		
+		ArrayList<String> errors = new ArrayList<String>();
+		Pattern archiveNamePattern = Pattern.compile(FilenamePatterns.GSModelGeometry);
+		Pattern archiveEntryPattern = Pattern.compile(FilenamePatterns.GSModelGeometryEntry);
+		
+		for (Path archive : Files.newDirectoryStream(gsModelGeomPath)) {
+			String filename = archive.getFileName().toString();
+			Matcher match = archiveNamePattern.matcher(filename);
+			// Any files that do not match the GSModelGeometry file pattern will
+			// be ignored, and will fail "verifyGSModelFile()" instead.
+			if (match.find()) {
+				File archiveFile = archive.toFile();
+								
+				try {
+					ZipFile zip = new ZipFile(archiveFile);
+					Enumeration<? extends ZipEntry> entries = zip.entries();
+					
+					while (entries.hasMoreElements()) {
+						ZipEntry entry = entries.nextElement();
+						String entryFilename = entry.getName();
+						
+						Matcher entryMatch = archiveEntryPattern.matcher(entryFilename);
+						
+						if (!entryMatch.find()) {
+							errors.add(String.format("Invalid entry '%s' in ZIP archive '%s'", entryFilename, filename));
+						} else {
+							// groups: lat, lon, datasetCode, cs1, cs2, lod, uref, rref, featureCode, fsc, modl, ext
+							validateLatitude(entryMatch.group("lat"), errors);
+							validateLongitude(entryMatch.group("lon"), errors);
+							
+							int datasetCode = Integer.parseInt(entryMatch.group("datasetCode"));
+							if (!datasetsValidator.isValidCode(datasetCode)) {
+								errors.add(String.format("Invalid code %s in entry '%s'", entryMatch.group("datasetCode"), entryFilename));
+							}
+							
+							String cs1 = entryMatch.group("cs1");
+							String cs2 = entryMatch.group("cs2");
+
+							validateComponentSelectorFormat(cs1, 1, entryFilename, errors);
+							validateComponentSelector1(cs1, DATASET_CODE, errors);
+							validateComponentSelectorFormat(cs2, 2, entryFilename, errors);
+							validateComponentSelector2(cs2, cs1, DATASET_CODE, errors);
+
+							String lod = entryMatch.group("lod");
+							validateLod(lod, errors);
+
+							Integer lodLevel = null;
+							if (!lod.equals("LC")) {
+								lodLevel = Integer.parseInt(lod.substring(1));
+							}
+							Integer uref = Integer.parseInt(entryMatch.group("uref").substring(1));
+
+							validateUref(uref, lodLevel, errors);
+
+							validateRref(Integer.parseInt(entryMatch.group("rref").substring(1)), lodLevel, errors);
+
+							String ext = entryMatch.group("ext");
+							if (!ext.equalsIgnoreCase("flt")) {
+								errors.add("Invalid archive extension: " + ext);
+							}
 						}
 					}
 					

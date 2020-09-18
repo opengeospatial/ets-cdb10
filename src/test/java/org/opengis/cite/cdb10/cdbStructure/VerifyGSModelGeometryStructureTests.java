@@ -1,5 +1,7 @@
 package org.opengis.cite.cdb10.cdbStructure;
 import java.io.IOException;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -38,6 +40,24 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	 */
 	protected Path createGSModelGeometryArchive(String archiveFilename) {
 		return this.cdb_root.resolve(Paths.get("Tiles", "300_GSModelGeometry", archiveFilename));
+	}
+	
+	/**
+	 * Copy an empty ZIP archive onto "archivePath", then create a 1-byte length
+	 * file entry in the ZIP archive named "entryName". Will replace any
+	 * existing entries with the same name.
+	 * @param archivePath Path to ZIP archive
+	 * @param entryName Name of entry to create in ZIP archive
+	 * @throws IOException
+	 */
+	protected void createArchiveWithEntryNamed(Path archivePath, String entryName) throws IOException {
+		Files.copy(EMPTY_ZIP, archivePath);
+		byte[] bytes = new byte[1];
+		
+		try (FileSystem fs = FileSystems.newFileSystem(archivePath, null)) {
+			Path source = fs.getPath("/" + entryName);
+			Files.write(source, bytes, CREATE, TRUNCATE_EXISTING);
+		}
 	}
 
 	/*
@@ -249,5 +269,19 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 
 		// execute
 		this.testSuite.verifyGSModelFileArchive();
+	}
+	
+	/*
+	 * Verify GS Model Geometry entries
+	 */
+	@Test
+	public void verifyGSModelGeometryEntry_valid() throws IOException {
+		// setup
+		String filename = "N62W162_D300_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.flt";
+		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		createArchiveWithEntryNamed(archive, filename);
+
+		// execute
+		this.testSuite.verifyGSModelGeometryEntry();
 	}
 }
