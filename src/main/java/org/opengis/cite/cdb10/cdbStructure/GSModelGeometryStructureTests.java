@@ -49,7 +49,7 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 				
 				int datasetCode = Integer.parseInt(match.group("datasetCode"));
 				if (!datasetsValidator.isValidCode(datasetCode)) {
-					errors.add(String.format("Invalid code %s", datasetCode));
+					errors.add(String.format("Invalid code %s", match.group("datasetCode")));
 				}
 				
 				String cs1 = match.group("cs1");
