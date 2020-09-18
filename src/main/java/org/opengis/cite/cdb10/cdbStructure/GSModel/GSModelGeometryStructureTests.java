@@ -1,4 +1,4 @@
-package org.opengis.cite.cdb10.cdbStructure;
+package org.opengis.cite.cdb10.cdbStructure.GSModel;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +17,7 @@ import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
 import org.apache.commons.lang3.StringUtils;
+import org.opengis.cite.cdb10.cdbStructure.Capability1Tests;
 import org.opengis.cite.cdb10.util.FilenamePatterns;
 import org.opengis.cite.cdb10.util.reference.CdbReference;
 import org.opengis.cite.cdb10.util.reference.DatasetsValidator;

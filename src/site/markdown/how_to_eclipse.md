@@ -69,6 +69,7 @@ If you have your own CDB that you would like to test with the test suite in Ecli
   <test name="CDB Structure">
     <packages>
       <package name="org.opengis.cite.cdb10.cdbStructure" />
+      <package name="org.opengis.cite.cdb10.cdbStructure.GSModel" />
     </packages>
   </test>
   <test name="Metadata And Versioning">
