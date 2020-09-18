@@ -64,17 +64,17 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	 * Verify GS Model Geometry filenames
 	 */
 	@Test
-	public void verifyGSModelFile_valid() throws IOException {
+	public void verifyGSModelGeometryFile_valid() throws IOException {
 		// setup
 		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
 		Files.copy(VALID_ZIP, archive);
 
 		// execute
-		this.testSuite.verifyGSModelFile();
+		this.testSuite.verifyGSModelGeometryFile();
 	}
 	
 	@Test
-	public void verifyGSModelFile_invalid() throws IOException {
+	public void verifyGSModelGeometryFile_invalid() throws IOException {
 		// setup
 		Path archive = createGSModelGeometryArchive("0.zip");
 		Files.copy(EMPTY_ZIP, archive, REPLACE_EXISTING);
@@ -83,11 +83,11 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
         expectedException.expectMessage("Invalid file name");
 
 		// execute
-		this.testSuite.verifyGSModelFile();
+		this.testSuite.verifyGSModelGeometryFile();
 	}
 	
 	@Test
-	public void verifyGSModelFile_invalidLatitude() throws IOException {
+	public void verifyGSModelGeometryFile_invalidLatitude() throws IOException {
 		// setup
 		Path archive = createGSModelGeometryArchive("N99W162_D300_S001_T001_L07_U38_R102.zip");
 		Files.copy(EMPTY_ZIP, archive, REPLACE_EXISTING);
@@ -96,11 +96,11 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
         expectedException.expectMessage("Invalid latitude (N99)");
 
 		// execute
-		this.testSuite.verifyGSModelFile();
+		this.testSuite.verifyGSModelGeometryFile();
 	}
 	
 	@Test
-	public void verifyGSModelFile_invalidLongitude() throws IOException {
+	public void verifyGSModelGeometryFile_invalidLongitude() throws IOException {
 		// setup
 		Path archive = createGSModelGeometryArchive("N62W999_D300_S001_T001_L07_U38_R102.zip");
 		Files.copy(EMPTY_ZIP, archive, REPLACE_EXISTING);
@@ -109,11 +109,11 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
         expectedException.expectMessage("Invalid longitude (W999)");
 
 		// execute
-		this.testSuite.verifyGSModelFile();
+		this.testSuite.verifyGSModelGeometryFile();
 	}
 	
 	@Test
-	public void verifyGSModelFile_invalidDataset() throws IOException {
+	public void verifyGSModelGeometryFile_invalidDataset() throws IOException {
 		// setup
 		Path archive = createGSModelGeometryArchive("N62W162_D000_S001_T001_L07_U38_R102.zip");
 		Files.copy(EMPTY_ZIP, archive, REPLACE_EXISTING);
@@ -122,11 +122,11 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
         expectedException.expectMessage("Invalid code 000");
 
 		// execute
-		this.testSuite.verifyGSModelFile();
+		this.testSuite.verifyGSModelGeometryFile();
 	}
 	
 	@Test
-	public void verifyGSModelFile_invalidCS1() throws IOException {
+	public void verifyGSModelGeometryFile_invalidCS1() throws IOException {
 		// setup
 		Path archive = createGSModelGeometryArchive("N62W162_D300_S000_T001_L07_U38_R102.zip");
 		Files.copy(EMPTY_ZIP, archive, REPLACE_EXISTING);
@@ -135,11 +135,11 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
         expectedException.expectMessage("Invalid Component Selector 1 (000) for Dataset (300)");
 
 		// execute
-		this.testSuite.verifyGSModelFile();
+		this.testSuite.verifyGSModelGeometryFile();
 	}
 	
 	@Test
-	public void verifyGSModelFile_invalidCS2() throws IOException {
+	public void verifyGSModelGeometryFile_invalidCS2() throws IOException {
 		// setup
 		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T000_L07_U38_R102.zip");
 		Files.copy(EMPTY_ZIP, archive, REPLACE_EXISTING);
@@ -148,11 +148,11 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
         expectedException.expectMessage("Invalid Component Selector 2 (000) for CS1 (001) and Dataset (300)");
 
 		// execute
-		this.testSuite.verifyGSModelFile();
+		this.testSuite.verifyGSModelGeometryFile();
 	}
 	
 	@Test
-	public void verifyGSModelFile_invalidLod() throws IOException {
+	public void verifyGSModelGeometryFile_invalidLod() throws IOException {
 		// setup
 		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L99_U38_R102.zip");
 		Files.copy(EMPTY_ZIP, archive, REPLACE_EXISTING);
@@ -161,11 +161,11 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
         expectedException.expectMessage("Invalid LOD name: L99");
 
 		// execute
-		this.testSuite.verifyGSModelFile();
+		this.testSuite.verifyGSModelGeometryFile();
 	}
 	
 	@Test
-	public void verifyGSModelFile_invalidUref() throws IOException {
+	public void verifyGSModelGeometryFile_invalidUref() throws IOException {
 		// setup
 		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U999_R102.zip");
 		Files.copy(EMPTY_ZIP, archive, REPLACE_EXISTING);
@@ -174,11 +174,11 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
         expectedException.expectMessage("UREF value out of bounds: 999");
 
 		// execute
-		this.testSuite.verifyGSModelFile();
+		this.testSuite.verifyGSModelGeometryFile();
 	}
 	
 	@Test
-	public void verifyGSModelFile_invalidRref() throws IOException {
+	public void verifyGSModelGeometryFile_invalidRref() throws IOException {
 		// setup
 		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R9999.zip");
 		Files.copy(EMPTY_ZIP, archive, REPLACE_EXISTING);
@@ -187,11 +187,11 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
         expectedException.expectMessage("RREF out of bounds for LOD: 9999");
 
 		// execute
-		this.testSuite.verifyGSModelFile();
+		this.testSuite.verifyGSModelGeometryFile();
 	}
 	
 	@Test
-	public void verifyGSModelFile_invalidExt() throws IOException {
+	public void verifyGSModelGeometryFile_invalidExt() throws IOException {
 		// setup
 		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.7z");
 		Files.copy(EMPTY_ZIP, archive, REPLACE_EXISTING);
@@ -200,24 +200,24 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
         expectedException.expectMessage("Invalid archive extension: 7z");
 
 		// execute
-		this.testSuite.verifyGSModelFile();
+		this.testSuite.verifyGSModelGeometryFile();
 	}
 	
 	/*
 	 * Verify GS Model Geometry archive
 	 */
 	@Test
-	public void verifyGSModelFileArchive_valid() throws IOException {
+	public void verifyGSModelGeometryFileArchive_valid() throws IOException {
 		// setup
 		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
 		Files.copy(EMPTY_ZIP, archive);
 
 		// execute
-		this.testSuite.verifyGSModelFileArchive();
+		this.testSuite.verifyGSModelGeometryFileArchive();
 	}
 	
 	@Test
-	public void verifyGSModelFileArchive_zeroZip() throws IOException {
+	public void verifyGSModelGeometryFileArchive_zeroZip() throws IOException {
 		// setup
 		Path archivePath = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
 		byte[] bytes = new byte[0];
@@ -227,11 +227,11 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
         expectedException.expectMessage("Zero-length ZIP archive");
 
 		// execute
-		this.testSuite.verifyGSModelFileArchive();
+		this.testSuite.verifyGSModelGeometryFileArchive();
 	}
 	
 	@Test
-	public void verifyGSModelFileArchive_tooBigZip() throws IOException {
+	public void verifyGSModelGeometryFileArchive_tooBigZip() throws IOException {
 		// setup
 		Path archivePath = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
 		byte[] bytes = new byte[32000001];
@@ -241,11 +241,11 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
         expectedException.expectMessage("ZIP archive exceeds 32 Megabytes");
 
 		// execute
-		this.testSuite.verifyGSModelFileArchive();
+		this.testSuite.verifyGSModelGeometryFileArchive();
 	}
 	
 	@Test
-	public void verifyGSModelFileArchive_notAZip() throws IOException {
+	public void verifyGSModelGeometryFileArchive_notAZip() throws IOException {
 		// setup
 		Path archivePath = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
 		byte[] bytes = new byte[100];
@@ -255,11 +255,11 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
         expectedException.expectMessage("Invalid ZIP archive file");
 
 		// execute
-		this.testSuite.verifyGSModelFileArchive();
+		this.testSuite.verifyGSModelGeometryFileArchive();
 	}
 	
 	@Test
-	public void verifyGSModelFileArchive_compressedEntry() throws IOException {
+	public void verifyGSModelGeometryFileArchive_compressedEntry() throws IOException {
 		// setup
 		Path archivePath = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
 		Files.copy(COMPRESSED_ZIP, archivePath, REPLACE_EXISTING);
@@ -268,7 +268,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
         expectedException.expectMessage("should not be compressed");
 
 		// execute
-		this.testSuite.verifyGSModelFileArchive();
+		this.testSuite.verifyGSModelGeometryFileArchive();
 	}
 	
 	/*

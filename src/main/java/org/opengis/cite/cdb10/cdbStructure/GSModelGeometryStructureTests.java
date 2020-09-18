@@ -6,7 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
@@ -24,13 +27,27 @@ import org.testng.annotations.Test;
 public class GSModelGeometryStructureTests extends Capability1Tests {
 	
 	protected static final String DATASET_CODE = "300";
+	
+	/**
+	 * A String Array holds the allowed file extensions for archives, and the
+	 * Set is used for searching/matching.
+	 */
+	protected static final String[] ALLOWED_ARCHIVE_EXT = new String[] { "zip" };
+	protected static final Set<String> ALLOWED_ARCHIVE_EXT_SET = new HashSet<String>(Arrays.asList(ALLOWED_ARCHIVE_EXT));
+	
+	/**
+	 * A String Array holds the allowed file extensions for archive entry files,
+	 * and the Set is used for searching/matching.
+	 */
+	protected static final String[] ALLOWED_ENTRY_EXT = new String[] { "flt" };
+	protected static final Set<String> ALLOWED_ENTRY_EXT_SET = new HashSet<String>(Arrays.asList(ALLOWED_ENTRY_EXT));
 
 	/**
 	 * Validates that GSModelGeometry filenames have valid codes/names.
 	 * @throws IOException DirectoryStream error 
 	 */
 	@Test(description = "OGC 15-113r5, A.1.13, Test 40")
-	public void verifyGSModelFile() throws IOException {
+	public void verifyGSModelGeometryFile() throws IOException {
 		Path gsModelGeomPath = Paths.get(this.path, "Tiles", "300_GSModelGeometry");
 		
 		// Skip test if CDB does not have a GSModelGeometry directory.
@@ -81,7 +98,7 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 				validateRref(Integer.parseInt(match.group("rref").substring(1)), lodLevel, errors);
 				
 				String ext = match.group("ext");
-				if (!ext.equalsIgnoreCase("zip")) {
+				if (!ALLOWED_ARCHIVE_EXT_SET.contains(ext)) {
 					errors.add("Invalid archive extension: " + ext);
 				}
 			}
@@ -96,7 +113,7 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 	 * @throws IOException DirectoryStream error 
 	 */
 	@Test(description = "OGC 15-113r5, Section 3.6.3.2")
-	public void verifyGSModelFileArchive() throws IOException {
+	public void verifyGSModelGeometryFileArchive() throws IOException {
 		Path gsModelGeomPath = Paths.get(this.path, "Tiles", "300_GSModelGeometry");
 		
 		// Skip test if CDB does not have a GSModelGeometry directory.
@@ -223,7 +240,7 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 							validateRref(Integer.parseInt(entryMatch.group("rref").substring(1)), lodLevel, errors);
 
 							String ext = entryMatch.group("ext");
-							if (!ext.equalsIgnoreCase("flt")) {
+							if (!ALLOWED_ENTRY_EXT_SET.contains(ext)) {
 								errors.add("Invalid archive extension: " + ext);
 							}
 						}
