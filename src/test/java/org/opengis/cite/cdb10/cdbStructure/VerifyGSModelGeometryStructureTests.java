@@ -284,4 +284,144 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 		// execute
 		this.testSuite.verifyGSModelGeometryEntry();
 	}
+	
+	@Test
+	public void verifyGSModelGeometryEntry_invalid() throws IOException {
+		// setup
+		String filename = "0.flt";
+		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		createArchiveWithEntryNamed(archive, filename);
+		
+		expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Invalid entry '0.flt' in ZIP archive");
+
+		// execute
+		this.testSuite.verifyGSModelGeometryEntry();
+	}
+	
+	@Test
+	public void verifyGSModelGeometryEntry_invalidLatitude() throws IOException {
+		// setup
+		String filename = "N92W162_D300_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.flt";
+		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		createArchiveWithEntryNamed(archive, filename);
+		
+		expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Invalid latitude (N92)");
+
+		// execute
+		this.testSuite.verifyGSModelGeometryEntry();
+	}
+	
+	@Test
+	public void verifyGSModelGeometryEntry_invalidLongitude() throws IOException {
+		// setup
+		String filename = "N62W962_D300_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.flt";
+		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		createArchiveWithEntryNamed(archive, filename);
+		
+		expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Invalid longitude (W962)");
+
+		// execute
+		this.testSuite.verifyGSModelGeometryEntry();
+	}
+	
+	@Test
+	public void verifyGSModelGeometryEntry_invalidDataset() throws IOException {
+		// setup
+		String filename = "N62W162_D000_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.flt";
+		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		createArchiveWithEntryNamed(archive, filename);
+		
+		expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Invalid code 000 in entry");
+
+		// execute
+		this.testSuite.verifyGSModelGeometryEntry();
+	}
+	
+	@Test
+	public void verifyGSModelGeometryEntry_invalidCS1() throws IOException {
+		// setup
+		String filename = "N62W162_D300_S000_T001_L07_U38_R102_AL015_116_AcmeFactory.flt";
+		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		createArchiveWithEntryNamed(archive, filename);
+		
+		expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Invalid Component Selector 1 (000) for Dataset (300)");
+
+		// execute
+		this.testSuite.verifyGSModelGeometryEntry();
+	}
+	
+	@Test
+	public void verifyGSModelGeometryEntry_invalidCS2() throws IOException {
+		// setup
+		String filename = "N62W162_D300_S001_T000_L07_U38_R102_AL015_116_AcmeFactory.flt";
+		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		createArchiveWithEntryNamed(archive, filename);
+		
+		expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Invalid Component Selector 2 (000) for CS1 (001) and Dataset (300)");
+
+		// execute
+		this.testSuite.verifyGSModelGeometryEntry();
+	}
+	
+	@Test
+	public void verifyGSModelGeometryEntry_invalidLod() throws IOException {
+		// setup
+		String filename = "N62W162_D300_S001_T001_L99_U38_R102_AL015_116_AcmeFactory.flt";
+		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		createArchiveWithEntryNamed(archive, filename);
+		
+		expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Invalid LOD name: L99");
+
+		// execute
+		this.testSuite.verifyGSModelGeometryEntry();
+	}
+	
+	@Test
+	public void verifyGSModelGeometryEntry_invalidUref() throws IOException {
+		// setup
+		String filename = "N62W162_D300_S001_T001_L07_U999_R102_AL015_116_AcmeFactory.flt";
+		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		createArchiveWithEntryNamed(archive, filename);
+		
+		expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("UREF value out of bounds: 999");
+
+		// execute
+		this.testSuite.verifyGSModelGeometryEntry();
+	}
+	
+	@Test
+	public void verifyGSModelGeometryEntry_invalidRref() throws IOException {
+		// setup
+		String filename = "N62W162_D300_S001_T001_L07_U38_R9999_AL015_116_AcmeFactory.flt";
+		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		createArchiveWithEntryNamed(archive, filename);
+		
+		expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("RREF out of bounds for LOD: 9999");
+
+		// execute
+		this.testSuite.verifyGSModelGeometryEntry();
+	}
+	
+	@Test
+	public void verifyGSModelGeometryEntry_invalidExt() throws IOException {
+		// setup
+		String filename = "N62W162_D300_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.txt";
+		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		createArchiveWithEntryNamed(archive, filename);
+		
+		expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Invalid archive extension: txt");
+
+		// execute
+		this.testSuite.verifyGSModelGeometryEntry();
+	}
 }
