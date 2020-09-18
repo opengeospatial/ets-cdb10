@@ -5,6 +5,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+import static java.nio.file.StandardOpenOption.CREATE;
+import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +15,9 @@ import org.opengis.cite.cdb10.cdbStructure.GSModelGeometryStructureTests;
 public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GSModelGeometryStructureTests> {
 	
 	protected final static Path SOURCE_DIRECTORY = Paths.get(System.getProperty("user.dir"), "src", "test", "java", "org", "opengis", "cite", "cdb10", "fixtures");
+	private final static Path VALID_ZIP = SOURCE_DIRECTORY.resolve(Paths.get("valid", "GSModelGeometry.zip"));
 	private final static Path EMPTY_ZIP = SOURCE_DIRECTORY.resolve(Paths.get("valid", "empty.zip"));
+	private final static Path COMPRESSED_ZIP = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "GSModelGeometry_compressed.zip"));
 	
 	public VerifyGSModelGeometryStructureTests() throws IOException {
 		this.testSuite = new GSModelGeometryStructureTests();
@@ -43,7 +47,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	public void verifyGSModelFile_valid() throws IOException {
 		// setup
 		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
-		Files.copy(EMPTY_ZIP, archive);
+		Files.copy(VALID_ZIP, archive);
 
 		// execute
 		this.testSuite.verifyGSModelFile();
@@ -177,5 +181,73 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 
 		// execute
 		this.testSuite.verifyGSModelFile();
+	}
+	
+	/*
+	 * Verify GS Model Geometry archive
+	 */
+	@Test
+	public void verifyGSModelFileArchive_valid() throws IOException {
+		// setup
+		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Files.copy(EMPTY_ZIP, archive);
+
+		// execute
+		this.testSuite.verifyGSModelFileArchive();
+	}
+	
+	@Test
+	public void verifyGSModelFileArchive_zeroZip() throws IOException {
+		// setup
+		Path archivePath = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		byte[] bytes = new byte[0];
+		Files.write(archivePath, bytes, CREATE, TRUNCATE_EXISTING);
+		
+		expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Zero-length ZIP archive");
+
+		// execute
+		this.testSuite.verifyGSModelFileArchive();
+	}
+	
+	@Test
+	public void verifyGSModelFileArchive_tooBigZip() throws IOException {
+		// setup
+		Path archivePath = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		byte[] bytes = new byte[32000001];
+		Files.write(archivePath, bytes, CREATE, TRUNCATE_EXISTING);
+		
+		expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("ZIP archive exceeds 32 Megabytes");
+
+		// execute
+		this.testSuite.verifyGSModelFileArchive();
+	}
+	
+	@Test
+	public void verifyGSModelFileArchive_notAZip() throws IOException {
+		// setup
+		Path archivePath = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		byte[] bytes = new byte[100];
+		Files.write(archivePath, bytes, CREATE, TRUNCATE_EXISTING);
+		
+		expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("Invalid ZIP archive file");
+
+		// execute
+		this.testSuite.verifyGSModelFileArchive();
+	}
+	
+	@Test
+	public void verifyGSModelFileArchive_compressedEntry() throws IOException {
+		// setup
+		Path archivePath = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Files.copy(COMPRESSED_ZIP, archivePath, REPLACE_EXISTING);
+		
+		expectedException.expect(AssertionError.class);
+        expectedException.expectMessage("should not be compressed");
+
+		// execute
+		this.testSuite.verifyGSModelFileArchive();
 	}
 }

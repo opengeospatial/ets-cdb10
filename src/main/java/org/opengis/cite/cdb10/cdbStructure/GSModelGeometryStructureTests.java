@@ -1,12 +1,17 @@
 package org.opengis.cite.cdb10.cdbStructure;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
+import java.util.zip.ZipFile;
 
 import org.apache.commons.lang3.StringUtils;
 import org.opengis.cite.cdb10.util.FilenamePatterns;
@@ -77,6 +82,66 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 				if (!ext.equalsIgnoreCase("zip")) {
 					errors.add("Invalid archive extension: " + ext);
 				}
+			}
+		}
+		
+		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
+	}
+	
+	/**
+	 * Validates that GSModelGeometry files are ZIP archive files with no
+	 * compression, and limited to 32 MB.
+	 * @throws IOException DirectoryStream error 
+	 */
+	@Test(description = "OGC 15-113r5, Section 3.6.3.2")
+	public void verifyGSModelFileArchive() throws IOException {
+		Path gsModelGeomPath = Paths.get(this.path, "Tiles", "300_GSModelGeometry");
+		
+		// Skip test if CDB does not have a GSModelGeometry directory.
+		if (Files.notExists(gsModelGeomPath)) {
+			throw new SkipException("No GSModelGeometry present; test skipped.");
+		}
+		
+		ArrayList<String> errors = new ArrayList<String>();
+		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelGeometry);
+		
+		for (Path archive : Files.newDirectoryStream(gsModelGeomPath)) {
+			String filename = archive.getFileName().toString();
+			Matcher match = filePattern.matcher(filename);
+			// Any files that do not match the GSModelGeometry file pattern will
+			// be ignored, and will fail "verifyGSModelFile()" instead.
+			if (match.find()) {
+				File archiveFile = archive.toFile();
+				long archiveLength = archiveFile.length();
+				
+				if (archiveLength == 0) {
+					errors.add("Zero-length ZIP archive: " + filename);
+				} else if (archiveLength > 32000000) {
+					errors.add("ZIP archive exceeds 32 Megabytes: " + filename);
+				}
+				
+				try {
+					ZipFile zip = new ZipFile(archiveFile);
+					Enumeration<? extends ZipEntry> entries = zip.entries();
+					
+					while (entries.hasMoreElements()) {
+						ZipEntry entry = entries.nextElement();
+						if (entry.getMethod() != ZipEntry.STORED) {
+							errors.add(
+								String.format("Entry '%s' in ZIP archive '%s' should not be compressed",
+										entry.getName(), filename)
+							);
+						}
+					}
+					
+					zip.close();
+					
+				} catch (ZipException e) {
+					errors.add("Invalid ZIP archive file: " + filename);
+				} catch (IOException e) {
+					errors.add("Could not open file: " + filename);
+				}
+				
 			}
 		}
 		
