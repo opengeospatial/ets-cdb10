@@ -41,7 +41,7 @@ public class VerifyGSModelTextureStructureTests extends GSModelStructureTests<GS
 	}
 
 	/*
-	 * Verify GS Model Geometry filenames
+	 * Verify GS Model Texture filenames
 	 */
 	@Test
 	public void verifyGSModelTextureFile_valid() throws IOException {
@@ -185,7 +185,7 @@ public class VerifyGSModelTextureStructureTests extends GSModelStructureTests<GS
 	}
 	
 	/*
-	 * Verify GS Model Geometry archive
+	 * Verify GS Model Texture archive
 	 */
 	@Test
 	public void verifyGSModelTextureFileArchive_valid() throws IOException {
@@ -254,7 +254,7 @@ public class VerifyGSModelTextureStructureTests extends GSModelStructureTests<GS
 	}
 	
 	/*
-	 * Verify GS Model Geometry entries
+	 * Verify GS Model Texture entries
 	 */
 	@Test
 	public void verifyGSModelTextureEntry_valid() throws IOException {
