@@ -1,9 +1,8 @@
 package org.opengis.cite.cdb10.util;
 
 /**
- * Class to hold filename matching patterns
- * 
- * @author jpbadger
+ * Class to hold filename matching patterns.
+ * See OGC 15-113r5, Section 3.6.3.2.5 for more examples.
  *
  */
 public class FilenamePatterns {
@@ -15,6 +14,16 @@ public class FilenamePatterns {
 	 * General format for GSModel archive file names
 	 */
 	public static final String GSModelArchive = "^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC\\d{2}|L[0-9]{2})_(?<uref>U[0-9]+)_(?<rref>R[0-9]+)\\.(?<ext>.+)$";
+	
+	/**
+	 * Example of valid filename: N62W162_D303_S001_T001_L07_U38_R102.zip
+	 */
+	public static final String GSModelDescriptor = GSModelArchive;
+	
+	/**
+	 * Example of valid filename: N62W162_D303_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.xml
+	 */
+	public static final String GSModelDescriptorEntry = "^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC\\d{2}|L[0-9]{2})_(?<uref>U[0-9]+)_(?<rref>R[0-9]+)_(?<featureCode>.{5})_(?<fsc>\\d+)_(?<modl>[^.]+)\\.(?<ext>.+)$";
 	
 	/**
 	 * Example of valid filename: N62W162_D300_S001_T001_L07_U38_R102.zip
