@@ -28,6 +28,7 @@ import org.testng.annotations.Test;
 public class GSModelGeometryStructureTests extends Capability1Tests {
 	
 	protected static final String DATASET_CODE = "300";
+	protected static final String DATASET_DIRECTORY = "300_GSModelGeometry";
 	
 	/**
 	 * A String Array holds the allowed file extensions for archives, and the
@@ -49,7 +50,7 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 	 */
 	@Test(description = "OGC 15-113r5, A.1.13, Test 40")
 	public void verifyGSModelGeometryFile() throws IOException {
-		Path gsModelGeomPath = Paths.get(this.path, "Tiles", "300_GSModelGeometry");
+		Path gsModelGeomPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
 		
 		// Skip test if CDB does not have a GSModelGeometry directory.
 		if (Files.notExists(gsModelGeomPath)) {
@@ -115,7 +116,7 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 	 */
 	@Test(description = "OGC 15-113r5, Section 3.6.3.2")
 	public void verifyGSModelGeometryFileArchive() throws IOException {
-		Path gsModelGeomPath = Paths.get(this.path, "Tiles", "300_GSModelGeometry");
+		Path gsModelGeomPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
 		
 		// Skip test if CDB does not have a GSModelGeometry directory.
 		if (Files.notExists(gsModelGeomPath)) {
@@ -175,7 +176,7 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 	 */
 	@Test(description = "OGC 15-113r5, A.1.13, Test 69")
 	public void verifyGSModelGeometryEntry() throws IOException {
-		Path gsModelGeomPath = Paths.get(this.path, "Tiles", "300_GSModelGeometry");
+		Path gsModelGeomPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
 		
 		// Skip test if CDB does not have a GSModelGeometry directory.
 		if (Files.notExists(gsModelGeomPath)) {
