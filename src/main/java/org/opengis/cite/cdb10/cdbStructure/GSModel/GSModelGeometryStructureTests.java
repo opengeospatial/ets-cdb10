@@ -27,8 +27,8 @@ import org.testng.annotations.Test;
 
 public class GSModelGeometryStructureTests extends Capability1Tests {
 	
-	protected static final String DATASET_CODE = "300";
-	protected static final String DATASET_DIRECTORY = "300_GSModelGeometry";
+	public static final String DATASET_CODE = "300";
+	public static final String DATASET_DIRECTORY = "300_GSModelGeometry";
 	
 	/**
 	 * A String Array holds the allowed file extensions for archives, and the

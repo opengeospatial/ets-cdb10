@@ -1,7 +1,5 @@
 package org.opengis.cite.cdb10.cdbStructure.GSModel;
 import java.io.IOException;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,15 +10,15 @@ import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.opengis.cite.cdb10.cdbStructure.StructureTestFixture;
 import org.opengis.cite.cdb10.cdbStructure.GSModel.GSModelGeometryStructureTests;
 
-public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GSModelGeometryStructureTests> {
+public class VerifyGSModelGeometryStructureTests extends GSModelStructureTests<GSModelGeometryStructureTests> {
 	
 	protected final static Path SOURCE_DIRECTORY = Paths.get(System.getProperty("user.dir"), "src", "test", "java", "org", "opengis", "cite", "cdb10", "fixtures");
-	private final static Path VALID_ZIP = SOURCE_DIRECTORY.resolve(Paths.get("valid", "GSModelGeometry.zip"));
 	private final static Path EMPTY_ZIP = SOURCE_DIRECTORY.resolve(Paths.get("valid", "empty.zip"));
-	private final static Path COMPRESSED_ZIP = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "GSModelGeometry_compressed.zip"));
+	
+	protected static final String VALID_ARCHIVE_NAME = "N62W162_D300_S001_T001_L07_U38_R102.zip";
+	protected static final String VALID_ENTRY_NAME = "N62W162_D300_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.flt";
 	
 	public VerifyGSModelGeometryStructureTests() throws IOException {
 		this.testSuite = new GSModelGeometryStructureTests();
@@ -28,7 +26,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	
 	@Before
     public void setupDirs() throws IOException {
-    	Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "300_GSModelGeometry")));
+    	Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", GSModelGeometryStructureTests.DATASET_DIRECTORY)));
     }
 	
 	/**
@@ -40,25 +38,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	 * @return Path for GSModelGeometry archive file
 	 */
 	protected Path createGSModelGeometryArchive(String archiveFilename) {
-		return this.cdb_root.resolve(Paths.get("Tiles", "300_GSModelGeometry", archiveFilename));
-	}
-	
-	/**
-	 * Copy an empty ZIP archive onto "archivePath", then create a 1-byte length
-	 * file entry in the ZIP archive named "entryName". Will replace any
-	 * existing entries with the same name.
-	 * @param archivePath Path to ZIP archive
-	 * @param entryName Name of entry to create in ZIP archive
-	 * @throws IOException
-	 */
-	protected void createArchiveWithEntryNamed(Path archivePath, String entryName) throws IOException {
-		Files.copy(EMPTY_ZIP, archivePath);
-		byte[] bytes = new byte[1];
-		
-		try (FileSystem fs = FileSystems.newFileSystem(archivePath, null)) {
-			Path source = fs.getPath("/" + entryName);
-			Files.write(source, bytes, CREATE, TRUNCATE_EXISTING);
-		}
+		return this.cdb_root.resolve(Paths.get("Tiles", GSModelGeometryStructureTests.DATASET_DIRECTORY, archiveFilename));
 	}
 
 	/*
@@ -67,8 +47,9 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	@Test
 	public void verifyGSModelGeometryFile_valid() throws IOException {
 		// setup
-		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
-		Files.copy(VALID_ZIP, archive);
+		String filename = VALID_ENTRY_NAME;
+		Path archive = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
+		createArchiveWithEntryNamed(archive, filename);
 
 		// execute
 		this.testSuite.verifyGSModelGeometryFile();
@@ -210,7 +191,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	@Test
 	public void verifyGSModelGeometryFileArchive_valid() throws IOException {
 		// setup
-		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Path archive = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
 		Files.copy(EMPTY_ZIP, archive);
 
 		// execute
@@ -220,7 +201,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	@Test
 	public void verifyGSModelGeometryFileArchive_zeroZip() throws IOException {
 		// setup
-		Path archivePath = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Path archivePath = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
 		byte[] bytes = new byte[0];
 		Files.write(archivePath, bytes, CREATE, TRUNCATE_EXISTING);
 		
@@ -234,7 +215,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	@Test
 	public void verifyGSModelGeometryFileArchive_tooBigZip() throws IOException {
 		// setup
-		Path archivePath = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Path archivePath = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
 		byte[] bytes = new byte[32000001];
 		Files.write(archivePath, bytes, CREATE, TRUNCATE_EXISTING);
 		
@@ -248,7 +229,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	@Test
 	public void verifyGSModelGeometryFileArchive_notAZip() throws IOException {
 		// setup
-		Path archivePath = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Path archivePath = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
 		byte[] bytes = new byte[100];
 		Files.write(archivePath, bytes, CREATE, TRUNCATE_EXISTING);
 		
@@ -262,8 +243,9 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	@Test
 	public void verifyGSModelGeometryFileArchive_compressedEntry() throws IOException {
 		// setup
-		Path archivePath = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
-		Files.copy(COMPRESSED_ZIP, archivePath, REPLACE_EXISTING);
+		String filename = VALID_ENTRY_NAME;
+		Path archive = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
+		createArchiveWithCompressedEntryNamed(archive, filename);
 		
 		expectedException.expect(AssertionError.class);
         expectedException.expectMessage("should not be compressed");
@@ -278,8 +260,8 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	@Test
 	public void verifyGSModelGeometryEntry_valid() throws IOException {
 		// setup
-		String filename = "N62W162_D300_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.flt";
-		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		String filename = VALID_ENTRY_NAME;
+		Path archive = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
 		createArchiveWithEntryNamed(archive, filename);
 
 		// execute
@@ -290,7 +272,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	public void verifyGSModelGeometryEntry_invalid() throws IOException {
 		// setup
 		String filename = "0.flt";
-		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Path archive = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
 		createArchiveWithEntryNamed(archive, filename);
 		
 		expectedException.expect(AssertionError.class);
@@ -304,7 +286,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	public void verifyGSModelGeometryEntry_invalidLatitude() throws IOException {
 		// setup
 		String filename = "N92W162_D300_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.flt";
-		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Path archive = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
 		createArchiveWithEntryNamed(archive, filename);
 		
 		expectedException.expect(AssertionError.class);
@@ -318,7 +300,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	public void verifyGSModelGeometryEntry_invalidLongitude() throws IOException {
 		// setup
 		String filename = "N62W962_D300_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.flt";
-		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Path archive = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
 		createArchiveWithEntryNamed(archive, filename);
 		
 		expectedException.expect(AssertionError.class);
@@ -332,7 +314,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	public void verifyGSModelGeometryEntry_invalidDataset() throws IOException {
 		// setup
 		String filename = "N62W162_D000_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.flt";
-		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Path archive = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
 		createArchiveWithEntryNamed(archive, filename);
 		
 		expectedException.expect(AssertionError.class);
@@ -346,7 +328,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	public void verifyGSModelGeometryEntry_invalidCS1() throws IOException {
 		// setup
 		String filename = "N62W162_D300_S000_T001_L07_U38_R102_AL015_116_AcmeFactory.flt";
-		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Path archive = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
 		createArchiveWithEntryNamed(archive, filename);
 		
 		expectedException.expect(AssertionError.class);
@@ -360,7 +342,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	public void verifyGSModelGeometryEntry_invalidCS2() throws IOException {
 		// setup
 		String filename = "N62W162_D300_S001_T000_L07_U38_R102_AL015_116_AcmeFactory.flt";
-		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Path archive = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
 		createArchiveWithEntryNamed(archive, filename);
 		
 		expectedException.expect(AssertionError.class);
@@ -374,7 +356,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	public void verifyGSModelGeometryEntry_invalidLod() throws IOException {
 		// setup
 		String filename = "N62W162_D300_S001_T001_L99_U38_R102_AL015_116_AcmeFactory.flt";
-		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Path archive = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
 		createArchiveWithEntryNamed(archive, filename);
 		
 		expectedException.expect(AssertionError.class);
@@ -388,7 +370,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	public void verifyGSModelGeometryEntry_invalidUref() throws IOException {
 		// setup
 		String filename = "N62W162_D300_S001_T001_L07_U999_R102_AL015_116_AcmeFactory.flt";
-		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Path archive = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
 		createArchiveWithEntryNamed(archive, filename);
 		
 		expectedException.expect(AssertionError.class);
@@ -402,7 +384,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	public void verifyGSModelGeometryEntry_invalidRref() throws IOException {
 		// setup
 		String filename = "N62W162_D300_S001_T001_L07_U38_R9999_AL015_116_AcmeFactory.flt";
-		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Path archive = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
 		createArchiveWithEntryNamed(archive, filename);
 		
 		expectedException.expect(AssertionError.class);
@@ -416,7 +398,7 @@ public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GS
 	public void verifyGSModelGeometryEntry_invalidExt() throws IOException {
 		// setup
 		String filename = "N62W162_D300_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.txt";
-		Path archive = createGSModelGeometryArchive("N62W162_D300_S001_T001_L07_U38_R102.zip");
+		Path archive = createGSModelGeometryArchive(VALID_ARCHIVE_NAME);
 		createArchiveWithEntryNamed(archive, filename);
 		
 		expectedException.expect(AssertionError.class);
