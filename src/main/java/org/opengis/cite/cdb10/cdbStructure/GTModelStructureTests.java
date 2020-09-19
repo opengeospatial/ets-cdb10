@@ -23,7 +23,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.14, Test 45 - based on Section 3.4.1")
+	@Test(description = "OGC 15-113r3, A.1.14, Test 45 - based on Section 3.4.1")
 	public void verifyDataset() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
@@ -88,7 +88,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
+	@Test(description = "OGC 15-113r3, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifyCategory() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
@@ -158,7 +158,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
+	@Test(description = "OGC 15-113r3, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifySubcategory() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
@@ -232,7 +232,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
+	@Test(description = "OGC 15-113r3, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifyFeatureType() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
@@ -315,7 +315,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
+	@Test(description = "OGC 15-113r3, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifyLOD() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
@@ -369,7 +369,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.14, Test 49/50/51/54/55 - based on Section 3.4.2")
+	@Test(description = "OGC 15-113r3, A.1.14, Test 49/50/51/54/55 - based on Section 3.4.2")
 	public void verifyTNAMPrefix() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
@@ -418,7 +418,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.14, Test 49/50/51/54/55 - based on Section 3.4.2")
+	@Test(description = "OGC 15-113r3, A.1.14, Test 49/50/51/54/55 - based on Section 3.4.2")
 	public void verifyTNAMSecond() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 
@@ -471,7 +471,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * 
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.14, Test 49/50/51/54/55 - based on Section 3.4.2")
+	@Test(description = "OGC 15-113r3, A.1.14, Test 49/50/51/54/55 - based on Section 3.4.2")
 	public void verifyTNAM() throws IOException {
 		Path gtModelsPath = Paths.get(this.path, "GTModel");
 

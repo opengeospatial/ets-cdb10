@@ -48,7 +48,7 @@ public class GSModelTextureStructureTests extends Capability1Tests {
 	 * Validates that GSModelTexture filenames have valid codes/names.
 	 * @throws IOException DirectoryStream error 
 	 */
-	@Test(description = "OGC 15-113r5, A.1.13, Test 40")
+	@Test(description = "OGC 15-113r3, A.1.13, Test 40")
 	public void verifyGSModelTextureFile() throws IOException {
 		Path gsModelGeomPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
 		
@@ -114,7 +114,7 @@ public class GSModelTextureStructureTests extends Capability1Tests {
 	 * compression, and limited to 32 MB.
 	 * @throws IOException DirectoryStream error 
 	 */
-	@Test(description = "OGC 15-113r5, Section 3.6.3.2")
+	@Test(description = "OGC 15-113r3, Section 3.6.3.2")
 	public void verifyGSModelTextureFileArchive() throws IOException {
 		Path gsModelGeomPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
 		
@@ -174,7 +174,7 @@ public class GSModelTextureStructureTests extends Capability1Tests {
 	 * conventions.
 	 * @throws IOException DirectoryStream error 
 	 */
-	@Test(description = "OGC 15-113r5, A.1.13, Test 70")
+	@Test(description = "OGC 15-113r3, A.1.13, Test 70")
 	public void verifyGSModelTextureEntry() throws IOException {
 		Path gsModelGeomPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
 		

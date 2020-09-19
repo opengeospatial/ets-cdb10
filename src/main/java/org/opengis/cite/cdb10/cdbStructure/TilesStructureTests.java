@@ -52,7 +52,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.16, Test 65 - based on Section 3.6")
+	@Test(description = "OGC 15-113r3, A.1.16, Test 65 - based on Section 3.6")
 	public void verifyGeocellLatitudeDirNamePrefix() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -79,7 +79,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.16, Test 65 - based on Section 3.6")
+	@Test(description = "OGC 15-113r3, A.1.16, Test 65 - based on Section 3.6")
 	public void verifyGeocellLatitudeDirNameSlice() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -125,7 +125,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.16, Test 66 - based on Section 3.6")
+	@Test(description = "OGC 15-113r3, A.1.16, Test 66 - based on Section 3.6")
 	public void verifyGeocellLongitudeDirNamePrefix() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -158,7 +158,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.16, Test 66 - based on Section 3.6")
+	@Test(description = "OGC 15-113r3, A.1.16, Test 66 - based on Section 3.6")
 	public void verifyGeocellLongitudeDirNameSlice() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -235,7 +235,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, Section 3.6.2.3")
+	@Test(description = "OGC 15-113r3, Section 3.6.2.3")
 	public void verifyDatasetPrefix() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -284,7 +284,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, Section 3.6.2.3")
+	@Test(description = "OGC 15-113r3, Section 3.6.2.3")
 	public void verifyDatasetCodeName() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -346,7 +346,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, Section 3.6.2.4")
+	@Test(description = "OGC 15-113r3, Section 3.6.2.4")
 	public void verifyLODName() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -383,7 +383,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.16, Test 67 - based on Section 3.6")
+	@Test(description = "OGC 15-113r3, A.1.16, Test 67 - based on Section 3.6")
 	public void verifyUREFName() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -438,7 +438,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, Section 3.6.2")
+	@Test(description = "OGC 15-113r3, Section 3.6.2")
 	public void verifyDatasetFileName() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 

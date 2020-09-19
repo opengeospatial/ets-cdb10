@@ -2,7 +2,7 @@ package org.opengis.cite.cdb10.util;
 
 /**
  * Class to hold filename matching patterns.
- * See OGC 15-113r5, Section 3.6.3.2.5 for more examples.
+ * See OGC 15-113r3, Section 3.6.3.2.5 for more examples.
  *
  */
 public class FilenamePatterns {

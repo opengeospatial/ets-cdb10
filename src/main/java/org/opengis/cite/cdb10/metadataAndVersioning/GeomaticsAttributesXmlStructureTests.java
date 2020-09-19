@@ -23,7 +23,7 @@ public class GeomaticsAttributesXmlStructureTests extends Capability2Tests {
 		return Files.exists(this.geomaticsAttributes.getXmlFilePath());
 	}
 
-    @Test(description = "OGC 15-113r5, Section 3.1.1")
+    @Test(description = "OGC 15-113r3, Section 3.1.1")
     public void verifyGeomaticsAttributesXsdFileExists() {
         this.loadXmlFile();
         if (!this.xmlFileExists()) { return; }
@@ -32,7 +32,7 @@ public class GeomaticsAttributesXmlStructureTests extends Capability2Tests {
 				String.format("Metadata directory should contain %s file.", geomaticsAttributes.getXsdFileName()));
     }
 
-    @Test(description = "OGC 15-113r5, A.1.19, Test 77")
+    @Test(description = "OGC 15-113r3, A.1.19, Test 77")
     public void verifyGeomaticsAttributesXmlAgainstSchema() throws IOException, SAXException {
         this.loadXmlFile();
         if (!this.xmlFileExists()) { return; }

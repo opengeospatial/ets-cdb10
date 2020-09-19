@@ -22,7 +22,7 @@ public class GTModelSignatureStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.14, Test 56 - based on Section 3.4.5")
+	@Test(description = "OGC 15-113r3, A.1.14, Test 56 - based on Section 3.4.5")
 	public void verifyGeometrySignatureFile() throws IOException {
 		// 502 is not a typo — it is used for backwards compatibility 
 		// between CDB 3.1 and CDB 3.0, and with OGC CDB 1.0.

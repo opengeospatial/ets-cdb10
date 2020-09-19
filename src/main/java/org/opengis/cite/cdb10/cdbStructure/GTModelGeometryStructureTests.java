@@ -22,7 +22,7 @@ public class GTModelGeometryStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.14, Test 46 - based on Section 3.4.1")
+	@Test(description = "OGC 15-113r3, A.1.14, Test 46 - based on Section 3.4.1")
 	public void verifyGeometryEntryFile() throws IOException {
 		Path gtModelGeomPath = Paths.get(this.path, "GTModel", "500_GTModelGeometry");
 
@@ -86,7 +86,7 @@ public class GTModelGeometryStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.14, Test 47 - based on Section 3.4.1")
+	@Test(description = "OGC 15-113r3, A.1.14, Test 47 - based on Section 3.4.1")
 	public void verifyGeometryLoDFile() throws IOException {
 		Path gtModelGeomPath = Paths.get(this.path, "GTModel", "510_GTModelGeometry");
 

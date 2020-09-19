@@ -23,7 +23,7 @@ public class ConfigurationXmlStructureTests extends Capability2Tests {
 		return Files.exists(this.configuration.getXmlFilePath());
 	}
 
-    @Test(description = "OGC 15-113r5, A.1.19, Test 76")
+    @Test(description = "OGC 15-113r3, A.1.19, Test 76")
     public void verifyConfigurationXmlAgainstSchema() throws IOException, SAXException {
         this.loadXmlFile();
         if (!this.xmlFileExists()) { return; }

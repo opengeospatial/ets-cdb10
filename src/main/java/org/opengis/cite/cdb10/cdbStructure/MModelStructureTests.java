@@ -18,7 +18,7 @@ public class MModelStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.15, Test 57 - based on Section 3.5.1")
+	@Test(description = "OGC 15-113r3, A.1.15, Test 57 - based on Section 3.5.1")
 	public void verifyDataset() throws IOException {
 		Path mmPath = Paths.get(this.path, "MModel");
 
