@@ -32,7 +32,7 @@ public class FilenamePatterns {
 	public static final String GSModelMaterial = GSModelArchive;
 	
 	/**
-	 * Example of valid filename: N62W162_D304_Snnn_Tnnn_L07_U38_R102_AcmeFactory.tif
+	 * Example of valid filename: N62W162_D304_S001_T001_L07_U38_R102_AcmeFactory.tif
 	 */
 	public static final String GSModelMaterialEntry = "^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC\\d{2}|L[0-9]{2})_(?<uref>U[0-9]+)_(?<rref>R[0-9]+)_(?<tnam>[^.]+)\\.(?<ext>.+)$";
 
@@ -42,7 +42,7 @@ public class FilenamePatterns {
 	public static final String GSModelTexture = GSModelArchive;
 	
 	/**
-	 * Example of valid filename: N62W162_D301_Snnn_Tnnn_L07_U38_R102_AcmeFactory.rgb
+	 * Example of valid filename: N62W162_D301_S001_T001_L07_U38_R102_AcmeFactory.rgb
 	 */
 	public static final String GSModelTextureEntry = "^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC\\d{2}|L[0-9]{2})_(?<uref>U[0-9]+)_(?<rref>R[0-9]+)_(?<tnam>[^.]+)\\.(?<ext>.+)$";
 
