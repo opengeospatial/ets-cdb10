@@ -193,7 +193,7 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 			String filename = archive.getFileName().toString();
 			Matcher match = archiveNamePattern.matcher(filename);
 			// Any files that do not match the GSModelGeometry file pattern will
-			// be ignored, and will fail "verifyGSModelFile()" instead.
+			// be ignored, and will fail "verifyGSModelGeometryFile()" instead.
 			if (match.find()) {
 				File archiveFile = archive.toFile();
 								
