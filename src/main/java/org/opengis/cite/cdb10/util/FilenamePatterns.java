@@ -36,6 +36,16 @@ public class FilenamePatterns {
 	public static final String GSModelGeometryEntry = "^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC\\d{2}|L[0-9]{2})_(?<uref>U[0-9]+)_(?<rref>R[0-9]+)_(?<featureCode>.{5})_(?<fsc>\\d+)_(?<modl>[^.]+)\\.(?<ext>.+)$";
 	
 	/**
+	 * Example of valid filename: N62W162_D307_S001_T001_L07_U38_R102.zip
+	 */
+	public static final String GSModelInteriorDescriptor = GSModelArchive;
+	
+	/**
+	 * Example of valid filename: N62W162_D307_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.xml
+	 */
+	public static final String GSModelInteriorDescriptorEntry = "^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC\\d{2}|L[0-9]{2})_(?<uref>U[0-9]+)_(?<rref>R[0-9]+)_(?<featureCode>.{5})_(?<fsc>\\d+)_(?<modl>[^.]+)\\.(?<ext>.+)$";
+	
+	/**
 	 * Example of valid filename: N62W162_D305_S001_T001_L07_U38_R102.zip
 	 */
 	public static final String GSModelInteriorGeometry = GSModelArchive;
