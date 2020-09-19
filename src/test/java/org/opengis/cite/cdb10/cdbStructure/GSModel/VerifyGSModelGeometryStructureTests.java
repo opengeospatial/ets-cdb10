@@ -1,4 +1,4 @@
-package org.opengis.cite.cdb10.cdbStructure;
+package org.opengis.cite.cdb10.cdbStructure.GSModel;
 import java.io.IOException;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
@@ -12,6 +12,7 @@ import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.opengis.cite.cdb10.cdbStructure.StructureTestFixture;
 import org.opengis.cite.cdb10.cdbStructure.GSModel.GSModelGeometryStructureTests;
 
 public class VerifyGSModelGeometryStructureTests extends StructureTestFixture<GSModelGeometryStructureTests> {
