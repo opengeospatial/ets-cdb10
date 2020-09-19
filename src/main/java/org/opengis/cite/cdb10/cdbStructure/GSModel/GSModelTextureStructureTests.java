@@ -174,7 +174,7 @@ public class GSModelTextureStructureTests extends Capability1Tests {
 	 * conventions.
 	 * @throws IOException DirectoryStream error 
 	 */
-	@Test(description = "OGC 15-113r5, A.1.13, Test 69")
+	@Test(description = "OGC 15-113r5, A.1.13, Test 70")
 	public void verifyGSModelTextureEntry() throws IOException {
 		Path gsModelGeomPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
 		
