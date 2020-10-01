@@ -17,10 +17,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
   </tr>
   <tr>
-   <td><p style="text-align: right">
-1</p>
-
-   </td>
+   <td>1</td>
    <td><a href="https://docs.google.com/document/d/1FxoNaObHyBcZ6r-IIkz1z_Zmwgl2nIJtL6ZuoMsdNw8/edit#heading=h.bnszl3a4s4f">A.1.1 General CDB Database and Implementation (Test 1)</a>
    </td>
    <td>Not implemented
@@ -39,8 +36,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
   </tr>
   <tr>
-   <td>2
-   </td>
+   <td>2</td>
    <td>
    </td>
    <td>Not implemented
@@ -49,10 +45,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
   </tr>
   <tr>
-   <td><p style="text-align: right">
-3</p>
-
-   </td>
+   <td>3</td>
    <td>
    </td>
    <td>Not implemented
@@ -61,8 +54,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
   </tr>
   <tr>
-   <td>4
-   </td>
+   <td>4</td>
    <td>
    </td>
    <td>Not implemented
@@ -71,10 +63,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
   </tr>
   <tr>
-   <td><p style="text-align: right">
-5</p>
-
-   </td>
+   <td>5 </td>
    <td>
    </td>
    <td>Implemented
@@ -103,10 +92,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
   </tr>
   <tr>
-   <td><p style="text-align: right">
-7</p>
-
-   </td>
+   <td>7</td>
    <td>
    </td>
    <td>Not implemented
@@ -115,10 +101,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
   </tr>
   <tr>
-   <td><p style="text-align: right">
-8</p>
-
-   </td>
+   <td>8</td>
    <td>
    </td>
    <td>Not implemented
@@ -127,10 +110,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
   </tr>
   <tr>
-   <td><p style="text-align: right">
-9</p>
-
-   </td>
+   <td>9</td>
    <td>
    </td>
    <td>Not implemented
@@ -139,10 +119,8 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
   </tr>
   <tr>
-   <td><p style="text-align: right">
-10</p>
-
-   </td>
+   <td>
+10 </td>
    <td>
    </td>
    <td>Not implemented
@@ -231,7 +209,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
   </tr>
   <tr>
-   <td>17
+   <td>17-a
    </td>
    <td>
    </td>
@@ -252,12 +230,12 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
   </tr>
   <tr>
    <td><p style="text-align: right">
-17</p>
+17-b</p>
 
    </td>
    <td>
    </td>
-   <td>Implemented:<a href="https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/LightsXxxXmlStructureTests.java"> https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/LightsXxxXmlStructureTests.java</a>
+   <td>Implemented:<a href="https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/"> https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/</a>
    </td>
    <td>Testing to verify that name of a light is based on the naming hierarchy style.
    </td>
@@ -279,7 +257,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
    <td>
    </td>
-   <td>Implemented:<a href="https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/LightsXxxXmlStructureTests.java"> https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/LightsXxxXmlStructureTests.java</a>
+   <td>Implemented:<a href="https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/"> https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/</a>
    </td>
    <td>Testing whether the light code is conformant to light.XML schema located in the CDB schema folder.
    </td>
@@ -291,7 +269,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
    <td>
    </td>
-   <td>Implemented:<a href="https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/LightsXxxXmlStructureTests.java"> https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/LightsXxxXmlStructureTests.java</a>
+   <td>Implemented:<a href="https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/"> https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/</a>
    </td>
    <td>Testing whether the light type name is conformant to light.XML schema located in the CDB schema folder.
    </td>
@@ -303,7 +281,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
    <td>
    </td>
-   <td>Implemented:<a href="https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/LightsXxxXmlStructureTests.java"> https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/LightsXxxXmlStructureTests.java</a>
+   <td>Implemented:<a href="https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/"> https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/</a>
    </td>
    <td>Testing whether the light xml schema file created/edited by the simulator/vendor is conformant to light.XML schema located in the CDB schema folder.
    </td>
@@ -315,7 +293,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
    <td>
    </td>
-   <td>Implemented:<a href="https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/LightsXxxXmlStructureTests.java"> https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/LightsXxxXmlStructureTests.java</a>
+   <td>Implemented:<a href="https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/"> https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/metadataAndVersioning/</a>
    </td>
    <td>Testing whether the light xml schema file edited by the simulator/vendor is conformant to light.XML schema located in the CDB schema folder.
    </td>
@@ -398,7 +376,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    <td>Not implemented
    </td>
    <td>Visual test method to verify that any SEM has a corresponding Base Material for each of
-<p>
+
 the CDB Base Materials.
    </td>
   </tr>
@@ -411,9 +389,7 @@ the CDB Base Materials.
    </td>
    <td>Not implemented
    </td>
-   <td>Visual test method to verify the zones or selected polygons are tagged with the
-<p>
-appropriate materials in 3D models.
+   <td>Visual test method to verify the zones or selected polygons are tagged with the appropriate materials in 3D models.
    </td>
   </tr>
   <tr>
@@ -427,16 +403,14 @@ appropriate materials in 3D models.
    </td>
   </tr>
   <tr>
-   <td><p style="text-align: right">
-29</p>
-
-   </td>
+   <td>
+29</td>
    <td>
    </td>
    <td>Implemented:<a href="https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/cdbStructure/RootStructureTests.java"> https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/cdbStructure/RootStructureTests.java</a>
    </td>
    <td>Testing to verify the files stored within a CDB data store are under the root
-<p>
+
 directory or within a subdirectory under the root directory
    </td>
   </tr>
@@ -449,9 +423,7 @@ directory or within a subdirectory under the root directory
    </td>
    <td>Not implemented
    </td>
-   <td>Not possible as it is related to the application not datastore (i.e. to verify that run-time applications are given the path and device on
-<p>
-which the CDB is stored in order to access the CDB.)
+   <td>Not possible as it is related to the application not datastore (i.e. to verify that run-time applications are given the path and device on which the CDB is stored in order to access the CDB.)
    </td>
   </tr>
   <tr>
@@ -476,10 +448,8 @@ which the CDB is stored in order to access the CDB.)
    <td>Not implemented
    </td>
    <td>Visual test method to verify that If no change is encountered in any of the incremental
-<p>
-versions, the applications use the content of the active default
-<p>
-CDB.
+ versions, the applications use the content of the active default
+ CDB.
    </td>
   </tr>
   <tr>
@@ -544,7 +514,7 @@ CDB.
    <td>Not implemented
    </td>
    <td>Visual test methos to verify that a CDB Version is stored directly in the root directory of a
-<p>
+
 disk device or volume
    </td>
   </tr>
@@ -556,7 +526,7 @@ disk device or volume
    <td>Not implemented
    </td>
    <td>Visual testing to verify that a CDB Version path name is acceptable while using
-<p>
+
 within another CDB Version
    </td>
   </tr>
@@ -597,11 +567,7 @@ within another CDB Version
    </td>
    <td>Not implemented
    </td>
-   <td>Visually inspect weather the cultural features of a CDB data store
-<p>
-are one of the following types of modeled representations:
-<p>
-GTModel, GSModel, T2DModel & MModel.
+   <td>Visually inspect weather the cultural features of a CDB data store are one of the following types of modeled representations: GTModel, GSModel, T2DModel and MModel.
    </td>
   </tr>
   <tr>
@@ -624,9 +590,9 @@ GTModel, GSModel, T2DModel & MModel.
    <td>Not implemented
    </td>
    <td>Visually check if geospecific models are stored in the \CDB\Tiles\
-<p>
+
 with a unique file name derived from the model’s unique position,
-<p>
+
 level-of-detail, and its feature code.
    </td>
   </tr>
@@ -639,11 +605,7 @@ level-of-detail, and its feature code.
    </td>
    <td>Not implemented
    </td>
-   <td>Visually check if the geometry, texture, and signature datasets of
-<p>
-3D models is organized into levels of details (LOD) based on their
-<p>
-resolutions.
+   <td>Visually check if the geometry, texture, and signature datasets of 3D models is organized into levels of details (LOD) based on their resolutions.
    </td>
   </tr>
   <tr>
@@ -663,11 +625,7 @@ resolutions.
    </td>
    <td>Implemented
    </td>
-   <td>Testing that the name of 3D model textures is character string
-<p>
-having a minimum of 2 characters and a maximum length of 32
-<p>
-characters and the first two characters are alphanumeric.
+   <td>Testing that the name of 3D model textures is character string having a minimum of 2 characters and a maximum length of 32 characters and the first two characters are alphanumeric.
    </td>
   </tr>
   <tr>
@@ -699,17 +657,7 @@ characters and the first two characters are alphanumeric.
    </td>
    <td>Implemented: https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/cdbStructure/GTModelStructureTests.java
    </td>
-   <td>Testing that the “\CDB\GTModel\” folder is the root directory of the
-<p>
-GTModel library which is composed of the following datasets:
-<p>
-GTModelGeometry,GTModelTexture,GTModelDescriptor,GTModel
-<p>
-Material, GTModelCMT, GTModelInteriorGeometry,
-<p>
-GTModelInteriorTexture,GTModelinteriorDescriptor,GTModelInterio
-<p>
-rMaterial, GTModelInteriorCMT,GTModelSignature.
+   <td>Testing that the “\CDB\GTModel\” folder is the root directory of the GTModel library which is composed of the following datasets: GTModelGeometry,GTModelTexture,GTModelDescriptor,GTModelMaterial, GTModelCMT, GTModelInteriorGeometry,GTModelInteriorTexture,GTModelinteriorDescriptor,GTModelInteriorMaterial, GTModelInteriorCMT,GTModelSignature.
    </td>
   </tr>
   <tr>
@@ -721,15 +669,7 @@ rMaterial, GTModelInteriorCMT,GTModelSignature.
    </td>
    <td>Implemented: https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/cdbStructure/GTModelGeometryStructureTests.java
    </td>
-   <td>Testing that the files of the GTModelGeometry Entry File dataset is
-<p>
-stored in level 4 of its directory structure and the names of the files
-<p>
-adhere to the following naming convention:
-<p>
-D500_Snnn_Tnnn_FeatureCode_FSC_MODL.&lt;ext>. Always flt in
-<p>
-CDB Version 1,0
+   <td>Testing that the files of the GTModelGeometry Entry File dataset is stored in level 4 of its directory structure and the names of the files adhere to the following naming convention: D500_Snnn_Tnnn_FeatureCode_FSC_MODL.&lt;ext>. Always flt in CDB Version 1,0
    </td>
   </tr>
   <tr>
@@ -741,13 +681,7 @@ CDB Version 1,0
    </td>
    <td>Implemented: https://github.com/opengeospatial/ets-cdb10/blob/master/src/main/java/org/opengis/cite/cdb10/cdbStructure/GTModelGeometryStructureTests.java
    </td>
-   <td>Testing that the files of the GTModelGeometry Level of Detail
-<p>
-dataset are stored in level 5 of its directory structure and the names of the files adhere to the following naming convention:
-<p>
-D510_Snnn_Tnnn_LOD_FeatureCode_FSC_MODL.&lt;ext>. In CDB
-<p>
-Version 1.0 this was always “.flt” for OpenFlight files.
+   <td>Testing that the files of the GTModelGeometry Level of Detail dataset are stored in level 5 of its directory structure and the names of the files adhere to the following naming convention: D510_Snnn_Tnnn_LOD_FeatureCode_FSC_MODL.&lt;ext>. In CDB Version 1.0 this was always “.flt” for OpenFlight files.
    </td>
   </tr>
   <tr>
@@ -923,15 +857,7 @@ Version 1.0 this was always “.flt” for OpenFlight files.
    </td>
    <td>Implemented
    </td>
-   <td>Testing that the MModelMaterial dataset is assigned dataset code
-<p>
-604 and the names of all MModelMaterial files adhere to the
-<p>
-following naming convention:
-<p>
-D604_Snnn_Tnnn_Wnn_TNAM.&lt;ext>. Always tif in CDB Version
-<p>
-1,0
+   <td>Testing that the MModelMaterial dataset is assigned dataset code 604 and the names of all MModelMaterial files adhere to the following naming convention: D604_Snnn_Tnnn_Wnn_TNAM.&lt;ext&gt;. Always tif in CDB Version 1,0
    </td>
   </tr>
   <tr>
@@ -1127,8 +1053,7 @@ D604_Snnn_Tnnn_Wnn_TNAM.&lt;ext>. Always tif in CDB Version
    </td>
   </tr>
   <tr>
-   <td><p style="text-align: right">
-76</p>
+   <td>76
 
    </td>
    <td>
@@ -1139,8 +1064,7 @@ D604_Snnn_Tnnn_Wnn_TNAM.&lt;ext>. Always tif in CDB Version
    </td>
   </tr>
   <tr>
-   <td><p style="text-align: right">
-77</p>
+   <td>77
 
    </td>
    <td>
@@ -1221,13 +1145,7 @@ D604_Snnn_Tnnn_Wnn_TNAM.&lt;ext>. Always tif in CDB Version
    </td>
    <td>Not implemented
    </td>
-   <td>Visual test method to verify that for each attribute that has an index key in the schema
-<p>
-file, an index Key Dataset is available and For Key Datasets, the
-<p>
-Dataset CS2 include the last three digits of the index key from the
-<p>
-schema file
+   <td>Visual test method to verify that for each attribute that has an index key in the schema file, an index Key Dataset is available and For Key Datasets, the Dataset CS2 include the last three digits of the index key from the schema file
    </td>
   </tr>
   <tr>
@@ -1237,11 +1155,7 @@ schema file
    </td>
    <td>Not implemented
    </td>
-   <td>Visual test method to check if for the Airport NavData Component, there are 4
-<p>
-key datasets (for attributes StoraNumber, Ident, IcaoCode and
-<p>
-Country)
+   <td>Visual test method to check if for the Airport NavData Component, there are 4 key datasets (for attributes StoraNumber, Ident, IcaoCode and Country)
    </td>
   </tr>
   <tr>
@@ -1275,9 +1189,7 @@ Country)
    </td>
    <td>Not implemented
    </td>
-   <td>Visual test method to verify the latitude and longitude of an implicit corner data element
-<p>
-in a grid are correct based on the equation 5-1.
+   <td>Visual test method to verify the latitude and longitude of an implicit corner data element in a grid are correct based on the equation 5-1.
    </td>
   </tr>
   <tr>
@@ -1289,9 +1201,7 @@ in a grid are correct based on the equation 5-1.
    </td>
    <td>Not implemented
    </td>
-   <td>Visual test method to verify that the position of an implicit center data element in a tile
-<p>
-are acceptable referring to the equation 5.2.
+   <td>Visual test method to verify that the position of an implicit center data element in a tile are acceptable referring to the equation 5.2.
    </td>
   </tr>
   <tr>
@@ -1313,9 +1223,7 @@ are acceptable referring to the equation 5.2.
    </td>
    <td>Not implemented
    </td>
-   <td>Visual test method for file content (Verify that the Primary Terrain Elevation component of the
-<p>
-Elevation dataset is represented as a 1 or 2-channel TIFF image.)
+   <td>Visual test method for file content (Verify that the Primary Terrain Elevation component of the Elevation dataset is represented as a 1 or 2-channel TIFF image.)
    </td>
   </tr>
   <tr>
@@ -1327,11 +1235,7 @@ Elevation dataset is represented as a 1 or 2-channel TIFF image.)
    </td>
    <td>Not implemented
    </td>
-   <td>Visual test method for file content(Verify that the first channel of the TIFF image contains the
-<p>
-Elevation component and is represented as a floating-point or
-<p>
-signed integer value.)
+   <td>Visual test method for file content(Verify that the first channel of the TIFF image contains the Elevation component and is represented as a floating-point or signed integer value.)
    </td>
   </tr>
   <tr>
@@ -1343,11 +1247,7 @@ signed integer value.)
    </td>
    <td>Not implemented
    </td>
-   <td>Visual test method for file content(Verify that the second channel, third and fourth channels of the
-<p>
-TIFF image contains the necessary components and are stored in
-<p>
-correct format.)
+   <td>Visual test method for file content(Verify that the second channel, third and fourth channels of the TIFF image contains the necessary components and are stored in correct format.)
    </td>
   </tr>
   <tr>
@@ -1359,15 +1259,7 @@ correct format.)
    </td>
    <td>Not implemented
    </td>
-   <td>Visual test method for file content(Verify that after terrain constraining is performed off-line,
-<p>
-hypsography features have AHGT set to True, thereby instructing
-<p>
-the SE Tools to constrain the terrain elevation using the supplied
-<p>
-coordinates; and, the vector feature is a type PointZ, a MultiPointZ,
-<p>
-a PolyLineZ, a PolygonZ or a MultiPatch.)
+   <td>Visual test method for file content(Verify that after terrain constraining is performed off-line, hypsography features have AHGT set to True, thereby instructing the SE Tools to constrain the terrain elevation using the supplied coordinates; and, the vector feature is a type PointZ, a MultiPointZ, a PolyLineZ, a PolygonZ or a MultiPatch.)
    </td>
   </tr>
   <tr>
@@ -1379,9 +1271,7 @@ a PolyLineZ, a PolygonZ or a MultiPatch.)
    </td>
    <td>Not implemented
    </td>
-   <td>Visual test method for file content(Verify that for the Feature’s AHGT attribute is set to TRUE in some
-<p>
-specific cases listed in section 5.6.1.5)
+   <td>Visual test method for file content(Verify that for the Feature’s AHGT attribute is set to TRUE in some specific cases listed in section 5.6.1.5)
    </td>
   </tr>
   <tr>
@@ -1393,9 +1283,7 @@ specific cases listed in section 5.6.1.5)
    </td>
    <td>Not implemented
    </td>
-   <td>Visual test method for file content(Verify that in the case where features overlap one other, clientdevices
-<p>
-use the mandatory Layer Priority Number (LPN) attribute.)
+   <td>Visual test method for file content(Verify that in the case where features overlap one other, clientdevices use the mandatory Layer Priority Number (LPN) attribute.)
    </td>
   </tr>
   <tr>
@@ -1407,11 +1295,7 @@ use the mandatory Layer Priority Number (LPN) attribute.)
    </td>
    <td>Not implemented
    </td>
-   <td>Visual test method for file content(Verify that the MinElevation and MaxElevation components are
-<p>
-represented correctly according to the formulamentioned in Req
-<p>
-94.)
+   <td>Visual test method for file content(Verify that the MinElevation and MaxElevation components are represented correctly according to the formula mentioned in Req 94.)
    </td>
   </tr>
   <tr>
@@ -1423,9 +1307,7 @@ represented correctly according to the formulamentioned in Req
    </td>
    <td>Not implemented
    </td>
-   <td>Visual test method for file content(Verify that the MaxCulture component is represented correctly
-<p>
-according to the formulamentioned in Req 95.)
+   <td>Visual test method for file content(Verify that the MaxCulture component is represented correctly according to the formula mentioned in Req 95.)
    </td>
   </tr>
   <tr>
