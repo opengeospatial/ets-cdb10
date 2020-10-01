@@ -55,7 +55,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
    <td>
    </td>
-   <td>implemented
+   <td>Not implemented
    </td>
    <td>Visual and related to the target system configuration
    </td>
@@ -65,7 +65,7 @@ The following table lists the OGC CDB 1.0 requirements and if they are implement
    </td>
    <td>
    </td>
-   <td>implemented
+   <td>Not implemented
    </td>
    <td>Visual and related to the target system configuration
    </td>
