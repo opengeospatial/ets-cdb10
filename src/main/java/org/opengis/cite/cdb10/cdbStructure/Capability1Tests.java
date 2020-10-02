@@ -10,6 +10,9 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
 
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +25,14 @@ import java.util.regex.Pattern;
 public class Capability1Tests extends CommonFixture {
 
 	public Capability1Tests() {
+	}
+	
+	/**
+	 * This interface is used to connect the directory iterator to validation
+	 * lambda functions.
+	 */
+	protected interface validateFile {
+		void validate(Path file);
 	}
 
 	/**
@@ -42,6 +53,45 @@ public class Capability1Tests extends CommonFixture {
 					"Conformance level 1 will not be checked as it is not included in ics");
 		}
 		super.obtainTestSubject(testContext);
+	}
+		
+	/**
+	 * Run a lambda function against all files a certain depth below a given
+	 * directory. Alternative to nested for loops that iterate
+	 * "DirectoryStream", but this function **will not** pass the parent
+	 * directory names along to the lambda.
+	 * 
+	 * For depth = 0, files in the given directory are evaluated.
+	 * For depth = 2, the given directory is filtered by sub-directories, which
+	 * are in turn filtered by their sub-directories, and the files at that
+	 * depth are evaluated.
+	 * 
+	 * Non-directory files encountered while depth is still greater than zero
+	 * will be ignored.
+	 * 
+	 * If depth is still greater than zero but no more subdirectories exist,
+	 * then the function will silently exit.
+	 * 
+	 * @param baseDirectory Path to directory into which to "walk"
+	 * @param depth How many levels of subdirectories to recurse before running
+	 * 				lambdas against file entries
+	 * @param lambda Lambda function to run against files at target depth
+	 * @throws IOException Error reading from base directory
+	 */
+	protected void iterateEntries(Path baseDirectory, int depth, validateFile lambda) throws IOException {
+		DirectoryStream<Path> files = Files.newDirectoryStream(baseDirectory);
+		
+		if (depth > 0) {
+			for (Path entry : files) {
+				if (Files.isDirectory(entry)) {
+					iterateEntries(entry, depth - 1, lambda);
+				}
+			}
+		} else {
+			for (Path entry : files) {
+				lambda.validate(entry);
+			}
+		}
 	}
 	
 	/**
