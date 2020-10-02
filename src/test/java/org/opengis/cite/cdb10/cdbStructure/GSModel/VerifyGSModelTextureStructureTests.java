@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class VerifyGSModelTextureStructureTests extends GSModelStructureTests<GSModelTextureStructureTests> {
@@ -18,26 +17,29 @@ public class VerifyGSModelTextureStructureTests extends GSModelStructureTests<GS
 	
 	protected static final String VALID_ARCHIVE_NAME = "N62W162_D301_S001_T001_L07_U38_R102.zip";
 	protected static final String VALID_ENTRY_NAME = "N62W162_D301_S001_T001_L07_U38_R102_AcmeFactory.rgb";
+	protected static final String VALID_LOD = "L07";
+	protected static final String VALID_UREF = "U38";
 	
 	public VerifyGSModelTextureStructureTests() throws IOException {
 		this.testSuite = new GSModelTextureStructureTests();
 	}
 	
-	@Before
-    public void setupDirs() throws IOException {
-    	Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", GSModelTextureStructureTests.DATASET_DIRECTORY)));
-    }
-	
 	/**
 	 * Creates a Path for a GSModelTexture archive with a custom filename.
 	 * Filename must include file extension. Archive will be placed in:
-	 * CDB Root > Tiles > 301_GSModelTexture
+	 * CDB Root > Tiles > 301_GSModelTexture > Lod > Uref
 	 * 
 	 * @param archiveFilename
 	 * @return Path for GSModelTexture archive file
+	 * @throws IOException 
 	 */
-	protected Path createGSModelTextureArchive(String archiveFilename) {
-		return this.cdb_root.resolve(Paths.get("Tiles", GSModelTextureStructureTests.DATASET_DIRECTORY, archiveFilename));
+	protected Path createGSModelTextureArchive(String archiveFilename) throws IOException {
+		Path parentDir = Paths.get("Tiles", 
+				GSModelTextureStructureTests.DATASET_DIRECTORY, VALID_LOD, VALID_UREF);
+		
+		Files.createDirectories(this.cdb_root.resolve(parentDir));
+		
+		return this.cdb_root.resolve(Paths.get(parentDir.toString(), archiveFilename));
 	}
 
 	/*
