@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class VerifyGSModelInteriorMaterialStructureTests extends GSModelStructureTests<GSModelInteriorMaterialStructureTests> {
@@ -18,15 +17,12 @@ public class VerifyGSModelInteriorMaterialStructureTests extends GSModelStructur
 	
 	protected static final String VALID_ARCHIVE_NAME = "N62W162_D308_S001_T001_L07_U38_R102.zip";
 	protected static final String VALID_ENTRY_NAME = "N62W162_D308_S001_T001_L07_U38_R102_AcmeFactory.tif";
+	protected static final String VALID_LOD = "L07";
+	protected static final String VALID_UREF = "U38";
 	
 	public VerifyGSModelInteriorMaterialStructureTests() throws IOException {
 		this.testSuite = new GSModelInteriorMaterialStructureTests();
 	}
-	
-	@Before
-    public void setupDirs() throws IOException {
-    	Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", GSModelInteriorMaterialStructureTests.DATASET_DIRECTORY)));
-    }
 	
 	/**
 	 * Creates a Path for a GSModelInteriorMaterial archive with a custom filename.
@@ -35,9 +31,15 @@ public class VerifyGSModelInteriorMaterialStructureTests extends GSModelStructur
 	 * 
 	 * @param archiveFilename
 	 * @return Path for GSModelInteriorMaterial archive file
+	 * @throws IOException 
 	 */
-	protected Path createGSModelInteriorMaterialArchive(String archiveFilename) {
-		return this.cdb_root.resolve(Paths.get("Tiles", GSModelInteriorMaterialStructureTests.DATASET_DIRECTORY, archiveFilename));
+	protected Path createGSModelInteriorMaterialArchive(String archiveFilename) throws IOException {
+		Path parentDir = Paths.get("Tiles", 
+				GSModelInteriorMaterialStructureTests.DATASET_DIRECTORY, VALID_LOD, VALID_UREF);
+		
+		Files.createDirectories(this.cdb_root.resolve(parentDir));
+		
+		return this.cdb_root.resolve(Paths.get(parentDir.toString(), archiveFilename));
 	}
 
 	/*
