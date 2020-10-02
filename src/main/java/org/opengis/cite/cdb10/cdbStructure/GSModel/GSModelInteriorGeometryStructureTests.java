@@ -50,10 +50,10 @@ public class GSModelInteriorGeometryStructureTests extends Capability1Tests {
 	 */
 	@Test(description = "OGC 15-113r3, A.1.13, Test 40")
 	public void verifyGSModelInteriorGeometryFile() throws IOException {
-		Path gsModelGeomPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
+		Path gsModelPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
 		
 		// Skip test if CDB does not have a GSModelInteriorGeometry directory.
-		if (Files.notExists(gsModelGeomPath)) {
+		if (Files.notExists(gsModelPath)) {
 			throw new SkipException("No GSModelInteriorGeometry present; test skipped.");
 		}
 		
@@ -63,7 +63,7 @@ public class GSModelInteriorGeometryStructureTests extends Capability1Tests {
 		ArrayList<String> errors = new ArrayList<String>();
 		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelInteriorGeometry);
 		
-		for (Path archive : Files.newDirectoryStream(gsModelGeomPath)) {
+		iterateEntries(gsModelPath, 2, (archive -> {
 			String filename = archive.getFileName().toString();
 			Matcher match = filePattern.matcher(filename);
 			if (!match.find()) {
@@ -104,7 +104,7 @@ public class GSModelInteriorGeometryStructureTests extends Capability1Tests {
 					errors.add("Invalid archive extension: " + ext);
 				}
 			}
-		}
+		}));
 		
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
@@ -116,17 +116,17 @@ public class GSModelInteriorGeometryStructureTests extends Capability1Tests {
 	 */
 	@Test(description = "OGC 15-113r3, Section 3.6.3.2")
 	public void verifyGSModelInteriorGeometryFileArchive() throws IOException {
-		Path gsModelGeomPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
+		Path gsModelPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
 		
 		// Skip test if CDB does not have a GSModelInteriorGeometry directory.
-		if (Files.notExists(gsModelGeomPath)) {
+		if (Files.notExists(gsModelPath)) {
 			throw new SkipException("No GSModelInteriorGeometry present; test skipped.");
 		}
 		
 		ArrayList<String> errors = new ArrayList<String>();
 		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelInteriorGeometry);
 		
-		for (Path archive : Files.newDirectoryStream(gsModelGeomPath)) {
+		iterateEntries(gsModelPath, 2, (archive -> {
 			String filename = archive.getFileName().toString();
 			Matcher match = filePattern.matcher(filename);
 			// Any files that do not match the GSModelInteriorGeometry file pattern will
@@ -164,7 +164,7 @@ public class GSModelInteriorGeometryStructureTests extends Capability1Tests {
 				}
 				
 			}
-		}
+		}));
 		
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
@@ -176,10 +176,10 @@ public class GSModelInteriorGeometryStructureTests extends Capability1Tests {
 	 */
 	@Test(description = "OGC 15-113r3, A.1.13, Test 69")
 	public void verifyGSModelInteriorGeometryEntry() throws IOException {
-		Path gsModelGeomPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
+		Path gsModelPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
 		
 		// Skip test if CDB does not have a GSModelInteriorGeometry directory.
-		if (Files.notExists(gsModelGeomPath)) {
+		if (Files.notExists(gsModelPath)) {
 			throw new SkipException("No GSModelInteriorGeometry present; test skipped.");
 		}
 		
@@ -190,7 +190,7 @@ public class GSModelInteriorGeometryStructureTests extends Capability1Tests {
 		Pattern archiveNamePattern = Pattern.compile(FilenamePatterns.GSModelInteriorGeometry);
 		Pattern archiveEntryPattern = Pattern.compile(FilenamePatterns.GSModelInteriorGeometryEntry);
 		
-		for (Path archive : Files.newDirectoryStream(gsModelGeomPath)) {
+		iterateEntries(gsModelPath, 2, (archive -> {
 			String filename = archive.getFileName().toString();
 			Matcher match = archiveNamePattern.matcher(filename);
 			// Any files that do not match the GSModelInteriorGeometry file pattern will
@@ -257,7 +257,7 @@ public class GSModelInteriorGeometryStructureTests extends Capability1Tests {
 				}
 				
 			}
-		}
+		}));
 		
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}

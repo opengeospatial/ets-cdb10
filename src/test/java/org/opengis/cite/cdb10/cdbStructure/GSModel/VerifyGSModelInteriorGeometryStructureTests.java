@@ -8,7 +8,6 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static java.nio.file.StandardOpenOption.CREATE;
 import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.opengis.cite.cdb10.cdbStructure.GSModel.GSModelInteriorGeometryStructureTests;
 
@@ -19,26 +18,29 @@ public class VerifyGSModelInteriorGeometryStructureTests extends GSModelStructur
 	
 	protected static final String VALID_ARCHIVE_NAME = "N62W162_D305_S001_T001_L07_U38_R102.zip";
 	protected static final String VALID_ENTRY_NAME = "N62W162_D305_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.flt";
+	protected static final String VALID_LOD = "L07";
+	protected static final String VALID_UREF = "U38";
 	
 	public VerifyGSModelInteriorGeometryStructureTests() throws IOException {
 		this.testSuite = new GSModelInteriorGeometryStructureTests();
 	}
 	
-	@Before
-    public void setupDirs() throws IOException {
-    	Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", GSModelInteriorGeometryStructureTests.DATASET_DIRECTORY)));
-    }
-	
 	/**
 	 * Creates a Path for a GSModelInteriorGeometry archive with a custom filename.
 	 * Filename must include file extension. Archive will be placed in:
-	 * CDB Root > Tiles > 305_GSModelInteriorGeometry
+	 * CDB Root > Tiles > 305_GSModelInteriorGeometry > Lod > Uref
 	 * 
 	 * @param archiveFilename
 	 * @return Path for GSModelInteriorGeometry archive file
+	 * @throws IOException 
 	 */
-	protected Path createGSModelInteriorGeometryArchive(String archiveFilename) {
-		return this.cdb_root.resolve(Paths.get("Tiles", GSModelInteriorGeometryStructureTests.DATASET_DIRECTORY, archiveFilename));
+	protected Path createGSModelInteriorGeometryArchive(String archiveFilename) throws IOException {
+		Path parentDir = Paths.get("Tiles", 
+				GSModelInteriorGeometryStructureTests.DATASET_DIRECTORY, VALID_LOD, VALID_UREF);
+		
+		Files.createDirectories(this.cdb_root.resolve(parentDir));
+		
+		return this.cdb_root.resolve(Paths.get(parentDir.toString(), archiveFilename));
 	}
 
 	/*
