@@ -2,6 +2,7 @@ package org.opengis.cite.cdb10.cdbStructure.GSModel;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,6 +19,7 @@ import java.util.zip.ZipFile;
 
 import org.apache.commons.lang3.StringUtils;
 import org.opengis.cite.cdb10.cdbStructure.Capability1Tests;
+import org.opengis.cite.cdb10.util.DirectoryStreamFilters;
 import org.opengis.cite.cdb10.util.FilenamePatterns;
 import org.opengis.cite.cdb10.util.reference.CdbReference;
 import org.opengis.cite.cdb10.util.reference.DatasetsValidator;
@@ -63,47 +65,59 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 		ArrayList<String> errors = new ArrayList<String>();
 		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelGeometry);
 		
-		for (Path archive : Files.newDirectoryStream(gsModelGeomPath)) {
-			String filename = archive.getFileName().toString();
-			Matcher match = filePattern.matcher(filename);
-			if (!match.find()) {
-				errors.add("Invalid file name: " + filename);
-			} else {
-				// groups: lat, lon, datasetCode, cs1, cs2, lod, uref, rref, ext
-				validateLatitude(match.group("lat"), errors);
-				validateLongitude(match.group("lon"), errors);
+		
+		DirectoryStream<Path> lods = Files.newDirectoryStream(gsModelGeomPath, DirectoryStreamFilters.lodFilter());
+		for (Path lod : lods) {
+			DirectoryStream<Path> urefs = Files.newDirectoryStream(lod);
+			
+			for (Path uref : urefs) {
+				DirectoryStream<Path> archives = Files.newDirectoryStream(uref);
 				
-				int datasetCode = Integer.parseInt(match.group("datasetCode"));
-				if (!datasetsValidator.isValidCode(datasetCode)) {
-					errors.add(String.format("Invalid code %s", match.group("datasetCode")));
+				for (Path archive : archives) {
+					String filename = archive.getFileName().toString();
+					Matcher match = filePattern.matcher(filename);
+					if (!match.find()) {
+						errors.add("Invalid file name: " + filename);
+					} else {
+						// groups: lat, lon, datasetCode, cs1, cs2, lod, uref, rref, ext
+						validateLatitude(match.group("lat"), errors);
+						validateLongitude(match.group("lon"), errors);
+						
+						int datasetCode = Integer.parseInt(match.group("datasetCode"));
+						if (!datasetsValidator.isValidCode(datasetCode)) {
+							errors.add(String.format("Invalid code %s", match.group("datasetCode")));
+						}
+						
+						String cs1 = match.group("cs1");
+						String cs2 = match.group("cs2");
+						
+						validateComponentSelectorFormat(cs1, 1, filename, errors);
+						validateComponentSelector1(cs1, DATASET_CODE, errors);
+						validateComponentSelectorFormat(cs2, 2, filename, errors);
+						validateComponentSelector2(cs2, cs1, DATASET_CODE, errors);
+						
+						String archiveLod = match.group("lod");
+						validateLod(archiveLod, errors);
+						
+						Integer lodLevel = null;
+						if (!archiveLod.equals("LC")) {
+							lodLevel = Integer.parseInt(archiveLod.substring(1));
+						}
+						Integer archiveUref = Integer.parseInt(match.group("uref").substring(1));
+						
+						validateUref(archiveUref, lodLevel, errors);
+						
+						validateRref(Integer.parseInt(match.group("rref").substring(1)), lodLevel, errors);
+						
+						String ext = match.group("ext");
+						if (!ALLOWED_ARCHIVE_EXT_SET.contains(ext)) {
+							errors.add("Invalid archive extension: " + ext);
+						}
+					}
 				}
 				
-				String cs1 = match.group("cs1");
-				String cs2 = match.group("cs2");
-				
-				validateComponentSelectorFormat(cs1, 1, filename, errors);
-				validateComponentSelector1(cs1, DATASET_CODE, errors);
-				validateComponentSelectorFormat(cs2, 2, filename, errors);
-				validateComponentSelector2(cs2, cs1, DATASET_CODE, errors);
-				
-				String lod = match.group("lod");
-				validateLod(lod, errors);
-				
-				Integer lodLevel = null;
-				if (!lod.equals("LC")) {
-					lodLevel = Integer.parseInt(lod.substring(1));
-				}
-				Integer uref = Integer.parseInt(match.group("uref").substring(1));
-				
-				validateUref(uref, lodLevel, errors);
-				
-				validateRref(Integer.parseInt(match.group("rref").substring(1)), lodLevel, errors);
-				
-				String ext = match.group("ext");
-				if (!ALLOWED_ARCHIVE_EXT_SET.contains(ext)) {
-					errors.add("Invalid archive extension: " + ext);
-				}
 			}
+			
 		}
 		
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
@@ -126,43 +140,52 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 		ArrayList<String> errors = new ArrayList<String>();
 		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelGeometry);
 		
-		for (Path archive : Files.newDirectoryStream(gsModelGeomPath)) {
-			String filename = archive.getFileName().toString();
-			Matcher match = filePattern.matcher(filename);
-			// Any files that do not match the GSModelGeometry file pattern will
-			// be ignored, and will fail "verifyGSModelFile()" instead.
-			if (match.find()) {
-				File archiveFile = archive.toFile();
-				long archiveLength = archiveFile.length();
+		DirectoryStream<Path> lods = Files.newDirectoryStream(gsModelGeomPath, DirectoryStreamFilters.lodFilter());
+		for (Path lod : lods) {
+			DirectoryStream<Path> urefs = Files.newDirectoryStream(lod);
+			
+			for (Path uref : urefs) {
+				DirectoryStream<Path> archives = Files.newDirectoryStream(uref);
 				
-				if (archiveLength == 0) {
-					errors.add("Zero-length ZIP archive: " + filename);
-				} else if (archiveLength > 32000000) {
-					errors.add("ZIP archive exceeds 32 Megabytes: " + filename);
-				}
-				
-				try {
-					ZipFile zip = new ZipFile(archiveFile);
-					Enumeration<? extends ZipEntry> entries = zip.entries();
-					
-					while (entries.hasMoreElements()) {
-						ZipEntry entry = entries.nextElement();
-						if (entry.getMethod() != ZipEntry.STORED) {
-							errors.add(
-								String.format("Entry '%s' in ZIP archive '%s' should not be compressed",
-										entry.getName(), filename)
-							);
+				for (Path archive : archives) {
+					String filename = archive.getFileName().toString();
+					Matcher match = filePattern.matcher(filename);
+					// Any files that do not match the GSModelGeometry file pattern will
+					// be ignored, and will fail "verifyGSModelFile()" instead.
+					if (match.find()) {
+						File archiveFile = archive.toFile();
+						long archiveLength = archiveFile.length();
+						
+						if (archiveLength == 0) {
+							errors.add("Zero-length ZIP archive: " + filename);
+						} else if (archiveLength > 32000000) {
+							errors.add("ZIP archive exceeds 32 Megabytes: " + filename);
 						}
+						
+						try {
+							ZipFile zip = new ZipFile(archiveFile);
+							Enumeration<? extends ZipEntry> entries = zip.entries();
+							
+							while (entries.hasMoreElements()) {
+								ZipEntry entry = entries.nextElement();
+								if (entry.getMethod() != ZipEntry.STORED) {
+									errors.add(
+										String.format("Entry '%s' in ZIP archive '%s' should not be compressed",
+												entry.getName(), filename)
+									);
+								}
+							}
+							
+							zip.close();
+							
+						} catch (ZipException e) {
+							errors.add("Invalid ZIP archive file: " + filename);
+						} catch (IOException e) {
+							errors.add("Could not open file: " + filename);
+						}
+						
 					}
-					
-					zip.close();
-					
-				} catch (ZipException e) {
-					errors.add("Invalid ZIP archive file: " + filename);
-				} catch (IOException e) {
-					errors.add("Could not open file: " + filename);
 				}
-				
 			}
 		}
 		
@@ -190,72 +213,81 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 		Pattern archiveNamePattern = Pattern.compile(FilenamePatterns.GSModelGeometry);
 		Pattern archiveEntryPattern = Pattern.compile(FilenamePatterns.GSModelGeometryEntry);
 		
-		for (Path archive : Files.newDirectoryStream(gsModelGeomPath)) {
-			String filename = archive.getFileName().toString();
-			Matcher match = archiveNamePattern.matcher(filename);
-			// Any files that do not match the GSModelGeometry file pattern will
-			// be ignored, and will fail "verifyGSModelGeometryFile()" instead.
-			if (match.find()) {
-				File archiveFile = archive.toFile();
-								
-				try {
-					ZipFile zip = new ZipFile(archiveFile);
-					Enumeration<? extends ZipEntry> entries = zip.entries();
-					
-					while (entries.hasMoreElements()) {
-						ZipEntry entry = entries.nextElement();
-						String entryFilename = entry.getName();
-						
-						Matcher entryMatch = archiveEntryPattern.matcher(entryFilename);
-						
-						if (!entryMatch.find()) {
-							errors.add(String.format("Invalid entry '%s' in ZIP archive '%s'", entryFilename, filename));
-						} else {
-							// groups: lat, lon, datasetCode, cs1, cs2, lod, uref, rref, featureCode, fsc, modl, ext
-							validateLatitude(entryMatch.group("lat"), errors);
-							validateLongitude(entryMatch.group("lon"), errors);
-							
-							int datasetCode = Integer.parseInt(entryMatch.group("datasetCode"));
-							if (!datasetsValidator.isValidCode(datasetCode)) {
-								errors.add(String.format("Invalid code %s in entry '%s'", entryMatch.group("datasetCode"), entryFilename));
-							}
-							
-							String cs1 = entryMatch.group("cs1");
-							String cs2 = entryMatch.group("cs2");
-
-							validateComponentSelectorFormat(cs1, 1, entryFilename, errors);
-							validateComponentSelector1(cs1, DATASET_CODE, errors);
-							validateComponentSelectorFormat(cs2, 2, entryFilename, errors);
-							validateComponentSelector2(cs2, cs1, DATASET_CODE, errors);
-
-							String lod = entryMatch.group("lod");
-							validateLod(lod, errors);
-
-							Integer lodLevel = null;
-							if (!lod.equals("LC")) {
-								lodLevel = Integer.parseInt(lod.substring(1));
-							}
-							Integer uref = Integer.parseInt(entryMatch.group("uref").substring(1));
-
-							validateUref(uref, lodLevel, errors);
-
-							validateRref(Integer.parseInt(entryMatch.group("rref").substring(1)), lodLevel, errors);
-
-							String ext = entryMatch.group("ext");
-							if (!ALLOWED_ENTRY_EXT_SET.contains(ext)) {
-								errors.add("Invalid archive extension: " + ext);
-							}
-						}
-					}
-					
-					zip.close();
-					
-				} catch (ZipException e) {
-					errors.add("Invalid ZIP archive file: " + filename);
-				} catch (IOException e) {
-					errors.add("Could not open file: " + filename);
-				}
+		DirectoryStream<Path> lods = Files.newDirectoryStream(gsModelGeomPath, DirectoryStreamFilters.lodFilter());
+		for (Path lod : lods) {
+			DirectoryStream<Path> urefs = Files.newDirectoryStream(lod);
+			
+			for (Path uref : urefs) {
+				DirectoryStream<Path> archives = Files.newDirectoryStream(uref);
 				
+				for (Path archive : archives) {
+					String filename = archive.getFileName().toString();
+					Matcher match = archiveNamePattern.matcher(filename);
+					// Any files that do not match the GSModelGeometry file pattern will
+					// be ignored, and will fail "verifyGSModelGeometryFile()" instead.
+					if (match.find()) {
+						File archiveFile = archive.toFile();
+										
+						try {
+							ZipFile zip = new ZipFile(archiveFile);
+							Enumeration<? extends ZipEntry> entries = zip.entries();
+							
+							while (entries.hasMoreElements()) {
+								ZipEntry entry = entries.nextElement();
+								String entryFilename = entry.getName();
+								
+								Matcher entryMatch = archiveEntryPattern.matcher(entryFilename);
+								
+								if (!entryMatch.find()) {
+									errors.add(String.format("Invalid entry '%s' in ZIP archive '%s'", entryFilename, filename));
+								} else {
+									// groups: lat, lon, datasetCode, cs1, cs2, lod, uref, rref, featureCode, fsc, modl, ext
+									validateLatitude(entryMatch.group("lat"), errors);
+									validateLongitude(entryMatch.group("lon"), errors);
+									
+									int datasetCode = Integer.parseInt(entryMatch.group("datasetCode"));
+									if (!datasetsValidator.isValidCode(datasetCode)) {
+										errors.add(String.format("Invalid code %s in entry '%s'", entryMatch.group("datasetCode"), entryFilename));
+									}
+									
+									String cs1 = entryMatch.group("cs1");
+									String cs2 = entryMatch.group("cs2");
+		
+									validateComponentSelectorFormat(cs1, 1, entryFilename, errors);
+									validateComponentSelector1(cs1, DATASET_CODE, errors);
+									validateComponentSelectorFormat(cs2, 2, entryFilename, errors);
+									validateComponentSelector2(cs2, cs1, DATASET_CODE, errors);
+		
+									String archiveLod = entryMatch.group("lod");
+									validateLod(archiveLod, errors);
+		
+									Integer lodLevel = null;
+									if (!archiveLod.equals("LC")) {
+										lodLevel = Integer.parseInt(archiveLod.substring(1));
+									}
+									Integer archiveUref = Integer.parseInt(entryMatch.group("uref").substring(1));
+		
+									validateUref(archiveUref, lodLevel, errors);
+		
+									validateRref(Integer.parseInt(entryMatch.group("rref").substring(1)), lodLevel, errors);
+		
+									String ext = entryMatch.group("ext");
+									if (!ALLOWED_ENTRY_EXT_SET.contains(ext)) {
+										errors.add("Invalid archive extension: " + ext);
+									}
+								}
+							}
+							
+							zip.close();
+							
+						} catch (ZipException e) {
+							errors.add("Invalid ZIP archive file: " + filename);
+						} catch (IOException e) {
+							errors.add("Could not open file: " + filename);
+						}
+						
+					}
+				}
 			}
 		}
 		
