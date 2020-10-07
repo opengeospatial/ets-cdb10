@@ -25,7 +25,7 @@ public class RootStructureTests extends Capability1Tests {
 	public void verifyRootContents() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
 		ArrayList<String> permittedRootDirectories = new ArrayList<String>(
-				Arrays.asList("Metadata", "GTModel", "MModel", "Tiles", "Navigation"));
+				Arrays.asList("Metadata", "GTModel", "MModel", "Tiles", "Navigation", "ExtMetadata"));
 
 		for (Path file : Files.newDirectoryStream(Paths.get(this.path))) {
 			String filename = file.getFileName().toString();
