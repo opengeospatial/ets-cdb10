@@ -21,7 +21,7 @@ public class RootStructureTests extends Capability1Tests {
 	 * 
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.18, Test 29 - based on Section 3.1")
+	@Test(description = "OGC 15-113r3, A.1.18, Test 29 - based on Section 3.1")
 	public void verifyRootContents() throws IOException {
 		ArrayList<String> errors = new ArrayList<String>();
 		ArrayList<String> permittedRootDirectories = new ArrayList<String>(

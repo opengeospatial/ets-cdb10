@@ -1,16 +1,101 @@
 package org.opengis.cite.cdb10.util;
 
 /**
- * Class to hold filename matching patterns
- * 
- * @author jpbadger
+ * Class to hold filename matching patterns.
+ * See OGC 15-113r3, Section 3.6.3.2.5 for more examples.
  *
  */
 public class FilenamePatterns {
 
 	private FilenamePatterns() {
 	}
+	
+	/**
+	 * General format for GSModel archive file names
+	 */
+	public static final String GSModelArchive = "^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC\\d{2}|L[0-9]{2})_(?<uref>U[0-9]+)_(?<rref>R[0-9]+)\\.(?<ext>.+)$";
+	
+	/**
+	 * Example of valid filename: N62W162_D303_S001_T001_L07_U38_R102.zip
+	 */
+	public static final String GSModelDescriptor = GSModelArchive;
+	
+	/**
+	 * Example of valid filename: N62W162_D303_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.xml
+	 */
+	public static final String GSModelDescriptorEntry = "^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC\\d{2}|L[0-9]{2})_(?<uref>U[0-9]+)_(?<rref>R[0-9]+)_(?<featureCode>.{5})_(?<fsc>\\d+)_(?<modl>[^.]+)\\.(?<ext>.+)$";
+	
+	/**
+	 * Example of valid filename: N62W162_D300_S001_T001_L07_U38_R102.zip
+	 */
+	public static final String GSModelGeometry = GSModelArchive;
+	
+	/**
+	 * Example of valid filename: N62W162_D300_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.flt
+	 */
+	public static final String GSModelGeometryEntry = "^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC\\d{2}|L[0-9]{2})_(?<uref>U[0-9]+)_(?<rref>R[0-9]+)_(?<featureCode>.{5})_(?<fsc>\\d+)_(?<modl>[^.]+)\\.(?<ext>.+)$";
+	
+	/**
+	 * Example of valid filename: N62W162_D307_S001_T001_L07_U38_R102.zip
+	 */
+	public static final String GSModelInteriorDescriptor = GSModelArchive;
+	
+	/**
+	 * Example of valid filename: N62W162_D307_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.xml
+	 */
+	public static final String GSModelInteriorDescriptorEntry = "^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC\\d{2}|L[0-9]{2})_(?<uref>U[0-9]+)_(?<rref>R[0-9]+)_(?<featureCode>.{5})_(?<fsc>\\d+)_(?<modl>[^.]+)\\.(?<ext>.+)$";
+	
+	/**
+	 * Example of valid filename: N62W162_D305_S001_T001_L07_U38_R102.zip
+	 */
+	public static final String GSModelInteriorGeometry = GSModelArchive;
+	
+	/**
+	 * Example of valid filename: N62W162_D305_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.flt
+	 */
+	public static final String GSModelInteriorGeometryEntry = "^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC\\d{2}|L[0-9]{2})_(?<uref>U[0-9]+)_(?<rref>R[0-9]+)_(?<featureCode>.{5})_(?<fsc>\\d+)_(?<modl>[^.]+)\\.(?<ext>.+)$";
+	
+	/**
+	 * Example of valid filename: N62W162_D308_S001_T001_L07_U38_R102.zip
+	 */
+	public static final String GSModelInteriorMaterial = GSModelArchive;
+	
+	/**
+	 * Example of valid filename: N62W162_D308_S001_T001_L07_U38_R102_AcmeFactory.tif
+	 */
+	public static final String GSModelInteriorMaterialEntry = "^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC\\d{2}|L[0-9]{2})_(?<uref>U[0-9]+)_(?<rref>R[0-9]+)_(?<tnam>[^.]+)\\.(?<ext>.+)$";
+	
+	/**
+	 * Example of valid filename: N62W162_D306_S001_T001_L07_U38_R102.zip
+	 */
+	public static final String GSModelInteriorTexture = GSModelArchive;
+	
+	/**
+	 * Example of valid filename: N62W162_D306_S001_T001_L07_U38_R102_AcmeFactoryWall.rgb
+	 */
+	public static final String GSModelInteriorTextureEntry = "^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC\\d{2}|L[0-9]{2})_(?<uref>U[0-9]+)_(?<rref>R[0-9]+)_(?<tnam>[^.]+)\\.(?<ext>.+)$";
+	
+	/**
+	 * Example of valid filename: N62W162_D304_S001_T001_L07_U38_R102.zip
+	 */
+	public static final String GSModelMaterial = GSModelArchive;
+	
+	/**
+	 * Example of valid filename: N62W162_D304_S001_T001_L07_U38_R102_AcmeFactory.tif
+	 */
+	public static final String GSModelMaterialEntry = "^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC\\d{2}|L[0-9]{2})_(?<uref>U[0-9]+)_(?<rref>R[0-9]+)_(?<tnam>[^.]+)\\.(?<ext>.+)$";
 
+	/**
+	 * Example of valid filename: N62W162_D301_S001_T001_L07_U38_R102.zip
+	 */
+	public static final String GSModelTexture = GSModelArchive;
+	
+	/**
+	 * Example of valid filename: N62W162_D301_S001_T001_L07_U38_R102_AcmeFactory.rgb
+	 */
+	public static final String GSModelTextureEntry = "^(?<lat>(S|N)[0-9]{2})(?<lon>(E|W)[0-9]{3})_D(?<datasetCode>[0-9]{3})_S(?<cs1>[0-9]{3})_T(?<cs2>[0-9]{3})_(?<lod>LC\\d{2}|L[0-9]{2})_(?<uref>U[0-9]+)_(?<rref>R[0-9]+)_(?<tnam>[^.]+)\\.(?<ext>.+)$";
+
+	
 	/**
 	 * Example of valid filename: D505_S001_T001_AC1.xml
 	 */

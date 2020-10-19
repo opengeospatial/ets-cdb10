@@ -22,6 +22,12 @@ import org.testng.annotations.Test;
  */
 public class TilesStructureTests extends Capability1Tests {
 
+	/**
+	 * Return the number of degrees of Longitude a Geocell encompasses, given a
+	 * latitude. (Geocells have variable sizes.) 
+	 * @param latitude The latitude in integer degrees
+	 * @return An integer amount of degrees of longitude
+	 */
 	public Integer sliceWidthForLatitude(Integer latitude) {
 		Integer dLonZone = 1;
 		if (((latitude >= 89) && (latitude < 90)) || ((latitude >= -90) && (latitude < -89))) {
@@ -46,7 +52,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.16, Test 65 - based on Section 3.6")
+	@Test(description = "OGC 15-113r3, A.1.16, Test 65 - based on Section 3.6")
 	public void verifyGeocellLatitudeDirNamePrefix() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -73,7 +79,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.16, Test 65 - based on Section 3.6")
+	@Test(description = "OGC 15-113r3, A.1.16, Test 65 - based on Section 3.6")
 	public void verifyGeocellLatitudeDirNameSlice() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -119,7 +125,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.16, Test 66 - based on Section 3.6")
+	@Test(description = "OGC 15-113r3, A.1.16, Test 66 - based on Section 3.6")
 	public void verifyGeocellLongitudeDirNamePrefix() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -152,7 +158,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.16, Test 66 - based on Section 3.6")
+	@Test(description = "OGC 15-113r3, A.1.16, Test 66 - based on Section 3.6")
 	public void verifyGeocellLongitudeDirNameSlice() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -229,7 +235,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, Section 3.6.2.3")
+	@Test(description = "OGC 15-113r3, Section 3.6.2.3")
 	public void verifyDatasetPrefix() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -278,7 +284,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, Section 3.6.2.3")
+	@Test(description = "OGC 15-113r3, Section 3.6.2.3")
 	public void verifyDatasetCodeName() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -340,7 +346,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, Section 3.6.2.4")
+	@Test(description = "OGC 15-113r3, Section 3.6.2.4")
 	public void verifyLODName() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -377,7 +383,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.16, Test 67 - based on Section 3.6")
+	@Test(description = "OGC 15-113r3, A.1.16, Test 67 - based on Section 3.6")
 	public void verifyUREFName() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -414,11 +420,7 @@ public class TilesStructureTests extends Capability1Tests {
 							} else {
 								Integer urefValue = Integer.parseInt(filename.substring(1, filename.length()));
 
-								// Negative LODs cannot be calculated here as we
-								// only know that the LOD is < 0
-								if ((lodLevel != null) && ((urefValue < 0) || (urefValue > (Math.pow(2, lodLevel) - 1)))) {
-									errors.add("UREF value out of bounds: " + filename);
-								}
+								validateUref(urefValue, lodLevel, errors);
 							}
 						}
 					}
@@ -436,7 +438,7 @@ public class TilesStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, Section 3.6.2")
+	@Test(description = "OGC 15-113r3, Section 3.6.2")
 	public void verifyDatasetFileName() throws IOException {
 		Path tilesPath = Paths.get(this.path, "Tiles");
 
@@ -501,10 +503,7 @@ public class TilesStructureTests extends Capability1Tests {
 									// Only check RREF bounds for positive LODs
 									if (!lodFilename.equals("LC")) {
 										Integer lodLevel = Integer.parseInt(lodFilename.substring(1, lodFilename.length()));
-										
-										if (Integer.parseInt(match.group("rref")) > (Math.pow(2, lodLevel) - 1)) {
-											errors.add("RREF out of bounds for LOD: " + filename);
-										}
+										validateRref(Integer.parseInt(match.group("rref")), lodLevel, errors);
 									}
 
 									String datasetID = datasetFilename.split("_")[0];

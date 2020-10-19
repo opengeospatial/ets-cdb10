@@ -20,7 +20,7 @@ public class GTModelInteriorMaterialStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.14, Test 55 - based on Section 3.4.4")
+	@Test(description = "OGC 15-113r3, A.1.14, Test 55 - based on Section 3.4.4")
 	public void verifyModelInteriorMaterialFile() throws IOException {
 		Path gtModelGeomPath = Paths.get(this.path, "GTModel", "509_GTModelInteriorMaterial");
 

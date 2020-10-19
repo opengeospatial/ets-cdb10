@@ -10,6 +10,9 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
 
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +25,14 @@ import java.util.regex.Pattern;
 public class Capability1Tests extends CommonFixture {
 
 	public Capability1Tests() {
+	}
+	
+	/**
+	 * This interface is used to connect the directory iterator to validation
+	 * lambda functions.
+	 */
+	protected interface validateFile {
+		void validate(Path file);
 	}
 
 	/**
@@ -42,6 +53,45 @@ public class Capability1Tests extends CommonFixture {
 					"Conformance level 1 will not be checked as it is not included in ics");
 		}
 		super.obtainTestSubject(testContext);
+	}
+		
+	/**
+	 * Run a lambda function against all files a certain depth below a given
+	 * directory. Alternative to nested for loops that iterate
+	 * "DirectoryStream", but this function **will not** pass the parent
+	 * directory names along to the lambda.
+	 * 
+	 * For depth = 0, files in the given directory are evaluated.
+	 * For depth = 2, the given directory is filtered by sub-directories, which
+	 * are in turn filtered by their sub-directories, and the files at that
+	 * depth are evaluated.
+	 * 
+	 * Non-directory files encountered while depth is still greater than zero
+	 * will be ignored.
+	 * 
+	 * If depth is still greater than zero but no more subdirectories exist,
+	 * then the function will silently exit.
+	 * 
+	 * @param baseDirectory Path to directory into which to "walk"
+	 * @param depth How many levels of subdirectories to recurse before running
+	 * 				lambdas against file entries
+	 * @param lambda Lambda function to run against files at target depth
+	 * @throws IOException Error reading from base directory
+	 */
+	protected void iterateEntries(Path baseDirectory, int depth, validateFile lambda) throws IOException {
+		DirectoryStream<Path> files = Files.newDirectoryStream(baseDirectory);
+		
+		if (depth > 0) {
+			for (Path entry : files) {
+				if (Files.isDirectory(entry)) {
+					iterateEntries(entry, depth - 1, lambda);
+				}
+			}
+		} else {
+			for (Path entry : files) {
+				lambda.validate(entry);
+			}
+		}
 	}
 	
 	/**
@@ -342,16 +392,57 @@ public class Capability1Tests extends CommonFixture {
 	}
 	
 	/**
+	 * Validate a latitude code as being a valid latitude.
+	 * @param latitude 
+	 * @param errors
+	 */
+	protected void validateLatitude(String latitude, ArrayList<String> errors) {
+		if (!latitude.startsWith("N") && !latitude.startsWith("S")) {
+			errors.add(String.format("Latitude must start with N or S: %s", latitude));
+		} else {
+			Integer lat = Integer.parseInt(latitude.substring(1));
+			if (lat > 90 || lat < -90) {
+				errors.add(String.format("Invalid latitude (%s)", latitude));
+			}
+		}
+	}
+	
+	/**
 	 * Validate that an LOD directory is a valid format
 	 * @param file The Path to the LOD directory
 	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateLOD(Path file, ArrayList<String> errors) {
-		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
 		String filename = file.getFileName().toString();
-		Matcher match = LODPattern.matcher(filename);
+		validateLod(filename, errors);
+	}
+	
+	/**
+	 * Validate a level-of-detail code.
+	 * @param lod String of level-of-detail code
+	 * @param errors
+	 */
+	protected void validateLod(String lod, ArrayList<String> errors) {
+		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
+		Matcher match = LODPattern.matcher(lod);
 		if (!match.find()) {
-			errors.add("Invalid LOD name: " + filename);
+			errors.add("Invalid LOD name: " + lod);
+		}
+	}
+	
+	/**
+	 * Validate a longitude code as being a valid longitude.
+	 * @param longitude
+	 * @param errors
+	 */
+	protected void validateLongitude(String longitude, ArrayList<String> errors) {
+		if (!longitude.startsWith("E") && !longitude.startsWith("W")) {
+			errors.add(String.format("Longitude must start with E or W: %s", longitude));
+		} else {
+			Integer lon = Integer.parseInt(longitude.substring(1));
+			if (lon > 180 || lon < -180) {
+				errors.add(String.format("Invalid longitude (%s)", longitude));
+			}
 		}
 	}
 	
@@ -369,6 +460,18 @@ public class Capability1Tests extends CommonFixture {
 	}
 	
 	/**
+	 * Validates a RREF value is valid for an LOD.
+	 * @param rref
+	 * @param lod
+	 * @param errors
+	 */
+	protected void validateRref(Integer rref, Integer lod, ArrayList<String> errors) {
+		if (rref > (Math.pow(2, lod) - 1)) {
+			errors.add("RREF out of bounds for LOD: " + rref);
+		}
+	}
+	
+	/**
 	 * Validate that the texture name component of a filename matches the name
 	 * of the parent directory for that file.
 	 * @param textureName The texture name code substring of the file name
@@ -381,6 +484,20 @@ public class Capability1Tests extends CommonFixture {
 		if (!textureName.equals(parentTextureFilename)) {
 			errors.add(String.format("Texture Name Code \"%s\" does not match parent directory \"%s\" for file: %s", 
 					textureName, parentTextureFilename, file.getFileName().toString()));
+		}
+	}
+	
+	/**
+	 * Validate that a UREF value is valid for a given LoD.
+	 * @param uref
+	 * @param lod
+	 * @param errors
+	 */
+	protected void validateUref(Integer uref, Integer lod, ArrayList<String> errors) {
+		// Negative LODs cannot be calculated here as we
+		// only know that the LOD is < 0
+		if ((lod != null) && ((uref < 0) || (uref > (Math.pow(2, lod) - 1)))) {
+			errors.add("UREF value out of bounds: " + uref);
 		}
 	}
 }

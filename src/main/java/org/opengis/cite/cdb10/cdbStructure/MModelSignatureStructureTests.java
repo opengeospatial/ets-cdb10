@@ -21,7 +21,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.15, Test 63 - based on Section 3.5.1")
+	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISEntityKind() throws IOException {
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
@@ -43,7 +43,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.15, Test 63 - based on Section 3.5.1")
+	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISDomain() throws IOException {
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
@@ -69,7 +69,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.15, Test 63 - based on Section 3.5.1")
+	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISCountry() throws IOException {
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
@@ -99,7 +99,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.15, Test 63 - based on Section 3.5.1")
+	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISCategory() throws IOException {
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
@@ -133,7 +133,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.15, Test 63 - based on Section 3.5.1")
+	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISEntity() throws IOException {
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
@@ -171,7 +171,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.15, Test 63 - based on Section 3.5.1")
+	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyLOD() throws IOException {
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 
@@ -213,7 +213,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	 *
 	 * @throws IOException DirectoryStream error
 	 */
-	@Test(description = "OGC 15-113r5, A.1.15, Test 63 - based on Section 3.5.1")
+	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyFile() throws IOException {
 		Path mmsPath = Paths.get(this.path, "MModel", "606_MModelSignature");
 

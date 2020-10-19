@@ -46,7 +46,7 @@ public class MaterialsXmlStructureTests extends Capability2Tests {
      * @throws IOException Error reading XML or Schema file
      * @throws SAXException Error parsing XML or Schema file
      */
-    @Test(description = "OGC 15-113r5, A.1.19, Test 76")
+    @Test(description = "OGC 15-113r3, A.1.19, Test 76")
     public void verifyMaterialsXmlAgainstSchema() throws IOException, SAXException {
         this.loadXmlFile();
         if (!this.xmlFileExists()) { return; }
@@ -56,7 +56,7 @@ public class MaterialsXmlStructureTests extends Capability2Tests {
         		" does not validate against its XML Schema file. Errors: " + errors);
     }
 
-    @Test(description = "OGC 15-113r5, A.1.19, Test 77")
+    @Test(description = "OGC 15-113r3, A.1.19, Test 77")
     public void verifyMaterialsXmlElementNameIsUnique() {
         this.loadXmlFile();
         if (!this.xmlFileExists()) { return; }
@@ -69,7 +69,7 @@ public class MaterialsXmlStructureTests extends Capability2Tests {
         }
     }
 
-    @Test(description = "OGC 15-113r5, A.1.19, Test 76")
+    @Test(description = "OGC 15-113r3, A.1.19, Test 76")
     public void verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName() {
     	this.loadXmlFile();
     	if (!this.xmlFileExists()) { return; }
@@ -78,7 +78,7 @@ public class MaterialsXmlStructureTests extends Capability2Tests {
         Assert.assertEquals(baseMaterialNodes.getLength(), 0, "Materials.xml element \"<Base_Material>\" requires a child element \"<Name>\".");
     }
 
-    @Test(description = "OGC 15-113r5, A.1.19, Test 76")
+    @Test(description = "OGC 15-113r3, A.1.19, Test 76")
     public void verifyMaterialsXmlBaseMaterialNameIsValid() {
         this.loadXmlFile();
         if (!this.xmlFileExists()) { return; }

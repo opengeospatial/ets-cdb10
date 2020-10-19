@@ -13,7 +13,7 @@
   <test name="CDB Structure">
     <packages>
       <package name="org.opengis.cite.cdb10.cdbStructure" />
-      <package name="org.opengis.cite.cdb10.cdbStructure.tiledDatasets" />
+      <package name="org.opengis.cite.cdb10.cdbStructure.GSModel" />
     </packages>
   </test>
   <test name="Metadata And Versioning">
