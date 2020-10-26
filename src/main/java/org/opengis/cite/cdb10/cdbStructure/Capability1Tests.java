@@ -124,6 +124,27 @@ public class Capability1Tests extends CommonFixture {
 	}
 	
 	/**
+	 * Parse a positive/negative integer from a String containing an LOD.
+	 * LOD String should include prefix "L" or "LC".
+	 * @param lod String
+	 * @return Integer of LOD level
+	 */
+	protected Integer parseLOD(String lod) {
+		Integer lodLevel;
+		
+		if (lod.equals("LC")) {
+			// special case: directory does not show negative zoom level. LOD
+			// must therefore be -1 or less, but not exactly known.
+			lodLevel = null;
+		} else if (!lod.startsWith("LC")) {
+			lodLevel = Integer.parseInt(lod.substring(1));
+		} else {
+			lodLevel = -1 * Integer.parseInt(lod.substring(2));
+		}
+		return lodLevel;
+	}
+	
+	/**
 	 * Validate a first-level Component Selector based on a given Dataset.
 	 * @param cs1 String of Component Selector with leading zeros
 	 * @param dataset String of Dataset ID with leading zeros
@@ -503,8 +524,15 @@ public class Capability1Tests extends CommonFixture {
 	 * @param errors
 	 */
 	protected void validateRref(Integer rref, Integer lod, ArrayList<String> errors) {
-		if (rref > (Math.pow(2, lod) - 1)) {
-			errors.add("RREF out of bounds for LOD: " + rref);
+		if ((lod == null || lod <= 0) && rref != 0) {
+			// For negative/zero LODs, the RREF **must** be 0
+			errors.add("RREF should be 0 for LOD. RREF: " + rref);
+		} else if (lod != null) {
+			final int maxCols = Math.max((int) Math.pow(2, lod), 1) - 1;
+
+			if (rref > maxCols) {
+				errors.add("RREF out of bounds for LOD: " + rref);
+			}
 		}
 	}
 	
@@ -525,16 +553,23 @@ public class Capability1Tests extends CommonFixture {
 	}
 	
 	/**
-	 * Validate that a UREF value is valid for a given LoD.
+	 * Validate that a UREF value is valid for a given LOD.
 	 * @param uref
-	 * @param lod
+	 * @param lod Integer of level of detail (LOD), expecting -10 to 23
 	 * @param errors
 	 */
 	protected void validateUref(Integer uref, Integer lod, ArrayList<String> errors) {
-		// Negative LODs cannot be calculated here as we
-		// only know that the LOD is < 0
-		if ((lod != null) && ((uref < 0) || (uref > (Math.pow(2, lod) - 1)))) {
-			errors.add("UREF value out of bounds: " + uref);
+		if ((lod == null || lod <= 0) && uref != 0) {
+			// For negative/zero LODs, the UREF **must** be 0
+			errors.add("UREF should be 0 for LOD. UREF: " + uref);
+		} else if (lod != null) {
+			// UREF must not exceed max row bounds.
+			final int maxRow = Math.max((int) Math.pow(2, lod), 1) - 1;
+			
+			if ((uref < 0) || (uref > maxRow)) {
+				errors.add("UREF value out of bounds: " + uref);
+			}
 		}
+			
 	}
 }

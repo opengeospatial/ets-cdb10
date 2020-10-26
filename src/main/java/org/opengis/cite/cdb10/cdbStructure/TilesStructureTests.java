@@ -405,10 +405,8 @@ public class TilesStructureTests extends Capability1Tests {
 
 					for (Path lod : lods) {
 						String lodFilename = lod.getFileName().toString();
-						Integer lodLevel = null;
-						if (!lodFilename.equals("LC")) {
-							lodLevel = Integer.parseInt(lodFilename.substring(1, lodFilename.length()));
-						}
+						
+						Integer lodLevel = parseLOD(lodFilename);
 
 						DirectoryStream<Path> urefs = Files.newDirectoryStream(lod);
 
