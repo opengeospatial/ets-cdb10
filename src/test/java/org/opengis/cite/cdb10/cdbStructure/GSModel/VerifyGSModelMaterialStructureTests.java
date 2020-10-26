@@ -6,21 +6,12 @@ import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.junit.Test;
 
 public class VerifyGSModelMaterialStructureTests extends GSModelStructureTests<GSModelMaterialStructureTests> {
-	
-	protected final static Path SOURCE_DIRECTORY = Paths.get(System.getProperty("user.dir"), "src", "test", "java", "org", "opengis", "cite", "cdb10", "fixtures");
-	private final static Path EMPTY_ZIP = SOURCE_DIRECTORY.resolve(Paths.get("valid", "empty.zip"));
-	
 	protected static final String VALID_ARCHIVE_NAME = "N62W162_D304_S001_T001_L07_U38_R102.zip";
 	protected static final String VALID_ENTRY_NAME = "N62W162_D304_S001_T001_L07_U38_R102_AcmeFactory.tif";
-	protected static final String VALID_LOD = "L07";
-	protected static final String VALID_UREF = "U38";
-	protected static final String VALID_LAT_CELL = "N99";
-	protected static final String VALID_LON_CELL = "W162";
 	
 	public VerifyGSModelMaterialStructureTests() throws IOException {
 		this.testSuite = new GSModelMaterialStructureTests();
@@ -36,12 +27,7 @@ public class VerifyGSModelMaterialStructureTests extends GSModelStructureTests<G
 	 * @throws IOException 
 	 */
 	protected Path createGSModelMaterialArchive(String archiveFilename) throws IOException {
-		Path parentDir = Paths.get("Tiles", VALID_LAT_CELL, VALID_LON_CELL,
-				GSModelMaterialStructureTests.DATASET_DIRECTORY, VALID_LOD, VALID_UREF);
-		
-		Files.createDirectories(this.cdb_root.resolve(parentDir));
-		
-		return this.cdb_root.resolve(Paths.get(parentDir.toString(), archiveFilename));
+		return createGSModelArchive(GSModelMaterialStructureTests.DATASET_DIRECTORY, archiveFilename);
 	}
 
 	/*
