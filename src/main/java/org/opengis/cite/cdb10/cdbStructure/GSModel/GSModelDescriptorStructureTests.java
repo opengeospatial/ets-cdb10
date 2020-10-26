@@ -2,9 +2,7 @@ package org.opengis.cite.cdb10.cdbStructure.GSModel;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -50,10 +48,11 @@ public class GSModelDescriptorStructureTests extends Capability1Tests {
 	 */
 	@Test(description = "OGC 15-113r3, A.1.13, Test 40")
 	public void verifyGSModelDescriptorFile() throws IOException {
-		Path gsModelPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
+		// Collect all matching datasets in the Tiles directory
+		ArrayList<Path> datasetPaths = getDatasetPaths(this.path, DATASET_DIRECTORY);
 		
 		// Skip test if CDB does not have a GSModelDescriptor directory.
-		if (Files.notExists(gsModelPath)) {
+		if (datasetPaths.isEmpty()) {
 			throw new SkipException("No GSModelDescriptor present; test skipped.");
 		}
 		
@@ -63,7 +62,7 @@ public class GSModelDescriptorStructureTests extends Capability1Tests {
 		ArrayList<String> errors = new ArrayList<String>();
 		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelDescriptor);
 		
-		iterateEntries(gsModelPath, 2, (archive -> {
+		iterateDatasets(datasetPaths, (archive -> {
 			String filename = archive.getFileName().toString();
 			Matcher match = filePattern.matcher(filename);
 			if (!match.find()) {
@@ -72,33 +71,33 @@ public class GSModelDescriptorStructureTests extends Capability1Tests {
 				// groups: lat, lon, datasetCode, cs1, cs2, lod, uref, rref, ext
 				validateLatitude(match.group("lat"), errors);
 				validateLongitude(match.group("lon"), errors);
-				
+
 				int datasetCode = Integer.parseInt(match.group("datasetCode"));
 				if (!datasetsValidator.isValidCode(datasetCode)) {
 					errors.add(String.format("Invalid code %s", match.group("datasetCode")));
 				}
-				
+
 				String cs1 = match.group("cs1");
 				String cs2 = match.group("cs2");
-				
+
 				validateComponentSelectorFormat(cs1, 1, filename, errors);
 				validateComponentSelector1(cs1, DATASET_CODE, errors);
 				validateComponentSelectorFormat(cs2, 2, filename, errors);
 				validateComponentSelector2(cs2, cs1, DATASET_CODE, errors);
-				
+
 				String lod = match.group("lod");
 				validateLod(lod, errors);
-				
+
 				Integer lodLevel = null;
 				if (!lod.equals("LC")) {
 					lodLevel = Integer.parseInt(lod.substring(1));
 				}
 				Integer uref = Integer.parseInt(match.group("uref").substring(1));
-				
+
 				validateUref(uref, lodLevel, errors);
-				
+
 				validateRref(Integer.parseInt(match.group("rref").substring(1)), lodLevel, errors);
-				
+
 				String ext = match.group("ext");
 				if (!ALLOWED_ARCHIVE_EXT_SET.contains(ext)) {
 					errors.add("Invalid archive extension: " + ext);
@@ -116,17 +115,18 @@ public class GSModelDescriptorStructureTests extends Capability1Tests {
 	 */
 	@Test(description = "OGC 15-113r3, Section 3.6.3.2")
 	public void verifyGSModelDescriptorFileArchive() throws IOException {
-		Path gsModelPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
+		// Collect all matching datasets in the Tiles directory
+		ArrayList<Path> datasetPaths = getDatasetPaths(this.path, DATASET_DIRECTORY);
 		
 		// Skip test if CDB does not have a GSModelDescriptor directory.
-		if (Files.notExists(gsModelPath)) {
+		if (datasetPaths.isEmpty()) {
 			throw new SkipException("No GSModelDescriptor present; test skipped.");
 		}
 		
 		ArrayList<String> errors = new ArrayList<String>();
 		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelDescriptor);
 		
-		iterateEntries(gsModelPath, 2, (archive -> {
+		iterateDatasets(datasetPaths, (archive -> {
 			String filename = archive.getFileName().toString();
 			Matcher match = filePattern.matcher(filename);
 			// Any files that do not match the GSModelDescriptor file pattern will
@@ -134,38 +134,38 @@ public class GSModelDescriptorStructureTests extends Capability1Tests {
 			if (match.find()) {
 				File archiveFile = archive.toFile();
 				long archiveLength = archiveFile.length();
-				
+
 				if (archiveLength == 0) {
 					errors.add("Zero-length ZIP archive: " + filename);
 				} else if (archiveLength > 32000000) {
 					errors.add("ZIP archive exceeds 32 Megabytes: " + filename);
 				}
-				
+
 				try {
 					ZipFile zip = new ZipFile(archiveFile);
 					Enumeration<? extends ZipEntry> entries = zip.entries();
-					
+
 					while (entries.hasMoreElements()) {
 						ZipEntry entry = entries.nextElement();
 						if (entry.getMethod() != ZipEntry.STORED) {
 							errors.add(
-								String.format("Entry '%s' in ZIP archive '%s' should not be compressed",
-										entry.getName(), filename)
-							);
+									String.format("Entry '%s' in ZIP archive '%s' should not be compressed",
+											entry.getName(), filename)
+									);
 						}
 					}
-					
+
 					zip.close();
-					
+
 				} catch (ZipException e) {
 					errors.add("Invalid ZIP archive file: " + filename);
 				} catch (IOException e) {
 					errors.add("Could not open file: " + filename);
 				}
-				
+
 			}
 		}));
-		
+
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
 	
@@ -176,10 +176,11 @@ public class GSModelDescriptorStructureTests extends Capability1Tests {
 	 */
 	@Test(description = "OGC 15-113r3, A.1.13, Test 71")
 	public void verifyGSModelDescriptorEntry() throws IOException {
-		Path gsModelPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
+		// Collect all matching datasets in the Tiles directory
+		ArrayList<Path> datasetPaths = getDatasetPaths(this.path, DATASET_DIRECTORY);
 		
 		// Skip test if CDB does not have a GSModelDescriptor directory.
-		if (Files.notExists(gsModelPath)) {
+		if (datasetPaths.isEmpty()) {
 			throw new SkipException("No GSModelDescriptor present; test skipped.");
 		}
 		
@@ -190,36 +191,36 @@ public class GSModelDescriptorStructureTests extends Capability1Tests {
 		Pattern archiveNamePattern = Pattern.compile(FilenamePatterns.GSModelDescriptor);
 		Pattern archiveEntryPattern = Pattern.compile(FilenamePatterns.GSModelDescriptorEntry);
 		
-		iterateEntries(gsModelPath, 2, (archive -> {
+		iterateDatasets(datasetPaths, (archive -> {
 			String filename = archive.getFileName().toString();
 			Matcher match = archiveNamePattern.matcher(filename);
 			// Any files that do not match the GSModelDescriptor file pattern will
 			// be ignored, and will fail "verifyGSModelDescriptorFile()" instead.
 			if (match.find()) {
 				File archiveFile = archive.toFile();
-								
+
 				try {
 					ZipFile zip = new ZipFile(archiveFile);
 					Enumeration<? extends ZipEntry> entries = zip.entries();
-					
+
 					while (entries.hasMoreElements()) {
 						ZipEntry entry = entries.nextElement();
 						String entryFilename = entry.getName();
-						
+
 						Matcher entryMatch = archiveEntryPattern.matcher(entryFilename);
-						
+
 						if (!entryMatch.find()) {
 							errors.add(String.format("Invalid entry '%s' in ZIP archive '%s'", entryFilename, filename));
 						} else {
 							// groups: lat, lon, datasetCode, cs1, cs2, lod, uref, rref, featureCode, fsc, modl, ext
 							validateLatitude(entryMatch.group("lat"), errors);
 							validateLongitude(entryMatch.group("lon"), errors);
-							
+
 							int datasetCode = Integer.parseInt(entryMatch.group("datasetCode"));
 							if (!datasetsValidator.isValidCode(datasetCode)) {
 								errors.add(String.format("Invalid code %s in entry '%s'", entryMatch.group("datasetCode"), entryFilename));
 							}
-							
+
 							String cs1 = entryMatch.group("cs1");
 							String cs2 = entryMatch.group("cs2");
 
@@ -247,15 +248,15 @@ public class GSModelDescriptorStructureTests extends Capability1Tests {
 							}
 						}
 					}
-					
+
 					zip.close();
-					
+
 				} catch (ZipException e) {
 					errors.add("Invalid ZIP archive file: " + filename);
 				} catch (IOException e) {
 					errors.add("Could not open file: " + filename);
 				}
-				
+
 			}
 		}));
 		

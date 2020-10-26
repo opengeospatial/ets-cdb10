@@ -2,9 +2,7 @@ package org.opengis.cite.cdb10.cdbStructure.GSModel;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -50,10 +48,11 @@ public class GSModelInteriorMaterialStructureTests extends Capability1Tests {
 	 */
 	@Test(description = "OGC 15-113r3, A.1.13, Test 40")
 	public void verifyGSModelInteriorMaterialFile() throws IOException {
-		Path gsModelPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
+		// Collect all matching datasets in the Tiles directory
+		ArrayList<Path> datasetPaths = getDatasetPaths(this.path, DATASET_DIRECTORY);
 		
 		// Skip test if CDB does not have a GSModelInteriorMaterial directory.
-		if (Files.notExists(gsModelPath)) {
+		if (datasetPaths.isEmpty()) {
 			throw new SkipException("No GSModelInteriorMaterial present; test skipped.");
 		}
 		
@@ -63,7 +62,7 @@ public class GSModelInteriorMaterialStructureTests extends Capability1Tests {
 		ArrayList<String> errors = new ArrayList<String>();
 		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelInteriorMaterial);
 		
-		iterateEntries(gsModelPath, 2, (archive -> {
+		iterateDatasets(datasetPaths, (archive -> {
 			String filename = archive.getFileName().toString();
 			Matcher match = filePattern.matcher(filename);
 			if (!match.find()) {
@@ -116,17 +115,18 @@ public class GSModelInteriorMaterialStructureTests extends Capability1Tests {
 	 */
 	@Test(description = "OGC 15-113r3, Section 3.6.3.2")
 	public void verifyGSModelInteriorMaterialFileArchive() throws IOException {
-		Path gsModelPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
+		// Collect all matching datasets in the Tiles directory
+		ArrayList<Path> datasetPaths = getDatasetPaths(this.path, DATASET_DIRECTORY);
 		
 		// Skip test if CDB does not have a GSModelInteriorMaterial directory.
-		if (Files.notExists(gsModelPath)) {
+		if (datasetPaths.isEmpty()) {
 			throw new SkipException("No GSModelInteriorMaterial present; test skipped.");
 		}
 		
 		ArrayList<String> errors = new ArrayList<String>();
 		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelInteriorMaterial);
 		
-		iterateEntries(gsModelPath, 2, (archive -> {
+		iterateDatasets(datasetPaths, (archive -> {
 			String filename = archive.getFileName().toString();
 			Matcher match = filePattern.matcher(filename);
 			// Any files that do not match the GSModelInteriorMaterial file pattern will
@@ -176,10 +176,11 @@ public class GSModelInteriorMaterialStructureTests extends Capability1Tests {
 	 */
 	@Test(description = "OGC 15-113r3, A.1.13, Test 71")
 	public void verifyGSModelInteriorMaterialEntry() throws IOException {
-		Path gsModelPath = Paths.get(this.path, "Tiles", DATASET_DIRECTORY);
+		// Collect all matching datasets in the Tiles directory
+		ArrayList<Path> datasetPaths = getDatasetPaths(this.path, DATASET_DIRECTORY);
 		
 		// Skip test if CDB does not have a GSModelInteriorMaterial directory.
-		if (Files.notExists(gsModelPath)) {
+		if (datasetPaths.isEmpty()) {
 			throw new SkipException("No GSModelInteriorMaterial present; test skipped.");
 		}
 		
@@ -190,7 +191,7 @@ public class GSModelInteriorMaterialStructureTests extends Capability1Tests {
 		Pattern archiveNamePattern = Pattern.compile(FilenamePatterns.GSModelInteriorMaterial);
 		Pattern archiveEntryPattern = Pattern.compile(FilenamePatterns.GSModelInteriorMaterialEntry);
 		
-		iterateEntries(gsModelPath, 2, (archive -> {
+		iterateDatasets(datasetPaths, (archive -> {
 			String filename = archive.getFileName().toString();
 			Matcher match = archiveNamePattern.matcher(filename);
 			// Any files that do not match the GSModelInteriorMaterial file pattern will

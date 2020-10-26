@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -27,14 +28,6 @@ public class Capability1Tests extends CommonFixture {
 	public Capability1Tests() {
 	}
 	
-	/**
-	 * This interface is used to connect the directory iterator to validation
-	 * lambda functions.
-	 */
-	protected interface validateFile {
-		void validate(Path file);
-	}
-
 	/**
 	 * Obtains the test subject from the ISuite context. The suite attribute
 	 * {@link org.opengis.cite.cdb10.SuiteAttribute#TEST_SUBJECT} should evaluate to
@@ -54,7 +47,43 @@ public class Capability1Tests extends CommonFixture {
 		}
 		super.obtainTestSubject(testContext);
 	}
+	
+	/**
+	 * Scan the "Tiles" directory in the given CDB path for all Datasets with
+	 * a matching name, returning a list of their paths. This is used to collect
+	 * datasets out of different geocells.
+	 * @param cdbRoot String of path to root of CDB
+	 * @param datasetName String of directories to match and return
+	 * @return ArrayList<Path> ArrayList of Paths
+	 * @throws IOException Error reading from base directory
+	 */
+	protected ArrayList<Path> getDatasetPaths(String cdbRoot, String datasetName) throws IOException {
+		Path tilesPath = Paths.get(cdbRoot.toString(), "Tiles");
+		ArrayList<Path> datasetPaths = new ArrayList<Path>();
 		
+		iterateEntries(tilesPath, 2, (datasetPath -> {
+			if (datasetPath.endsWith(datasetName)) {
+				datasetPaths.add(datasetPath);
+			}
+		}));
+		
+		return datasetPaths;
+	}
+	
+	/**
+	 * Combine looping of the array of dataset paths with lambda file
+	 * evaluation.
+	 * @param datasets Array of datasets to evaluate
+	 * @param lambda Lambda used to validate individual files; lambda will
+	 * receive one argument, a Path to the file to be tested.
+	 * @throws IOException 
+	 */
+	protected void iterateDatasets(ArrayList<Path> datasets, validateFile lambda) throws IOException {
+		for (Path dataset : datasets) {
+			iterateEntries(dataset, 2, lambda);
+		}
+	}
+	
 	/**
 	 * Run a lambda function against all files a certain depth below a given
 	 * directory. Alternative to nested for loops that iterate
@@ -389,6 +418,14 @@ public class Capability1Tests extends CommonFixture {
 		catch (StringIndexOutOfBoundsException e) {
 			errors.add("Invalid FSC length: " + filename);
 		}
+	}
+	
+	/**
+	 * This interface is used to connect the directory iterator to validation
+	 * lambda functions.
+	 */
+	protected interface validateFile {
+		void validate(Path file);
 	}
 	
 	/**

@@ -19,6 +19,8 @@ public class VerifyGSModelInteriorTextureStructureTests extends GSModelStructure
 	protected static final String VALID_ENTRY_NAME = "N62W162_D306_S001_T001_L07_U38_R102_AcmeFactoryWall.rgb";
 	protected static final String VALID_LOD = "L07";
 	protected static final String VALID_UREF = "U38";
+	protected static final String VALID_LAT_CELL = "N99";
+	protected static final String VALID_LON_CELL = "W162";
 	
 	public VerifyGSModelInteriorTextureStructureTests() throws IOException {
 		this.testSuite = new GSModelInteriorTextureStructureTests();
@@ -27,14 +29,14 @@ public class VerifyGSModelInteriorTextureStructureTests extends GSModelStructure
 	/**
 	 * Creates a Path for a GSModelInteriorTexture archive with a custom filename.
 	 * Filename must include file extension. Archive will be placed in:
-	 * CDB Root > Tiles > 306_GSModelInteriorTexture > Lod > Uref
+	 * CDB Root > Tiles > N99 > W162 > 306_GSModelInteriorTexture > Lod > Uref
 	 * 
 	 * @param archiveFilename
 	 * @return Path for GSModelInteriorTexture archive file
 	 * @throws IOException 
 	 */
 	protected Path createGSModelInteriorTextureArchive(String archiveFilename) throws IOException {
-		Path parentDir = Paths.get("Tiles", 
+		Path parentDir = Paths.get("Tiles", VALID_LAT_CELL, VALID_LON_CELL,
 				GSModelInteriorTextureStructureTests.DATASET_DIRECTORY, VALID_LOD, VALID_UREF);
 		
 		Files.createDirectories(this.cdb_root.resolve(parentDir));

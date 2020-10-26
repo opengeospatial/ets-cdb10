@@ -19,6 +19,8 @@ public class VerifyGSModelDescriptorStructureTests extends GSModelStructureTests
 	protected static final String VALID_ENTRY_NAME = "N62W162_D303_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.xml";
 	protected static final String VALID_LOD = "L07";
 	protected static final String VALID_UREF = "U38";
+	protected static final String VALID_LAT_CELL = "N99";
+	protected static final String VALID_LON_CELL = "W162";
 	
 	public VerifyGSModelDescriptorStructureTests() throws IOException {
 		this.testSuite = new GSModelDescriptorStructureTests();
@@ -27,14 +29,14 @@ public class VerifyGSModelDescriptorStructureTests extends GSModelStructureTests
 	/**
 	 * Creates a Path for a GSModelDescriptor archive with a custom filename.
 	 * Filename must include file extension. Archive will be placed in:
-	 * CDB Root > Tiles > 303_GSModelDescriptor > Lod > Uref
+	 * CDB Root > Tiles > N99 > W162 > 303_GSModelDescriptor > Lod > Uref
 	 * 
 	 * @param archiveFilename
 	 * @return Path for GSModelDescriptor archive file
 	 * @throws IOException 
 	 */
 	protected Path createGSModelDescriptorArchive(String archiveFilename) throws IOException {
-		Path parentDir = Paths.get("Tiles", 
+		Path parentDir = Paths.get("Tiles", VALID_LAT_CELL, VALID_LON_CELL,
 				GSModelDescriptorStructureTests.DATASET_DIRECTORY, VALID_LOD, VALID_UREF);
 		
 		Files.createDirectories(this.cdb_root.resolve(parentDir));

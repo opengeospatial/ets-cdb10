@@ -20,6 +20,8 @@ public class VerifyGSModelGeometryStructureTests extends GSModelStructureTests<G
 	protected static final String VALID_ENTRY_NAME = "N62W162_D300_S001_T001_L07_U38_R102_AL015_116_AcmeFactory.flt";
 	protected static final String VALID_LOD = "L07";
 	protected static final String VALID_UREF = "U38";
+	protected static final String VALID_LAT_CELL = "N99";
+	protected static final String VALID_LON_CELL = "W162";
 	
 	public VerifyGSModelGeometryStructureTests() throws IOException {
 		this.testSuite = new GSModelGeometryStructureTests();
@@ -28,14 +30,14 @@ public class VerifyGSModelGeometryStructureTests extends GSModelStructureTests<G
 	/**
 	 * Creates a Path for a GSmodelGeometry archive with a custom filename.
 	 * Filename must include file extension. Archive will be placed in:
-	 * CDB Root > Tiles > 300_GSModelGeometry > Lod > Uref
+	 * CDB Root > Tiles > N99 > W162 > 300_GSModelGeometry > Lod > Uref
 	 * 
 	 * @param archiveFilename
 	 * @return Path for GSModelGeometry archive file
 	 * @throws IOException Error creating parent directory
 	 */
 	protected Path createGSModelGeometryArchive(String archiveFilename) throws IOException {
-		Path parentDir = Paths.get("Tiles", 
+		Path parentDir = Paths.get("Tiles", VALID_LAT_CELL, VALID_LON_CELL,
 				GSModelGeometryStructureTests.DATASET_DIRECTORY, VALID_LOD, VALID_UREF);
 		
 		Files.createDirectories(this.cdb_root.resolve(parentDir));
