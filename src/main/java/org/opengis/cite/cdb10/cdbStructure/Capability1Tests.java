@@ -54,7 +54,7 @@ public class Capability1Tests extends CommonFixture {
 	 * datasets out of different geocells.
 	 * @param cdbRoot String of path to root of CDB
 	 * @param datasetName String of directories to match and return
-	 * @return ArrayList<Path> ArrayList of Paths
+	 * @return {@code ArrayList<Path>} ArrayList of Paths
 	 * @throws IOException Error reading from base directory
 	 */
 	protected ArrayList<Path> getDatasetPaths(String cdbRoot, String datasetName) throws IOException {
