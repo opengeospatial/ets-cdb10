@@ -88,10 +88,7 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 				String archiveLod = match.group("lod");
 				validateLod(archiveLod, errors);
 
-				Integer lodLevel = null;
-				if (!archiveLod.equals("LC")) {
-					lodLevel = Integer.parseInt(archiveLod.substring(1));
-				}
+				Integer lodLevel = parseLOD(archiveLod);
 				Integer archiveUref = Integer.parseInt(match.group("uref").substring(1));
 
 				validateUref(archiveUref, lodLevel, errors);
@@ -232,10 +229,7 @@ public class GSModelGeometryStructureTests extends Capability1Tests {
 							String archiveLod = entryMatch.group("lod");
 							validateLod(archiveLod, errors);
 
-							Integer lodLevel = null;
-							if (!archiveLod.equals("LC")) {
-								lodLevel = Integer.parseInt(archiveLod.substring(1));
-							}
+							Integer lodLevel = parseLOD(archiveLod);
 							Integer archiveUref = Integer.parseInt(entryMatch.group("uref").substring(1));
 
 							validateUref(archiveUref, lodLevel, errors);

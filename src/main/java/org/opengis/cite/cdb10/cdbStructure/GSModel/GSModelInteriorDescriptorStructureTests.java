@@ -88,10 +88,7 @@ public class GSModelInteriorDescriptorStructureTests extends Capability1Tests {
 				String lod = match.group("lod");
 				validateLod(lod, errors);
 				
-				Integer lodLevel = null;
-				if (!lod.equals("LC")) {
-					lodLevel = Integer.parseInt(lod.substring(1));
-				}
+				Integer lodLevel = parseLOD(lod);
 				Integer uref = Integer.parseInt(match.group("uref").substring(1));
 				
 				validateUref(uref, lodLevel, errors);
@@ -232,10 +229,7 @@ public class GSModelInteriorDescriptorStructureTests extends Capability1Tests {
 							String lod = entryMatch.group("lod");
 							validateLod(lod, errors);
 
-							Integer lodLevel = null;
-							if (!lod.equals("LC")) {
-								lodLevel = Integer.parseInt(lod.substring(1));
-							}
+							Integer lodLevel = parseLOD(lod);
 							Integer uref = Integer.parseInt(entryMatch.group("uref").substring(1));
 
 							validateUref(uref, lodLevel, errors);
