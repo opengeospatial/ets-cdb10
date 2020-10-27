@@ -347,7 +347,7 @@ public class GTModelStructureTests extends Capability1Tests {
 						DirectoryStream<Path> lods = Files.newDirectoryStream(featureType);
 
 						for (Path lod : lods) {
-							validateLOD(lod, errors);
+							validateLod(lod.getFileName().toString(), errors);
 						}
 
 					}
@@ -464,10 +464,10 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Validates that GTModel directories have valid codes/names.
 	 * D501, D511, D504, D505, 507, 509, 513 only.
 	 * 
-	 * Level 1: Dataset
-	 * Level 2: TNAM First Character
-	 * Level 3: TNAM Second Character
-	 * Level 4: Texture Name (TNAM)
+	 * - Level 1: Dataset
+	 * - Level 2: TNAM First Character
+	 * - Level 3: TNAM Second Character
+	 * - Level 4: Texture Name (TNAM)
 	 * 
 	 * @throws IOException Error reading from CDB
 	 */

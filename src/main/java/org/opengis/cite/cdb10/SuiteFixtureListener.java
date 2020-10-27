@@ -1,14 +1,10 @@
 package org.opengis.cite.cdb10;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Map;
 import java.util.logging.Level;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 import org.opengis.cite.cdb10.util.TestSuiteLogger;
 import org.opengis.cite.cdb10.util.URIUtils;

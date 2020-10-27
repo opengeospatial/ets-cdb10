@@ -24,9 +24,10 @@ public class TilesStructureTests extends Capability1Tests {
 
 	/**
 	 * Return the number of degrees of Longitude a Geocell encompasses, given a
-	 * latitude. (Geocells have variable sizes.) 
-	 * @param latitude The latitude in integer degrees
-	 * @return An integer amount of degrees of longitude
+	 * latitude. (Geocells have variable sizes.)
+	 * 
+	 * @param  latitude The latitude in integer degrees
+	 * @return          An integer amount of degrees of longitude
 	 */
 	public Integer sliceWidthForLatitude(Integer latitude) {
 		Integer dLonZone = 1;
@@ -74,8 +75,8 @@ public class TilesStructureTests extends Capability1Tests {
 	}
 
 	/**
-	 * Validates that latitude geocell directories end with a valid slice latitude.
-	 * latitudes should be zero-padded to 2 width.
+	 * Validates that latitude geocell directories end with a valid slice
+	 * latitude. latitudes should be zero-padded to 2 width.
 	 *
 	 * @throws IOException Error reading from CDB
 	 */
@@ -153,8 +154,8 @@ public class TilesStructureTests extends Capability1Tests {
 	}
 
 	/**
-	 * Validates that longitude geocell directories end with a valid slice longitude.
-	 * longitudes should be zero-padded to 3 width.
+	 * Validates that longitude geocell directories end with a valid slice
+	 * longitude. longitudes should be zero-padded to 3 width.
 	 *
 	 * @throws IOException Error reading from CDB
 	 */
@@ -280,7 +281,8 @@ public class TilesStructureTests extends Capability1Tests {
 	}
 
 	/**
-	 * Validates that dataset directories prefix code and name match and are valid values.
+	 * Validates that dataset directories prefix code and name match and are
+	 * valid values.
 	 *
 	 * @throws IOException Error reading from CDB
 	 */
@@ -367,7 +369,7 @@ public class TilesStructureTests extends Capability1Tests {
 					DirectoryStream<Path> lods = Files.newDirectoryStream(dataset, DirectoryStreamFilters.lodFilter());
 
 					for (Path lod : lods) {
-						validateLOD(lod, errors);
+						validateLod(lod.getFileName().toString(), errors);
 					}
 
 				}
@@ -379,7 +381,8 @@ public class TilesStructureTests extends Capability1Tests {
 	}
 
 	/**
-	 * Validates that UREF directories have valid names and are in a valid range for the LOD.
+	 * Validates that UREF directories have valid names and are in a valid range
+	 * for the LOD.
 	 *
 	 * @throws IOException Error reading from CDB
 	 */

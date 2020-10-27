@@ -197,7 +197,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 							DirectoryStream<Path> lods = Files.newDirectoryStream(entityDir, DirectoryStreamFilters.lodFilter());
 
 							for (Path lod : lods) {
-								validateLOD(lod, errors);
+								validateLod(lod.getFileName().toString(), errors);
 							}
 						}
 					}
