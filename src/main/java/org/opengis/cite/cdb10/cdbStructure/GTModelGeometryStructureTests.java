@@ -20,7 +20,7 @@ public class GTModelGeometryStructureTests extends Capability1Tests {
 	/**
 	 * Validates that GTModelGeometry Entry filenames have valid codes/names.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 46 - based on Section 3.4.1")
 	public void verifyGeometryEntryFile() throws IOException {
@@ -84,7 +84,7 @@ public class GTModelGeometryStructureTests extends Capability1Tests {
 	/**
 	 * Validates that GTModelGeometry LoD filenames have valid codes/names.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 47 - based on Section 3.4.1")
 	public void verifyGeometryLoDFile() throws IOException {

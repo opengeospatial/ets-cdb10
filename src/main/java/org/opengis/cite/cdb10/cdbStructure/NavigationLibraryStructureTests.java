@@ -18,7 +18,7 @@ import org.testng.annotations.Test;
 public class NavigationLibraryStructureTests extends Capability1Tests {
 	/**
 	 * Validate the Navigation datasets.
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.18, Test 73 - based on Section 3.7")
 	public void verifyDatasets() throws IOException {
@@ -61,7 +61,7 @@ public class NavigationLibraryStructureTests extends Capability1Tests {
 	/**
 	 * Validates that Navigation filenames have valid codes/names.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.18, Test 73 - based on Section 3.7")
 	public void verifyFile() throws IOException {

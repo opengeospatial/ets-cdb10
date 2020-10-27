@@ -43,8 +43,10 @@ public class GSModelInteriorDescriptorStructureTests extends Capability1Tests {
 	protected static final Set<String> ALLOWED_ENTRY_EXT_SET = new HashSet<String>(Arrays.asList(ALLOWED_ENTRY_EXT));
 	
 	/**
-	 * Validates that GSModelInteriorDescriptor filenames have valid codes/names.
-	 * @throws IOException DirectoryStream error
+	 * Validates that GSModelInteriorDescriptor filenames have valid
+	 * codes/names.
+	 * 
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.13, Test 40")
 	public void verifyGSModelInteriorDescriptorFile() throws IOException {
@@ -108,7 +110,7 @@ public class GSModelInteriorDescriptorStructureTests extends Capability1Tests {
 	/**
 	 * Validates that GSModelInteriorDescriptor files are ZIP archive files with no
 	 * compression, and limited to 32 MB.
-	 * @throws IOException DirectoryStream error 
+	 * @throws IOException Error reading from CDB 
 	 */
 	@Test(description = "OGC 15-113r3, Section 3.6.3.2")
 	public void verifyGSModelInteriorDescriptorFileArchive() throws IOException {
@@ -169,7 +171,7 @@ public class GSModelInteriorDescriptorStructureTests extends Capability1Tests {
 	/**
 	 * Validates that GSModelInteriorDescriptor entries inside ZIP archive follow naming
 	 * conventions.
-	 * @throws IOException DirectoryStream error 
+	 * @throws IOException Error reading from CDB 
 	 */
 	@Test(description = "OGC 15-113r3, A.1.13, Test 72")
 	public void verifyGSModelInteriorDescriptorEntry() throws IOException {

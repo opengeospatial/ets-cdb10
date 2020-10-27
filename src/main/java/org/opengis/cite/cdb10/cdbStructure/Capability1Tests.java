@@ -21,7 +21,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Includes various tests of capability 1.
+ * Includes various tests of OGC CDB 1.0 Capability Level 1.
  */
 public class Capability1Tests extends CommonFixture {
 
@@ -30,11 +30,10 @@ public class Capability1Tests extends CommonFixture {
 	
 	/**
 	 * Obtains the test subject from the ISuite context. The suite attribute
-	 * {@link org.opengis.cite.cdb10.SuiteAttribute#TEST_SUBJECT} should evaluate to
-	 * a DOM Document node.
+	 * {@link org.opengis.cite.cdb10.SuiteAttribute#TEST_SUBJECT} should
+	 * evaluate to a DOM Document node.
 	 *
-	 * @param testContext
-	 *            The test (group) context.
+	 * @param testContext The test (group) context.
 	 */
 	@Override
 	@BeforeClass
@@ -49,12 +48,13 @@ public class Capability1Tests extends CommonFixture {
 	}
 	
 	/**
-	 * Scan the "Tiles" directory in the given CDB path for all Datasets with
-	 * a matching name, returning a list of their paths. This is used to collect
+	 * Scan the "Tiles" directory in the given CDB path for all Datasets with a
+	 * matching name, returning a list of their paths. This is used to collect
 	 * datasets out of different geocells.
-	 * @param cdbRoot String of path to root of CDB
-	 * @param datasetName String of directories to match and return
-	 * @return {@code ArrayList<Path>} ArrayList of Paths
+	 * 
+	 * @param  cdbRoot     String of path to root of CDB
+	 * @param  datasetName String of directories to match and return
+	 * @return             {@code ArrayList<Path>}
 	 * @throws IOException Error reading from base directory
 	 */
 	protected ArrayList<Path> getDatasetPaths(String cdbRoot, String datasetName) throws IOException {
@@ -73,10 +73,12 @@ public class Capability1Tests extends CommonFixture {
 	/**
 	 * Combine looping of the array of dataset paths with lambda file
 	 * evaluation.
-	 * @param datasets Array of datasets to evaluate
-	 * @param lambda Lambda used to validate individual files; lambda will
-	 * receive one argument, a Path to the file to be tested.
-	 * @throws IOException 
+	 * 
+	 * @param  datasets    Array of datasets to evaluate
+	 * @param  lambda      Lambda used to validate individual files; lambda will
+	 *                     receive one argument, a Path to the file to be
+	 *                     tested.
+	 * @throws IOException Error reading from CDB
 	 */
 	protected void iterateDatasets(ArrayList<Path> datasets, validateFile lambda) throws IOException {
 		for (Path dataset : datasets) {
@@ -90,10 +92,10 @@ public class Capability1Tests extends CommonFixture {
 	 * "DirectoryStream", but this function **will not** pass the parent
 	 * directory names along to the lambda.
 	 * 
-	 * For depth = 0, files in the given directory are evaluated.
-	 * For depth = 2, the given directory is filtered by sub-directories, which
-	 * are in turn filtered by their sub-directories, and the files at that
-	 * depth are evaluated.
+	 * For depth = 0, files in the given directory are evaluated. For depth = 2,
+	 * the given directory is filtered by sub-directories, which are in turn
+	 * filtered by their sub-directories, and the files at that depth are
+	 * evaluated.
 	 * 
 	 * Non-directory files encountered while depth is still greater than zero
 	 * will be ignored.
@@ -101,11 +103,12 @@ public class Capability1Tests extends CommonFixture {
 	 * If depth is still greater than zero but no more subdirectories exist,
 	 * then the function will silently exit.
 	 * 
-	 * @param baseDirectory Path to directory into which to "walk"
-	 * @param depth How many levels of subdirectories to recurse before running
-	 * 				lambdas against file entries
-	 * @param lambda Lambda function to run against files at target depth
-	 * @throws IOException Error reading from base directory
+	 * @param  baseDirectory Path to directory into which to "walk"
+	 * @param  depth         How many levels of subdirectories to recurse before
+	 *                       running lambdas against file entries
+	 * @param  lambda        Lambda function to run against files at target
+	 *                       depth
+	 * @throws IOException   Error reading from base directory
 	 */
 	protected void iterateEntries(Path baseDirectory, int depth, validateFile lambda) throws IOException {
 		DirectoryStream<Path> files = Files.newDirectoryStream(baseDirectory);
@@ -124,10 +127,11 @@ public class Capability1Tests extends CommonFixture {
 	}
 	
 	/**
-	 * Parse a positive/negative integer from a String containing an LOD.
-	 * LOD String should include prefix "L" or "LC".
-	 * @param lod String
-	 * @return Integer of LOD level
+	 * Parse a positive/negative integer from a String containing an LOD. LOD
+	 * String should include prefix "L" or "LC".
+	 * 
+	 * @param  lod String value of LOD from directory or filename
+	 * @return     Integer of LOD level
 	 */
 	protected Integer parseLOD(String lod) {
 		Integer lodLevel;
@@ -146,9 +150,10 @@ public class Capability1Tests extends CommonFixture {
 	
 	/**
 	 * Validate a first-level Component Selector based on a given Dataset.
-	 * @param cs1 String of Component Selector with leading zeros
+	 * 
+	 * @param cs1     String of Component Selector with leading zeros
 	 * @param dataset String of Dataset ID with leading zeros
-	 * @param errors ArrayList (String) of errors, will be modified in-place
+	 * @param errors  ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateComponentSelector1(String cs1, String dataset, ArrayList<String> errors) {
 		CdbReference references = new CdbReference();
@@ -162,10 +167,11 @@ public class Capability1Tests extends CommonFixture {
 	/**
 	 * Validate a second-level Component Selector based on the first-level
 	 * Component Selector and Dataset.
-	 * @param cs2 String of Component Selector 2 with leading zeros
-	 * @param cs1 String of Component Selector 1 with leading zeros
+	 * 
+	 * @param cs2     String of Component Selector 2 with leading zeros
+	 * @param cs1     String of Component Selector 1 with leading zeros
 	 * @param dataset String of Dataset ID with leading zeros
-	 * @param errors ArrayList (String) of errors, will be modified in-place
+	 * @param errors  ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateComponentSelector2(String cs2, String cs1, String dataset, ArrayList<String> errors) {
 		CdbReference references = new CdbReference();
@@ -178,10 +184,11 @@ public class Capability1Tests extends CommonFixture {
 	
 	/**
 	 * Validate that a Component Selector is a valid format
-	 * @param cs The Component Selector substring
-	 * @param index Integer for "1" (CS1) or "2" (CS2)
+	 * 
+	 * @param cs       The Component Selector substring
+	 * @param index    Integer for "1" (CS1) or "2" (CS2)
 	 * @param filename The filename being tested, used for errors
-	 * @param errors ArrayList (String) of errors, will be modified in-place
+	 * @param errors   ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateComponentSelectorFormat(String cs, Integer index, String filename, ArrayList<String> errors) {
 		if (cs.length() != 3) {
@@ -206,7 +213,8 @@ public class Capability1Tests extends CommonFixture {
 	
 	/**
 	 * Validate that a DIS Category directory is a valid format
-	 * @param file The Path to the DIS Country directory
+	 * 
+	 * @param file   The Path to the DIS Country directory
 	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateDISCategory(Path file, ArrayList<String> errors) {
@@ -244,7 +252,8 @@ public class Capability1Tests extends CommonFixture {
 	
 	/**
 	 * Validate that a DIS Country directory is a valid format
-	 * @param file The Path to the DIS Country directory
+	 * 
+	 * @param file   The Path to the DIS Country directory
 	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateDISCountry(Path file, ArrayList<String> errors) {		
@@ -287,7 +296,8 @@ public class Capability1Tests extends CommonFixture {
 	
 	/**
 	 * Validate that a DIS Domain directory is a valid format
-	 * @param file The Path to the DIS Domain directory
+	 * 
+	 * @param file   The Path to the DIS Domain directory
 	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateDISDomain(Path file, ArrayList<String> errors) {
@@ -325,7 +335,8 @@ public class Capability1Tests extends CommonFixture {
 	
 	/**
 	 * Validate that a DIS Entity Kind directory is a valid format
-	 * @param file The Path to the DIS Entity Kind directory
+	 * 
+	 * @param file   The Path to the DIS Entity Kind directory
 	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateDISEntityKind(Path file, ArrayList<String> errors) {
@@ -363,7 +374,8 @@ public class Capability1Tests extends CommonFixture {
 	
 	/**
 	 * Validate that a DIS Entity directory is a valid format
-	 * @param file The Path to the DIS Entity directory
+	 * 
+	 * @param file   The Path to the DIS Entity directory
 	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateDISEntity(Path file, ArrayList<String> errors) {
@@ -402,9 +414,11 @@ public class Capability1Tests extends CommonFixture {
 	
 	/**
 	 * Validate that the Feature Code is a valid format
+	 * 
 	 * @param featureCode The Feature Code substring
-	 * @param file The Path to the file being tested, used for errors
-	 * @param errors ArrayList (String) of errors, will be modified in-place
+	 * @param file        The Path to the file being tested, used for errors
+	 * @param errors      ArrayList (String) of errors, will be modified
+	 *                    in-place
 	 */
 	protected void validateFeatureCode(String featureCode, Path file, ArrayList<String> errors) {
 		if (featureCode.length() != 5) {
@@ -415,9 +429,11 @@ public class Capability1Tests extends CommonFixture {
 	
 	/**
 	 * Validate that the Feature Sub Code is a valid format
+	 * 
 	 * @param featureSubCode The Feature Sub Code substring
-	 * @param file The path to the file being tested, used for errors
-	 * @param errors ArrayList (String) of errors, will be modified in-place
+	 * @param file           The path to the file being tested, used for errors
+	 * @param errors         ArrayList (String) of errors, will be modified
+	 *                       in-place
 	 */
 	protected void validateFeatureSubCode(String featureSubCode, Path file, ArrayList<String> errors) {
 		String filename = file.getFileName().toString();
@@ -451,8 +467,10 @@ public class Capability1Tests extends CommonFixture {
 	
 	/**
 	 * Validate a latitude code as being a valid latitude.
-	 * @param latitude 
-	 * @param errors
+	 * 
+	 * @param latitude String value of latitude, including prefix character
+	 *                 (e.g. "S15")
+	 * @param errors   ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateLatitude(String latitude, ArrayList<String> errors) {
 		if (!latitude.startsWith("N") && !latitude.startsWith("S")) {
@@ -466,9 +484,12 @@ public class Capability1Tests extends CommonFixture {
 	}
 	
 	/**
-	 * Validate that an LOD directory is a valid format
-	 * @param file The Path to the LOD directory
+	 * Validate that an LOD directory is a valid format.
+	 * 
+	 * @param file   The Path to the LOD directory
 	 * @param errors ArrayList (String) of errors, will be modified in-place
+	 * 
+	 * @deprecated Use {@code validateLod} instead, with the filename
 	 */
 	protected void validateLOD(Path file, ArrayList<String> errors) {
 		String filename = file.getFileName().toString();
@@ -477,8 +498,9 @@ public class Capability1Tests extends CommonFixture {
 	
 	/**
 	 * Validate a level-of-detail code.
-	 * @param lod String of level-of-detail code
-	 * @param errors
+	 * 
+	 * @param lod    String of level-of-detail code
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateLod(String lod, ArrayList<String> errors) {
 		Pattern LODPattern = Pattern.compile("LC|L0[0-9]|L1[0-9]|L2[0-3]");
@@ -490,8 +512,10 @@ public class Capability1Tests extends CommonFixture {
 	
 	/**
 	 * Validate a longitude code as being a valid longitude.
-	 * @param longitude
-	 * @param errors
+	 * 
+	 * @param longitude String value of longitude, including prefix character
+	 *                  (e.g. "E100")
+	 * @param errors    ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateLongitude(String longitude, ArrayList<String> errors) {
 		if (!longitude.startsWith("E") && !longitude.startsWith("W")) {
@@ -506,9 +530,10 @@ public class Capability1Tests extends CommonFixture {
 	
 	/**
 	 * Validate that the Model Name substring is a valid format
+	 * 
 	 * @param modelName The Model Name substring
-	 * @param file The path to the file being tested
-	 * @param errors ArrayList (String) of errors, will be modified in-place
+	 * @param file      The path to the file being tested
+	 * @param errors    ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateModelName(String modelName, Path file, ArrayList<String> errors) {
 		String filename = file.getFileName().toString();
@@ -519,9 +544,10 @@ public class Capability1Tests extends CommonFixture {
 	
 	/**
 	 * Validates a RREF value is valid for an LOD.
-	 * @param rref
-	 * @param lod
-	 * @param errors
+	 * 
+	 * @param rref   Integer of RREF value
+	 * @param lod    Integer of level of detail (LOD), expecting -10 to 23
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateRref(Integer rref, Integer lod, ArrayList<String> errors) {
 		if ((lod == null || lod <= 0) && rref != 0) {
@@ -539,24 +565,27 @@ public class Capability1Tests extends CommonFixture {
 	/**
 	 * Validate that the texture name component of a filename matches the name
 	 * of the parent directory for that file.
+	 * 
 	 * @param textureName The texture name code substring of the file name
-	 * @param file The Path to the file being tested, used for errors
-	 * @param errors ArrayList (String) of errors, will be modified in-place
+	 * @param file        The Path to the file being tested, used for errors
+	 * @param errors      ArrayList (String) of errors, will be modified
+	 *                    in-place
 	 */
 	protected void validateTextureNameCode(String textureName, Path file, ArrayList<String> errors) {
 		String parentTextureFilename = file.getParent().getFileName().toString();
 		
 		if (!textureName.equals(parentTextureFilename)) {
-			errors.add(String.format("Texture Name Code \"%s\" does not match parent directory \"%s\" for file: %s", 
+			errors.add(String.format("Texture Name Code \"%s\" does not match parent directory \"%s\" for file: %s",
 					textureName, parentTextureFilename, file.getFileName().toString()));
 		}
 	}
 	
 	/**
 	 * Validate that a UREF value is valid for a given LOD.
-	 * @param uref
-	 * @param lod Integer of level of detail (LOD), expecting -10 to 23
-	 * @param errors
+	 * 
+	 * @param uref   Integer of UREF value
+	 * @param lod    Integer of level of detail (LOD), expecting -10 to 23
+	 * @param errors ArrayList (String) of errors, will be modified in-place
 	 */
 	protected void validateUref(Integer uref, Integer lod, ArrayList<String> errors) {
 		if ((lod == null || lod <= 0) && uref != 0) {

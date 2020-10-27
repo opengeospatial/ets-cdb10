@@ -18,7 +18,7 @@ public class MModelTextureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelTexture Texture Name Prefix directories have valid codes.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 60 - based on Section 3.5.2")
 	public void verifyTNAMPrefix() throws IOException {
@@ -48,7 +48,7 @@ public class MModelTextureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelTexture Texture Name level 3 directories have valid codes.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 60 - based on Section 3.5.2")
 	public void verifyTNAMSecond() throws IOException {
@@ -82,7 +82,7 @@ public class MModelTextureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelTexture Texture Name directories have valid names.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 60 - based on Section 3.5.2")
 	public void verifyTNAM() throws IOException {
@@ -134,7 +134,7 @@ public class MModelTextureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelTexture filenames have valid codes/names.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 60 - based on Section 3.5.2")
 	public void verifyFile() throws IOException {

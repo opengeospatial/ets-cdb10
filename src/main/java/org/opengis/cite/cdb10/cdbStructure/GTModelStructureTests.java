@@ -21,7 +21,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	/**
 	 * Validates that GTModel directories have valid codes/names.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 45 - based on Section 3.4.1")
 	public void verifyDataset() throws IOException {
@@ -86,7 +86,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Level 4: Feature Type
 	 * Level 5: LOD
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifyCategory() throws IOException {
@@ -156,7 +156,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Level 4: Feature Type
 	 * Level 5: LOD
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifySubcategory() throws IOException {
@@ -230,7 +230,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Level 4: Feature Type
 	 * Level 5: LOD
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifyFeatureType() throws IOException {
@@ -313,7 +313,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Level 4: Feature Type
 	 * Level 5: LOD
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifyLOD() throws IOException {
@@ -367,7 +367,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Level 3: TNAM Second Character
 	 * Level 4: Texture Name (TNAM)
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 49/50/51/54/55 - based on Section 3.4.2")
 	public void verifyTNAMPrefix() throws IOException {
@@ -416,7 +416,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Level 3: TNAM Second Character
 	 * Level 4: Texture Name (TNAM)
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 49/50/51/54/55 - based on Section 3.4.2")
 	public void verifyTNAMSecond() throws IOException {
@@ -469,7 +469,7 @@ public class GTModelStructureTests extends Capability1Tests {
 	 * Level 3: TNAM Second Character
 	 * Level 4: Texture Name (TNAM)
 	 * 
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 49/50/51/54/55 - based on Section 3.4.2")
 	public void verifyTNAM() throws IOException {

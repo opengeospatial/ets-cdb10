@@ -19,7 +19,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelSignature DIS Entity Kind directories have valid codes/names.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISEntityKind() throws IOException {
@@ -41,7 +41,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelSignature DIS Domain directories have valid codes/names.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISDomain() throws IOException {
@@ -67,7 +67,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelSignature DIS Country directories have valid codes/names.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISCountry() throws IOException {
@@ -97,7 +97,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelSignature DIS Category directories have valid codes/names.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISCategory() throws IOException {
@@ -131,7 +131,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelSignature DIS Entity directories have valid codes/names.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISEntity() throws IOException {
@@ -169,7 +169,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelSignature LOD directories have valid names.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyLOD() throws IOException {
@@ -211,7 +211,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModelSignature filenames have valid codes/names.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyFile() throws IOException {

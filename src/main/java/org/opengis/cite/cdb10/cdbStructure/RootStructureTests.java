@@ -19,7 +19,7 @@ public class RootStructureTests extends Capability1Tests {
 	 * Validate the contents of the root directory of the CDB, checking for stray
 	 * files or directories not on the allowed list.
 	 * 
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.18, Test 29 - based on Section 3.1")
 	public void verifyRootContents() throws IOException {

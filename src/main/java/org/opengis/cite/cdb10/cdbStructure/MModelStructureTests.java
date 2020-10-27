@@ -16,7 +16,7 @@ public class MModelStructureTests extends Capability1Tests {
 	/**
 	 * Validates that MModel directories have valid codes/names.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 57 - based on Section 3.5.1")
 	public void verifyDataset() throws IOException {

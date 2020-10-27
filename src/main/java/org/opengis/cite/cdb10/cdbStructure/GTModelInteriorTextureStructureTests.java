@@ -18,7 +18,7 @@ public class GTModelInteriorTextureStructureTests extends Capability1Tests {
 	/**
 	 * Validates that GTModelInteriorTexture filenames have valid codes/names.
 	 *
-	 * @throws IOException DirectoryStream error
+	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 54 - based on Section 3.4.4")
 	public void verifyModelInteriorTextureFile() throws IOException {
