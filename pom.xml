@@ -10,8 +10,8 @@
   <version>0.5-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>Test suite: ets-cdb10</name>
-  <description>Describe purpose of test suite.</description>
+  <name>OGC CDB 1.0 Executable Conformance Test Suite</name>
+  <description>This test suite tests for compliance to OGC CDB 1.0</description>
   <url>http://opengeospatial.github.io/ets-cdb10/</url>
   <licenses>
     <license>

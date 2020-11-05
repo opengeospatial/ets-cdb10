@@ -1,4 +1,4 @@
-package org.opengis.cite.cdb10.cdbStructure.GSModel;
+package org.opengis.cite.cdb10.GSModel;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,10 +23,10 @@ import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.Test;
 
-public class GSModelInteriorDescriptorStructureTests extends Capability1Tests {
+public class GSModelInteriorMaterialStructureTests extends Capability1Tests {
 
-	public static final String DATASET_CODE = "307";
-	public static final String DATASET_DIRECTORY = "307_GSModelInteriorDescriptor";
+	public static final String DATASET_CODE = "308";
+	public static final String DATASET_DIRECTORY = "308_GSModelInteriorMaterial";
 	
 	/**
 	 * A String Array holds the allowed file extensions for archives, and the
@@ -39,30 +39,29 @@ public class GSModelInteriorDescriptorStructureTests extends Capability1Tests {
 	 * A String Array holds the allowed file extensions for archive entry files,
 	 * and the Set is used for searching/matching.
 	 */
-	protected static final String[] ALLOWED_ENTRY_EXT = new String[] { "xml" };
+	protected static final String[] ALLOWED_ENTRY_EXT = new String[] { "tif" };
 	protected static final Set<String> ALLOWED_ENTRY_EXT_SET = new HashSet<String>(Arrays.asList(ALLOWED_ENTRY_EXT));
 	
 	/**
-	 * Validates that GSModelInteriorDescriptor filenames have valid
-	 * codes/names.
+	 * Validates that GSModelInteriorMaterial filenames have valid codes/names.
 	 * 
 	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.13, Test 40")
-	public void verifyGSModelInteriorDescriptorFile() throws IOException {
+	public void verifyGSModelInteriorMaterialFile() throws IOException {
 		// Collect all matching datasets in the Tiles directory
 		ArrayList<Path> datasetPaths = getDatasetPaths(this.path, DATASET_DIRECTORY);
 		
-		// Skip test if CDB does not have a GSModelInteriorDescriptor directory.
+		// Skip test if CDB does not have a GSModelInteriorMaterial directory.
 		if (datasetPaths.isEmpty()) {
-			throw new SkipException("No GSModelInteriorDescriptor present; test skipped.");
+			throw new SkipException("No GSModelInteriorMaterial present; test skipped.");
 		}
 		
 		CdbReference references = new CdbReference();
 		DatasetsValidator datasetsValidator = references.buildDatasetsValidator();
 		
 		ArrayList<String> errors = new ArrayList<String>();
-		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelInteriorDescriptor);
+		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelInteriorMaterial);
 		
 		iterateDatasets(datasetPaths, (archive -> {
 			String filename = archive.getFileName().toString();
@@ -108,28 +107,28 @@ public class GSModelInteriorDescriptorStructureTests extends Capability1Tests {
 	}
 	
 	/**
-	 * Validates that GSModelInteriorDescriptor files are ZIP archive files with no
+	 * Validates that GSModelInteriorMaterial files are ZIP archive files with no
 	 * compression, and limited to 32 MB.
 	 * @throws IOException Error reading from CDB 
 	 */
 	@Test(description = "OGC 15-113r3, Section 3.6.3.2")
-	public void verifyGSModelInteriorDescriptorFileArchive() throws IOException {
+	public void verifyGSModelInteriorMaterialFileArchive() throws IOException {
 		// Collect all matching datasets in the Tiles directory
 		ArrayList<Path> datasetPaths = getDatasetPaths(this.path, DATASET_DIRECTORY);
 		
-		// Skip test if CDB does not have a GSModelInteriorDescriptor directory.
+		// Skip test if CDB does not have a GSModelInteriorMaterial directory.
 		if (datasetPaths.isEmpty()) {
-			throw new SkipException("No GSModelInteriorDescriptor present; test skipped.");
+			throw new SkipException("No GSModelInteriorMaterial present; test skipped.");
 		}
 		
 		ArrayList<String> errors = new ArrayList<String>();
-		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelInteriorDescriptor);
+		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelInteriorMaterial);
 		
 		iterateDatasets(datasetPaths, (archive -> {
 			String filename = archive.getFileName().toString();
 			Matcher match = filePattern.matcher(filename);
-			// Any files that do not match the GSModelInteriorDescriptor file pattern will
-			// be ignored, and will fail "verifyGSModelInteriorDescriptorFile()" instead.
+			// Any files that do not match the GSModelInteriorMaterial file pattern will
+			// be ignored, and will fail "verifyGSModelFile()" instead.
 			if (match.find()) {
 				File archiveFile = archive.toFile();
 				long archiveLength = archiveFile.length();
@@ -169,32 +168,33 @@ public class GSModelInteriorDescriptorStructureTests extends Capability1Tests {
 	}
 	
 	/**
-	 * Validates that GSModelInteriorDescriptor entries inside ZIP archive follow naming
-	 * conventions.
-	 * @throws IOException Error reading from CDB 
+	 * Validates that GSModelInteriorMaterial entries inside ZIP archive follow
+	 * naming conventions.
+	 * 
+	 * @throws IOException Error reading from CDB
 	 */
-	@Test(description = "OGC 15-113r3, A.1.13, Test 72")
-	public void verifyGSModelInteriorDescriptorEntry() throws IOException {
+	@Test(description = "OGC 15-113r3, A.1.13, Test 71")
+	public void verifyGSModelInteriorMaterialEntry() throws IOException {
 		// Collect all matching datasets in the Tiles directory
 		ArrayList<Path> datasetPaths = getDatasetPaths(this.path, DATASET_DIRECTORY);
 		
-		// Skip test if CDB does not have a GSModelInteriorDescriptor directory.
+		// Skip test if CDB does not have a GSModelInteriorMaterial directory.
 		if (datasetPaths.isEmpty()) {
-			throw new SkipException("No GSModelInteriorDescriptor present; test skipped.");
+			throw new SkipException("No GSModelInteriorMaterial present; test skipped.");
 		}
 		
 		CdbReference references = new CdbReference();
 		DatasetsValidator datasetsValidator = references.buildDatasetsValidator();
 		
 		ArrayList<String> errors = new ArrayList<String>();
-		Pattern archiveNamePattern = Pattern.compile(FilenamePatterns.GSModelInteriorDescriptor);
-		Pattern archiveEntryPattern = Pattern.compile(FilenamePatterns.GSModelInteriorDescriptorEntry);
+		Pattern archiveNamePattern = Pattern.compile(FilenamePatterns.GSModelInteriorMaterial);
+		Pattern archiveEntryPattern = Pattern.compile(FilenamePatterns.GSModelInteriorMaterialEntry);
 		
 		iterateDatasets(datasetPaths, (archive -> {
 			String filename = archive.getFileName().toString();
 			Matcher match = archiveNamePattern.matcher(filename);
-			// Any files that do not match the GSModelInteriorDescriptor file pattern will
-			// be ignored, and will fail "verifyGSModelInteriorDescriptorFile()" instead.
+			// Any files that do not match the GSModelInteriorMaterial file pattern will
+			// be ignored, and will fail "verifyGSModelInteriorMaterialFile()" instead.
 			if (match.find()) {
 				File archiveFile = archive.toFile();
 								
