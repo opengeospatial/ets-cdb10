@@ -4,15 +4,18 @@
 <organization>
   <name>OGC</name>
   <standard>
-    <name>Test suite: ets-cdb10</name>
+    <name>OGC CDB</name>
     <version>
       <name>${spec-version}</name>
       <suite>
         <namespace-uri>http://www.opengis.net/cite/cdb10</namespace-uri>
         <prefix>tns</prefix>
         <local-name>ets-cdb10-${version}</local-name>
-        <title>Test suite ets-cdb10</title>
-        <description>Describe scope of testing.</description>
+        <title>OGC CDB</title>
+        <description>This test suite tests for compliance to OGC CDB 1.0</description>
+        <BasicConformanceClasses>
+          <conformanceClass>CDB Structure</conformanceClass>        
+        </BasicConformanceClasses>
       </suite>
       <revision>
         <name>${version}</name>

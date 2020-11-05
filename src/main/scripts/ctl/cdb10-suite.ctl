@@ -21,7 +21,7 @@
     <ctl:code>
       <xsl:variable name="form-data">
         <ctl:form height="600" method="POST" width="800" xmlns="http://www.w3.org/1999/xhtml">
-          <h2>Test suite: ets-cdb10</h2>
+          <h2>OGC CDB 1.0 Executable Conformance Test Suite</h2>
           <div bgcolor="#F0F8FF" class="scope" style="background:#F0F8FF">
             <p>The CDB implementation under test (IUT) is checked against the 
               <a href="http://www.opengeospatial.org/projects/groups/cdbswg">OGC CDB 1.0</a></p>

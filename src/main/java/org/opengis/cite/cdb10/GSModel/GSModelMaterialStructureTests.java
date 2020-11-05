@@ -1,4 +1,4 @@
-package org.opengis.cite.cdb10.cdbStructure.GSModel;
+package org.opengis.cite.cdb10.GSModel;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,10 +23,10 @@ import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.Test;
 
-public class GSModelInteriorTextureStructureTests extends Capability1Tests {
+public class GSModelMaterialStructureTests extends Capability1Tests {
 
-	public static final String DATASET_CODE = "306";
-	public static final String DATASET_DIRECTORY = "306_GSModelInteriorTexture";
+	public static final String DATASET_CODE = "304";
+	public static final String DATASET_DIRECTORY = "304_GSModelMaterial";
 	
 	/**
 	 * A String Array holds the allowed file extensions for archives, and the
@@ -39,29 +39,29 @@ public class GSModelInteriorTextureStructureTests extends Capability1Tests {
 	 * A String Array holds the allowed file extensions for archive entry files,
 	 * and the Set is used for searching/matching.
 	 */
-	protected static final String[] ALLOWED_ENTRY_EXT = new String[] { "rgb" };
+	protected static final String[] ALLOWED_ENTRY_EXT = new String[] { "tif" };
 	protected static final Set<String> ALLOWED_ENTRY_EXT_SET = new HashSet<String>(Arrays.asList(ALLOWED_ENTRY_EXT));
 	
 	/**
-	 * Validates that GSModelInteriorTexture filenames have valid codes/names.
+	 * Validates that GSModelMaterial filenames have valid codes/names.
 	 * 
 	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.13, Test 40")
-	public void verifyGSModelInteriorTextureFile() throws IOException {
+	public void verifyGSModelMaterialFile() throws IOException {
 		// Collect all matching datasets in the Tiles directory
 		ArrayList<Path> datasetPaths = getDatasetPaths(this.path, DATASET_DIRECTORY);
 		
-		// Skip test if CDB does not have a GSModelInteriorTexture directory.
+		// Skip test if CDB does not have a GSModelMaterial directory.
 		if (datasetPaths.isEmpty()) {
-			throw new SkipException("No GSModelInteriorTexture present; test skipped.");
+			throw new SkipException("No GSModelMaterial present; test skipped.");
 		}
 		
 		CdbReference references = new CdbReference();
 		DatasetsValidator datasetsValidator = references.buildDatasetsValidator();
 		
 		ArrayList<String> errors = new ArrayList<String>();
-		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelInteriorTexture);
+		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelMaterial);
 		
 		iterateDatasets(datasetPaths, (archive -> {
 			String filename = archive.getFileName().toString();
@@ -107,28 +107,28 @@ public class GSModelInteriorTextureStructureTests extends Capability1Tests {
 	}
 	
 	/**
-	 * Validates that GSModelInteriorTexture files are ZIP archive files with no
+	 * Validates that GSModelMaterial files are ZIP archive files with no
 	 * compression, and limited to 32 MB.
 	 * 
 	 * @throws IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, Section 3.6.3.2")
-	public void verifyGSModelInteriorTextureFileArchive() throws IOException {
+	public void verifyGSModelMaterialFileArchive() throws IOException {
 		// Collect all matching datasets in the Tiles directory
 		ArrayList<Path> datasetPaths = getDatasetPaths(this.path, DATASET_DIRECTORY);
 		
-		// Skip test if CDB does not have a GSModelInteriorTexture directory.
+		// Skip test if CDB does not have a GSModelMaterial directory.
 		if (datasetPaths.isEmpty()) {
-			throw new SkipException("No GSModelInteriorTexture present; test skipped.");
+			throw new SkipException("No GSModelMaterial present; test skipped.");
 		}
 		
 		ArrayList<String> errors = new ArrayList<String>();
-		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelInteriorTexture);
+		Pattern filePattern = Pattern.compile(FilenamePatterns.GSModelMaterial);
 		
 		iterateDatasets(datasetPaths, (archive -> {
 			String filename = archive.getFileName().toString();
 			Matcher match = filePattern.matcher(filename);
-			// Any files that do not match the GSModelInteriorTexture file pattern will
+			// Any files that do not match the GSModelMaterial file pattern will
 			// be ignored, and will fail "verifyGSModelFile()" instead.
 			if (match.find()) {
 				File archiveFile = archive.toFile();
@@ -169,33 +169,33 @@ public class GSModelInteriorTextureStructureTests extends Capability1Tests {
 	}
 	
 	/**
-	 * Validates that GSModelInteriorTexture entries inside ZIP archive follow
-	 * naming conventions.
+	 * Validates that GSModelMaterial entries inside ZIP archive follow naming
+	 * conventions.
 	 * 
 	 * @throws IOException Error reading from CDB
 	 */
-	@Test(description = "OGC 15-113r3, A.1.13, Test 70")
-	public void verifyGSModelInteriorTextureEntry() throws IOException {
+	@Test(description = "OGC 15-113r3, A.1.13, Test 71")
+	public void verifyGSModelMaterialEntry() throws IOException {
 		// Collect all matching datasets in the Tiles directory
 		ArrayList<Path> datasetPaths = getDatasetPaths(this.path, DATASET_DIRECTORY);
 		
-		// Skip test if CDB does not have a GSModelInteriorTexture directory.
+		// Skip test if CDB does not have a GSModelMaterial directory.
 		if (datasetPaths.isEmpty()) {
-			throw new SkipException("No GSModelInteriorTexture present; test skipped.");
+			throw new SkipException("No GSModelMaterial present; test skipped.");
 		}
 		
 		CdbReference references = new CdbReference();
 		DatasetsValidator datasetsValidator = references.buildDatasetsValidator();
 		
 		ArrayList<String> errors = new ArrayList<String>();
-		Pattern archiveNamePattern = Pattern.compile(FilenamePatterns.GSModelInteriorTexture);
-		Pattern archiveEntryPattern = Pattern.compile(FilenamePatterns.GSModelInteriorTextureEntry);
+		Pattern archiveNamePattern = Pattern.compile(FilenamePatterns.GSModelMaterial);
+		Pattern archiveEntryPattern = Pattern.compile(FilenamePatterns.GSModelMaterialEntry);
 		
 		iterateDatasets(datasetPaths, (archive -> {
 			String filename = archive.getFileName().toString();
 			Matcher match = archiveNamePattern.matcher(filename);
-			// Any files that do not match the GSModelInteriorTexture file pattern will
-			// be ignored, and will fail "verifyGSModelInteriorTextureFile()" instead.
+			// Any files that do not match the GSModelMaterial file pattern will
+			// be ignored, and will fail "verifyGSModelMaterialFile()" instead.
 			if (match.find()) {
 				File archiveFile = archive.toFile();
 								
