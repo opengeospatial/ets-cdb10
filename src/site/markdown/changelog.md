@@ -1,6 +1,36 @@
 
 # Release Notes
 
+## Version 0.5 (2020-11-16)
+
+- Fix parsing of coarse-level LODs in filenames
+- Relax validation of Model Texture Component Selectors
+- Improve error messages for XML syntax/schema violations
+    + (Closes [#19](https://github.com/opengeospatial/ets-cdb10/issues/19))
+- Allow optional Metadata files to be omitted and still pass the test suite
+- Include test suite version in TestNG output
+- Allow testing an archived CDB specified by a remote URL
+    + (Closes [#7](https://github.com/opengeospatial/ets-cdb10/issues/7))
+- Add test annotations for referencing the specification sections
+    + (Closes [#20](https://github.com/opengeospatial/ets-cdb10/issues/20))
+- Improve installation instructions
+    + (Closes [#27](https://github.com/opengeospatial/ets-cdb10/issues/27))
+- Embed CDB reference data into the deployed archive for usage with TEAM Engine or JAR execution
+- Fix bug where local file paths would fail the test suite
+    + (Closes [#26](https://github.com/opengeospatial/ets-cdb10/issues/26))
+- Allow loading of remote schema for Geomatics Attributes and Vendor Attributes Metadata files
+    + (Closes [#22](https://github.com/opengeospatial/ets-cdb10/issues/22))
+- Allow presence of `ExtMetadata` directory without raising an error
+    + (Closes [#13](https://github.com/opengeospatial/ets-cdb10/issues/13))
+- Add support for validation GSModel archives
+    + (Closes [#6](https://github.com/opengeospatial/ets-cdb10/issues/6))
+- Update tests to produce proper "skip" messages for untested cases
+- Clean up Java dependencies
+    + (Closes [#34](https://github.com/opengeospatial/ets-cdb10/issues/34))
+- Bump `xercesImpl` from `2.11.0` to `2.12.0`
+- Temporarily removed GSModel tests
+    + (to be re-enabled for a later test suite release)
+
 ## Version 0.4 (2019-05-01)
 
 - Fix javadoc error under JDK 12
