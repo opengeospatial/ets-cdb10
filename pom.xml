@@ -7,7 +7,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>ets-cdb10</artifactId>
-  <version>0.5-SNAPSHOT</version>
+  <version>0.5</version>
   <packaging>jar</packaging>
 
   <name>OGC CDB 1.0 Executable Conformance Test Suite</name>
@@ -28,7 +28,7 @@
     <connection>scm:git:https://github.com/opengeospatial/ets-cdb10.git</connection>
     <developerConnection>scm:git:git@github.com:opengeospatial/ets-cdb10.git</developerConnection>
     <url>https://github.com/opengeospatial/ets-cdb10</url>
-    <tag>HEAD</tag>
+    <tag>0.5</tag>
   </scm>
   <issueManagement>
     <system>GitHub Issue Tracker</system>
