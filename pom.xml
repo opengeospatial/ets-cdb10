@@ -175,9 +175,11 @@
       </plugin>
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.3</version>
         <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
           <tagNameFormat>@{project.version}</tagNameFormat>
-          <pushChanges>false</pushChanges>
+          <releaseProfiles>release</releaseProfiles>
         </configuration>
       </plugin>
       <plugin>
@@ -186,6 +188,13 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>buildnumber-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <artifactId>maven-scm-publish-plugin</artifactId>
+        <version>1.1</version>
+        <configuration>
+          <scmBranch>gh-pages</scmBranch>
+        </configuration>
       </plugin>
     </plugins>
     
@@ -233,7 +242,37 @@
       </plugin>
     </plugins>
   </reporting>
-  
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <configuration>
+                  <!-- Enable if GPG 2.1+ is used -->
+                  <!--<gpgArguments>
+                    <arg>&#45;&#45;pinentry-mode</arg>
+                    <arg>loopback</arg>
+                  </gpgArguments>-->
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
   <dependencyManagement>
   	<dependencies>
   		<dependency>
@@ -243,4 +282,15 @@
   		</dependency>
   	</dependencies>
   </dependencyManagement>
+
+  <distributionManagement>
+    <repository>
+      <id>sonatype-nexus-staging</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+    <site>
+      <id>site</id>
+      <url>scm:git:git@github.com:opengeospatial/ets-cdb10.git</url>
+    </site>
+  </distributionManagement>
 </project>
