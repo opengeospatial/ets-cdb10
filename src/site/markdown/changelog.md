@@ -1,6 +1,13 @@
 
 # Release Notes
 
+## Version 0.6 (2020-12-16)
+
+- [#39](https://github.com/opengeospatial/ets-cdb10/issues/39): Configure the CDB Structure conformance class to be the minimal required for certification
+- [#40](https://github.com/opengeospatial/ets-cdb10/issues/40): Configure Docker Maven Plugin
+- [#42](https://github.com/opengeospatial/ets-cdb10/issues/42): Test suite breaks REST interface of TEAM Engine
+- [#41](https://github.com/opengeospatial/ets-cdb10/issues/41): Update dependency schema-utils to version 1.8
+
 ## Version 0.5 (2020-11-16)
 
 - Fix parsing of coarse-level LODs in filenames
