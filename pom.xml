@@ -49,7 +49,7 @@
     <jar-plugin.version>3.0.2</jar-plugin.version>
     <javadoc-plugin.version>3.0.1</javadoc-plugin.version>
     <testng.javadoc.url>https://jitpack.io/com/github/cbeust/testng/master/javadoc</testng.javadoc.url>
-    <docker.teamengine.version>5.4</docker.teamengine.version>
+    <docker.teamengine.version>5.4.1</docker.teamengine.version>
   </properties>
 
   <dependencies>
