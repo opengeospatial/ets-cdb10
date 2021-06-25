@@ -1,6 +1,12 @@
 
 # Release Notes
 
+## Version 1.0 (2021-06-25)
+
+- [#54](https://github.com/opengeospatial/ets-cdb10/issues/54): Prepare release 1.0
+- [#50](https://github.com/opengeospatial/ets-cdb10/issues/50): Add template to get an XML/JSON response via rest endpoint
+- [#52](https://github.com/opengeospatial/ets-cdb10/pull/52): Set Docker TEAM Engine version to 5.4.1
+
 ## Version 0.6 (2020-12-16)
 
 - [#39](https://github.com/opengeospatial/ets-cdb10/issues/39): Configure the CDB Structure conformance class to be the minimal required for certification
