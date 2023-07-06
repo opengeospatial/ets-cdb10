@@ -30,6 +30,17 @@
               <li>Level 1: CDB Structure</li>
               <li>Level 2: Metadata and Versioning</li>
             </ol>
+            <p>
+            The CDB archive should be provided as a zip file. Folders that can be included in the root folder of the archive include:
+            <br/>
+              <li>Metadata</li>
+              <li>GTModel</li>
+              <li>MModel</li>
+              <li>Tiles</li>
+              <li>Navigation</li>
+              <br/>
+              See page 57 of OGC 15-113r3 for a description of the structure..
+            </p>
             <p>Detailed information about the test suite is available 
               <a href="index.html" target="otherwindow">here</a>
               .</p>
@@ -40,13 +51,13 @@
             </legend>
             <p>
               <label for="uri">
-                <h4 style="margin-bottom: 0.5em">Location of CDB</h4>
+                <h4 style="margin-bottom: 0.5em">Location of CDB (i.e. URL to the zip file)</h4>
               </label>
               <input id="uri" name="uri" size="128" type="text" value=""/>
             </p>
             <p>
               <label for="doc">
-                <h4 style="margin-bottom: 0.5em">Upload CDB resource</h4>
+                <h4 style="margin-bottom: 0.5em">Upload CDB resource as a zip file</h4>
               </label>
               <input name="doc" size="128" type="file" />
             </p>

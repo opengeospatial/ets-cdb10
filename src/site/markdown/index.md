@@ -50,7 +50,7 @@ CDB (IUT) does not contain that dataset.
 
 ## Implemented Tests in the Test suite: ets-cdb10
 
-Several conformance classes and tests are defined in the CDB 1.0 specification; [this document](./implemented_requirements.md) list the implemented ones. 
+Several conformance classes and tests are defined in the CDB 1.0 specification; [this document](./implemented_requirements.html) list the implemented ones. 
 
 
 
