@@ -1,6 +1,12 @@
 
 # Release Notes
 
+## Version 1.1 (2023-07-06)
+
+- [#56](https://github.com/opengeospatial/ets-cdb10/issues/56): URL stated by property testng.javadoc.url is causing the build to fail
+- [#49](https://github.com/opengeospatial/ets-cdb10/issues/49): Information page on implemented requirements not working
+- [#45](https://github.com/opengeospatial/ets-cdb10/issues/45): Add guidelines on file and URL path of zip
+
 ## Version 1.0 (2021-06-25)
 
 - [#54](https://github.com/opengeospatial/ets-cdb10/issues/54): Prepare release 1.0
