@@ -8,20 +8,26 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import javax.ws.rs.core.HttpHeaders;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.ClientProperties;
+import org.glassfish.jersey.logging.LoggingFeature;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Invocation.Builder;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.HttpHeaders;
+import jakarta.ws.rs.core.Response;
 
 /**
  * Provides a collection of utility methods for manipulating or resolving URI
@@ -30,6 +36,7 @@ import com.sun.jersey.api.client.WebResource;
 public class URIUtils {
 
     private static final String FIXUP_BASE_URI = "http://apache.org/xml/features/xinclude/fixup-base-uris";
+    private static final Logger LOGGER = Logger.getLogger(URIUtils.class.getName());
 
     /**
      * Parses the content of the given URI as an XML document and returns a new
@@ -83,58 +90,54 @@ public class URIUtils {
      * @throws IOException
      *             If an IO error occurred.
      */
+
+    /**
+     * Dereferences the given URI and stores the resulting resource representation in a
+     * local file. The file will be located in the default temporary file directory.
+     * @param uriRef An absolute URI specifying the location of some resource.
+     * @return A File containing the content of the resource; it may be empty if
+     * resolution failed for any reason.
+     * @throws java.io.IOException If an IO error occurred.
+     */
     public static File dereferenceURI(URI uriRef) throws IOException {
-
-        if ((null == uriRef) || !uriRef.isAbsolute()) {
-            throw new IllegalArgumentException(
-                    "Absolute URI is required, but received " + uriRef);
-        }
-        if (uriRef.getScheme().equalsIgnoreCase("file")) {
-            if (uriRef.getRawSchemeSpecificPart().endsWith(".zip")) {
-                File destFile = new File(uriRef);
-
-                File destDir = new File(destFile.getParent() + "/CDB" + System.currentTimeMillis());
-                destDir.mkdir();
-                
-                unzipFile(destFile,destDir);
-                
-                return destDir;
-            } else {
-                return new File(uriRef);
+            if ((null == uriRef) || !uriRef.isAbsolute()) {
+                    throw new IllegalArgumentException("Absolute URI is required, but received " + uriRef);
             }
-        }
-        
-        Client client = Client.create();
-        WebResource webRes = client.resource(uriRef);
-        ClientResponse rsp = webRes.get(ClientResponse.class);
-        String suffix = null;
-        if (rsp.getHeaders().getFirst(HttpHeaders.CONTENT_TYPE).endsWith("xml")) {
-            suffix = ".xml";
-        }
-        File destFile = File.createTempFile("entity-", suffix);
-        
-        if (rsp.hasEntity()) {
-            InputStream is = rsp.getEntityInputStream();
-            OutputStream os = new FileOutputStream(destFile);
-            byte[] buffer = new byte[8 * 1024];
-            int bytesRead;
-            while ((bytesRead = is.read(buffer)) != -1) {
-                os.write(buffer, 0, bytesRead);
+            if (uriRef.getScheme().equalsIgnoreCase("file")) {
+                    return new File(uriRef);
             }
-            is.close();
-            os.flush();
-            os.close();
-        }
-        
-        File destDir = new File(destFile.getParent()+"/CDB"+System.currentTimeMillis());
-        destDir.mkdir();
-        
-        unzipFile(destFile,destDir);
-        
-        TestSuiteLogger.log(Level.FINE, "Wrote " + destFile.length()
-                + " bytes to file at " + destFile.getAbsolutePath());
-
-        return destDir;
+            ClientConfig config = new ClientConfig();
+            config.property(ClientProperties.FOLLOW_REDIRECTS, true);
+            config.property(ClientProperties.CONNECT_TIMEOUT, 10000);
+            config.register(new LoggingFeature(LOGGER, Level.ALL, LoggingFeature.Verbosity.PAYLOAD_ANY, 5000));
+            Client client = ClientBuilder.newClient(config);
+            WebTarget target = client.target(uriRef);
+            Builder builder = target.request();
+            Response rsp = builder.buildGet().invoke();
+            String suffix = null;
+            if (rsp.getHeaders().getFirst(HttpHeaders.CONTENT_TYPE).toString().endsWith("xml")) {
+                    suffix = ".xml";
+            }
+            File destFile = File.createTempFile("entity-", suffix);
+            if (rsp.hasEntity()) {
+                    Object entity = rsp.getEntity();
+                    if (!(entity instanceof InputStream)) {
+                            return null;
+                    }
+                    InputStream is = (InputStream) entity;
+                    OutputStream os = new FileOutputStream(destFile);
+                    byte[] buffer = new byte[8 * 1024];
+                    int bytesRead;
+                    while ((bytesRead = is.read(buffer)) != -1) {
+                            os.write(buffer, 0, bytesRead);
+                    }
+                    is.close();
+                    os.flush();
+                    os.close();
+            }
+            TestSuiteLogger.log(Level.FINE,
+                            "Wrote " + destFile.length() + " bytes to file at " + destFile.getAbsolutePath());
+            return destFile;
     }
     
     /**
