@@ -10,15 +10,15 @@ import org.opengis.cite.validation.SchematronValidator;
  */
 public class VerifyValidationUtils {
 
-    public VerifyValidationUtils() {
-    }
+	public VerifyValidationUtils() {
+	}
 
-    @Test
-    public void testBuildSchematronValidator() {
-        String schemaRef = "http://schemas.opengis.net/gml/3.2.1/SchematronConstraints.xml";
-        String phase = "";
-        SchematronValidator result = ValidationUtils.buildSchematronValidator(
-                schemaRef, phase);
-        assertNotNull(result);
-    }
+	@Test
+	public void testBuildSchematronValidator() {
+		String schemaRef = "http://schemas.opengis.net/gml/3.2.1/SchematronConstraints.xml";
+		String phase = "";
+		SchematronValidator result = ValidationUtils.buildSchematronValidator(schemaRef, phase);
+		assertNotNull(result);
+	}
+
 }

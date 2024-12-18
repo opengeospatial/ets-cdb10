@@ -5,7 +5,14 @@ package org.opengis.cite.cdb10.util.metadataXml;
  */
 public class ConfigurationXml extends MetadataXmlFile {
 
-    public ConfigurationXml(String path) {
-        super(path, "Configuration.xml", "Configuration.xsd");
-    }
+	/**
+	 * <p>
+	 * Constructor for ConfigurationXml.
+	 * </p>
+	 * @param path a {@link java.lang.String} object
+	 */
+	public ConfigurationXml(String path) {
+		super(path, "Configuration.xml", "Configuration.xsd");
+	}
+
 }

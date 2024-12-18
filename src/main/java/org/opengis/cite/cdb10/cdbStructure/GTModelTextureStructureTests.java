@@ -14,11 +14,17 @@ import org.opengis.cite.cdb10.util.FilenamePatterns;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * <p>
+ * GTModelTextureStructureTests class.
+ * </p>
+ *
+ */
 public class GTModelTextureStructureTests extends Capability1Tests {
+
 	/**
 	 * Validates that GTModelTexture filenames have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 49 - based on Section 3.4.2")
 	public void verifyModelTextureFile() throws IOException {
@@ -30,7 +36,7 @@ public class GTModelTextureStructureTests extends Capability1Tests {
 
 		ArrayList<String> errors = new ArrayList<String>();
 		Pattern filePattern = Pattern.compile(FilenamePatterns.GTModelTexture);
-		
+
 		DirectoryStream<Path> tnamPrefixDirs = Files.newDirectoryStream(gtModelGeomPath);
 
 		for (Path tnamPrefixDir : tnamPrefixDirs) {
@@ -48,10 +54,11 @@ public class GTModelTextureStructureTests extends Capability1Tests {
 						Matcher match = filePattern.matcher(filename);
 						if (!match.find()) {
 							errors.add("Invalid file name: " + filename);
-						} else {
+						}
+						else {
 							String cs1 = match.group("cs1");
 							String cs2 = match.group("cs2");
-							
+
 							validateComponentSelectorFormat(cs1, 1, filename, errors);
 							validateComponentSelector1(cs1, "511", errors);
 							validateComponentSelectorFormat(cs2, 2, filename, errors);
@@ -69,4 +76,5 @@ public class GTModelTextureStructureTests extends Capability1Tests {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
+
 }

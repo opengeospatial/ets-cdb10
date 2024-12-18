@@ -13,6 +13,7 @@ import org.w3c.dom.NodeList;
  * Provides methods to validate if a Dataset follows the standard.
  */
 public class DatasetsValidator extends Validator {
+
 	/**
 	 * Document from Components_Selectors.xml
 	 */
@@ -27,8 +28,8 @@ public class DatasetsValidator extends Validator {
 	}
 
 	/**
-	 * Dataset codes between 900 - 999 (inclusive) will always be valid as
-	 * extended datasets.
+	 * Dataset codes between 900 - 999 (inclusive) will always be valid as extended
+	 * datasets.
 	 * @param code Integer for Dataset code (no leading zeros)
 	 * @return true/false
 	 */
@@ -37,9 +38,8 @@ public class DatasetsValidator extends Validator {
 	}
 
 	/**
-	 * Check if an integer code is valid according to the embedded Datasets.xml.
-	 * Dataset codes between 900 - 999 (inclusive) will always be valid as
-	 * extended datasets.
+	 * Check if an integer code is valid according to the embedded Datasets.xml. Dataset
+	 * codes between 900 - 999 (inclusive) will always be valid as extended datasets.
 	 * @param code Integer for Dataset code (no leading zeros)
 	 * @return true/false
 	 */
@@ -47,11 +47,12 @@ public class DatasetsValidator extends Validator {
 		if (isExtendedCode(code)) {
 			return true;
 		}
-		
+
 		NodeList nodeList;
 		try {
 			nodeList = compileAndEvaluate("//Dataset", doc);
-		} catch (XPathExpressionException e) {
+		}
+		catch (XPathExpressionException e) {
 			return false;
 		}
 
@@ -75,7 +76,8 @@ public class DatasetsValidator extends Validator {
 		NodeList nodeList;
 		try {
 			nodeList = compileAndEvaluate("//Dataset", doc);
-		} catch (XPathExpressionException e) {
+		}
+		catch (XPathExpressionException e) {
 			return false;
 		}
 
@@ -90,8 +92,8 @@ public class DatasetsValidator extends Validator {
 	}
 
 	/**
-	 * Lookup a String name dataset for an Integer code according to the 
-	 * embedded Datasets.xml
+	 * Lookup a String name dataset for an Integer code according to the embedded
+	 * Datasets.xml
 	 * @param code Integer for Dataset code (no leading zeros)
 	 * @return String name for Dataset
 	 */
@@ -99,7 +101,8 @@ public class DatasetsValidator extends Validator {
 		NodeList nodeList;
 		try {
 			nodeList = compileAndEvaluate("//Dataset", doc);
-		} catch (XPathExpressionException e) {
+		}
+		catch (XPathExpressionException e) {
 			return null;
 		}
 
@@ -113,4 +116,5 @@ public class DatasetsValidator extends Validator {
 		}
 		return codeMap.get(code);
 	}
+
 }

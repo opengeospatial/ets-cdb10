@@ -12,11 +12,17 @@ import org.opengis.cite.cdb10.util.reference.DatasetsValidator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * <p>
+ * MModelStructureTests class.
+ * </p>
+ *
+ */
 public class MModelStructureTests extends Capability1Tests {
+
 	/**
 	 * Validates that MModel directories have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 57 - based on Section 3.5.1")
 	public void verifyDataset() throws IOException {
@@ -53,11 +59,14 @@ public class MModelStructureTests extends Capability1Tests {
 			if (prefixID != null && !validator.isExtendedCode(prefixID)) {
 				if (prefixID < 1) {
 					errors.add("Invalid prefix cannot be below 001: " + filename);
-				} else if (!validator.isValidCode(prefixID)) {
+				}
+				else if (!validator.isValidCode(prefixID)) {
 					errors.add("Invalid dataset code: " + filename);
-				} else if (!validator.isValidName(datasetName)) {
+				}
+				else if (!validator.isValidName(datasetName)) {
 					errors.add("Invalid dataset name: " + filename);
-				} else if (!validator.datasetNameForCode(prefixID).equals(datasetName)) {
+				}
+				else if (!validator.datasetNameForCode(prefixID).equals(datasetName)) {
 					errors.add("Invalid dataset code/name combination: " + filename);
 				}
 			}
@@ -65,4 +74,5 @@ public class MModelStructureTests extends Capability1Tests {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
+
 }

@@ -14,11 +14,17 @@ import org.opengis.cite.cdb10.util.FilenamePatterns;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * <p>
+ * MModelGeometryStructureTests class.
+ * </p>
+ *
+ */
 public class MModelGeometryStructureTests extends Capability1Tests {
+
 	/**
 	 * Validates that MModelGeometry DIS Entity Kind directories have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 58 - based on Section 3.5.1")
 	public void verifyDISEntityKind() throws IOException {
@@ -39,8 +45,7 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelGeometry DIS Domain directories have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 58 - based on Section 3.5.1")
 	public void verifyDISDomain() throws IOException {
@@ -65,8 +70,7 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelGeometry DIS Country directories have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 58 - based on Section 3.5.1")
 	public void verifyDISCountry() throws IOException {
@@ -95,8 +99,7 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelGeometry DIS Category directories have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 58 - based on Section 3.5.1")
 	public void verifyDISCategory() throws IOException {
@@ -129,8 +132,7 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelGeometry DIS Entity directories have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 58 - based on Section 3.5.1")
 	public void verifyDISEntity() throws IOException {
@@ -141,7 +143,6 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		
 
 		for (Path kindDir : Files.newDirectoryStream(mmodelGeomPath)) {
 			DirectoryStream<Path> domainDirs = Files.newDirectoryStream(kindDir);
@@ -168,8 +169,7 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelGeometry filenames have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 58 - based on Section 3.5.1")
 	public void verifyFile() throws IOException {
@@ -204,7 +204,8 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 								Matcher match = filePattern.matcher(filename);
 								if (!match.find()) {
 									errors.add("Invalid file name: " + filename);
-								} else {
+								}
+								else {
 									String dataset = match.group("dataset");
 
 									if (!dataset.equals("D600") && !dataset.equals("D603")) {
@@ -220,13 +221,13 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 									}
 
 									if (!match.group("mmdc").equals(entityFilename)) {
-										errors.add("Moving Model DIS Code does not match parent directory: "
-												+ filename);
+										errors
+											.add("Moving Model DIS Code does not match parent directory: " + filename);
 									}
 
 									String cs1 = match.group("cs1");
 									String cs2 = match.group("cs2");
-									
+
 									validateComponentSelectorFormat(cs1, 1, filename, errors);
 									validateComponentSelector1(cs1, "600", errors);
 									validateComponentSelectorFormat(cs2, 2, filename, errors);
@@ -241,4 +242,5 @@ public class MModelGeometryStructureTests extends Capability1Tests {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
+
 }

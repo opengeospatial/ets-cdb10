@@ -11,17 +11,22 @@ import java.nio.file.Paths;
 
 /**
  * Created by serene on 2016-09-06.
+ *
  * @param <T> Fixture class
  */
 public class MetadataTestFixture<T extends CommonFixture> extends TestFixture<T> {
 
-    protected final static Path SOURCE_DIRECTORY = Paths.get(System.getProperty("user.dir"), "src", "test", "java", "org", "opengis", "cite", "cdb10", "fixtures");
-    protected Path metadataFolder;
-    protected Path schemaFolder;
+	protected final static Path SOURCE_DIRECTORY = Paths.get(System.getProperty("user.dir"), "src", "test", "java",
+			"org", "opengis", "cite", "cdb10", "fixtures");
 
-    @Before
-    public void createDirectories() throws IOException {
-        metadataFolder = Files.createDirectories(cdb_root.resolve(Paths.get("Metadata")));
-        schemaFolder = Files.createDirectories(cdb_root.resolve(Paths.get(String.valueOf(metadataFolder), "Schema")));
-    }
+	protected Path metadataFolder;
+
+	protected Path schemaFolder;
+
+	@Before
+	public void createDirectories() throws IOException {
+		metadataFolder = Files.createDirectories(cdb_root.resolve(Paths.get("Metadata")));
+		schemaFolder = Files.createDirectories(cdb_root.resolve(Paths.get(String.valueOf(metadataFolder), "Schema")));
+	}
+
 }

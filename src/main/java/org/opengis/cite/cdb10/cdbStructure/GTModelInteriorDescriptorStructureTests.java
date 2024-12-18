@@ -14,12 +14,17 @@ import org.opengis.cite.cdb10.util.FilenamePatterns;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * <p>
+ * GTModelInteriorDescriptorStructureTests class.
+ * </p>
+ *
+ */
 public class GTModelInteriorDescriptorStructureTests extends Capability1Tests {
-	
+
 	/**
 	 * Validates that GTModelInteriorDescriptor filenames have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 53 - based on Section 3.4.3")
 	public void verifyInteriorDescriptorFile() throws IOException {
@@ -47,10 +52,11 @@ public class GTModelInteriorDescriptorStructureTests extends Capability1Tests {
 						Matcher match = filePattern.matcher(filename);
 						if (!match.find()) {
 							errors.add("Invalid file name: " + filename);
-						} else {
+						}
+						else {
 							String cs1 = match.group("cs1");
 							String cs2 = match.group("cs2");
-							
+
 							validateComponentSelectorFormat(cs1, 1, filename, errors);
 							validateComponentSelector1(cs1, "508", errors);
 							validateComponentSelectorFormat(cs2, 2, filename, errors);

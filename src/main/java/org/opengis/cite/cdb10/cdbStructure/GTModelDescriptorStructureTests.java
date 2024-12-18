@@ -14,12 +14,17 @@ import org.opengis.cite.cdb10.util.FilenamePatterns;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * <p>
+ * GTModelDescriptorStructureTests class.
+ * </p>
+ *
+ */
 public class GTModelDescriptorStructureTests extends Capability1Tests {
-	
+
 	/**
 	 * Validates that GTModelDescriptor filenames have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 48 - based on Section 3.4.1")
 	public void verifyDescriptorFile() throws IOException {
@@ -31,7 +36,7 @@ public class GTModelDescriptorStructureTests extends Capability1Tests {
 
 		ArrayList<String> errors = new ArrayList<String>();
 		/*
-		 * 
+		 *
 		 */
 		Pattern filePattern = Pattern.compile(FilenamePatterns.GTModelDescriptor);
 
@@ -49,10 +54,11 @@ public class GTModelDescriptorStructureTests extends Capability1Tests {
 						Matcher match = filePattern.matcher(filename);
 						if (!match.find()) {
 							errors.add("Invalid file name: " + filename);
-						} else {
+						}
+						else {
 							String cs1 = match.group("cs1");
 							String cs2 = match.group("cs2");
-							
+
 							validateComponentSelectorFormat(cs1, 1, filename, errors);
 							validateComponentSelector1(cs1, "503", errors);
 							validateComponentSelectorFormat(cs2, 2, filename, errors);
@@ -73,4 +79,5 @@ public class GTModelDescriptorStructureTests extends Capability1Tests {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
+
 }

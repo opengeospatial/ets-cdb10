@@ -15,12 +15,17 @@ import org.opengis.cite.cdb10.util.FilenamePatterns;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * <p>
+ * GTModelInteriorGeometryStructureTests class.
+ * </p>
+ *
+ */
 public class GTModelInteriorGeometryStructureTests extends Capability1Tests {
-	
+
 	/**
 	 * Validates that GTModelInteriorGeometry filenames have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 52 - based on Section 3.4.3")
 	public void verifyInteriorGeometryFile() throws IOException {
@@ -40,21 +45,23 @@ public class GTModelInteriorGeometryStructureTests extends Capability1Tests {
 				DirectoryStream<Path> featureTypes = Files.newDirectoryStream(subcategory);
 
 				for (Path featureType : featureTypes) {
-					DirectoryStream<Path> lods = Files.newDirectoryStream(featureType, DirectoryStreamFilters.lodFilter());
-					
+					DirectoryStream<Path> lods = Files.newDirectoryStream(featureType,
+							DirectoryStreamFilters.lodFilter());
+
 					for (Path lod : lods) {
 						DirectoryStream<Path> files = Files.newDirectoryStream(lod);
-						
+
 						for (Path file : files) {
 							String filename = file.getFileName().toString();
-	
+
 							Matcher match = filePattern.matcher(filename);
 							if (!match.find()) {
 								errors.add("Invalid file name: " + filename);
-							} else {
+							}
+							else {
 								String cs1 = match.group("cs1");
 								String cs2 = match.group("cs2");
-								
+
 								validateComponentSelectorFormat(cs1, 1, filename, errors);
 								validateComponentSelector1(cs1, "506", errors);
 								validateComponentSelectorFormat(cs2, 2, filename, errors);

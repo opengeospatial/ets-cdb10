@@ -23,25 +23,29 @@ import org.testng.annotations.Test;
 public class TilesStructureTests extends Capability1Tests {
 
 	/**
-	 * Return the number of degrees of Longitude a Geocell encompasses, given a
-	 * latitude. (Geocells have variable sizes.)
-	 * 
-	 * @param  latitude The latitude in integer degrees
-	 * @return          An integer amount of degrees of longitude
+	 * Return the number of degrees of Longitude a Geocell encompasses, given a latitude.
+	 * (Geocells have variable sizes.)
+	 * @param latitude The latitude in integer degrees
+	 * @return An integer amount of degrees of longitude
 	 */
 	public Integer sliceWidthForLatitude(Integer latitude) {
 		Integer dLonZone = 1;
 		if (((latitude >= 89) && (latitude < 90)) || ((latitude >= -90) && (latitude < -89))) {
 			dLonZone = 12;
-		} else if (((latitude >= 80) && (latitude < 89)) || ((latitude >= -89) && (latitude < -80))) {
+		}
+		else if (((latitude >= 80) && (latitude < 89)) || ((latitude >= -89) && (latitude < -80))) {
 			dLonZone = 6;
-		} else if (((latitude >= 75) && (latitude < 80)) || ((latitude >= -80) && (latitude < -75))) {
+		}
+		else if (((latitude >= 75) && (latitude < 80)) || ((latitude >= -80) && (latitude < -75))) {
 			dLonZone = 4;
-		} else if (((latitude >= 70) && (latitude < 75)) || ((latitude >= -75) && (latitude < -70))) {
+		}
+		else if (((latitude >= 70) && (latitude < 75)) || ((latitude >= -75) && (latitude < -70))) {
 			dLonZone = 3;
-		} else if (((latitude >= 50) && (latitude < 70)) || ((latitude >= -70) && (latitude < -50))) {
+		}
+		else if (((latitude >= 50) && (latitude < 70)) || ((latitude >= -70) && (latitude < -50))) {
 			dLonZone = 2;
-		} else if (((latitude >= 0) && (latitude < 50)) || ((latitude >= -50) && (latitude < 0))) {
+		}
+		else if (((latitude >= 0) && (latitude < 50)) || ((latitude >= -50) && (latitude < 0))) {
 			dLonZone = 1;
 		}
 
@@ -50,8 +54,7 @@ public class TilesStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that latitude geocell directories start with "S" or "N".
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.16, Test 65 - based on Section 3.6")
 	public void verifyGeocellLatitudeDirNamePrefix() throws IOException {
@@ -75,10 +78,9 @@ public class TilesStructureTests extends Capability1Tests {
 	}
 
 	/**
-	 * Validates that latitude geocell directories end with a valid slice
-	 * latitude. latitudes should be zero-padded to 2 width.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * Validates that latitude geocell directories end with a valid slice latitude.
+	 * latitudes should be zero-padded to 2 width.
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.16, Test 65 - based on Section 3.6")
 	public void verifyGeocellLatitudeDirNameSlice() throws IOException {
@@ -96,23 +98,25 @@ public class TilesStructureTests extends Capability1Tests {
 
 			if (filename.length() != 3) {
 				errors.add("Invalid padding/length on geocell directory name: " + filename);
-			} else if (filename.substring(0, 1).equals("S")) {
+			}
+			else if (filename.substring(0, 1).equals("S")) {
 				Integer sliceID = Integer.parseInt(slice);
 				if ((sliceID > 90) || (sliceID <= 0)) {
 					errors.add("Invalid latitude for geocell directory name: " + filename);
 				}
 
-				if ((sliceID < 10) && (sliceID > 0) && !(slice.substring(0,1).equals("0"))) {
+				if ((sliceID < 10) && (sliceID > 0) && !(slice.substring(0, 1).equals("0"))) {
 					errors.add("Invalid zero-pad on geocell directory name: " + filename);
 				}
 
-			} else if (filename.substring(0, 1).equals("N")) {
+			}
+			else if (filename.substring(0, 1).equals("N")) {
 				Integer sliceID = Integer.parseInt(slice);
 				if ((sliceID > 89) || (sliceID < 0)) {
 					errors.add("Invalid latitude for geocell directory name: " + filename);
 				}
 
-				if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(0,1).equals("0"))) {
+				if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(0, 1).equals("0"))) {
 					errors.add("Invalid zero-pad on geocell directory name: " + filename);
 				}
 			}
@@ -123,8 +127,7 @@ public class TilesStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that longitude geocell directories start with "E" or "W".
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.16, Test 66 - based on Section 3.6")
 	public void verifyGeocellLongitudeDirNamePrefix() throws IOException {
@@ -154,10 +157,9 @@ public class TilesStructureTests extends Capability1Tests {
 	}
 
 	/**
-	 * Validates that longitude geocell directories end with a valid slice
-	 * longitude. longitudes should be zero-padded to 3 width.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * Validates that longitude geocell directories end with a valid slice longitude.
+	 * longitudes should be zero-padded to 3 width.
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.16, Test 66 - based on Section 3.6")
 	public void verifyGeocellLongitudeDirNameSlice() throws IOException {
@@ -196,7 +198,8 @@ public class TilesStructureTests extends Capability1Tests {
 
 				if (filename.length() != 4) {
 					errors.add("Invalid padding/length for geocell directory name: " + filename);
-				} else if (filename.substring(0, 1).equals("E")) {
+				}
+				else if (filename.substring(0, 1).equals("E")) {
 					if ((sliceID > 179) || (sliceID < 0)) {
 						errors.add("Invalid longitude for geocell directory name: " + filename);
 					}
@@ -205,12 +208,14 @@ public class TilesStructureTests extends Capability1Tests {
 						errors.add("Invalid slice width for geocell directory name: " + filename);
 					}
 
-					if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(0,2).equals("00"))) {
-						errors.add("Invalid zero-pad on geocell directory name: " + filename);
-					} else if ((sliceID < 100) && (sliceID >= 10) && !(slice.substring(0,1).equals("0"))) {
+					if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(0, 2).equals("00"))) {
 						errors.add("Invalid zero-pad on geocell directory name: " + filename);
 					}
-				} else if (filename.substring(0, 1).equals("W")) {
+					else if ((sliceID < 100) && (sliceID >= 10) && !(slice.substring(0, 1).equals("0"))) {
+						errors.add("Invalid zero-pad on geocell directory name: " + filename);
+					}
+				}
+				else if (filename.substring(0, 1).equals("W")) {
 					if ((sliceID > 180) || (sliceID <= 0)) {
 						errors.add("Invalid longitude for geocell directory name: " + filename);
 					}
@@ -219,9 +224,10 @@ public class TilesStructureTests extends Capability1Tests {
 						errors.add("Invalid slice width for geocell directory name: " + filename);
 					}
 
-					if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(0,2).equals("00"))) {
+					if ((sliceID < 10) && (sliceID >= 0) && !(slice.substring(0, 2).equals("00"))) {
 						errors.add("Invalid zero-pad on geocell directory name: " + filename);
-					} else if ((sliceID < 100) && (sliceID >= 10) && !(slice.substring(0,1).equals("0"))) {
+					}
+					else if ((sliceID < 100) && (sliceID >= 10) && !(slice.substring(0, 1).equals("0"))) {
 						errors.add("Invalid zero-pad on geocell directory name: " + filename);
 					}
 				}
@@ -233,8 +239,7 @@ public class TilesStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that dataset directories begin with a 3-digit prefix.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, Section 3.6.2.3")
 	public void verifyDatasetPrefix() throws IOException {
@@ -281,10 +286,8 @@ public class TilesStructureTests extends Capability1Tests {
 	}
 
 	/**
-	 * Validates that dataset directories prefix code and name match and are
-	 * valid values.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * Validates that dataset directories prefix code and name match and are valid values.
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, Section 3.6.2.3")
 	public void verifyDatasetCodeName() throws IOException {
@@ -328,9 +331,11 @@ public class TilesStructureTests extends Capability1Tests {
 					if ((prefixID != null) && (datasetName != null) && !validator.isExtendedCode(prefixID)) {
 						if (!validator.isValidCode(prefixID)) {
 							errors.add("Invalid dataset code: " + filename);
-						} else if (!validator.isValidName(datasetName)) {
+						}
+						else if (!validator.isValidName(datasetName)) {
 							errors.add("Invalid dataset name: " + filename);
-						} else if (!validator.datasetNameForCode(prefixID).equals(datasetName)) {
+						}
+						else if (!validator.datasetNameForCode(prefixID).equals(datasetName)) {
 							errors.add("Invalid dataset code/name combination: " + filename);
 						}
 					}
@@ -345,8 +350,7 @@ public class TilesStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that LOD directories have valid names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, Section 3.6.2.4")
 	public void verifyLODName() throws IOException {
@@ -381,10 +385,9 @@ public class TilesStructureTests extends Capability1Tests {
 	}
 
 	/**
-	 * Validates that UREF directories have valid names and are in a valid range
-	 * for the LOD.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * Validates that UREF directories have valid names and are in a valid range for the
+	 * LOD.
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.16, Test 67 - based on Section 3.6")
 	public void verifyUREFName() throws IOException {
@@ -408,7 +411,7 @@ public class TilesStructureTests extends Capability1Tests {
 
 					for (Path lod : lods) {
 						String lodFilename = lod.getFileName().toString();
-						
+
 						Integer lodLevel = parseLOD(lodFilename);
 
 						DirectoryStream<Path> urefs = Files.newDirectoryStream(lod);
@@ -418,7 +421,8 @@ public class TilesStructureTests extends Capability1Tests {
 
 							if (!filename.substring(0, 1).equals("U")) {
 								errors.add("Invalid prefix for UREF directory: " + filename);
-							} else {
+							}
+							else {
 								Integer urefValue = Integer.parseInt(filename.substring(1, filename.length()));
 
 								validateUref(urefValue, lodLevel, errors);
@@ -436,8 +440,7 @@ public class TilesStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that tiled dataset files have valid names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, Section 3.6.2")
 	public void verifyDatasetFileName() throws IOException {
@@ -475,11 +478,13 @@ public class TilesStructureTests extends Capability1Tests {
 								String filename = datasetFile.getFileName().toString();
 								Matcher match = filePattern.matcher(filename);
 								if (!match.find()) {
-									errors.add("Invalid dataset file name: " + filename + " according to test pattern.");
-								} else {
+									errors
+										.add("Invalid dataset file name: " + filename + " according to test pattern.");
+								}
+								else {
 									if (!match.group("lat").equals(latFilename)) {
-										errors.add("Latitude geocell prefix does not match parent directory: "
-												+ filename);
+										errors.add(
+												"Latitude geocell prefix does not match parent directory: " + filename);
 									}
 
 									if (!match.group("lon").equals(lonFilename)) {
@@ -488,12 +493,12 @@ public class TilesStructureTests extends Capability1Tests {
 									}
 
 									if (!match.group("datasetCode").equals(datasetFilename.substring(0, 3))) {
-										errors.add("Dataset code does not match parent directory: "
-												+ filename);
+										errors.add("Dataset code does not match parent directory: " + filename);
 									}
 
-									if ((match.group("lod").startsWith("LC") && !lodFilename.equals("LC")) ||
-										(!match.group("lod").startsWith("LC") && !match.group("lod").equals(lodFilename))) {
+									if ((match.group("lod").startsWith("LC") && !lodFilename.equals("LC"))
+											|| (!match.group("lod").startsWith("LC")
+													&& !match.group("lod").equals(lodFilename))) {
 										errors.add("LOD does not match parent directory: " + filename);
 									}
 
@@ -503,14 +508,15 @@ public class TilesStructureTests extends Capability1Tests {
 
 									// Only check RREF bounds for positive LODs
 									if (!lodFilename.equals("LC")) {
-										Integer lodLevel = Integer.parseInt(lodFilename.substring(1, lodFilename.length()));
+										Integer lodLevel = Integer
+											.parseInt(lodFilename.substring(1, lodFilename.length()));
 										validateRref(Integer.parseInt(match.group("rref")), lodLevel, errors);
 									}
 
 									String datasetID = datasetFilename.split("_")[0];
 									String cs1 = match.group("cs1");
 									String cs2 = match.group("cs2");
-									
+
 									validateComponentSelectorFormat(cs1, 1, filename, errors);
 									validateComponentSelector1(cs1, datasetID, errors);
 									validateComponentSelectorFormat(cs2, 2, filename, errors);
@@ -529,4 +535,5 @@ public class TilesStructureTests extends Capability1Tests {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
+
 }

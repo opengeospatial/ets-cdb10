@@ -5,7 +5,14 @@ package org.opengis.cite.cdb10.util.metadataXml;
  */
 public class CDBAttributesXml extends MetadataXmlFile {
 
-    public CDBAttributesXml(String path) {
-        super(path, "CDB_Attributes.xml", "Vector_Attributes.xsd");
-    }
+	/**
+	 * <p>
+	 * Constructor for CDBAttributesXml.
+	 * </p>
+	 * @param path a {@link java.lang.String} object
+	 */
+	public CDBAttributesXml(String path) {
+		super(path, "CDB_Attributes.xml", "Vector_Attributes.xsd");
+	}
+
 }

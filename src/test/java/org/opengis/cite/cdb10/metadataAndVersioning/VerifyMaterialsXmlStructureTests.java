@@ -15,125 +15,131 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
  */
 public class VerifyMaterialsXmlStructureTests extends MetadataTestFixture<MaterialsXmlStructureTests> {
 
-    private final static Path XSD_FILE = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Base_Material_Table.xsd"));
+	private final static Path XSD_FILE = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Base_Material_Table.xsd"));
 
-    private final static Path VALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Materials.xml"));
+	private final static Path VALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Materials.xml"));
 
-    private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "MaterialsInvalid.xml"));
-    private final static Path NAME_NOT_UNIQUE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "MaterialsInvalidNameNotUnique.xml"));
-    private final static Path MISSING_NAME_ELEMENT_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "MaterialsInvalidMissingNameElement.xml"));
-    private final static Path INVALID_NAME_VALUE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "MaterialsInvalidValueForNameElement.xml"));
+	private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "MaterialsInvalid.xml"));
 
-    public VerifyMaterialsXmlStructureTests() {
-        testSuite = new MaterialsXmlStructureTests();
-    }
+	private final static Path NAME_NOT_UNIQUE_FILE = SOURCE_DIRECTORY
+		.resolve(Paths.get("invalid", "MaterialsInvalidNameNotUnique.xml"));
 
-    @Test
-    public void verifyMaterialsXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
-        // setup
-        Files.copy(VALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
-        Files.copy(XSD_FILE, schemaFolder.resolve("Base_Material_Table.xsd"), REPLACE_EXISTING);
+	private final static Path MISSING_NAME_ELEMENT_FILE = SOURCE_DIRECTORY
+		.resolve(Paths.get("invalid", "MaterialsInvalidMissingNameElement.xml"));
 
-        // execute
-        testSuite.verifyMaterialsXmlAgainstSchema();
-    }
+	private final static Path INVALID_NAME_VALUE_FILE = SOURCE_DIRECTORY
+		.resolve(Paths.get("invalid", "MaterialsInvalidValueForNameElement.xml"));
 
-    @Test
-    public void verifyMaterialsXmlAgainstSchema_XmlIsNotValid() throws IOException, SAXException {
-        // setup
-        Files.copy(INVALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
-        Files.copy(XSD_FILE, schemaFolder.resolve("Base_Material_Table.xsd"), REPLACE_EXISTING);
+	public VerifyMaterialsXmlStructureTests() {
+		testSuite = new MaterialsXmlStructureTests();
+	}
 
-        String expectedMessage = "Materials.xml does not validate against its XML Schema file. Errors: cvc-pattern-valid: " +
-                "Value 'BMASH' is not facet-valid with respect to pattern '[B][M][_]([A-Za-z0-9_-])+' " +
-                "for type '#AnonType_NameBase_Material'., cvc-type.3.1.3: The value 'BMASH' " +
-                "of element 'Name' is not valid.";
+	@Test
+	public void verifyMaterialsXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
+		// setup
+		Files.copy(VALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+		Files.copy(XSD_FILE, schemaFolder.resolve("Base_Material_Table.xsd"), REPLACE_EXISTING);
 
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage(expectedMessage);
+		// execute
+		testSuite.verifyMaterialsXmlAgainstSchema();
+	}
 
-        // execute
-        testSuite.verifyMaterialsXmlAgainstSchema();
-    }
+	@Test
+	public void verifyMaterialsXmlAgainstSchema_XmlIsNotValid() throws IOException, SAXException {
+		// setup
+		Files.copy(INVALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+		Files.copy(XSD_FILE, schemaFolder.resolve("Base_Material_Table.xsd"), REPLACE_EXISTING);
 
-    @Test
-    public void verifyMaterialsXmlElementNameIsUnique_IsUnique() throws IOException {
-        // setup
-        Files.copy(VALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
-        Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
+		String expectedMessage = "Materials.xml does not validate against its XML Schema file. Errors: cvc-pattern-valid: "
+				+ "Value 'BMASH' is not facet-valid with respect to pattern '[B][M][_]([A-Za-z0-9_-])+' "
+				+ "for type '#AnonType_NameBase_Material'., cvc-type.3.1.3: The value 'BMASH' "
+				+ "of element 'Name' is not valid.";
 
-        // execute
-        testSuite.verifyMaterialsXmlElementNameIsUnique();
-    }
+		expectedException.expect(AssertionError.class);
+		expectedException.expectMessage(expectedMessage);
 
-    @Test
-    public void verifyMaterialsXmlElementNameIsUnique_IsNotUnique() throws IOException {
-        // setup
-        Files.copy(NAME_NOT_UNIQUE_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
-        Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
+		// execute
+		testSuite.verifyMaterialsXmlAgainstSchema();
+	}
 
-        String expectedMessage = "Materials.xml element \"<Name>\" should be unique. " +
-                "'BM_ASH-VOLCANIC' is not unique. expected [1] but found [2]";
+	@Test
+	public void verifyMaterialsXmlElementNameIsUnique_IsUnique() throws IOException {
+		// setup
+		Files.copy(VALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+		Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
 
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage(expectedMessage);
+		// execute
+		testSuite.verifyMaterialsXmlElementNameIsUnique();
+	}
 
-        // execute
-        testSuite.verifyMaterialsXmlElementNameIsUnique();
-    }
+	@Test
+	public void verifyMaterialsXmlElementNameIsUnique_IsNotUnique() throws IOException {
+		// setup
+		Files.copy(NAME_NOT_UNIQUE_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+		Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
 
-    @Test
-    public void verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName_TheyDo() throws IOException {
-        // setup
-        Files.copy(VALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
-        Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
+		String expectedMessage = "Materials.xml element \"<Name>\" should be unique. "
+				+ "'BM_ASH-VOLCANIC' is not unique. expected [1] but found [2]";
 
-        // execute
-        testSuite.verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName();
-    }
+		expectedException.expect(AssertionError.class);
+		expectedException.expectMessage(expectedMessage);
 
-    @Test
-    public void verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName_TheyDoNot() throws IOException {
-        // setup
-        Files.copy(MISSING_NAME_ELEMENT_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
-        Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
+		// execute
+		testSuite.verifyMaterialsXmlElementNameIsUnique();
+	}
 
-        String expectedMessage = "Materials.xml element \"<Base_Material>\" requires a " +
-                "child element \"<Name>\". expected [0] but found [1]";
+	@Test
+	public void verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName_TheyDo() throws IOException {
+		// setup
+		Files.copy(VALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+		Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
 
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage(expectedMessage);
+		// execute
+		testSuite.verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName();
+	}
 
-        // execute
-        testSuite.verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName();
-    }
+	@Test
+	public void verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName_TheyDoNot() throws IOException {
+		// setup
+		Files.copy(MISSING_NAME_ELEMENT_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+		Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
 
-    @Test
-    public void verifyMaterialsXmlBaseMaterialNameIsValid_IsValid() throws Exception {
-        // setup
-        Files.copy(VALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
-        Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
+		String expectedMessage = "Materials.xml element \"<Base_Material>\" requires a "
+				+ "child element \"<Name>\". expected [0] but found [1]";
 
-        // execute
-        testSuite.verifyMaterialsXmlBaseMaterialNameIsValid();
-    }
+		expectedException.expect(AssertionError.class);
+		expectedException.expectMessage(expectedMessage);
 
-    @Test
-    public void verifyMaterialsXmlBaseMaterialNameIsValid_IsNotValid() throws Exception {
-        // setup
-        Files.copy(INVALID_NAME_VALUE_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
-        Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
+		// execute
+		testSuite.verifyMaterialsXmlAllBaseMaterialElementsHaveAChildNodeName();
+	}
 
-        String expectedMessage = "Materials.xml element \"<Name>\" is always in format \"BM__*\", " +
-                "has a maximum of 32 characters, and can only contain letters, digits, " +
-                "underscores, and hyphens. " +
-                "[ASH, BM_ASH-VOLCANIC*, BM_12345123451234512345123451234512345] " +
-                "does not conform. expected [0] but found [3]";
+	@Test
+	public void verifyMaterialsXmlBaseMaterialNameIsValid_IsValid() throws Exception {
+		// setup
+		Files.copy(VALID_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+		Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
 
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage(expectedMessage);
+		// execute
+		testSuite.verifyMaterialsXmlBaseMaterialNameIsValid();
+	}
 
-        // execute
-        testSuite.verifyMaterialsXmlBaseMaterialNameIsValid();
-    }
+	@Test
+	public void verifyMaterialsXmlBaseMaterialNameIsValid_IsNotValid() throws Exception {
+		// setup
+		Files.copy(INVALID_NAME_VALUE_FILE, metadataFolder.resolve("Materials.xml"), REPLACE_EXISTING);
+		Files.createFile(schemaFolder.resolve(Paths.get("Base_Material_Table.xsd")));
+
+		String expectedMessage = "Materials.xml element \"<Name>\" is always in format \"BM__*\", "
+				+ "has a maximum of 32 characters, and can only contain letters, digits, "
+				+ "underscores, and hyphens. " + "[ASH, BM_ASH-VOLCANIC*, BM_12345123451234512345123451234512345] "
+				+ "does not conform. expected [0] but found [3]";
+
+		expectedException.expect(AssertionError.class);
+		expectedException.expectMessage(expectedMessage);
+
+		// execute
+		testSuite.verifyMaterialsXmlBaseMaterialNameIsValid();
+	}
+
 }
