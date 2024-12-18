@@ -25,7 +25,7 @@ import java.util.List;
 public class TestRunArguments {
 
 	@Parameter(description = "Properties file")
-	private final List<String> xmlProps;
+	private List<String> xmlProps;
 
 	@Parameter(names = { "-o", "--outputDir" }, description = "Output directory")
 	private String outputDir;
