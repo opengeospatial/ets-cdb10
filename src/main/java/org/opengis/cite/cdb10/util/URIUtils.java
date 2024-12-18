@@ -16,14 +16,12 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.glassfish.jersey.client.ClientConfig;
-import org.glassfish.jersey.client.ClientProperties;
-import org.glassfish.jersey.logging.LoggingFeature;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Invocation;
 import jakarta.ws.rs.client.Invocation.Builder;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.HttpHeaders;
@@ -83,31 +81,48 @@ public class URIUtils {
 	 * @throws java.io.IOException If an IO error occurred.
 	 */
 	public static File dereferenceURI(URI uriRef) throws IOException {
+
 		if ((null == uriRef) || !uriRef.isAbsolute()) {
 			throw new IllegalArgumentException("Absolute URI is required, but received " + uriRef);
 		}
 		if (uriRef.getScheme().equalsIgnoreCase("file")) {
-			return new File(uriRef);
-		}
-		ClientConfig config = new ClientConfig();
-		config.property(ClientProperties.FOLLOW_REDIRECTS, true);
-		config.property(ClientProperties.CONNECT_TIMEOUT, 10000);
-		config.register(new LoggingFeature(LOGGER, Level.ALL, LoggingFeature.Verbosity.PAYLOAD_ANY, 5000));
-		Client client = ClientBuilder.newClient(config);
-		WebTarget target = client.target(uriRef);
-		Builder builder = target.request();
-		Response rsp = builder.buildGet().invoke();
-		String suffix = null;
-		if (rsp.getHeaders().getFirst(HttpHeaders.CONTENT_TYPE).toString().endsWith("xml")) {
-			suffix = ".xml";
-		}
-		File destFile = File.createTempFile("entity-", suffix);
-		if (rsp.hasEntity()) {
-			Object entity = rsp.getEntity();
-			if (!(entity instanceof InputStream)) {
-				return null;
+			if (uriRef.getRawSchemeSpecificPart().endsWith(".zip")) {
+				File destFile = new File(uriRef);
+
+				File destDir = new File(destFile.getParent() + "/CDB" + System.currentTimeMillis());
+				destDir.mkdir();
+
+				unzipFile(destFile, destDir);
+
+				return destDir;
 			}
-			InputStream is = (InputStream) entity;
+			else {
+				return new File(uriRef);
+			}
+		}
+		Client client = ClientBuilder.newClient();
+
+		WebTarget target = client.target(uriRef);
+		Builder reqBuilder = target.request();
+		Invocation req = reqBuilder.buildGet();
+		Response rsp = req.invoke();
+
+		String suffix = null;
+		Object contentTypeHeaderObject = rsp.getHeaders().getFirst(HttpHeaders.CONTENT_TYPE);
+		if (contentTypeHeaderObject != null && contentTypeHeaderObject instanceof String) {
+			if (((String) contentTypeHeaderObject).endsWith("xml")) {
+				suffix = ".xml";
+			}
+
+		}
+		else {
+			LOGGER.info("Content-Type header is not instanceof String, is: " + contentTypeHeaderObject.getClass());
+		}
+
+		File destFile = File.createTempFile("entity-", suffix);
+
+		if (rsp.hasEntity()) {
+			InputStream is = rsp.readEntity(InputStream.class);
 			OutputStream os = new FileOutputStream(destFile);
 			byte[] buffer = new byte[8 * 1024];
 			int bytesRead;
@@ -118,9 +133,16 @@ public class URIUtils {
 			os.flush();
 			os.close();
 		}
+
+		File destDir = new File(destFile.getParent() + "/CDB" + System.currentTimeMillis());
+		destDir.mkdir();
+
+		unzipFile(destFile, destDir);
+
 		TestSuiteLogger.log(Level.FINE,
 				"Wrote " + destFile.length() + " bytes to file at " + destFile.getAbsolutePath());
-		return destFile;
+
+		return destDir;
 	}
 
 	/**
