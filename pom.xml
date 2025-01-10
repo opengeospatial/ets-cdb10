@@ -1,10 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <parent>
     <groupId>org.opengis.cite</groupId>
     <artifactId>ets-common</artifactId>
-    <version>14-SNAPSHOT</version>
+    <version>14</version>
   </parent>
+
   <modelVersion>4.0.0</modelVersion>
   <artifactId>ets-cdb10</artifactId>
   <version>1.2-SNAPSHOT</version>
@@ -12,17 +14,17 @@
 
   <name>OGC CDB 1.0 Executable Conformance Test Suite</name>
   <description>This test suite tests for compliance to OGC CDB 1.0</description>
-  <url>http://opengeospatial.github.io/ets-cdb10/</url>
+  <url>https://opengeospatial.github.io/ets-cdb10/</url>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
-      <url>http://opensource.org/licenses/Apache-2.0</url>
+      <url>https://opensource.org/licenses/Apache-2.0</url>
     </license>
   </licenses>
 
   <organization>
     <name>Open Geospatial Consortium</name>
-    <url>http://www.opengeospatial.org/</url>
+    <url>https://www.ogc.org/</url>
   </organization>
   <scm>
     <connection>scm:git:https://github.com/opengeospatial/ets-cdb10.git</connection>
@@ -39,6 +41,10 @@
       <name>James Badger</name>
       <url>https://github.com/openfirmware</url>
       <timezone>-07:00</timezone>
+    </developer>
+    <developer>
+      <name>Dirk Stenger</name>
+      <url>https://github.com/dstenger</url>
     </developer>
   </developers>
 
@@ -64,14 +70,14 @@
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
     </dependency>
-	<dependency>
-	    <groupId>org.apache.commons</groupId>
-	    <artifactId>commons-lang3</artifactId>
-	</dependency>
-	<dependency>
-    <groupId>commons-io</groupId>
-    <artifactId>commons-io</artifactId>
-</dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
     <dependency>
       <groupId>com.beust</groupId>
       <artifactId>jcommander</artifactId>
@@ -100,22 +106,13 @@
               <mainClass>org.opengis.cite.cdb10.TestNGController</mainClass>
             </manifest>
           </archive>
-          <descriptors>
-            <descriptor>${basedir}/src/assembly/deps.xml</descriptor>
-            <descriptor>${basedir}/src/assembly/ctl-scripts.xml</descriptor>
-            <descriptor>${basedir}/src/assembly/aio.xml</descriptor>
-          </descriptors>
         </configuration>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
-        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-scm-publish-plugin</artifactId>
       </plugin>
     </plugins>
+
     <pluginManagement>
       <plugins>
         <plugin>
@@ -124,28 +121,6 @@
           <configuration>
             <images>
               <image>
-                <name>ogccite/${project.artifactId}</name>
-                <build>
-                  <dockerFileDir>${project.basedir}/src/docker</dockerFileDir>
-                  <tags>
-                    <tag>${project.version}-teamengine-${teamengine.version}</tag>
-                  </tags>
-                  <assembly>
-                    <inline>
-                      <fileSets>
-                        <fileSet>
-                          <directory>${project.build.directory}</directory>
-                          <outputDirectory>.</outputDirectory>
-                          <includes>
-                            <include>dependency/*teamengine-*.war</include>
-                            <include>dependency/*teamengine-*.zip</include>
-                            <include>*ets-*.zip</include>
-                          </includes>
-                        </fileSet>
-                      </fileSets>
-                    </inline>
-                  </assembly>
-                </build>
                 <run>
                   <ports>
                     <port>8081:8080</port>
@@ -163,13 +138,13 @@
         </plugin>
       </plugins>
     </pluginManagement>
-    
+
     <resources>
       <resource>
         <directory>src/test/resources/Reference</directory>
         <targetPath>Reference</targetPath>
       </resource>
-      
+
       <!--  resources from ets-common. here because there is no (easy) merge of POM resources -->
       <resource>
         <directory>src/main/resources</directory>
@@ -222,10 +197,6 @@
   </profiles>
 
   <distributionManagement>
-    <repository>
-      <id>sonatype-nexus-staging</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
     <site>
       <id>site</id>
       <url>scm:git:git@github.com:opengeospatial/ets-cdb10.git</url>
