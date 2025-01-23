@@ -1,6 +1,12 @@
 
 # Release Notes
 
+## Version 1.2 (2025-01-23)
+
+Attention: Java 17 and Tomcat 10.1 are required.
+
+- [#60](https://github.com/opengeospatial/ets-cdb10/issues/60): Migrate test suite to TEAM Engine 6 (Java 17)
+
 ## Version 1.1 (2023-07-06)
 
 - [#56](https://github.com/opengeospatial/ets-cdb10/issues/56): URL stated by property testng.javadoc.url is causing the build to fail
