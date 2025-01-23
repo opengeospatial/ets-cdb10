@@ -14,12 +14,17 @@ import org.opengis.cite.cdb10.util.FilenamePatterns;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * <p>
+ * GTModelCMTStructureTests class.
+ * </p>
+ *
+ */
 public class GTModelCMTStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that GTModelCMT filenames have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 51 - based on Section 3.4.2")
 	public void verifyCMTFile() throws IOException {
@@ -30,7 +35,7 @@ public class GTModelCMTStructureTests extends Capability1Tests {
 		}
 
 		ArrayList<String> errors = new ArrayList<String>();
-		
+
 		DirectoryStream<Path> tnamPrefixDirs = Files.newDirectoryStream(gtModelGeomPath);
 
 		for (Path tnamPrefixDir : tnamPrefixDirs) {
@@ -48,22 +53,23 @@ public class GTModelCMTStructureTests extends Capability1Tests {
 				}
 			}
 		}
-		
+
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
-	
+
 	private void validateCMTFile(Path file, ArrayList<String> errors) {
 		final Pattern cmtFilePattern = Pattern.compile(FilenamePatterns.GTModelCMT);
-		
+
 		String filename = file.getFileName().toString();
 		Matcher match = cmtFilePattern.matcher(filename);
 
 		if (!match.find()) {
 			errors.add("Invalid file name: " + filename);
-		} else {
+		}
+		else {
 			String cs1 = match.group("cs1");
 			String cs2 = match.group("cs2");
-			
+
 			validateComponentSelectorFormat(cs1, 1, filename, errors);
 			validateComponentSelector1(cs1, "505", errors);
 			validateComponentSelectorFormat(cs2, 2, filename, errors);
@@ -75,4 +81,5 @@ public class GTModelCMTStructureTests extends Capability1Tests {
 			}
 		}
 	}
+
 }

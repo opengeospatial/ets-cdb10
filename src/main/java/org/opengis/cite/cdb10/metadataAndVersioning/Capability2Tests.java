@@ -15,12 +15,11 @@ import org.testng.annotations.BeforeClass;
 public class Capability2Tests extends CommonFixture {
 
 	/**
-	 * Obtains the test subject from the ISuite context. The suite attribute
-	 * {@link org.opengis.cite.cdb10.SuiteAttribute#TEST_SUBJECT} should evaluate to
-	 * a DOM Document node.
+	 * {@inheritDoc}
 	 *
-	 * @param testContext
-	 *            The test (group) context.
+	 * Obtains the test subject from the ISuite context. The suite attribute
+	 * {@link org.opengis.cite.cdb10.SuiteAttribute#TEST_SUBJECT} should evaluate to a DOM
+	 * Document node.
 	 */
 	@Override
 	@BeforeClass
@@ -33,4 +32,5 @@ public class Capability2Tests extends CommonFixture {
 		}
 		super.obtainTestSubject(testContext);
 	}
+
 }

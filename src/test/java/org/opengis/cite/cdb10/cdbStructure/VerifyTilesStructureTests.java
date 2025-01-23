@@ -47,8 +47,6 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 		this.testSuite.verifyGeocellLatitudeDirNamePrefix();
 	}
 
-
-
 	@Test(expected = AssertionError.class)
 	public void verifyGeocellLatitudeDirNameSlice_BadNorth() throws IOException {
 		// setup
@@ -110,8 +108,6 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 		this.testSuite.verifyGeocellLatitudeDirNameSlice();
 	}
 
-
-
 	@Test(expected = AssertionError.class)
 	public void verifyGeocellLongitudeDirNamePrefix_Bad() throws IOException {
 		// setup
@@ -145,8 +141,6 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 		// execute
 		this.testSuite.verifyGeocellLongitudeDirNamePrefix();
 	}
-
-
 
 	@Test(expected = AssertionError.class)
 	public void verifyGeocellLongitudeDirNameSlice_BadLength() throws IOException {
@@ -254,8 +248,6 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 		this.testSuite.verifyGeocellLongitudeDirNameSlice();
 	}
 
-
-
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetPrefix_BadLength() throws IOException {
 		// setup
@@ -298,8 +290,6 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 		// execute
 		this.testSuite.verifyDatasetPrefix();
 	}
-
-
 
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetCodeName_Missing() throws IOException {
@@ -346,13 +336,10 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 		this.testSuite.verifyDatasetCodeName();
 	}
 
-
-
 	@Test(expected = AssertionError.class)
 	public void verifyLODName_Unknown() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
-				"LAA")));
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery", "LAA")));
 
 		// execute
 		this.testSuite.verifyLODName();
@@ -361,8 +348,7 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyLODName_BadRange() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
-				"L99")));
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery", "L99")));
 
 		// execute
 		this.testSuite.verifyLODName();
@@ -371,8 +357,7 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test
 	public void verifyLODName_GoodCoarse() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
-				"LC")));
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery", "LC")));
 
 		// execute
 		this.testSuite.verifyLODName();
@@ -381,8 +366,7 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test
 	public void verifyLODName_GoodHiRes() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
-				"L23")));
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery", "L23")));
 
 		// execute
 		this.testSuite.verifyLODName();
@@ -391,8 +375,7 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test
 	public void verifyLODName_GoodMedRes() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
-				"L04")));
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery", "L04")));
 
 		// execute
 		this.testSuite.verifyLODName();
@@ -405,13 +388,10 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 		this.testSuite.verifyLODName();
 	}
 
-
-
 	@Test(expected = AssertionError.class)
 	public void verifyUREFName_Invalid() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
-				"LC", "A1")));
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery", "LC", "A1")));
 
 		// execute
 		this.testSuite.verifyUREFName();
@@ -420,8 +400,7 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyUREFName_TooLarge() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
-				"L00", "U8")));
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery", "L00", "U8")));
 
 		// execute
 		this.testSuite.verifyUREFName();
@@ -430,8 +409,7 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyUREFName_OutOfBounds() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
-				"L00", "U-8")));
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery", "L00", "U-8")));
 
 		// execute
 		this.testSuite.verifyUREFName();
@@ -440,8 +418,7 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test
 	public void verifyUREFName_Good() throws IOException {
 		// setup
-		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery",
-				"LC", "U0")));
+		Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "N62", "W162", "004_Imagery", "LC", "U0")));
 
 		// execute
 		this.testSuite.verifyUREFName();
@@ -454,13 +431,11 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 		this.testSuite.verifyUREFName();
 	}
 
-
-
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_BadLatHemis() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("A06E045_D001_S001_T001_L02_U3_R0.tif")));
 
 		// execute
@@ -470,8 +445,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_BadLat() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S6E045_D001_S001_T001_L02_U3_R0.tif")));
 
 		// execute
@@ -481,8 +456,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_BadLonHemis() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06A045_D001_S001_T001_L02_U3_R0.tif")));
 
 		// execute
@@ -492,8 +467,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_BadLon() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E45_D001_S001_T001_L02_U3_R0.tif")));
 
 		// execute
@@ -503,8 +478,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_BadDatasetCode() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D1_S001_T001_L02_U3_R0.tif")));
 
 		// execute
@@ -514,19 +489,19 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_BadCS1Format() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S1_T001_L02_U3_R0.tif")));
 
 		// execute
 		this.testSuite.verifyDatasetFileName();
 	}
-	
+
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_BadCS1() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S102_T001_L02_U3_R0.tif")));
 
 		// execute
@@ -536,19 +511,19 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_BadCS2Format() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T1_L02_U3_R0.tif")));
 
 		// execute
 		this.testSuite.verifyDatasetFileName();
 	}
-	
+
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_BadCS2() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T004_L02_U3_R0.tif")));
 
 		// execute
@@ -558,8 +533,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_BadLOD() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_LA_U3_R0.tif")));
 
 		// execute
@@ -569,8 +544,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_BadUREF() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_L02_UT_R0.tif")));
 
 		// execute
@@ -580,8 +555,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_BadRREF() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_L02_U3_RA.tif")));
 
 		// execute
@@ -591,8 +566,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_NoExt() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_L02_U3_R0.")));
 
 		// execute
@@ -602,8 +577,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_MismatchLat() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S07E045_D001_S001_T001_L02_U3_R0.tif")));
 
 		// execute
@@ -613,8 +588,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_MismatchLon() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E046_D001_S001_T001_L02_U3_R0.tif")));
 
 		// execute
@@ -624,8 +599,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_MismatchDataset() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D002_S001_T001_L02_U3_R0.tif")));
 
 		// execute
@@ -635,8 +610,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_MismatchLOD() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_L03_U3_R0.tif")));
 
 		// execute
@@ -646,8 +621,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_MismatchUREF() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_L02_U4_R0.tif")));
 
 		// execute
@@ -657,8 +632,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test(expected = AssertionError.class)
 	public void verifyDatasetFileName_RREFOutOfBounds() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "L02", "U3")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "L02", "U3")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_L02_U3_R10.tif")));
 
 		// execute
@@ -668,8 +643,8 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 	@Test
 	public void verifyDatasetFileName_Good() throws IOException {
 		// setup
-		Path dir = Files.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045",
-				"001_Elevation", "LC", "U0")));
+		Path dir = Files
+			.createDirectories(this.cdb_root.resolve(Paths.get("Tiles", "S06", "E045", "001_Elevation", "LC", "U0")));
 		Files.createFile(dir.resolve(Paths.get("S06E045_D001_S001_T001_LC01_U0_R0.tif")));
 
 		// execute
@@ -682,4 +657,5 @@ public class VerifyTilesStructureTests extends StructureTestFixture<TilesStructu
 		// execute
 		this.testSuite.verifyDatasetFileName();
 	}
+
 }

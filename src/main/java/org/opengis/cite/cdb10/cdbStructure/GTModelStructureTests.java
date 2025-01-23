@@ -17,11 +17,17 @@ import org.opengis.cite.cdb10.util.reference.FeatureDataDictionaryValidator;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * <p>
+ * GTModelStructureTests class.
+ * </p>
+ *
+ */
 public class GTModelStructureTests extends Capability1Tests {
+
 	/**
 	 * Validates that GTModel directories have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 45 - based on Section 3.4.1")
 	public void verifyDataset() throws IOException {
@@ -34,9 +40,9 @@ public class GTModelStructureTests extends Capability1Tests {
 		ArrayList<String> errors = new ArrayList<String>();
 		CdbReference references = new CdbReference();
 		DatasetsValidator validator = references.buildDatasetsValidator();
-		
-		final String[] allowedDatasets = { "500", "501", "502", "503", "504", "505", "506", "507", "508", 
-				"509", "510", "511", "512", "513" };
+
+		final String[] allowedDatasets = { "500", "501", "502", "503", "504", "505", "506", "507", "508", "509", "510",
+				"511", "512", "513" };
 
 		for (Path file : Files.newDirectoryStream(gtModelsPath)) {
 			String filename = file.getFileName().toString();
@@ -61,13 +67,17 @@ public class GTModelStructureTests extends Capability1Tests {
 			if (prefixID != null && !validator.isExtendedCode(prefixID)) {
 				if (prefixID < 1) {
 					errors.add("Invalid prefix cannot be below 001: " + filename);
-				} else if (!validator.isValidCode(prefixID)) {
+				}
+				else if (!validator.isValidCode(prefixID)) {
 					errors.add("Invalid dataset code: " + filename);
-				} else if (!validator.isValidName(datasetName)) {
+				}
+				else if (!validator.isValidName(datasetName)) {
 					errors.add("Invalid dataset name: " + filename);
-				} else if (!validator.datasetNameForCode(prefixID).equals(datasetName)) {
+				}
+				else if (!validator.datasetNameForCode(prefixID).equals(datasetName)) {
 					errors.add("Invalid dataset code/name combination: " + filename);
-				} else if (!Arrays.asList(allowedDatasets).contains(prefix)) {
+				}
+				else if (!Arrays.asList(allowedDatasets).contains(prefix)) {
 					errors.add("Invalid dataset for GTModel: " + filename);
 				}
 			}
@@ -77,16 +87,12 @@ public class GTModelStructureTests extends Capability1Tests {
 	}
 
 	/**
-	 * Validates that GTModel Category directories have valid codes/names.
-	 * D500, D502, D503, D506, D508, D510 only.
-	 * 
-	 * Level 1: Dataset
-	 * Level 2: Feature Category
-	 * Level 3: Feature Sub-Category
-	 * Level 4: Feature Type
-	 * Level 5: LOD
+	 * Validates that GTModel Category directories have valid codes/names. D500, D502,
+	 * D503, D506, D508, D510 only.
 	 *
-	 * @throws IOException Error reading from CDB
+	 * Level 1: Dataset Level 2: Feature Category Level 3: Feature Sub-Category Level 4:
+	 * Feature Type Level 5: LOD
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifyCategory() throws IOException {
@@ -101,15 +107,15 @@ public class GTModelStructureTests extends Capability1Tests {
 		FeatureDataDictionaryValidator validator = references.buildFeatureDataDictionaryValidator();
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
-			
+
 			// Only apply to 500, 502, 503, 506, 508, 510
 			final String[] allowedDatasets = { "500", "502", "503", "506", "508", "510" };
 			String datasetName = dataset.getFileName().toString().substring(0, 3);
-			
+
 			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
 				return;
 			}
-			
+
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
 
 			for (Path category : categories) {
@@ -147,16 +153,12 @@ public class GTModelStructureTests extends Capability1Tests {
 	}
 
 	/**
-	 * Validates that GTModel Sub-Category directories have valid codes/names.
-	 * D500, D502, D503, D506, D508, D510 only.
-	 * 
-	 * Level 1: Dataset
-	 * Level 2: Feature Category
-	 * Level 3: Feature Sub-Category
-	 * Level 4: Feature Type
-	 * Level 5: LOD
+	 * Validates that GTModel Sub-Category directories have valid codes/names. D500, D502,
+	 * D503, D506, D508, D510 only.
 	 *
-	 * @throws IOException Error reading from CDB
+	 * Level 1: Dataset Level 2: Feature Category Level 3: Feature Sub-Category Level 4:
+	 * Feature Type Level 5: LOD
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifySubcategory() throws IOException {
@@ -171,15 +173,15 @@ public class GTModelStructureTests extends Capability1Tests {
 		FeatureDataDictionaryValidator validator = references.buildFeatureDataDictionaryValidator();
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
-			
+
 			// Only apply to 500, 502, 503, 506, 508, 510
 			final String[] allowedDatasets = { "500", "502", "503", "506", "508", "510" };
 			String datasetName = dataset.getFileName().toString().substring(0, 3);
-			
+
 			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
 				return;
 			}
-			
+
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
 
 			for (Path category : categories) {
@@ -221,16 +223,12 @@ public class GTModelStructureTests extends Capability1Tests {
 	}
 
 	/**
-	 * Validates that GTModel Feature Type directories have valid codes/names.
-	 * D500, D502, D503, D506, D508, D510 only.
-	 * 
-	 * Level 1: Dataset
-	 * Level 2: Feature Category
-	 * Level 3: Feature Sub-Category
-	 * Level 4: Feature Type
-	 * Level 5: LOD
+	 * Validates that GTModel Feature Type directories have valid codes/names. D500, D502,
+	 * D503, D506, D508, D510 only.
 	 *
-	 * @throws IOException Error reading from CDB
+	 * Level 1: Dataset Level 2: Feature Category Level 3: Feature Sub-Category Level 4:
+	 * Feature Type Level 5: LOD
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifyFeatureType() throws IOException {
@@ -245,15 +243,15 @@ public class GTModelStructureTests extends Capability1Tests {
 		FeatureDataDictionaryValidator validator = references.buildFeatureDataDictionaryValidator();
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
-			
+
 			// Only apply to 500, 502, 503, 506, 508, 510
 			final String[] allowedDatasets = { "500", "502", "503", "506", "508", "510" };
 			String datasetName = dataset.getFileName().toString().substring(0, 3);
-			
+
 			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
 				return;
 			}
-			
+
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
 
 			for (Path category : categories) {
@@ -304,16 +302,12 @@ public class GTModelStructureTests extends Capability1Tests {
 	}
 
 	/**
-	 * Validates that GTModel LOD directories have valid names.
-	 * D500, D502, D503, D506, D508, D510 only.
-	 * 
-	 * Level 1: Dataset
-	 * Level 2: Feature Category
-	 * Level 3: Feature Sub-Category
-	 * Level 4: Feature Type
-	 * Level 5: LOD
+	 * Validates that GTModel LOD directories have valid names. D500, D502, D503, D506,
+	 * D508, D510 only.
 	 *
-	 * @throws IOException Error reading from CDB
+	 * Level 1: Dataset Level 2: Feature Category Level 3: Feature Sub-Category Level 4:
+	 * Feature Type Level 5: LOD
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 46/47/48/52/53 - based on Section 3.4.1")
 	public void verifyLOD() throws IOException {
@@ -326,15 +320,15 @@ public class GTModelStructureTests extends Capability1Tests {
 		ArrayList<String> errors = new ArrayList<String>();
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
-			
+
 			// Only apply to 500, 502, 503, 506, 508, 510
 			final String[] allowedDatasets = { "500", "502", "503", "506", "508", "510" };
 			String datasetName = dataset.getFileName().toString().substring(0, 3);
-			
+
 			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
 				return;
 			}
-			
+
 			DirectoryStream<Path> categories = Files.newDirectoryStream(dataset);
 
 			for (Path category : categories) {
@@ -357,17 +351,14 @@ public class GTModelStructureTests extends Capability1Tests {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
-	
+
 	/**
-	 * Validates that GTModel directories have valid codes/names.
-	 * D501, D511, D504, D505, 507, 509, 513 only.
-	 * 
-	 * Level 1: Dataset
-	 * Level 2: TNAM First Character
-	 * Level 3: TNAM Second Character
-	 * Level 4: Texture Name (TNAM)
+	 * Validates that GTModel directories have valid codes/names. D501, D511, D504, D505,
+	 * 507, 509, 513 only.
 	 *
-	 * @throws IOException Error reading from CDB
+	 * Level 1: Dataset Level 2: TNAM First Character Level 3: TNAM Second Character Level
+	 * 4: Texture Name (TNAM)
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 49/50/51/54/55 - based on Section 3.4.2")
 	public void verifyTNAMPrefix() throws IOException {
@@ -380,24 +371,24 @@ public class GTModelStructureTests extends Capability1Tests {
 		ArrayList<String> errors = new ArrayList<String>();
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
-			
+
 			// Only apply to 501, 511, 504, 505, 507, 509, 513 datasets
 			final String[] allowedDatasets = { "501", "511", "504", "505", "507", "509", "513" };
 			String datasetName = dataset.getFileName().toString().substring(0, 3);
-			
+
 			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
 				return;
 			}
-			
+
 			DirectoryStream<Path> prefixes = Files.newDirectoryStream(dataset);
 
 			for (Path prefix : prefixes) {
 				String filename = prefix.getFileName().toString();
-				
+
 				if (filename.length() != 1) {
-				errors.add("Invalid length on texture name prefix directory: " + filename);
+					errors.add("Invalid length on texture name prefix directory: " + filename);
 				}
-	
+
 				if (!filename.toUpperCase().equals(filename)) {
 					errors.add("Texture name prefix directory should be uppercase: " + filename);
 				}
@@ -406,17 +397,14 @@ public class GTModelStructureTests extends Capability1Tests {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
-	
+
 	/**
-	 * Validates that GTModel directories have valid codes/names.
-	 * D501, D511, D504, D505, 507, 509, 513 only.
-	 * 
-	 * Level 1: Dataset
-	 * Level 2: TNAM First Character
-	 * Level 3: TNAM Second Character
-	 * Level 4: Texture Name (TNAM)
+	 * Validates that GTModel directories have valid codes/names. D501, D511, D504, D505,
+	 * 507, 509, 513 only.
 	 *
-	 * @throws IOException Error reading from CDB
+	 * Level 1: Dataset Level 2: TNAM First Character Level 3: TNAM Second Character Level
+	 * 4: Texture Name (TNAM)
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 49/50/51/54/55 - based on Section 3.4.2")
 	public void verifyTNAMSecond() throws IOException {
@@ -429,15 +417,15 @@ public class GTModelStructureTests extends Capability1Tests {
 		ArrayList<String> errors = new ArrayList<String>();
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
-			
+
 			// Only apply to 501, 511, 504, 505, 507, 509, 513 datasets
 			final String[] allowedDatasets = { "501", "511", "504", "505", "507", "509", "513" };
 			String datasetName = dataset.getFileName().toString().substring(0, 3);
-			
+
 			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
 				return;
 			}
-			
+
 			DirectoryStream<Path> tnamPrefixDirs = Files.newDirectoryStream(dataset);
 
 			for (Path tnamPrefixDir : tnamPrefixDirs) {
@@ -445,11 +433,11 @@ public class GTModelStructureTests extends Capability1Tests {
 
 				for (Path secondDir : secondDirs) {
 					String filename = secondDir.getFileName().toString();
-	
+
 					if (filename.length() != 1) {
 						errors.add("Invalid length on level 3 texture name directory: " + filename);
 					}
-	
+
 					if (!filename.toUpperCase().equals(filename)) {
 						errors.add("Level 3 texture name directory should be uppercase: " + filename);
 					}
@@ -459,17 +447,14 @@ public class GTModelStructureTests extends Capability1Tests {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
-	
+
 	/**
-	 * Validates that GTModel directories have valid codes/names.
-	 * D501, D511, D504, D505, 507, 509, 513 only.
-	 * 
-	 * - Level 1: Dataset
-	 * - Level 2: TNAM First Character
-	 * - Level 3: TNAM Second Character
+	 * Validates that GTModel directories have valid codes/names. D501, D511, D504, D505,
+	 * 507, 509, 513 only.
+	 *
+	 * - Level 1: Dataset - Level 2: TNAM First Character - Level 3: TNAM Second Character
 	 * - Level 4: Texture Name (TNAM)
-	 * 
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 49/50/51/54/55 - based on Section 3.4.2")
 	public void verifyTNAM() throws IOException {
@@ -483,15 +468,15 @@ public class GTModelStructureTests extends Capability1Tests {
 		Pattern startPattern = Pattern.compile("^\\p{Alnum}{2}");
 
 		for (Path dataset : Files.newDirectoryStream(gtModelsPath)) {
-			
+
 			// Only apply to 501, 511, 504, 505, 507, 509, 513 datasets
 			final String[] allowedDatasets = { "501", "511", "504", "505", "507", "509", "513" };
 			String datasetName = dataset.getFileName().toString().substring(0, 3);
-			
+
 			if (!Arrays.asList(allowedDatasets).contains(datasetName)) {
 				return;
 			}
-			
+
 			DirectoryStream<Path> tnamPrefixDirs = Files.newDirectoryStream(dataset);
 
 			for (Path tnamPrefixDir : tnamPrefixDirs) {
@@ -501,23 +486,24 @@ public class GTModelStructureTests extends Capability1Tests {
 				for (Path secondDir : secondDirs) {
 					DirectoryStream<Path> textureNames = Files.newDirectoryStream(secondDir);
 					String secondDirFilename = secondDir.getFileName().toString();
-	
+
 					for (Path textureName : textureNames) {
 						String filename = textureName.getFileName().toString();
-	
+
 						if ((filename.length() < 2) || (filename.length() > 32)) {
 							errors.add("Invalid length on texture name directory: " + filename);
-						} else {
-							if (!filename.substring(0,1).equals(firstDirFilename)) {
+						}
+						else {
+							if (!filename.substring(0, 1).equals(firstDirFilename)) {
 								errors.add("Texture name directory does not match grandparent: " + filename);
 							}
-	
-							if (!filename.substring(1,2).equals(secondDirFilename)) {
+
+							if (!filename.substring(1, 2).equals(secondDirFilename)) {
 								errors.add("Texture name directory does not match parent: " + filename);
 							}
-	
+
 							Matcher match = startPattern.matcher(filename);
-	
+
 							if (!match.find()) {
 								errors.add("Texture name directory must start with two alphanumeric characters: "
 										+ filename);
@@ -530,4 +516,5 @@ public class GTModelStructureTests extends Capability1Tests {
 
 		Assert.assertTrue(errors.size() == 0, StringUtils.join(errors, "\n"));
 	}
+
 }

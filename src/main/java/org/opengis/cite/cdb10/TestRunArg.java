@@ -5,19 +5,20 @@ package org.opengis.cite.cdb10;
  */
 public enum TestRunArg {
 
-    /**
-     * An absolute URI that refers to a representation of the test subject or
-     * metadata about it.
-     */
-    IUT,
-    /**
-     * The conformance level(s) that are active
-     */
-    ICS;
+	/**
+	 * An absolute URI that refers to a representation of the test subject or metadata
+	 * about it.
+	 */
+	IUT,
+	/**
+	 * The conformance level(s) that are active
+	 */
+	ICS;
 
+	/** {@inheritDoc} */
+	@Override
+	public String toString() {
+		return name().toLowerCase();
+	}
 
-    @Override
-    public String toString() {
-        return name().toLowerCase();
-    }
 }

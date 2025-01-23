@@ -14,11 +14,17 @@ import org.opengis.cite.cdb10.util.FilenamePatterns;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * <p>
+ * GTModelInteriorTextureStructureTests class.
+ * </p>
+ *
+ */
 public class GTModelInteriorTextureStructureTests extends Capability1Tests {
+
 	/**
 	 * Validates that GTModelInteriorTexture filenames have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.14, Test 54 - based on Section 3.4.4")
 	public void verifyModelInteriorTextureFile() throws IOException {
@@ -31,7 +37,7 @@ public class GTModelInteriorTextureStructureTests extends Capability1Tests {
 		ArrayList<String> errors = new ArrayList<String>();
 		Pattern filePattern = Pattern.compile(FilenamePatterns.GTModelInteriorTexture);
 		Pattern otherPattern = Pattern.compile("^(D509|D513).+");
-		
+
 		DirectoryStream<Path> tnamPrefixDirs = Files.newDirectoryStream(gtModelGeomPath);
 
 		for (Path tnamPrefixDir : tnamPrefixDirs) {
@@ -51,20 +57,22 @@ public class GTModelInteriorTextureStructureTests extends Capability1Tests {
 						Matcher otherMatch = otherPattern.matcher(filename);
 						if (otherMatch.find()) {
 							return;
-						} else {
+						}
+						else {
 							Matcher match = filePattern.matcher(filename);
 							if (!match.find()) {
 								errors.add("Invalid file name: " + filename);
-							} else {
+							}
+							else {
 								String cs1 = match.group("cs1");
 								String cs2 = match.group("cs2");
-								
+
 								validateComponentSelectorFormat(cs1, 1, filename, errors);
 								validateComponentSelectorFormat(cs2, 2, filename, errors);
 								validateComponentSelector1(cs1, "507", errors);
 								validateComponentSelector2(cs2, cs1, "507", errors);
 								validateTextureNameCode(match.group("tnam"), file, errors);
-								
+
 								if (!match.group("ext").equals("rgb")) {
 									errors.add("Invalid file extension for D507: " + filename);
 								}

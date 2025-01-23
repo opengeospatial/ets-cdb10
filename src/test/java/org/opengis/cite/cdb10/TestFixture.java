@@ -18,12 +18,17 @@ import static org.mockito.Mockito.when;
 
 /**
  * Created by serene on 2016-09-01.
+ *
  * @param <T> Fixture class
  */
 public abstract class TestFixture<T extends CommonFixture> {
+
 	protected Path cdb_root;
+
 	private static ITestContext testContext;
+
 	private static ISuite suite;
+
 	protected T testSuite;
 
 	@Rule
@@ -50,13 +55,14 @@ public abstract class TestFixture<T extends CommonFixture> {
 	}
 
 	public boolean deleteRecursive(File path) {
-	    if (path.isDirectory()) {
-	        for (File file : path.listFiles()) {
-	            if (!deleteRecursive(file)) {
-	                return false;
-	            }
-	        }
-	    }
-	    return path.delete();
+		if (path.isDirectory()) {
+			for (File file : path.listFiles()) {
+				if (!deleteRecursive(file)) {
+					return false;
+				}
+			}
+		}
+		return path.delete();
 	}
+
 }

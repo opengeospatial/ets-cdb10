@@ -15,138 +15,148 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
  */
 public class VerifyDefaultsXmlStructureTests extends MetadataTestFixture<DefaultsXmlStructureTests> {
 
-    private final static Path XSD_FILE = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Defaults.xsd"));
+	private final static Path XSD_FILE = SOURCE_DIRECTORY.resolve(Paths.get("schema", "Defaults.xsd"));
 
-    private final static Path VALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Defaults.xml"));
+	private final static Path VALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("valid", "Defaults.xml"));
 
-    private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "DefaultsInvalid.xml"));
-    private final static Path ELEMENTS_OUT_OF_SEQUENCE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "DefaultsInvalidElementSequence.xml"));
-    private final static Path INVALID_R_W_TYPE_VALUE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "DefaultsInvalidR_W_TypeValue.xml"));
-    private final static Path NAME_NOT_UNIQUE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "DefaultsInvalidNameNotUnique.xml"));
-    private final static Path INVALID_TYPE_VALUE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "DefaultsInvalidTypeValue.xml"));
+	private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "DefaultsInvalid.xml"));
 
-    public VerifyDefaultsXmlStructureTests() {
-        testSuite = new DefaultsXmlStructureTests();
-    }
+	private final static Path ELEMENTS_OUT_OF_SEQUENCE_FILE = SOURCE_DIRECTORY
+		.resolve(Paths.get("invalid", "DefaultsInvalidElementSequence.xml"));
 
-    @Test
-    public void verifyDefaultsXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
-        // setup
-        Files.copy(VALID_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
-        Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
+	private final static Path INVALID_R_W_TYPE_VALUE_FILE = SOURCE_DIRECTORY
+		.resolve(Paths.get("invalid", "DefaultsInvalidR_W_TypeValue.xml"));
 
-        // execute
-        testSuite.verifyDefaultsXmlAgainstSchema();
-    }
+	private final static Path NAME_NOT_UNIQUE_FILE = SOURCE_DIRECTORY
+		.resolve(Paths.get("invalid", "DefaultsInvalidNameNotUnique.xml"));
 
-    @Test
-    public void verifyDefaultsXmlAgainstSchema_XmlIsNotValid() throws IOException, SAXException {
-        // setup
-        Files.copy(INVALID_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
-        Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
+	private final static Path INVALID_TYPE_VALUE_FILE = SOURCE_DIRECTORY
+		.resolve(Paths.get("invalid", "DefaultsInvalidTypeValue.xml"));
 
-        String expectedMessage = "Defaults.xml does not validate against its XML Schema file.";
+	public VerifyDefaultsXmlStructureTests() {
+		testSuite = new DefaultsXmlStructureTests();
+	}
 
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage(expectedMessage);
+	@Test
+	public void verifyDefaultsXmlAgainstSchema_XmlIsValid() throws IOException, SAXException {
+		// setup
+		Files.copy(VALID_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
+		Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
-        // execute
-        testSuite.verifyDefaultsXmlAgainstSchema();
-    }
+		// execute
+		testSuite.verifyDefaultsXmlAgainstSchema();
+	}
 
-    @Test
-    public void verifyDefaultsXmlIsValid_ElementsOutOfSequence() throws IOException, SAXException {
-        // setup
-        Files.copy(ELEMENTS_OUT_OF_SEQUENCE_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
-        Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
+	@Test
+	public void verifyDefaultsXmlAgainstSchema_XmlIsNotValid() throws IOException, SAXException {
+		// setup
+		Files.copy(INVALID_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
+		Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
-        String expectedMessage = "Invalid content was found";
+		String expectedMessage = "Defaults.xml does not validate against its XML Schema file.";
 
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage(expectedMessage);
+		expectedException.expect(AssertionError.class);
+		expectedException.expectMessage(expectedMessage);
 
-        // execute
-        testSuite.verifyDefaultsXmlAgainstSchema();
-    }
+		// execute
+		testSuite.verifyDefaultsXmlAgainstSchema();
+	}
 
-    // check all <R_W_Type> have (‘R’ or ‘W’.) as values
-    @Test
-    public void verifyElementR_W_TypeHasValidValues_ValidValues() throws IOException {
-        // setup
-        Files.copy(VALID_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
-        Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
+	@Test
+	public void verifyDefaultsXmlIsValid_ElementsOutOfSequence() throws IOException, SAXException {
+		// setup
+		Files.copy(ELEMENTS_OUT_OF_SEQUENCE_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
+		Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
-        // execute
-        testSuite.verifyDefaultsXmlElementR_W_TypeHasValidValues();
-    }
+		String expectedMessage = "Invalid content was found";
 
-    @Test
-    public void verifyElementR_W_TypeHasValidValues_InvalidValues() throws IOException {
-        // setup
-        Files.copy(INVALID_R_W_TYPE_VALUE_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
-        Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
+		expectedException.expect(AssertionError.class);
+		expectedException.expectMessage(expectedMessage);
 
-        String expectedMessage = "Defaults.xml element R_W_Type should have a value of R or W. Value 'K' is not valid.";
+		// execute
+		testSuite.verifyDefaultsXmlAgainstSchema();
+	}
 
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage(expectedMessage);
+	// check all <R_W_Type> have (‘R’ or ‘W’.) as values
+	@Test
+	public void verifyElementR_W_TypeHasValidValues_ValidValues() throws IOException {
+		// setup
+		Files.copy(VALID_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
+		Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
-        // execute
-        testSuite.verifyDefaultsXmlElementR_W_TypeHasValidValues();
-    }
+		// execute
+		testSuite.verifyDefaultsXmlElementR_W_TypeHasValidValues();
+	}
 
-    // check The default value name is a unique name identifying a default value for a given dataset.
-    @Test
-    public void verifyElementNameIsUniqueForEachDataset_IsUnique() throws IOException {
-        // setup
-        Files.copy(VALID_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
-        Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
+	@Test
+	public void verifyElementR_W_TypeHasValidValues_InvalidValues() throws IOException {
+		// setup
+		Files.copy(INVALID_R_W_TYPE_VALUE_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
+		Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
-        // execute
-        testSuite.verifyDefaultsXmlNameIsUniqueForEachDataset();
-    }
+		String expectedMessage = "Defaults.xml element R_W_Type should have a value of R or W. Value 'K' is not valid.";
 
+		expectedException.expect(AssertionError.class);
+		expectedException.expectMessage(expectedMessage);
 
-    @Test
-    public void verifyElementNameIsUniqueForEachDataset_IsNotUnique() throws IOException {
-        // setup
-        Files.copy(NAME_NOT_UNIQUE_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
-        Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
+		// execute
+		testSuite.verifyDefaultsXmlElementR_W_TypeHasValidValues();
+	}
 
-        String expectedMessage = "Defaults.xml element Name should be unique under each Dataset. " +
-                "'Default_Primary_Elevation_Control' is not unique.";
+	// check The default value name is a unique name identifying a default value for a
+	// given dataset.
+	@Test
+	public void verifyElementNameIsUniqueForEachDataset_IsUnique() throws IOException {
+		// setup
+		Files.copy(VALID_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
+		Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage(expectedMessage);
+		// execute
+		testSuite.verifyDefaultsXmlNameIsUniqueForEachDataset();
+	}
 
-        // execute
-        testSuite.verifyDefaultsXmlNameIsUniqueForEachDataset();
-    }
+	@Test
+	public void verifyElementNameIsUniqueForEachDataset_IsNotUnique() throws IOException {
+		// setup
+		Files.copy(NAME_NOT_UNIQUE_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
+		Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
-    // check Each default value has a type. Valid default value data types are “float”, “integer” and “string”.
-    @Test
-    public void verifyElementTypeHasValidValue_ValidValues() throws IOException {
-        // setup
-        Files.copy(VALID_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
-        Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
+		String expectedMessage = "Defaults.xml element Name should be unique under each Dataset. "
+				+ "'Default_Primary_Elevation_Control' is not unique.";
 
-        // execute
-        testSuite.verifyDefaultsXmlElementTypeHasValidValue();
-    }
+		expectedException.expect(AssertionError.class);
+		expectedException.expectMessage(expectedMessage);
 
-    @Test
-    public void verifyElementTypeHasValidValue_InvalidValues() throws IOException {
-        // setup
-        Files.copy(INVALID_TYPE_VALUE_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
-        Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
+		// execute
+		testSuite.verifyDefaultsXmlNameIsUniqueForEachDataset();
+	}
 
-        String expectedMessage = "Defaults.xml element Type should have a value of 'float', " +
-                "'integer' or 'string'. Value 'invalid_type' is not valid. expected [true] but found [false]";
+	// check Each default value has a type. Valid default value data types are “float”,
+	// “integer” and “string”.
+	@Test
+	public void verifyElementTypeHasValidValue_ValidValues() throws IOException {
+		// setup
+		Files.copy(VALID_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
+		Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
 
-        expectedException.expect(AssertionError.class);
-        expectedException.expectMessage(expectedMessage);
+		// execute
+		testSuite.verifyDefaultsXmlElementTypeHasValidValue();
+	}
 
-        // execute
-        testSuite.verifyDefaultsXmlElementTypeHasValidValue();
-    }
+	@Test
+	public void verifyElementTypeHasValidValue_InvalidValues() throws IOException {
+		// setup
+		Files.copy(INVALID_TYPE_VALUE_FILE, metadataFolder.resolve("Defaults.xml"), REPLACE_EXISTING);
+		Files.copy(XSD_FILE, schemaFolder.resolve("Defaults.xsd"), REPLACE_EXISTING);
+
+		String expectedMessage = "Defaults.xml element Type should have a value of 'float', "
+				+ "'integer' or 'string'. Value 'invalid_type' is not valid. expected [true] but found [false]";
+
+		expectedException.expect(AssertionError.class);
+		expectedException.expectMessage(expectedMessage);
+
+		// execute
+		testSuite.verifyDefaultsXmlElementTypeHasValidValue();
+	}
+
 }

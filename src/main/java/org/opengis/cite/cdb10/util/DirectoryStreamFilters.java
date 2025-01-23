@@ -9,7 +9,7 @@ import java.nio.file.Path;
  * Common directory stream filters that can be re-used in tests.
  */
 public class DirectoryStreamFilters {
-	
+
 	/**
 	 * Filter for paths that look like LOD directories
 	 * @return DirectoryStream Filter
@@ -21,4 +21,5 @@ public class DirectoryStreamFilters {
 			}
 		};
 	}
+
 }

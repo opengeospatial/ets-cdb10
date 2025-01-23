@@ -15,11 +15,17 @@ import org.opengis.cite.cdb10.util.FilenamePatterns;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * <p>
+ * MModelSignatureStructureTests class.
+ * </p>
+ *
+ */
 public class MModelSignatureStructureTests extends Capability1Tests {
+
 	/**
 	 * Validates that MModelSignature DIS Entity Kind directories have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISEntityKind() throws IOException {
@@ -40,8 +46,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelSignature DIS Domain directories have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISDomain() throws IOException {
@@ -66,8 +71,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelSignature DIS Country directories have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISCountry() throws IOException {
@@ -96,8 +100,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelSignature DIS Category directories have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISCategory() throws IOException {
@@ -130,8 +133,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelSignature DIS Entity directories have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyDISEntity() throws IOException {
@@ -168,8 +170,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelSignature LOD directories have valid names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyLOD() throws IOException {
@@ -194,7 +195,8 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 						DirectoryStream<Path> entityDirs = Files.newDirectoryStream(categoryDir);
 
 						for (Path entityDir : entityDirs) {
-							DirectoryStream<Path> lods = Files.newDirectoryStream(entityDir, DirectoryStreamFilters.lodFilter());
+							DirectoryStream<Path> lods = Files.newDirectoryStream(entityDir,
+									DirectoryStreamFilters.lodFilter());
 
 							for (Path lod : lods) {
 								validateLod(lod.getFileName().toString(), errors);
@@ -210,8 +212,7 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 
 	/**
 	 * Validates that MModelSignature filenames have valid codes/names.
-	 *
-	 * @throws IOException Error reading from CDB
+	 * @throws java.io.IOException Error reading from CDB
 	 */
 	@Test(description = "OGC 15-113r3, A.1.15, Test 63 - based on Section 3.5.1")
 	public void verifyFile() throws IOException {
@@ -237,7 +238,8 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 						DirectoryStream<Path> entityDirs = Files.newDirectoryStream(categoryDir);
 
 						for (Path entityDir : entityDirs) {
-							DirectoryStream<Path> lods = Files.newDirectoryStream(entityDir, DirectoryStreamFilters.lodFilter());
+							DirectoryStream<Path> lods = Files.newDirectoryStream(entityDir,
+									DirectoryStreamFilters.lodFilter());
 							String entityFilename = entityDir.getFileName().toString();
 
 							for (Path lod : lods) {
@@ -249,15 +251,16 @@ public class MModelSignatureStructureTests extends Capability1Tests {
 									Matcher match = filePattern.matcher(filename);
 									if (!match.find()) {
 										errors.add("Invalid file name: " + filename);
-									} else {
+									}
+									else {
 										if (!match.group("mmdc").equals(entityFilename)) {
 											errors.add("Moving Model DIS Code does not match parent directory: "
 													+ filename);
 										}
-										
+
 										String cs1 = match.group("cs1");
 										String cs2 = match.group("cs2");
-										
+
 										validateComponentSelectorFormat(cs1, 1, filename, errors);
 										validateComponentSelector1(cs1, "606", errors);
 										validateComponentSelectorFormat(cs2, 2, filename, errors);

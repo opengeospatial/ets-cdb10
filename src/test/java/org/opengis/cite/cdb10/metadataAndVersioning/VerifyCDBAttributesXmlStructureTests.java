@@ -19,12 +19,23 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
 
 	private final static Path VALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("valid", "CDB_Attributes.xml"));
 
-	private final static Path INVALID_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalid.xml"));
-	private final static Path CODE_NOT_INTEGER_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidAttributeCodeNotInteger.xml"));
-	private final static Path SYMBOL_IS_NOT_UNIQUE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidSymbolNotUnique.xml"));
-	private final static Path INVALID_TYPE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidType.xml"));
-	private final static Path INVALID_SCALER_CODE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidScalerCode.xml"));
-	private final static Path INVALID_UNIT_CODE_FILE = SOURCE_DIRECTORY.resolve(Paths.get("invalid", "CDB_AttributesInvalidUnitCode.xml"));
+	private final static Path INVALID_FILE = SOURCE_DIRECTORY
+		.resolve(Paths.get("invalid", "CDB_AttributesInvalid.xml"));
+
+	private final static Path CODE_NOT_INTEGER_FILE = SOURCE_DIRECTORY
+		.resolve(Paths.get("invalid", "CDB_AttributesInvalidAttributeCodeNotInteger.xml"));
+
+	private final static Path SYMBOL_IS_NOT_UNIQUE_FILE = SOURCE_DIRECTORY
+		.resolve(Paths.get("invalid", "CDB_AttributesInvalidSymbolNotUnique.xml"));
+
+	private final static Path INVALID_TYPE_FILE = SOURCE_DIRECTORY
+		.resolve(Paths.get("invalid", "CDB_AttributesInvalidType.xml"));
+
+	private final static Path INVALID_SCALER_CODE_FILE = SOURCE_DIRECTORY
+		.resolve(Paths.get("invalid", "CDB_AttributesInvalidScalerCode.xml"));
+
+	private final static Path INVALID_UNIT_CODE_FILE = SOURCE_DIRECTORY
+		.resolve(Paths.get("invalid", "CDB_AttributesInvalidUnitCode.xml"));
 
 	public VerifyCDBAttributesXmlStructureTests() {
 		this.testSuite = new CDBAttributesXmlStructureTests();
@@ -108,8 +119,8 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
 		Files.copy(SYMBOL_IS_NOT_UNIQUE_FILE, this.metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
 		Files.copy(XSD_FILE, this.schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
 
-		String expectedMessage = "CDB_Attributes.xml element Attribute should have unique symbols. " +
-				"Symbol 'AEAC' is not unique. expected [1] but found [2]";
+		String expectedMessage = "CDB_Attributes.xml element Attribute should have unique symbols. "
+				+ "Symbol 'AEAC' is not unique. expected [1] but found [2]";
 
 		this.expectedException.expect(AssertionError.class);
 		this.expectedException.expectMessage(expectedMessage);
@@ -134,8 +145,8 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
 		Files.copy(INVALID_TYPE_FILE, this.metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
 		Files.copy(XSD_FILE, this.schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
 
-		String expectedMessage = "CDB_Attributes.xml element Type should have a value of " +
-				"'Text', 'Numeric' or 'Boolean'. Type 'Invalid_type' is not valid. expected [true] but found [false]";
+		String expectedMessage = "CDB_Attributes.xml element Type should have a value of "
+				+ "'Text', 'Numeric' or 'Boolean'. Type 'Invalid_type' is not valid. expected [true] but found [false]";
 
 		this.expectedException.expect(AssertionError.class);
 		this.expectedException.expectMessage(expectedMessage);
@@ -160,8 +171,8 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
 		Files.copy(INVALID_SCALER_CODE_FILE, this.metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
 		Files.copy(XSD_FILE, this.schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
 
-		String expectedMessage = "CDB_Attributes.xml Scaler code should be a positive integer. " +
-				"Code '-1' is not valid. expected [true] but found [false]";
+		String expectedMessage = "CDB_Attributes.xml Scaler code should be a positive integer. "
+				+ "Code '-1' is not valid. expected [true] but found [false]";
 
 		this.expectedException.expect(AssertionError.class);
 		this.expectedException.expectMessage(expectedMessage);
@@ -186,8 +197,8 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
 		Files.copy(INVALID_UNIT_CODE_FILE, this.metadataFolder.resolve("CDB_Attributes.xml"), REPLACE_EXISTING);
 		Files.copy(XSD_FILE, this.schemaFolder.resolve("Vector_Attributes.xsd"), REPLACE_EXISTING);
 
-		String expectedMessage = "CDB_Attributes.xml Unit code should be a positive integer. " +
-				"Code '-1' is not valid. expected [true] but found [false]";
+		String expectedMessage = "CDB_Attributes.xml Unit code should be a positive integer. "
+				+ "Code '-1' is not valid. expected [true] but found [false]";
 
 		this.expectedException.expect(AssertionError.class);
 		this.expectedException.expectMessage(expectedMessage);
@@ -195,4 +206,5 @@ public class VerifyCDBAttributesXmlStructureTests extends MetadataTestFixture<CD
 		// execute
 		this.testSuite.verifyCDBAttributesXmlUnitCodeIsValid();
 	}
+
 }

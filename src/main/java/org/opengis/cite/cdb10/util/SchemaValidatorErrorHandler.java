@@ -13,38 +13,54 @@ import java.util.List;
  */
 public class SchemaValidatorErrorHandler implements ErrorHandler {
 
-    private final List<SAXParseException> exceptionList = new LinkedList<>();
+	private final List<SAXParseException> exceptionList = new LinkedList<>();
 
-    @Override
-    public void warning(SAXParseException e) throws SAXException {
-        exceptionList.add(e);
-    }
+	/** {@inheritDoc} */
+	@Override
+	public void warning(SAXParseException e) throws SAXException {
+		exceptionList.add(e);
+	}
 
-    @Override
-    public void error(SAXParseException e) throws SAXException {
-        exceptionList.add(e);
-    }
+	/** {@inheritDoc} */
+	@Override
+	public void error(SAXParseException e) throws SAXException {
+		exceptionList.add(e);
+	}
 
-    @Override
-    public void fatalError(SAXParseException e) throws SAXException {
-        System.out.println("here");
-        exceptionList.add(e);
-    }
+	/** {@inheritDoc} */
+	@Override
+	public void fatalError(SAXParseException e) throws SAXException {
+		System.out.println("here");
+		exceptionList.add(e);
+	}
 
-    public String getMessages() {
-        Iterator<SAXParseException> exceptionIterator = exceptionList.iterator();
+	/**
+	 * <p>
+	 * getMessages.
+	 * </p>
+	 * @return a {@link java.lang.String} object
+	 */
+	public String getMessages() {
+		Iterator<SAXParseException> exceptionIterator = exceptionList.iterator();
 
-        String messages = "";
-        while (exceptionIterator.hasNext()) {
-            messages += String.valueOf(exceptionIterator.next().getMessage());
-            if (exceptionIterator.hasNext()) {
-                messages +=  ", ";
-            }
-        }
-        return messages;
-    }
+		String messages = "";
+		while (exceptionIterator.hasNext()) {
+			messages += String.valueOf(exceptionIterator.next().getMessage());
+			if (exceptionIterator.hasNext()) {
+				messages += ", ";
+			}
+		}
+		return messages;
+	}
 
-    public boolean noErrors() {
-        return exceptionList.isEmpty();
-    }
+	/**
+	 * <p>
+	 * noErrors.
+	 * </p>
+	 * @return a boolean
+	 */
+	public boolean noErrors() {
+		return exceptionList.isEmpty();
+	}
+
 }
