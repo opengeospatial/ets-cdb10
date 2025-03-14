@@ -26,7 +26,7 @@
     </links>
     <menu name="Getting Started">
       <item href="index.html" name="Overview"/>
-      <item href="relnotes.html" name="Release Notes"/>
+      <item href="changelog.html" name="Release Notes"/>
       <item href="how_to_eclipse.html" name="Running with Eclipse IDE"/>
       <item href="how_to_team_engine.html" name="Running with TEAM Engine"/>
       <item href="how_to_jar.html" name="Running with JAR Tool"/>
