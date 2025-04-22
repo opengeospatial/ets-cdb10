@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="${project.name}" 
-  xmlns="http://maven.apache.org/DECORATION/1.7.0" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/DECORATION/1.7.0 http://maven.apache.org/xsd/decoration-1.7.0.xsd">
+<site xmlns="http://maven.apache.org/SITE/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0 https://maven.apache.org/xsd/site-2.0.0.xsd">
 
   <skin>
     <groupId>org.apache.maven.skins</groupId>
     <artifactId>maven-fluido-skin</artifactId>
     <version>2.0.1</version>
   </skin>
+
   <custom>
     <fluidoSkin>
       <sideBarEnabled>true</sideBarEnabled>
     </fluidoSkin>
   </custom>
 
-  <bannerLeft>
-    <name>${project.name}</name>
-    <src>./img/ogc-logo.png</src>
-    <href>http://cite.opengeospatial.org/</href>
+  <bannerLeft href="https://cite.opengeospatial.org/">
+    <image src="./img/ogc-logo.png"/>
   </bannerLeft>
+  <bannerRight name="${project.name}">
+  </bannerRight>
 
   <body>
     <links>
       <item name="Issues" href="https://github.com/opengeospatial/ets-cdb10/issues"/>
     </links>
-
     <menu name="Getting Started">
-      <item name="Overview" href="index.html" />
-      <item name="Release Notes" href="changelog.html" />
-      <item name="Running with Eclipse IDE" href="how_to_eclipse.html" />
-      <item name="Running with TEAM Engine" href="how_to_team_engine.html" />
-      <item name="Running with JAR Tool" href="how_to_jar.html" />
+      <item href="index.html" name="Overview"/>
+      <item href="changelog.html" name="Release Notes"/>
+      <item href="how_to_eclipse.html" name="Running with Eclipse IDE"/>
+      <item href="how_to_team_engine.html" name="Running with TEAM Engine"/>
+      <item href="how_to_jar.html" name="Running with JAR Tool"/>
     </menu>
-    <menu ref="reports" />
+    <menu ref="reports"/>
   </body>
-</project>
+</site>
